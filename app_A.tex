@@ -1,0 +1,348 @@
+\section*{Appendix A: Matrix derivatives in quantitative genetics equations}
+
+\renewcommand{\thefigure}{A\arabic{figure}}
+\renewcommand{\theequation}{A\arabic{equation}}
+\renewcommand{\thetable}{A\arabic{table}}
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+
+
+As in the main text, $^{\textrm{T}}$ indicates transposition,
+multiplication between matrices is always matrix multiplication, and
+bold face indicates a matrix.
+Also note that both $\mathbf{C}$ and $\mathbf{D}$ are symmetrical,
+so $\mathbf{C} + \mathbf{C}^{\textrm{T}} = 2 \; \mathbf{C}$ and
+$\mathbf{D} + \mathbf{D}^{\textrm{T}} = 2 \; \mathbf{D}$.
+
+
+\subsection*{Trait change}
+
+From the main text, we know that
+
+\begin{equation*}
+\begin{split}
+    F_{i,t+1} &= \exp \left\{
+        r_0 - f \; \mathbf{V}_{i,t} \; \mathbf{C} \; \mathbf{V}_{i,t}^{\textrm{T}} -
+        \alpha_0 \;\textrm{e}^{- \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}} } \mathbf{\Omega}_{i,t}
+        \right\} \\
+    \mathbf{V}_{i,t+1} &= \mathbf{V}_{i,t} + \left( \frac{1}{F_{i,t+1}}
+        \frac{\partial F_{i,t+1}}{\partial \mathbf{V}_{i,t}} \right) \sigma^2_i
+    \textrm{.}
+\end{split}
+\end{equation*}
+
+
+The partial derivative of fitness in relation to traits for species $i$ is
+
+
+\begin{equation*}
+\begin{split}
+    \frac{\partial F_{i,t+1}}{\partial \mathbf{V}_{i,t}} &=
+        \exp \left\{
+            r_0
+            - f \mathbf{V}_{i,t} \mathbf{C} \mathbf{V}_{i,t}^{\textrm{T}}
+            - \alpha_0  \mathbf{\Omega}_{i,t} \,
+                \textrm{e}^{- \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}}
+        \right\}
+        \frac{\partial \!
+            \left(
+                r_0
+                - f \; \mathbf{V}_{i,t} \; \mathbf{C} \; \mathbf{V}_{i,t}^{\textrm{T}}
+                - \alpha_0 \; \mathbf{\Omega}_{i,t} \;
+                    \textrm{e}^{- \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}}
+            \right)
+            }{ \partial \mathbf{V}_{i,t} } \\
+     &=
+        \exp \left\{
+            r_0
+            - f \mathbf{V}_{i,t} \mathbf{C} \mathbf{V}_{i,t}^{\textrm{T}}
+            - \alpha_0  \mathbf{\Omega}_{i,t} \,
+                \textrm{e}^{- \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}}
+        \right\}
+        \left[
+            - 2 f \mathbf{V}_{i,t} \mathbf{C}
+            - \alpha_0 \, \mathbf{\Omega}_{i,t} \,
+                \textrm{e}^{- \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}} \:
+                \frac{\partial \! \left( - \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}} \right)
+                    }{ \partial \mathbf{V}_{i,t} }
+        \right] \\[2ex]
+    \frac{ \partial F_{i,t} }{ \partial \mathbf{V}_{i,t} } &=
+        \exp \left\{
+            r_0
+            - f \mathbf{V}_{i,t} \mathbf{C} \mathbf{V}_{i,t}^{\textrm{T}}
+            - \alpha_0  \mathbf{\Omega}_{i,t} \,
+                \textrm{e}^{- \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}}
+        \right\}
+        \left[
+            2 \alpha_0 \mathbf{\Omega}_{i,t} \,
+                \textrm{e}^{- \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}} \:
+                \mathbf{V}_{i,t}
+            - 2 f \mathbf{V}_{i,t} \mathbf{C}
+        \right]
+    \textrm{.}
+\end{split}
+\end{equation*}
+
+
+
+Combining above with equation \ref{eq:trait-change}, we find that trait values at
+time $t+1$ are
+
+\begin{equation} \label{eq:trait-change-full}
+    \mathbf{V}_{i,t+1} = \mathbf{V}_{i,t} + 2 \sigma_i^2
+    \left(
+        \alpha_0 \mathbf{\Omega}_{i,t} \,
+            \textrm{e}^{- \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}} \:
+            \mathbf{V}_{i,t}
+        - f \mathbf{V}_{i,t} \mathbf{C}
+    \right)
+    \textrm{.}
+\end{equation}
+
+
+\subsection*{Jacobian matrix}
+
+The $nq \times nq$ Jacobian matrix consists of $n^2$ inner $q \times q$ blocks.
+The on-diagonal blocks are the partial derivatives of species $i$ traits at time $t+1$ with respect
+to species $i$ traits at time $t$:
+
+\begin{equation*}
+\begin{split}
+    \frac{ \partial \; \mathbf{V}_{i,t+1} }{ \partial \; \mathbf{V}_{i,t} } &=
+        \frac{ \partial \; \mathbf{V}_{i,t} }{ \partial \; \mathbf{V}_{i,t} } +
+        2 \; \sigma_i^2
+        \left(
+            \frac{ \partial \;
+                \alpha_0 \; \mathbf{\Omega}_{i,t} \;
+                    \textrm{e}^{-\mathbf{V}_{i,t} \mathbf{V}_{i,t}^\textrm{T}} \,
+                    \mathbf{V}_{i,t}}{\partial \; \mathbf{V}_{i,t} } -
+            \frac{ \partial \; f \, \mathbf{V}_{i,t} \mathbf{C}}{\partial \; \mathbf{V}_{i,t} }
+        \right) \\
+    &=
+        \mathbf{I} +
+        2 \; \sigma_i^2
+        \left[
+            \alpha_0 \; \mathbf{\Omega}_{i,t} \,
+            \left(
+                \textrm{e}^{-\mathbf{V}_{i,t} \mathbf{V}_{i,t}^\textrm{T}} \: \mathbf{I} +
+                \frac{ \partial \;
+                        \textrm{e}^{-\mathbf{V}_{i,t} \mathbf{V}_{i,t}^\textrm{T}}
+                        }{\partial \; \mathbf{V}_{i,t} } \, \mathbf{V}_{i,t}
+            \right) -
+            f \, \mathbf{C}
+            \right] \\[2ex]
+    \frac{ \partial \; \mathbf{V}_{i,t+1} }{ \partial \; \mathbf{V}_{i,t} } &= \mathbf{I} +
+        2 \; \sigma_i^2 \;
+        \left[
+            \alpha_0 \; \mathbf{\Omega}_{i,t} \;
+            \textrm{e}^{ - \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}} }
+            \left(
+                \mathbf{I} - 2 \; \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t}
+            \right) -
+            f \, \mathbf{C}
+        \right]
+    \textrm{,}
+\end{split}
+\end{equation*}
+
+\noindent where $\mathbf{I}$ is a $q \times q$ identity matrix.
+
+
+The off-diagonal blocks of the Jacobian are the partial derivatives of species $i$
+traits at time $t+1$ with respect to species $k$ traits at time $t$, where $k \ne i$.
+To calculate this, it's useful to rearrange equation \ref{eq:trait-change-full} and
+extract the portion that includes $\mathbf{V}_{k,t}$:
+
+\begin{equation*}
+\begin{split}
+    \mathbf{V}_{i,t+1} &= \mathbf{V}_{i,t} + 2 \; \sigma_i^2
+    \left[
+        \left(
+            N_{k,t} \; \textrm{e}^{-\mathbf{V}_{k,t} \mathbf{D} \mathbf{V}_{k,t}^\textrm{T}} +
+            \mathbf{\Phi}_{i,t}
+        \right)
+        \left(
+            \alpha_0 \; \textrm{e}^{-\mathbf{V}_{i,t}
+            \mathbf{V}_{i,t}^\textrm{T}} \; \mathbf{V}_{i,t}
+        \right)
+        - f \mathbf{V}_{i,t} \mathbf{C}
+    \right] \\
+    \mathbf{\Phi}_{i,t} &= N_{i,t} + \sum_{j \ne i, j \ne k}^{n}{
+        N_{j,t} \; \textrm{e}^{- \mathbf{V}_{j,t} \mathbf{D}
+        \mathbf{V}_{j,t}^{\textrm{T}}} }
+    \textrm{.}
+\end{split}
+\end{equation*}
+
+From this we calculated the partial derivative of $\mathbf{V}_{i,t+1}$ in relation to
+$\mathbf{V}_{k,t}$
+
+
+\begin{equation*}
+\begin{split}
+    \frac{ \partial \: \mathbf{V}_{i,t+1} }{ \partial \: \mathbf{V}_{k,t} } &=
+        \frac{ \partial \: \mathbf{V}_{i,t} }{ \partial \: \mathbf{V}_{k,t} } +
+        2 \; \sigma_i^2 \;
+        \left[
+            \frac{ \partial \:
+                \left(
+                    N_{k,t} \textrm{e}^{- \mathbf{V}_{k,t} \mathbf{D}
+                    \mathbf{V}_{k,t}^{\textrm{T}}} + \mathbf{\Phi}_{i,t}
+                \right)
+                \left(
+                    \alpha_0 \; \textrm{e}^{- \mathbf{V}_{i,t}
+                    \mathbf{V}_{i,t}^{\textrm{T}}} \mathbf{V}_{i,t}
+                \right)
+            }{ \partial \:  \mathbf{V}_{k,t} } -
+            \frac{ \partial \:  f \, \mathbf{V}_{i,t} \mathbf{C} }{
+            \partial \: \mathbf{V}_{k,t} }
+        \right] \\
+    &= 2 \; \sigma_i^2 \; \alpha_0 \; N_{k,t} \;
+        \frac{ \partial \:
+                \textrm{e}^{
+                    - \mathbf{V}_{k,t} \mathbf{D} \mathbf{V}_{k,t}^{\textrm{T}}
+                    - \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}
+                } \; \mathbf{V}_{i,t}
+            }{ \partial \:  \mathbf{V}_{k,t} } \\
+    &= 2 \; \sigma_i^2 \; \alpha_0 \; N_{k,t} \;
+        \frac{ \partial \:
+                \left(
+                    - \mathbf{V}_{k,t} \mathbf{D} \mathbf{V}_{k,t}^{\textrm{T}}
+                    - \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}
+                \right)
+            }{ \partial \:  \mathbf{V}_{k,t} } \;
+        \textrm{e}^{
+                    - \mathbf{V}_{k,t} \mathbf{D} \mathbf{V}_{k,t}^{\textrm{T}}
+                    - \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}
+                } \; \mathbf{V}_{i,t} \\
+    &= - 2 \; \sigma_i^2 \; \alpha_0 \; N_{k,t} \,
+        \left( \mathbf{D} + \mathbf{D}^{\textrm{T}} \right) \,
+        \mathbf{V}_{k,t}^{\textrm{T}} \;
+        \textrm{e}^{
+                    - \mathbf{V}_{k,t} \mathbf{D} \mathbf{V}_{k,t}^{\textrm{T}}
+                    - \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}
+                } \; \mathbf{V}_{i,t} \\[2ex]
+    \frac{ \partial \: \mathbf{V}_{i,t+1} }{ \partial \: \mathbf{V}_{k,t}} &=
+        -4 \; \sigma_i^2 \; \alpha_0 \; N_{k,t} \;
+        \mathbf{D} \; \mathbf{V}_{k,t}^{\textrm{T}} \;
+        \textrm{e}^{
+                - \mathbf{V}_{k,t} \mathbf{D} \mathbf{V}_{k,t}^{\textrm{T}}
+                - \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}
+            } \;
+            \mathbf{V}_{i,t}
+    \textrm{.} \\
+\end{split}
+\end{equation*}
+
+
+
+\subsection*{Keeping traits non-negative}
+
+
+The previous section in this appendix shows the equations for the
+partial derivatives when traits are allowed to be $<0$.
+This section shows how those derivatives are altered to account for
+the fact that traits are kept $\ge 0$.
+
+
+An obvious choice for keeping traits from being $<0$ is using absolute
+values.
+However, during simulations, using absolute values causes fluctuations
+in the trait values when they approach zero (they ``bounce off''
+the zero bound) that persist for a very long time.
+This causes the simulations to take a prohibitively long time to reach
+equilibrium.
+A more important disadvantage is that $d \lvert x \rvert / dx$ is
+undefined when $x = 0$.
+
+
+Instead we are using the ramp function, $R(x)$, which is defined as
+
+\begin{equation*}
+    R(x) = \begin{cases}
+        x & \text{if}\ x \ge 0 \\
+        0 & \text{if}\ x < 0
+        \end{cases}
+    \text{.}
+\end{equation*}
+
+
+\noindent Its derivative is
+
+\begin{equation*}
+    R'(x) = H(x).
+\end{equation*}
+
+\noindent $H(x)$ is called the ``Heaviside step function'' (Weisstein n.d.):
+
+\begin{equation*}
+    H(x) = \begin{cases}
+        0 & \text{if}\ x \le 0 \\
+        1 & \text{if}\ x > 0
+        \end{cases}
+    \text{.}
+\end{equation*}
+
+% Also see https://see.stanford.edu/materials/lsoftaee261/book-fall-07.pdf
+
+
+To show how we altered the equations for the partial derivatives
+in the previous section, it's useful to define a general form of how
+the equations for trait change through time are altered to keep traits $\ge 0$.
+Any one trait value at time $t+1$,
+$v_{ij,t+1}$ (for species $i$ and trait $j$),
+is a function of any trait value at time $t$, $v_{\zeta\xi,t}$
+(where $\zeta \in \{ 1, \: \ldots \, , \: n \}$,
+$\xi \in \{ 1, \: \ldots \, , \: q \}$)
+as follows:
+
+\begin{equation*}
+    v_{ij,t+1}(v_{\zeta\xi,t}) = R(\ddot{v}_{ij,t+1}(v_{\zeta\xi,t}))
+\end{equation*}
+
+\noindent where $\ddot{v}_{ij,t+1}(v_{\zeta\xi,t})$ is the form of the equation that
+allows negative values (i.e., those in the section above).
+For the partial derivative in relation to $v_{\zeta\xi,t}$, we get
+
+
+\begin{equation*}
+    \frac{\partial \, v_{ij,t+1}(v_{\zeta\xi,t})}{\partial \, v_{\zeta\xi,t}} =
+        H(\ddot{v}_{ij,t+1}(v_{\zeta\xi,t}))
+        \frac{\partial \, \ddot{v}_{ij,t+1}(v_{\zeta\xi,t})}{
+            \partial \, v_{\zeta\xi,t} }
+\text{.}
+\end{equation*}
+
+\noindent where
+$\frac{\partial \, \ddot{v}_{ij,t+1}(v_{\zeta\xi,t})}{
+\partial \, v_{\zeta\xi,t}}$
+is one of the partial derivatives described in the previous section
+(which one depends on whether $i = \zeta$).
+
+
+Thus, by including the ramp function, we must multiply the derivatives
+calculated using the equations in the previous section by the term
+$H(\ddot{v}_{ij,t+1}(v_{\zeta\xi,t}))$ to get the updated derivative.
+Based on the definition of $H(x)$...
+
+\begin{itemize}
+    \item If $\ddot{v}_{ij,t+1}(v_{\zeta\xi,t})$ is $> 0$ at equilibrium, then
+        $\frac{\partial \, v_{ij,t+1}(v_{\zeta\xi,t})}{
+            \partial \, v_{\zeta\xi,t}}$
+        simplifies to $\frac{\partial \, \ddot{v}_{ij,t+1}(v_{\zeta\xi,t})}{
+            \partial \, v_{\zeta\xi,t}}$.
+    \item If $\ddot{v}_{ij,t+1}(v_{\zeta\xi,t})$ is $\le 0$ at equilibrium, then
+        $\frac{\partial \, v_{ij,t+1}(v_{\zeta\xi,t})}{
+            \partial \, v_{\zeta\xi,t}}$
+        simplifies to zero.
+\end{itemize}
+
+
+
+
+\subsection*{Reference}
+
+Weisstein, Eric W. n.d. Ramp Function.
+From MathWorld--A Wolfram Web Resource.
+https://mathworld.wolfram.com/RampFunction.html
