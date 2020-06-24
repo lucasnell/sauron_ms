@@ -1,52 +1,165 @@
 \section*{Results}
 
-%
-%
-% For both 2 and 3 traits:
-%
-% Coexistence occurs when $d \ge 0$ (i.e., when non-conflicting or neutral)
-%
-% I need to check on what happens when you have both conflicting and non-conflicting
-% traits.
-% I think the analytical solutions related to coexistence / stability will
-% help with this.
-%
-%
-%
-% \subsection*{Patterns of outcomes}
-%
-% For 2 traits...
-%
-% \begin{enumerate}
-%     \item when $\eta < 0$ (sub-additive), one state where both traits are equal
-%     \item when $\eta = 0$, neutrally stable ring
-%     \item when $\eta > 0$ (super-additive), 2 alternative stable states, one for each trait being
-%         maximized and the other being 0
-% \end{enumerate}
-%
-% % unstable state when all traits are zero
-% %
-% % saddle node when $\eta \ne 0$:
-% % when starting value is exactly on line perpendicular to
-% % the line formed by the alternative stable states, it'll go to the
-% % two unstable states that are of the opposite scenario.
-% % By scenario I mean that when stable states are at $V_1 = V_2$,
-% % points on the saddle node go to the two points where $V_1 = -V_2$.
-% % The inverse is also true.
-%
-%
-% For 3 traits...
-%
-% \begin{enumerate}
-%     \item when $\eta < 0$ (sub-additive), one state where all traits are equal
-%     \item when $\eta = 0$, neutrally stable "shell"
-%     \item when $\eta > 0$ (sper-additive), 3 alternative stable states,
-%         one for each trait being maximized and the other being 0
-% \end{enumerate}
-%
-% When you have two traits that are sub-additive and two that are super-additive, you
-% can get neutral partial-rings, but this is dependent on all $\eta$ being equal.
-% So I don't actually think this is all that interesting.
-%
-% % I haven't explored this in detail, except that there is also
-% % an unstable state when all traits are zero.
+\subsection*{1. Trait outcomes}
+
+
+With three traits, we first generated the 3 $\eta$ magnitudes from a
+uniform distribution from 0.1 to 0.4.
+The values we ended up with were
+$\eta_1 = 0.207$, $\eta_2 = 0.190$, and $\eta_3 = 0.257$.
+We then simulated communities of 100 species, each with random starting
+trait values ($\sim \text{N}(0, 2)$, truncated to be $\ge 0$).
+We did this 24 times for each of the 27 permutations of
+$\eta_1$, $\eta_2$, and $\eta_3$ being negative, zero, or positive.
+Because we were only interested in the possible trait values for surviving
+species, we set $d = 0.1$ (non-conflicting evolution) so that many species
+survived and surveyed the trait space more effectively.
+We recorded the trait values of the surviving species.
+
+
+This resulted in a number of outcomes (Figure 1).
+When at least one combination was sub-additive, only one set of trait
+values were present in surviving species.
+What those trait values were depended on the exact combination.
+With all sub-additive combinations, all three traits were maximized.
+The six other permutations of $\ge 2$ sub-additive combinations varied but
+all had high values of $\eta_2$ and usually had high values of $\eta_3$.
+With only one sub-additive combination, the combination that was sub-additive
+determined which of the three trait states the surviving species possessed.
+
+
+We observed alternative trait states only when no trait combinations
+were sub-additive.
+When all combinations were super-additive, there were three alternative
+trait states: one for each trait being maximized while the others
+equaled zero.
+With two super-additive and one neutral combinations, species traits were
+along a neutrally stable quarter-ring along one axis.
+With one super-additive and two neutral combinations, species traits were
+along a neutrally stable half-ring along two axes.
+Traits existed along a neutrally stable three-dimensional shell when all
+traits were neutral.
+
+
+
+__NOTE:__ When $d$ is large enough ($d = 0.9$ does it for these parameter values),
+you can get additional trait outcomes.
+In some cases, it adds 1 or 2 additional trait state(s), but in the case
+of 1 sub-additive, 1 neutral, and 1 super-additive trait (i.e., "1 of each"),
+it allows for many possibilities:
+anywhere on a sub-section of the neutral ring (like
+the "2 super, 1 neutral" scenario, but even more reduced).
+The species that exist at these additional trait states
+have at least slightly lower densities than the others at the trait state
+that exists when $d = 0.1$.
+Is this interesting or likely an artifact?
+
+
+
+\subsection*{2. Coexistence}
+
+To assess how conflicting and non-conflicting evolution leads to coexistence,
+we conducted similar simulations to the previous section, for each of the
+8 permutations of the three traits' evolution being conflicting or
+non-conflicting (i.e., $d < 0$ or $d > 0$, respectively).
+The magnitudes of the $d$ values used for these simulations were generated as
+$\log(d) \sim \text{U}(-6, -2)$.
+The values we ended up with were $d_1 = `r sprintf("%#.3g", ds[1])`$,
+$d_2 = `r sprintf("%#.3f", ds[2])`$, and
+$d_3 = `r sprintf("%#.3g", ds[3])`$.
+We recorded the number of species coexisting at the end of each repetition.
+We also did another set of simulations where the first two traits were kept
+non-conflicting ($d_1 = d_2 = 0.1$), while the value of $d_3$ varied
+from $-10^{-2}$ to $10^{-2}$.
+We used $\eta_1 = \eta_2 = \eta_3 = 0.2$ for all simulations here.
+
+The first set of simulations shows that
+coexistence occurs only when evolution for all traits is non-conflicting
+(Figure 2A).
+From the second set of simulations, we see that a value of 0 for $d_3$
+appears to represent a bifurcation with respect to whether
+coexistence can occur (Figure 2B).
+Even slightly negative values of $d_3$ cause exclusion to occur, although
+a less-negative $d_3$ causes the exclusions to happen much more slowly
+(Figure 2C).
+
+
+
+
+\subsection*{3. Invasibility}
+
+
+To estimate the invasibility of these equilibrium communities, we started
+simulations with the equilibrium abundances and trait values for communities
+with $\eta$ values and $d$ magnitudes from the previous section, and
+with all traits except for the first being non-conflicting.
+The first trait was either conflicting or non-conflicting.
+We then added a single invader to the community and simulated the outcomes.
+We did this for invaders with starting trait 1 and 2 values that varied
+from 0 to 4.
+Trait 3 always started at zero for these simulations.
+We did this to ease visualization and because two of the three
+possible equilibrium trait states had trait 3 equal zero.
+Invaders' starting abundances 0.01.
+For those simulations that yielded successful invasions,
+we also calculated how much the abundances and traits changed across
+the time series for both invaders and native species:
+
+\begin{align}
+\Delta N = \sum_{t=2}^{t_{max}}{ | N_{t} - N_{t-1} | } \\
+\Delta V = \sum_{t=2}^{t_{max}}{\sqrt{\sum_{i = 1}^{q}{(v_{i,t} - v_{i,t-1})^2}}}
+\end{align}
+
+\noindent We did this in relation to the distance in trait space from
+the nearest equilibrium trait state to the starting trait value for the invader:
+$\sqrt{\sum_{i = 1}^{q}{(v_{i} - \hat{v}_{i})^2}}$ at $t = 0$.
+
+
+When the first trait was conflicting, invaders were never successful,
+whereas they were successful across much of the trait space surrounding the
+equilibrium states when it was non-conflicting (Figure 3A).
+The total change in abundance was almost always greater when the invader
+started  with traits near state i (Figure 3B).
+This is because state i has high trait 2 and low trait 1, whereas
+state ii is the opposite.
+Because $d_1$ is much lower than $d_2$, species that maximize trait 1
+but minimize trait 2 (state ii) greatly reduce competition experienced by
+others but receive little benefit themselves.
+Therefore, successful invaders that evolve to state ii will coexist at lower
+equilibrium abundances.
+Trait change had a linear relationship with starting distance for both
+native species and invaders (Figure 3C).
+
+
+
+\subsection*{4. Conditional coexistence}
+
+In the simulations above, we found that with random starting trait values,
+only one trait being conflicting causes total exclusion to occur.
+In this section, I show that non-random patterns of starting trait values
+can result in coexistence.
+Specifically, coexistence will occur despite a conflicting trait if all
+species start outside the basin of attraction for the state at which
+the conflicting trait is maximized.
+In these simulations, the first trait is conflicting and the others
+are non-conflicting.
+We start the communities with 100 species.
+One simulation gives these species random trait values
+($\mathbf{V} \sim |\text{N}(0,2)|$).
+In the other simulation, we forced starting trait 1 to be less than trait 2
+for all species ($\mathbf{v}_1 \sim |\text{N}(0,2)|$ and
+$\mathbf{v}_2 \sim \text{U}(0, \mathbf{v}_2)$).
+This kept all species outside the basin of attraction for the conflicting trait.
+We kept trait 3 at zero for all simulations, for the reasons outlined in
+the last section.
+We kept track of abundances and trait values through time for all species.
+
+
+
+When simulations started with a population whose trait values were all in the
+basin of attraction for a non-conflicting trait, species evolve towards the
+adaptive peak for the non-conflicting trait---and can coexist with one another
+(Figure 4).
+When the population starts with some species in the basin of attraction for
+the conflicting trait, those species evolve towards that adaptive peak, and
+the one that reaches the peak first excludes all other species.
