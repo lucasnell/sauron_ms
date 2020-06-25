@@ -179,17 +179,34 @@ and unstable when $\lambda > 1$.
 Full analytical solutions to matrix derivatives (for trait change and
 Jacobian matrices) are found in appendix A.
 
-We also analyzed equilibrium solutions for 2--4 trait cases.
-These are found in appendices B--D.
+We also analyzed equilibrium solutions for the 2 trait case.
+This is found in Appendix B.
 
 
-% \subsection*{Simulations}
-%
-% We started these simulations with 100 species.
-% Each had starting trait values generated from a standard normal distribution.
-% We tracked densities through time using equation \ref{eq:fitness} and
-% considered a species extinct if its density fell below $10^{-4}$.
-% Equation \ref{eq:trait-change} dictated how traits changed.
+
+
+
+\subsection*{Simulations}
+
+We started simulations with 100 species, each of which
+had starting trait values generated from a truncated normal distribution 
+with a standard deviation of 2 and a lower bound of zero.
+Species started with an abundance of 1.
+We tracked densities through time and considered a species extinct if its 
+density fell below $10^{-4}$.
+Thus, our simulations resemble those of traditional 'filtering' models
+in community ecology, 
+except that species' traits are not fixed through time.
+
+When generating multiple values of $\eta$ to simulate different 
+types of tradeoffs, 
+we did so using a uniform distribution from 0.1 to 0.4.
+We intentionally avoided the use of simple $\eta$ values because
+when the sum of one or more $\eta$ equals another, this simplifies
+to additivity even when those $\eta \ne 0$.
+This only applies in the case of $q > 2$, since there is only one
+$\eta$ value when $q = 2$.
+
 
 
 
@@ -204,6 +221,7 @@ We double-checked our derivations by simulating 100 datasets
 (4 species with 3 traits each) and computing derivatives using the Theano Python
 library's automatic differentiation \citep{TheanoDevelopmentTeam:2016uc}.
 All code can be found on GitHub
+% AmNat does double-blind reviews, so the next line will be un-commented after review
 % (\texttt{https://github.com/lucasnell/sauron}).
 (links are available from the journal office).
 

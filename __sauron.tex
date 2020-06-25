@@ -11,6 +11,8 @@
 \titleformat{\subsubsection}[block]{\large\itshape}{\thesubsubsection}{1em}{}
 \titleformat{\paragraph}[runin]{\itshape}{\theparagraph}{1em}{}[. ]\renewcommand{\refname}{Literature Cited}
 
+
+
 %%%%%%%%%%%%%%%%%%%%%
 % Line numbering
 %%%%%%%%%%%%%%%%%%%%%
@@ -46,6 +48,16 @@
 
 
 \usepackage{amsmath} % for split math environment
+\usepackage{graphicx} % includegraphics command is implemented here
+\graphicspath{ {./figures/} }
+\usepackage{caption}
+\captionsetup{%
+   labelsep=period,
+   justification=raggedright,
+   labelfont=bf,
+  singlelinecheck=off
+}
+\usepackage{booktabs}
 
 
 \date{}
@@ -183,8 +195,8 @@ eco-evolutionary dynamics}
 
 \input{app_A}
 \input{app_B}
-\input{app_C}
-\input{app_D}
+% \input{app_C}
+% \input{app_D}
 
 
 % ---------------------------------------------------------------------------------------
