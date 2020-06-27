@@ -393,7 +393,7 @@ I'm not discussing when $\eta = 0$ because that's not biologically very realisti
 and those results are likely an artifact of the model structure.
 
 
-\subsubsection*{At the same trait equilibria:}
+\subsubsection*{At the same trait equilibrium:}
 
 The first scenario is when both species have $\hat{v}_1 = \hat{v}_2$.
 If this is the case, then from above, we know that
@@ -436,10 +436,20 @@ terms of parameters:
         \hat{N}_1 \left[ 1 + \text{e}^{- \frac{1}{2} \left(
             \frac{r_0}{f (1 + \eta)} - 1 \right) (d_1 + d_2)} \right] \\
     \hat{N}_1 &= \frac{f (1 + \eta)}{\alpha_0  \left[ 1 + \text{e}^{- \frac{1}{2} \left(
-        \frac{r_0}{f (1 + \eta)} - 1 \right) (d_1 + d_2)} \right] }
+        \frac{r_0}{f (1 + \eta)} - 1 \right) (d_1 + d_2)} \right] } \;
         \text{e}^{\frac{r_0}{f (1 + \eta)} - 1}
     \text{.}
 \end{split}
+\end{equation}
+
+
+This extends to $n$ species as follows:
+
+\begin{equation} \label{eq:two-traits-v1-v2-equal-N-n-species}
+    \hat{N}_1 = \frac{f (1 + \eta)}{\alpha_0  \left[ 1 + \text{e}^{- \frac{1}{2} \left(
+        \frac{r_0}{f (1 + \eta)} - 1 \right) (d_1 + d_2)}  (n - 1) \right] } \;
+        \text{e}^{\frac{r_0}{f (1 + \eta)} - 1}
+    \text{.}
 \end{equation}
 
 
@@ -478,11 +488,19 @@ Similarly, when both species have $\hat{v}_1 \ne 0 \; \& \; \hat{v}_2 = 0$:
     \frac{f}{\alpha_0} \textrm{e}^{\frac{r_0}{f} - 1} &= \hat{N}_1 \left[
         1 + \text{e}^{- d_1 \left( \frac{ r_0 }{ f } - 1 \right) } \right] \\
     \hat{N}_1 &= \frac{ f }{ \alpha_0 \left[ 1 + \text{e}^{- d_1 \left(
-        \frac{ r_0 }{ f } - 1 \right) } \right] } \text{e}^{\frac{r_0}{f} - 1}
+        \frac{ r_0 }{ f } - 1 \right) } \right] } \; \text{e}^{\frac{r_0}{f} - 1}
     \text{.}
 \end{split}
 \end{equation}
 
+
+For $n$ species
+
+\begin{equation} \label{eq:two-traits-v1-nonzero-v2-zero-N-n-species}
+    \hat{N}_1 = \frac{ f }{ \alpha_0 \left[ 1 + \text{e}^{- d_1 \left(
+        \frac{ r_0 }{ f } - 1 \right) } (n - 1) \right] } \; \text{e}^{\frac{r_0}{f} - 1}
+    \text{.}
+\end{equation}
 
 
 

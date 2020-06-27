@@ -7,6 +7,15 @@
 We used a simple model of competition to evaluate how competition affects
 outcomes of community assembly and trait evolution.
 Each of $n$ species has $q$ traits that affect competition.
+These traits do not define the species (i.e., species that evolve to have
+the same trait values are still considered separate species).
+This is done for two reasons:
+First, we aim to keep the speciation process explicitly
+separate from the processes we are simulating.
+Second, some of the traits we seek to simulate (e.g., niche breadth)
+would neither define a species ecologically nor 
+have any effect on reproductive isolation.
+
 All traits and species are symmetrical.
 Increases in traits benefit the species via reduced
 effects of both interspecific and intraspecific competition;
@@ -198,17 +207,32 @@ Thus, our simulations resemble those of traditional 'filtering' models
 in community ecology, 
 except that species' traits are not fixed through time.
 
-When generating multiple values of $\eta$ to simulate different 
-types of tradeoffs, 
+When generating multiple $\eta$ magnitudes for the different tradeoffs,
 we did so using a uniform distribution from 0.1 to 0.4.
 We intentionally avoided the use of simple $\eta$ values because
 when the sum of one or more $\eta$ equals another, this simplifies
 to additivity even when those $\eta \ne 0$.
 This only applies in the case of $q > 2$, since there is only one
 $\eta$ value when $q = 2$.
+When $q = 2$, we chose $\eta = 0.6$ because it was sufficiently large
+to show how its value changes the pattern of outcomes.
+
+For simulations that aim to find points in trait space associated with
+species surviving competitive environments, we set $d = 1$ 
+(non-conflicting evolution) so that many species
+survived and surveyed the trait space more effectively.
+This has the added benefit of being a symmetric case where
+all species in the community benefit equally when one
+species evolves an increased trait.
 
 
-
+We first simulated 2-trait communities to survey many of the
+basic properties of the model.
+Next, we simulated 3- and 4-trait communities.
+With 3 traits, there is more than one tradeoff, so we could
+explore combinations of different types of additivity.
+With 4 traits, there are more tradeoffs than traits, which we
+thought might cause different possibilities in the model.
 
 
 

@@ -292,49 +292,49 @@ in the previous section, it's useful to define a general form of how
 the equations for trait change through time are altered to keep traits $\ge 0$.
 Any one trait value at time $t+1$,
 $v_{ij,t+1}$ (for species $i$ and trait $j$),
-is a function of any trait value at time $t$, $v_{\zeta\xi,t}$
+is a function of any trait value at time $t$, $v_{\zeta\psi,t}$
 (where $\zeta \in \{ 1, \: \ldots \, , \: n \}$,
-$\xi \in \{ 1, \: \ldots \, , \: q \}$)
+$\psi \in \{ 1, \: \ldots \, , \: q \}$)
 as follows:
 
 \begin{equation*}
-    v_{ij,t+1}(v_{\zeta\xi,t}) = R(\ddot{v}_{ij,t+1}(v_{\zeta\xi,t}))
+    v_{ij,t+1}(v_{\zeta\psi,t}) = R(\ddot{v}_{ij,t+1}(v_{\zeta\psi,t}))
 \end{equation*}
 
-\noindent where $\ddot{v}_{ij,t+1}(v_{\zeta\xi,t})$ is the form of the equation that
+\noindent where $\ddot{v}_{ij,t+1}(v_{\zeta\psi,t})$ is the form of the equation that
 allows negative values (i.e., those in the section above).
-For the partial derivative in relation to $v_{\zeta\xi,t}$, we get
+For the partial derivative in relation to $v_{\zeta\psi,t}$, we get
 
 
 \begin{equation*}
-    \frac{\partial \, v_{ij,t+1}(v_{\zeta\xi,t})}{\partial \, v_{\zeta\xi,t}} =
-        H(\ddot{v}_{ij,t+1}(v_{\zeta\xi,t}))
-        \frac{\partial \, \ddot{v}_{ij,t+1}(v_{\zeta\xi,t})}{
-            \partial \, v_{\zeta\xi,t} }
+    \frac{\partial \, v_{ij,t+1}(v_{\zeta\psi,t})}{\partial \, v_{\zeta\psi,t}} =
+        H(\ddot{v}_{ij,t+1}(v_{\zeta\psi,t}))
+        \frac{\partial \, \ddot{v}_{ij,t+1}(v_{\zeta\psi,t})}{
+            \partial \, v_{\zeta\psi,t} }
 \text{.}
 \end{equation*}
 
 \noindent where
-$\frac{\partial \, \ddot{v}_{ij,t+1}(v_{\zeta\xi,t})}{
-\partial \, v_{\zeta\xi,t}}$
+$\frac{\partial \, \ddot{v}_{ij,t+1}(v_{\zeta\psi,t})}{
+\partial \, v_{\zeta\psi,t}}$
 is one of the partial derivatives described in the previous section
 (which one depends on whether $i = \zeta$).
 
 
 Thus, by including the ramp function, we must multiply the derivatives
 calculated using the equations in the previous section by the term
-$H(\ddot{v}_{ij,t+1}(v_{\zeta\xi,t}))$ to get the updated derivative.
+$H(\ddot{v}_{ij,t+1}(v_{\zeta\psi,t}))$ to get the updated derivative.
 Based on the definition of $H(x)$...
 
 \begin{itemize}
-    \item If $\ddot{v}_{ij,t+1}(v_{\zeta\xi,t})$ is $> 0$ at equilibrium, then
-        $\frac{\partial \, v_{ij,t+1}(v_{\zeta\xi,t})}{
-            \partial \, v_{\zeta\xi,t}}$
-        simplifies to $\frac{\partial \, \ddot{v}_{ij,t+1}(v_{\zeta\xi,t})}{
-            \partial \, v_{\zeta\xi,t}}$.
-    \item If $\ddot{v}_{ij,t+1}(v_{\zeta\xi,t})$ is $\le 0$ at equilibrium, then
-        $\frac{\partial \, v_{ij,t+1}(v_{\zeta\xi,t})}{
-            \partial \, v_{\zeta\xi,t}}$
+    \item If $\ddot{v}_{ij,t+1}(v_{\zeta\psi,t})$ is $> 0$ at equilibrium, then
+        $\frac{\partial \, v_{ij,t+1}(v_{\zeta\psi,t})}{
+            \partial \, v_{\zeta\psi,t}}$
+        simplifies to $\frac{\partial \, \ddot{v}_{ij,t+1}(v_{\zeta\psi,t})}{
+            \partial \, v_{\zeta\psi,t}}$.
+    \item If $\ddot{v}_{ij,t+1}(v_{\zeta\psi,t})$ is $\le 0$ at equilibrium, then
+        $\frac{\partial \, v_{ij,t+1}(v_{\zeta\psi,t})}{
+            \partial \, v_{\zeta\psi,t}}$
         simplifies to zero.
 \end{itemize}
 
@@ -345,4 +345,4 @@ Based on the definition of $H(x)$...
 
 Weisstein, Eric W. n.d. Ramp Function.
 From MathWorld--A Wolfram Web Resource.
-https://mathworld.wolfram.com/RampFunction.html
+\url{https://mathworld.wolfram.com/RampFunction.html}

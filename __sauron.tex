@@ -57,8 +57,11 @@
    labelfont=bf,
   singlelinecheck=off
 }
-\usepackage{booktabs}
-
+\usepackage{booktabs}  % for tables
+\usepackage{hyperref}  % for references
+\hypersetup{
+    colorlinks=false
+}
 
 \date{}
 
@@ -66,6 +69,10 @@
 
 
 \maketitle
+
+\raggedright
+\setlength{\parskip}{1em}
+
 
 
 % \noindent{} 1. University of Wisconsin, Madison, Wisconsin 53706;
@@ -191,11 +198,13 @@ eco-evolutionary dynamics}
 % ---------------------------------------------------------------------------------------
 % ---------------------------------------------------------------------------------------
 
-\newpage{}
-
+\clearpage
 \input{app_A}
+\clearpage
 \input{app_B}
-% \input{app_C}
+\clearpage
+\input{app_C}
+% \clearpage
 % \input{app_D}
 
 
@@ -208,7 +217,7 @@ eco-evolutionary dynamics}
 
 
 \bibliographystyle{amnatnat.bst}
-\newpage{}
+\clearpage
 \bibliography{refs.bib}
 
 \end{document}
