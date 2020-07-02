@@ -38,12 +38,14 @@ increase in one species.
 % and ${}^{\textrm{T}}$ represents matrix transposition.
 We used a discrete-time, modified Lotka--Volterra competition model similar to
 that by \citet{Northfield:2013if}.
-In it, species $i$ has a $1 \times q$ matrix of traits ($\mathbf{V}_i$), and
+In it, species $i$ has a length-$q$ vector of traits ($\mathbf{V}_i$), and
 its per-capita growth---equivalent to fitness---is
 
 \begin{equation} \label{eq:fitness}
-    F_{i} = \exp \left\{ r_i(\mathbf{V}_i) - \alpha_{ii}(\mathbf{V}_i) N_i - \sum_{j \ne i}^{n}{
-        \alpha_{ij}(\mathbf{V}_i, \mathbf{V}_j) N_j}  \right\}\textrm{,}
+    F_{i} = \exp \left\{ r_i(\mathbf{V}_i) - 
+        \alpha_{ii}(\mathbf{V}_i) \, N_i - \sum_{j \ne i}^{n}{
+            \alpha_{ij}(\mathbf{V}_i, \mathbf{V}_j) \, N_j}  
+    \right\}\textrm{,}
 \end{equation}
 
 \noindent where $N_i$ is the population density of  species $i$.
@@ -52,7 +54,7 @@ decreases the growth rate:
 
 \begin{equation} \label{eq:growth-rate}
 \begin{split}
-    r(\mathbf{V}_i) &= r_0 - f ~ \mathbf{V}_i ~ \mathbf{C} ~ \mathbf{V}_{i}^{\textrm{T}} \\
+    r(\mathbf{V}_i) &= r_0 - f \, \mathbf{V}_i^{\textrm{T}} \, \mathbf{C} ~ \mathbf{V}_{i} \\
     \mathbf{C} &= \begin{pmatrix}
         1         & \ldots & \eta_{1q} \\
         \vdots    & \ddots & \vdots \\
@@ -88,11 +90,12 @@ Competition effects are given by
 
 \begin{equation} \label{eq:competition}
 \begin{split}
-    \alpha_{ii}(\mathbf{V}_i) &= \alpha_0 ~\exp \left\{- \mathbf{V}_i
-        \mathbf{V}_i^{\textrm{T}} \right\} \\
+    \alpha_{ii}(\mathbf{V}_i) &= \alpha_0 ~\exp \left\{
+        - \mathbf{V}_i^{\textrm{T}}
+        \mathbf{V}_i \right\} \\
     \alpha_{ij}(\mathbf{V}_i, \mathbf{V}_j) &= \alpha_0 ~\exp \left\{
-        - \mathbf{V}_i \mathbf{V}_i^{\textrm{T}} -
-        \mathbf{V}_j \mathbf{D} \mathbf{V}_j^{\textrm{T}} \right\} \\
+        - \mathbf{V}_i^{\textrm{T}} \mathbf{V}_i -
+        \mathbf{V}_j^{\textrm{T}} \mathbf{D} \mathbf{V}_j \right\} \\
     \mathbf{D} &= \begin{pmatrix}
         d_1     & \ldots    & 0 \\
         \vdots  & \ddots    & \vdots \\
@@ -123,11 +126,14 @@ If we combine the above equations and simplify them, we get
 \begin{equation} \label{eq:fitness-full}
 \begin{split}
     F_{i} &= \exp \left\{
-        r_0 - f ~ \mathbf{V}_i ~ \mathbf{C} ~ \mathbf{V}_{i}^{\textrm{T}} -
-        \alpha_0 ~\textrm{e}^{- \mathbf{V}_i \mathbf{V}_i^{\textrm{T}} } \mathbf{\Omega}_{i}
+        r_0 - f ~ 
+        \mathbf{V}_i^{\textrm{T}} \, \mathbf{C} \, \mathbf{V}_{i} -
+        \alpha_0 ~\textrm{e}^{- \mathbf{V}_i^{\textrm{T}} \mathbf{V}_i } \mathbf{\Omega}_{i}
         \right\} \\
         \mathbf{\Omega}_i &\equiv N_i +
-            \sum_{j \ne i}^{n}{ N_j \textrm{e}^{ - \mathbf{V}_j \mathbf{D} \mathbf{V}_j^{\textrm{T}} } }
+            \sum_{j \ne i}^{n}{ N_j \textrm{e}^{
+            - \mathbf{V}_j^{\textrm{T}}
+            \mathbf{D} \mathbf{V}_j } }
         \textrm{,}
 \end{split}
 \end{equation}
@@ -166,18 +172,33 @@ Assuming also that $\sigma^2_i$ is relatively small
 \end{equation}
 
 To determine the stability of ending points (trait values and abundances of
-surviving competitor(s)), we computed the $nq \times nq$ Jacobian matrices
-of first derivatives for the traits of each species:
+surviving competitor(s)), we computed the $n (q+1) \times n (q+1)$ Jacobian matrices
+of first derivatives for the traits and abundances of each species:
 
 \begin{equation} \label{eq:jacobian}
     \begin{pmatrix}
         \frac{\partial \mathbf{V}_{1,t+1}}{\partial \mathbf{V}_{1,t}} & \cdots &
-            \frac{\partial \mathbf{V}_{1,t+1}}{\partial \mathbf{V}_{n,t}} \\
-        \vdots & \ddots & \vdots \\
+            \frac{\partial \mathbf{V}_{1,t+1}}{\partial \mathbf{V}_{n,t}} &
+            \frac{\partial \mathbf{V}_{1,t+1}}{\partial N_{1,t}} & \cdots &
+            \frac{\partial \mathbf{V}_{1,t+1}}{\partial N_{n,t}} \\
+        \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
         \frac{\partial \mathbf{V}_{n,t+1}}{\partial \mathbf{V}_{1,t}} & \cdots &
-            \frac{\partial \mathbf{V}_{n,t+1}}{\partial \mathbf{V}_{n,t}}
+            \frac{\partial \mathbf{V}_{n,t+1}}{\partial \mathbf{V}_{n,t}} &
+            \frac{\partial \mathbf{V}_{n,t+1}}{\partial N_{1,t}} & \cdots &
+            \frac{\partial \mathbf{V}_{n,t+1}}{\partial N_{n,t}} \\[1ex]
+%
+%
+        \frac{\partial N_{1,t+1}}{\partial \mathbf{V}_{1,t}} & \cdots &
+            \frac{\partial N_{1,t+1}}{\partial \mathbf{V}_{n,t}} &
+            \frac{\partial N_{1,t+1}}{\partial N_{1,t}} & \cdots &
+            \frac{\partial N_{1,t+1}}{\partial N_{n,t}} \\
+        \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+        \frac{\partial N_{n,t+1}}{\partial \mathbf{V}_{1,t}} & \cdots &
+            \frac{\partial N_{n,t+1}}{\partial \mathbf{V}_{n,t}} &
+            \frac{\partial N_{n,t+1}}{\partial N_{1,t}} & \cdots &
+            \frac{\partial N_{n,t+1}}{\partial N_{n,t}} \\
     \end{pmatrix}
-    \textrm{.}
+    \text{.}
 \end{equation}
 
 \noindent We then computed the primary eigenvalue of this matrix ($\lambda$).

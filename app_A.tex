@@ -23,8 +23,8 @@ From the main text, we know that
 \begin{equation*}
 \begin{split}
     F_{i,t+1} &= \exp \left\{
-        r_0 - f \; \mathbf{V}_{i,t} \; \mathbf{C} \; \mathbf{V}_{i,t}^{\textrm{T}} -
-        \alpha_0 \;\textrm{e}^{- \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}} } \mathbf{\Omega}_{i,t}
+        r_0 - f \; \mathbf{V}_{i,t}^{\textrm{T}} \; \mathbf{C} \; \mathbf{V}_{i,t} -
+        \alpha_0 \;\textrm{e}^{- \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t} } \mathbf{\Omega}_{i,t}
         \right\} \\
     \mathbf{V}_{i,t+1} &= \mathbf{V}_{i,t} + \left( \frac{1}{F_{i,t+1}}
         \frac{\partial F_{i,t+1}}{\partial \mathbf{V}_{i,t}} \right) \sigma^2_i
@@ -41,44 +41,44 @@ The partial derivative of fitness in relation to traits for species $i$ is
     \frac{\partial F_{i,t+1}}{\partial \mathbf{V}_{i,t}} &=
         \exp \left\{
             r_0
-            - f \mathbf{V}_{i,t} \mathbf{C} \mathbf{V}_{i,t}^{\textrm{T}}
+            - f \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{C} \mathbf{V}_{i,t}
             - \alpha_0  \mathbf{\Omega}_{i,t} \,
-                \textrm{e}^{- \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}}
+                \textrm{e}^{- \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t}}
         \right\}
         \frac{\partial \!
             \left(
                 r_0
-                - f \; \mathbf{V}_{i,t} \; \mathbf{C} \; \mathbf{V}_{i,t}^{\textrm{T}}
+                - f \; \mathbf{V}_{i,t}^{\textrm{T}} \; \mathbf{C} \; \mathbf{V}_{i,t}
                 - \alpha_0 \; \mathbf{\Omega}_{i,t} \;
-                    \textrm{e}^{- \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}}
+                    \textrm{e}^{- \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t}}
             \right)
             }{ \partial \mathbf{V}_{i,t} } \\
      &=
         \exp \left\{
             r_0
-            - f \mathbf{V}_{i,t} \mathbf{C} \mathbf{V}_{i,t}^{\textrm{T}}
+            - f \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{C} \mathbf{V}_{i,t}
             - \alpha_0  \mathbf{\Omega}_{i,t} \,
-                \textrm{e}^{- \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}}
+                \textrm{e}^{- \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t}}
         \right\}
         \left[
-            - 2 f \mathbf{V}_{i,t} \mathbf{C}
+            - 2 f \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{C}
             - \alpha_0 \, \mathbf{\Omega}_{i,t} \,
-                \textrm{e}^{- \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}} \:
-                \frac{\partial \! \left( - \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}} \right)
+                \textrm{e}^{- \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t} } \:
+                \frac{\partial \! \left( - \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t} \right)
                     }{ \partial \mathbf{V}_{i,t} }
         \right] \\[2ex]
     \frac{ \partial F_{i,t} }{ \partial \mathbf{V}_{i,t} } &=
         \exp \left\{
             r_0
-            - f \mathbf{V}_{i,t} \mathbf{C} \mathbf{V}_{i,t}^{\textrm{T}}
+            - f \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{C} \mathbf{V}_{i,t}
             - \alpha_0  \mathbf{\Omega}_{i,t} \,
-                \textrm{e}^{- \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}}
+                \textrm{e}^{- \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t}}
         \right\}
         \left[
             2 \alpha_0 \mathbf{\Omega}_{i,t} \,
-                \textrm{e}^{- \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}} \:
-                \mathbf{V}_{i,t}
-            - 2 f \mathbf{V}_{i,t} \mathbf{C}
+                \textrm{e}^{- \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t}} \:
+                \mathbf{V}_{i,t}^{\textrm{T}}
+            - 2 f \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{C}
         \right]
     \textrm{.}
 \end{split}
@@ -92,10 +92,10 @@ time $t+1$ are
 \begin{equation} \label{eq:trait-change-full}
     \mathbf{V}_{i,t+1} = \mathbf{V}_{i,t} + 2 \sigma_i^2
     \left(
-        \alpha_0 \mathbf{\Omega}_{i,t} \,
-            \textrm{e}^{- \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}} \:
-            \mathbf{V}_{i,t}
-        - f \mathbf{V}_{i,t} \mathbf{C}
+        \alpha_0 \, \mathbf{\Omega}_{i,t} \:
+            \textrm{e}^{- \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t}} \:
+            \mathbf{V}_{i,t}^{\textrm{T}}
+        - f \, \mathbf{V}_{i,t}^{\textrm{T}} \: \mathbf{C}
     \right)
     \textrm{.}
 \end{equation}
@@ -103,21 +103,38 @@ time $t+1$ are
 
 \subsection*{Jacobian matrix}
 
-The $nq \times nq$ Jacobian matrix consists of $n^2$ inner $q \times q$ blocks.
-The on-diagonal blocks are the partial derivatives of species $i$ traits at time $t+1$ with respect
-to species $i$ traits at time $t$:
+The $n(q+1) \times n(q+1)$ Jacobian matrix consists of 
+
+\begin{itemize}
+\item $n^2$ blocks of size $q \times q$ containing
+    $\partial \mathbf{V}_{i,t+1} / \partial \mathbf{V}_{\zeta,t}$
+\item $n^2$ blocks of size $q \times 1$ containing
+    $\partial \mathbf{V}_{i,t+1} / \partial N_{\zeta,t}$
+\item $n^2$ blocks of size $1 \times q$ containing
+    $\partial N_{i,t+1} / \partial \mathbf{V}_{\zeta,t}$
+\item $n^2$ blocks of size $1 \times 1$ containing
+    $\partial N_{i,t+1} / \partial N_{\zeta,t}$
+\end{itemize}
+
+
+for all $i \in \{ 1, \: \ldots \, , \: n \}$
+and $\zeta \in \{ 1, \: \ldots \, , \: n \}$.
+
+
+The partial derivatives of species $i$ traits at time $t+1$ with respect
+to species $i$ traits at time $t$ are
 
 \begin{equation*}
 \begin{split}
-    \frac{ \partial \; \mathbf{V}_{i,t+1} }{ \partial \; \mathbf{V}_{i,t} } &=
-        \frac{ \partial \; \mathbf{V}_{i,t} }{ \partial \; \mathbf{V}_{i,t} } +
+    \frac{ \partial \, \mathbf{V}_{i,t+1} }{ \partial \, \mathbf{V}_{i,t} } &=
+        \frac{ \partial \, \mathbf{V}_{i,t} }{ \partial \, \mathbf{V}_{i,t} } +
         2 \; \sigma_i^2
         \left(
             \frac{ \partial \;
                 \alpha_0 \; \mathbf{\Omega}_{i,t} \;
-                    \textrm{e}^{-\mathbf{V}_{i,t} \mathbf{V}_{i,t}^\textrm{T}} \,
-                    \mathbf{V}_{i,t}}{\partial \; \mathbf{V}_{i,t} } -
-            \frac{ \partial \; f \, \mathbf{V}_{i,t} \mathbf{C}}{\partial \; \mathbf{V}_{i,t} }
+                    \textrm{e}^{-\mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t}} \,
+                    \mathbf{V}_{i,t}^{\textrm{T}}}{\partial \; \mathbf{V}_{i,t} } -
+            \frac{ \partial \; f \, \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{C}}{\partial \; \mathbf{V}_{i,t} }
         \right) \\
     &=
         \mathbf{I} +
@@ -125,22 +142,20 @@ to species $i$ traits at time $t$:
         \left[
             \alpha_0 \; \mathbf{\Omega}_{i,t} \,
             \left(
-                \textrm{e}^{-\mathbf{V}_{i,t} \mathbf{V}_{i,t}^\textrm{T}} \: \mathbf{I} +
+                \textrm{e}^{-\mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t}} +
                 \frac{ \partial \;
-                        \textrm{e}^{-\mathbf{V}_{i,t} \mathbf{V}_{i,t}^\textrm{T}}
-                        }{\partial \; \mathbf{V}_{i,t} } \, \mathbf{V}_{i,t}
+                        \textrm{e}^{-\mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t}}
+                        }{\partial \; \mathbf{V}_{i,t} } \, \mathbf{V}_{i,t}^{\textrm{T}}
             \right) -
-            f \, \mathbf{C}
+            f \, \mathbf{C}^{\textrm{T}}
             \right] \\[2ex]
-    \frac{ \partial \; \mathbf{V}_{i,t+1} }{ \partial \; \mathbf{V}_{i,t} } &= \mathbf{I} +
-        2 \; \sigma_i^2 \;
+    \frac{ \partial \, \mathbf{V}_{i,t+1} }{ \partial \, \mathbf{V}_{i,t} } &= \mathbf{I} + 2 ~ \sigma_i^2 ~
         \left[
-            \alpha_0 \; \mathbf{\Omega}_{i,t} \;
-            \textrm{e}^{ - \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}} }
+            \alpha_0 ~ \mathbf{\Omega}_{i,t} ~ \textrm{e}^{ - \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t} }
             \left(
-                \mathbf{I} - 2 \; \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t}
+                \mathbf{I} - 2 ~ \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}
             \right) -
-            f \, \mathbf{C}
+            f \: \mathbf{C}^{\textrm{T}}
         \right]
     \textrm{,}
 \end{split}
@@ -149,10 +164,19 @@ to species $i$ traits at time $t$:
 \noindent where $\mathbf{I}$ is a $q \times q$ identity matrix.
 
 
-The off-diagonal blocks of the Jacobian are the partial derivatives of species $i$
-traits at time $t+1$ with respect to species $k$ traits at time $t$, where $k \ne i$.
+Next we have the partial derivatives of species $i$ traits at time $t+1$ with respect to 
+species $k$ traits at time $t$, where $k \ne i$.
 To calculate this, it's useful to rearrange equation \ref{eq:trait-change-full} and
 extract the portion that includes $\mathbf{V}_{k,t}$:
+
+% >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+% >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+% LEFT OFF HERE
+
+% >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+% >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 
 \begin{equation*}
 \begin{split}
