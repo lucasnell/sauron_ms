@@ -169,32 +169,24 @@ species $k$ traits at time $t$, where $k \ne i$.
 To calculate this, it's useful to rearrange equation \ref{eq:trait-change-full} and
 extract the portion that includes $\mathbf{V}_{k,t}$:
 
-% >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-% >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-% LEFT OFF HERE
-
-% >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-% >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
 
 \begin{equation*}
 \begin{split}
     \mathbf{V}_{i,t+1} &= \mathbf{V}_{i,t} + 2 \; \sigma_i^2
     \left[
         \left(
-            N_{k,t} \; \textrm{e}^{-\mathbf{V}_{k,t} \mathbf{D} \mathbf{V}_{k,t}^\textrm{T}} +
-            \mathbf{\Phi}_{i,t}
+            N_{k,t} \; \textrm{e}^{ -\mathbf{V}_{k,t}^{\textrm{T}} \mathbf{D}
+            \mathbf{V}_{k,t} } + \mathbf{\Phi}_{i,t}
         \right)
         \left(
-            \alpha_0 \; \textrm{e}^{-\mathbf{V}_{i,t}
-            \mathbf{V}_{i,t}^\textrm{T}} \; \mathbf{V}_{i,t}
+            \alpha_0 \; \textrm{e}^{-\mathbf{V}_{i,t}^{\textrm{T}}
+            \mathbf{V}_{i,t} } \; \mathbf{V}_{i,t}^{\textrm{T}}
         \right)
-        - f \mathbf{V}_{i,t} \mathbf{C}
+        - f \: \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{C}
     \right] \\
     \mathbf{\Phi}_{i,t} &= N_{i,t} + \sum_{j \ne i, j \ne k}^{n}{
-        N_{j,t} \; \textrm{e}^{- \mathbf{V}_{j,t} \mathbf{D}
-        \mathbf{V}_{j,t}^{\textrm{T}}} }
+        N_{j,t} \; \textrm{e}^{- \mathbf{V}_{j,t}^{\textrm{T}}
+        \mathbf{D} \mathbf{V}_{j,t} } }
     \textrm{.}
 \end{split}
 \end{equation*}
@@ -211,53 +203,127 @@ $\mathbf{V}_{k,t}$
         \left[
             \frac{ \partial \:
                 \left(
-                    N_{k,t} \textrm{e}^{- \mathbf{V}_{k,t} \mathbf{D}
-                    \mathbf{V}_{k,t}^{\textrm{T}}} + \mathbf{\Phi}_{i,t}
+                    N_{k,t} \textrm{e}^{- \mathbf{V}_{k,t}^{\textrm{T}} \mathbf{D}
+                    \mathbf{V}_{k,t}} + \mathbf{\Phi}_{i,t}
                 \right)
                 \left(
-                    \alpha_0 \; \textrm{e}^{- \mathbf{V}_{i,t}
-                    \mathbf{V}_{i,t}^{\textrm{T}}} \mathbf{V}_{i,t}
+                    \alpha_0 \; \textrm{e}^{ - \mathbf{V}_{i,t}^{\textrm{T}}
+                    \mathbf{V}_{i,t} } \mathbf{V}_{i,t}^{\textrm{T}}
                 \right)
             }{ \partial \:  \mathbf{V}_{k,t} } -
-            \frac{ \partial \:  f \, \mathbf{V}_{i,t} \mathbf{C} }{
+            \frac{ \partial \:  f \, \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{C} }{
             \partial \: \mathbf{V}_{k,t} }
         \right] \\
-    &= 2 \; \sigma_i^2 \; \alpha_0 \; N_{k,t} \;
+    &= 2 \; \sigma_i^2 \; \alpha_0 \; N_{k,t} \; \mathbf{V}_{i,t} \;
+        \textrm{e}^{ - \mathbf{V}_{i,t}^{\textrm{T}}
+        \mathbf{V}_{i,t} } \; 
         \frac{ \partial \:
                 \textrm{e}^{
-                    - \mathbf{V}_{k,t} \mathbf{D} \mathbf{V}_{k,t}^{\textrm{T}}
-                    - \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}
-                } \; \mathbf{V}_{i,t}
+                    - \mathbf{V}_{k,t}^{\textrm{T}} \mathbf{D} \mathbf{V}_{k,t}
+                    }
             }{ \partial \:  \mathbf{V}_{k,t} } \\
-    &= 2 \; \sigma_i^2 \; \alpha_0 \; N_{k,t} \;
-        \frac{ \partial \:
-                \left(
-                    - \mathbf{V}_{k,t} \mathbf{D} \mathbf{V}_{k,t}^{\textrm{T}}
-                    - \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}
-                \right)
-            }{ \partial \:  \mathbf{V}_{k,t} } \;
+    &= 2 \; \sigma_i^2 \; \alpha_0 \; N_{k,t} \; \mathbf{V}_{i,t} \;
         \textrm{e}^{
-                    - \mathbf{V}_{k,t} \mathbf{D} \mathbf{V}_{k,t}^{\textrm{T}}
-                    - \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}
-                } \; \mathbf{V}_{i,t} \\
-    &= - 2 \; \sigma_i^2 \; \alpha_0 \; N_{k,t} \,
-        \left( \mathbf{D} + \mathbf{D}^{\textrm{T}} \right) \,
-        \mathbf{V}_{k,t}^{\textrm{T}} \;
-        \textrm{e}^{
-                    - \mathbf{V}_{k,t} \mathbf{D} \mathbf{V}_{k,t}^{\textrm{T}}
-                    - \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}
-                } \; \mathbf{V}_{i,t} \\[2ex]
+                    - \mathbf{V}_{k,t}^{\textrm{T}} \mathbf{D} \mathbf{V}_{k,t}
+                    - \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t}
+                } \;
+        \left[ 
+            - 2 \, \mathbf{V}_{k,t}^{\textrm{T}} \, \mathbf{D}
+        \right] \\
     \frac{ \partial \: \mathbf{V}_{i,t+1} }{ \partial \: \mathbf{V}_{k,t}} &=
-        -4 \; \sigma_i^2 \; \alpha_0 \; N_{k,t} \;
-        \mathbf{D} \; \mathbf{V}_{k,t}^{\textrm{T}} \;
+        -4 \; \sigma_i^2 \; \alpha_0 \; N_{k,t} \; \mathbf{V}_{i,t} \;
         \textrm{e}^{
-                - \mathbf{V}_{k,t} \mathbf{D} \mathbf{V}_{k,t}^{\textrm{T}}
-                - \mathbf{V}_{i,t} \mathbf{V}_{i,t}^{\textrm{T}}
-            } \;
-            \mathbf{V}_{i,t}
+                    - \mathbf{V}_{k,t}^{\textrm{T}} \mathbf{D} \mathbf{V}_{k,t}
+                    - \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t}
+                } \;
+        \mathbf{V}_{k,t}^{\textrm{T}} \; \mathbf{D}
     \textrm{.} \\
 \end{split}
 \end{equation*}
+
+The partial derivatives of species $i$ traits in relation to species $i$ 
+and species $k$ abundances are
+
+\begin{equation*}
+\begin{split}
+    \frac{ \partial \: \mathbf{V}_{i,t+1} }{ \partial \: N_{i,t} } &=
+        2 \; \sigma_i^2 \; \alpha_0 \;
+        \textrm{e}^{ - \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t} }
+        \; \mathbf{V}_{i,t}^{\textrm{T}} \\
+    \frac{ \partial \: \mathbf{V}_{i,t+1} }{ \partial \: N_{k,t} } &=
+        2 \; \sigma_i^2 \; \alpha_0 \;
+        \textrm{e}^{ - \mathbf{V}_{k,t}^{\textrm{T}} \mathbf{D} \mathbf{V}_{k,t}
+            - \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t} }
+        \; \mathbf{V}_{i,t}^{\textrm{T}}
+    \textrm{.} \\
+\end{split}
+\end{equation*}
+
+
+
+
+For partial derivatives of abundances in relation to the other state variables,
+we use the following equations from above:
+
+
+\begin{equation*}
+\begin{split}
+    N_{i,t+1} &= N_{i,t} \; F_{i,t+1} \\
+    F_{i,t+1} &=  \exp \left\{
+        r_0 - f \, \mathbf{V}_{i,t}^{\text{T}} \, \mathbf{C} \, \mathbf{V}_{i,t} - 
+        \alpha_0 \, \text{e}^{-\mathbf{V}_{i,t}^{\text{T}} \, \mathbf{V}_{i,t}} \,
+        \Omega_{i,t}
+    \right\} \\
+    \Omega_{i,t} &= N_{i,t} + \sum_{j \ne i}^{n}{ N_j \:
+        \text{e}^{- \mathbf{V}_{j,t}^{\text{T}} \, \mathbf{D} \, \mathbf{V}_{j,t} } }
+    \textrm{.} \\
+\end{split}
+\end{equation*}
+
+
+
+Using these, we have the following derivatives of abundances in relation
+to traits:
+
+\begin{equation*}
+\begin{split}
+    \frac{ \partial N_{i,t+1} }{ \partial \mathbf{V}_{i,t} } &= 
+        2 \, F_{i,t+1} \,  N_{i,t}
+        \left(
+            \alpha_0 \, \Omega_{i,t} \, \text{e}^{ -\mathbf{V}_{i,t}^{\text{T}}
+            \mathbf{V}_{i,t} } \, \mathbf{V}_{i,t}^{\text{T}}
+            - f \, \mathbf{V}_{i,t}^{\text{T}} \, \mathbf{C}
+        \right) \\
+    \frac{ \partial N_{i,t+1} }{ \partial \mathbf{V}_{k,t} } &= 
+        2 \, F_{i,t+1} \, N_{i,t} \, N_{k,t} \, \alpha_0 \: 
+        \text{e}^{ -\mathbf{V}_{i,t}^{\text{T}} \mathbf{V}_{i,t} -
+            \mathbf{V}_{k,t}^{\text{T}} \mathbf{D} \mathbf{V}_{k,t} } \:
+        \mathbf{V}_{k,t}^{\text{T}} \, \mathbf{D}
+    \textrm{.}
+\end{split}
+\end{equation*}
+
+We also have the following derivatives of abundances at time $t+1$ in relation
+to those at time $t$:
+
+\begin{equation*}
+\begin{split}
+    \frac{ \partial N_{i,t+1} }{ \partial N_{i,t} } &= 
+        F_{i,t+1}
+        \left(
+            1 - N_{i,t} \: \alpha_0 \: 
+            \text{e}^{ -\mathbf{V}_{i,t}^{\text{T}} \mathbf{V}_{i,t} } 
+        \right) \\
+    %
+    \frac{ \partial N_{i,t+1} }{ \partial N_{k,t} } &= 
+        - F_{i,t+1} \: N_{i,t} \: \alpha_0 \: 
+        \text{e}^{ -\mathbf{V}_{i,t}^{\text{T}} \mathbf{V}_{i,t} -
+            \mathbf{V}_{k,t}^{\text{T}} \mathbf{D} \mathbf{V}_{k,t} } 
+    \textrm{.}
+\end{split}
+\end{equation*}
+
+
 
 
 
