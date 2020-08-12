@@ -41,23 +41,23 @@ increase in one species.
 
 We used a discrete-time, modified Lotka--Volterra competition model similar to
 that by \citet{Northfield:2013if}.
-In it, species $i$ has a length-$q$ vector of traits ($\mathbf{V}_i$), and
+In it, species $i$ has a length-$q$ vector of traits ($\mathbf{v}_i$), and
 its per-capita growth---equivalent to fitness---is
 
 \begin{equation} \label{eq:fitness}
-    F_{i} = \exp \left\{ r_i(\mathbf{V}_i) - 
-        \alpha_{ii}(\mathbf{V}_i) \, N_i - \sum_{j \ne i}^{n}{
-            \alpha_{ij}(\mathbf{V}_i, \mathbf{V}_j) \, N_j}  
+    F_{i} = \exp \left\{ r_i(\mathbf{v}_i) - 
+        \alpha_{ii}(\mathbf{v}_i) \, N_i - \sum_{j \ne i}^{n}{
+            \alpha_{ij}(\mathbf{v}_i, \mathbf{v}_j) \, N_j}  
     \right\}\textrm{,}
 \end{equation}
 
 \noindent where $N_i$ is the population density of  species $i$.
-The parameter $r(\mathbf{V}_i)$ describes how traits affect
+The parameter $r(\mathbf{v}_i)$ describes how traits affect
 the growth rate:
 
 \begin{equation} \label{eq:growth-rate}
 \begin{split}
-    r(\mathbf{V}_i) &= r_0 - f \, \mathbf{V}_i^{\textrm{T}} \, \mathbf{C} ~ \mathbf{V}_{i} \\
+    r(\mathbf{v}_i) &= r_0 - f \, \mathbf{v}_i^{\textrm{T}} \, \mathbf{C} ~ \mathbf{v}_{i} \\
     \mathbf{C} &= \begin{pmatrix}
         1         & \ldots & \eta_{1q} \\
         \vdots    & \ddots & \vdots \\
@@ -76,20 +76,20 @@ Non-additive trade-offs are symmetrical (i.e., $\eta_{k,l} = \eta_{l,k}$ for all
 $l$ and $k$), and all values on the diagonal of $\mathbf{C}$ are 1.
 
 
-The terms $\alpha_{ii}(\mathbf{V}_i)$ and
-$\alpha_{ij}(\mathbf{V}_i, \mathbf{V}_j)$
+The terms $\alpha_{ii}(\mathbf{v}_i)$ and
+$\alpha_{ij}(\mathbf{v}_i, \mathbf{v}_j)$
 in equation \ref{eq:fitness} represent how traits influence the effects
 of intraspecific and interspecific competition, respectively.
 Competitive effects are given by
 
 \begin{equation} \label{eq:competition}
 \begin{split}
-    \alpha_{ii}(\mathbf{V}_i) &= \alpha_0 ~\exp \left\{
-        - \mathbf{V}_i^{\textrm{T}}
-        \mathbf{V}_i \right\} \\
-    \alpha_{ij}(\mathbf{V}_i, \mathbf{V}_j) &= \alpha_0 ~\exp \left\{
-        - \mathbf{V}_i^{\textrm{T}} \mathbf{V}_i -
-        \mathbf{V}_j^{\textrm{T}} \mathbf{D} \mathbf{V}_j \right\} \\
+    \alpha_{ii}(\mathbf{v}_i) &= \alpha_0 ~\exp \left\{
+        - \mathbf{v}_i^{\textrm{T}}
+        \mathbf{v}_i \right\} \\
+    \alpha_{ij}(\mathbf{v}_i, \mathbf{v}_j) &= \alpha_0 ~\exp \left\{
+        - \mathbf{v}_i^{\textrm{T}} \mathbf{v}_i -
+        \mathbf{v}_j^{\textrm{T}} \mathbf{D} \mathbf{v}_j \right\} \\
     \mathbf{D} &= \begin{pmatrix}
         d_1     & \ldots    & 0 \\
         \vdots  & \ddots    & \vdots \\
@@ -120,7 +120,7 @@ The relationships between trait values and other components of fitness
 $X \propto v^2$ for parameter $X$, so $v = z$ is equivalent to $v = -z$.
 To avoid alternative outcomes due to artifacts of this relationship,
 traits are not allowed to be $< 0$.
-We did this by passing the equation for $\mathbf{V}_{t+1}$ through a
+We did this by passing the equation for $\mathbf{v}_{t+1}$ through a
 ramp function.
 We used a ramp function instead of absolute values
 because the latter causes fluctuations
@@ -149,15 +149,15 @@ Appendix A.
 \subsection*{Quantitative genetics}
 
 We used a quantitative genetics framework for trait evolution.
-We assumed that all traits in $\mathbf{V}_i$ represent means for species $i$
+We assumed that all traits in $\mathbf{v}_i$ represent means for species $i$
 and that their among-individual distributions are symmetrical with additive
 genetic variance $\sigma^2_i$.
 Assuming also that $\sigma^2_i$ is relatively small
 \citep{Iwasa:1991eo,Abrams:2001va,Abrams:1993cr}, traits at time $t+1$ are
 
 \begin{equation} \label{eq:trait-change}
-    \mathbf{V}_{i,t+1} = \mathbf{V}_{i,t} + \left( \frac{1}{F_i}
-        \frac{\partial F_i}{\partial \mathbf{V}_{i,t}} \right) \sigma^2_i
+    \mathbf{v}_{i,t+1} = \mathbf{v}_{i,t} + \left( \frac{1}{F_i}
+        \frac{\partial F_i}{\partial \mathbf{v}_{i,t}} \right) \sigma^2_i
     \textrm{.}
 \end{equation}
 
@@ -167,24 +167,24 @@ of first derivatives for the traits and abundances of each species:
 
 \begin{equation} \label{eq:jacobian}
     \begin{pmatrix}
-        \frac{\partial \mathbf{V}_{1,t+1}}{\partial \mathbf{V}_{1,t}} & \cdots &
-            \frac{\partial \mathbf{V}_{1,t+1}}{\partial \mathbf{V}_{n,t}} &
-            \frac{\partial \mathbf{V}_{1,t+1}}{\partial N_{1,t}} & \cdots &
-            \frac{\partial \mathbf{V}_{1,t+1}}{\partial N_{n,t}} \\
+        \frac{\partial \mathbf{v}_{1,t+1}}{\partial \mathbf{v}_{1,t}} & \cdots &
+            \frac{\partial \mathbf{v}_{1,t+1}}{\partial \mathbf{v}_{n,t}} &
+            \frac{\partial \mathbf{v}_{1,t+1}}{\partial N_{1,t}} & \cdots &
+            \frac{\partial \mathbf{v}_{1,t+1}}{\partial N_{n,t}} \\
         \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
-        \frac{\partial \mathbf{V}_{n,t+1}}{\partial \mathbf{V}_{1,t}} & \cdots &
-            \frac{\partial \mathbf{V}_{n,t+1}}{\partial \mathbf{V}_{n,t}} &
-            \frac{\partial \mathbf{V}_{n,t+1}}{\partial N_{1,t}} & \cdots &
-            \frac{\partial \mathbf{V}_{n,t+1}}{\partial N_{n,t}} \\[1ex]
+        \frac{\partial \mathbf{v}_{n,t+1}}{\partial \mathbf{v}_{1,t}} & \cdots &
+            \frac{\partial \mathbf{v}_{n,t+1}}{\partial \mathbf{v}_{n,t}} &
+            \frac{\partial \mathbf{v}_{n,t+1}}{\partial N_{1,t}} & \cdots &
+            \frac{\partial \mathbf{v}_{n,t+1}}{\partial N_{n,t}} \\[1ex]
 %
 %
-        \frac{\partial N_{1,t+1}}{\partial \mathbf{V}_{1,t}} & \cdots &
-            \frac{\partial N_{1,t+1}}{\partial \mathbf{V}_{n,t}} &
+        \frac{\partial N_{1,t+1}}{\partial \mathbf{v}_{1,t}} & \cdots &
+            \frac{\partial N_{1,t+1}}{\partial \mathbf{v}_{n,t}} &
             \frac{\partial N_{1,t+1}}{\partial N_{1,t}} & \cdots &
             \frac{\partial N_{1,t+1}}{\partial N_{n,t}} \\
         \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
-        \frac{\partial N_{n,t+1}}{\partial \mathbf{V}_{1,t}} & \cdots &
-            \frac{\partial N_{n,t+1}}{\partial \mathbf{V}_{n,t}} &
+        \frac{\partial N_{n,t+1}}{\partial \mathbf{v}_{1,t}} & \cdots &
+            \frac{\partial N_{n,t+1}}{\partial \mathbf{v}_{n,t}} &
             \frac{\partial N_{n,t+1}}{\partial N_{1,t}} & \cdots &
             \frac{\partial N_{n,t+1}}{\partial N_{n,t}} \\
     \end{pmatrix}
@@ -219,12 +219,12 @@ a log-normal error term:
 
 Stochasticity for trait evolution takes the form of non-adaptive
 phenotypic plasticity,
-where phenotypes ($\mathbf{\ddot{V}}$) are the product of the
-genotypes ($\mathbf{V}$) and a log-normal error term:
+where phenotypes ($\mathbf{\ddot{v}}$) are the product of the
+genotypes ($\mathbf{v}$) and a log-normal error term:
 
 \begin{equation} \label{eq:V-stochasticity}
 \begin{split}
-    \mathbf{\ddot{V}}_{i,t+1} &= \mathbf{V}_{i,t+1} \; \text{e}^{\varepsilon_V} \\
+    \mathbf{\ddot{v}}_{i,t+1} &= \mathbf{v}_{i,t+1} \; \text{e}^{\varepsilon_V} \\
     \varepsilon_V &\sim \text{N}(0, \, \sigma^2_V)
     \text{.}
 \end{split}
@@ -236,8 +236,8 @@ Genotypes change through time based on the previous time point's
 genotypes and how the phenotypes affect fitness:
 
 \begin{equation} \label{eq:trait-change-stochastic}
-    \mathbf{V}_{i,t+1} = \mathbf{V}_{i,t} + \left( \frac{1}{F_i}
-        \frac{\partial F_i}{\partial \mathbf{\ddot{V}}_{i,t}} \right) \sigma^2_i
+    \mathbf{v}_{i,t+1} = \mathbf{v}_{i,t} + \left( \frac{1}{F_i}
+        \frac{\partial F_i}{\partial \mathbf{\ddot{v}}_{i,t}} \right) \sigma^2_i
     \textrm{.}
 \end{equation}
 
