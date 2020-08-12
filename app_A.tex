@@ -108,9 +108,9 @@ The $n(q+1) \times n(q+1)$ Jacobian matrix consists of
 \begin{itemize}
 \item $n^2$ blocks of size $q \times q$ containing
     $\partial \mathbf{V}_{i,t+1} / \partial \mathbf{V}_{\zeta,t}$
-\item $n^2$ blocks of size $q \times 1$ containing
-    $\partial \mathbf{V}_{i,t+1} / \partial N_{\zeta,t}$
 \item $n^2$ blocks of size $1 \times q$ containing
+    $\partial \mathbf{V}_{i,t+1} / \partial N_{\zeta,t}$
+\item $n^2$ blocks of size $q \times 1$ containing
     $\partial N_{i,t+1} / \partial \mathbf{V}_{\zeta,t}$
 \item $n^2$ blocks of size $1 \times 1$ containing
     $\partial N_{i,t+1} / \partial N_{\zeta,t}$
@@ -247,14 +247,12 @@ and species $k$ abundances are
 \begin{equation*}
 \begin{split}
     \frac{ \partial \: \mathbf{V}_{i,t+1} }{ \partial \: N_{i,t} } &=
-        2 \; \sigma_i^2 \; \alpha_0 \;
-        \textrm{e}^{ - \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t} }
-        \; \mathbf{V}_{i,t}^{\textrm{T}} \\
+        2 \; \sigma_i^2 \; \alpha_0 \; \mathbf{V}_{i,t} \;
+        \textrm{e}^{ - \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t} } \\
     \frac{ \partial \: \mathbf{V}_{i,t+1} }{ \partial \: N_{k,t} } &=
-        2 \; \sigma_i^2 \; \alpha_0 \;
+        2 \; \sigma_i^2 \; \alpha_0 \; \mathbf{V}_{i,t} \;
         \textrm{e}^{ - \mathbf{V}_{k,t}^{\textrm{T}} \mathbf{D} \mathbf{V}_{k,t}
             - \mathbf{V}_{i,t}^{\textrm{T}} \mathbf{V}_{i,t} }
-        \; \mathbf{V}_{i,t}^{\textrm{T}}
     \textrm{.} \\
 \end{split}
 \end{equation*}
@@ -336,18 +334,7 @@ This section shows how those derivatives are altered to account for
 the fact that traits are kept $\ge 0$.
 
 
-An obvious choice for keeping traits from being $<0$ is using absolute
-values.
-However, during simulations, using absolute values causes fluctuations
-in the trait values when they approach zero (they ``bounce off''
-the zero bound) that persist for a very long time.
-This causes the simulations to take a prohibitively long time to reach
-equilibrium.
-A more important disadvantage is that $d \lvert x \rvert / dx$ is
-undefined when $x = 0$.
-
-
-Instead we are using the ramp function, $R(x)$, which is defined as
+To keep traits $\ge 0$, we used the ramp function, $R(x)$, which is defined as
 
 \begin{equation*}
     R(x) = \begin{cases}

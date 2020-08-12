@@ -4,19 +4,22 @@
 
 \subsection*{Model overview}
 
-We used a simple model of competition to evaluate how competition affects
-outcomes of community assembly and trait evolution.
+We used a simple model of competition to evaluate how evolving competitive traits
+affect the outcomes of community assembly.
 Each of $n$ species has $q$ traits that affect competition.
 These traits do not define the species (i.e., species that evolve to have
 the same trait values are still considered separate species).
 This is done for two reasons:
 First, we aim to keep the speciation process explicitly
 separate from the processes we are simulating.
-Second, some of the traits we seek to simulate (e.g., niche breadth)
-would neither define a species ecologically nor 
-have any effect on reproductive isolation.
+Second, we seek to minimize the constrains on our definition of a trait
+in this context to keep the model general.
 
-All traits and species are symmetrical.
+
+All traits are symmetrical in that the benefits and tradeoffs are 
+the same for all $q$ traits.
+All species are symmetrical in that when species share the same trait values and abundance, 
+they will always have the same effect on each other.
 Increases in traits benefit the species via reduced
 effects of both interspecific and intraspecific competition;
 they also incur a cost by decreasing the species' population growth rate.
@@ -25,17 +28,17 @@ combined, ensure that one fitness peak exists for each trait.
 Traits can also have non-additive trade-offs that either increase or decrease
 the cost associated with increasing multiple traits compared to increasing
 just one.
-Trait evolution in one species also affects competition experienced by others.
-This can be either conflicting or non-conflicting:
-When conflicting, increasing traits in one species increase the effects of
+
+
+The competition experienced by each species is a product of the traits in all
+species in the community.
+Trait evolution can be either conflicting or non-conflicting:
+When conflicting, greater trait values for a species increase the effects of
 competition for all other species.
 When non-conflicting, all competitors' competition is reduced when traits
 increase in one species.
 
-% Below, we use matrix notation that applies to any number of traits.
-% Matrices (indicated by bold face) are multiplied using matrix---not
-% element-wise---multiplication,
-% and ${}^{\textrm{T}}$ represents matrix transposition.
+
 We used a discrete-time, modified Lotka--Volterra competition model similar to
 that by \citet{Northfield:2013if}.
 In it, species $i$ has a length-$q$ vector of traits ($\mathbf{V}_i$), and
@@ -49,8 +52,8 @@ its per-capita growth---equivalent to fitness---is
 \end{equation}
 
 \noindent where $N_i$ is the population density of  species $i$.
-The parameter $r(\mathbf{V}_i)$ describes how a trait increase
-decreases the growth rate:
+The parameter $r(\mathbf{V}_i)$ describes how traits affect
+the growth rate:
 
 \begin{equation} \label{eq:growth-rate}
 \begin{split}
@@ -71,22 +74,13 @@ $k$\textsuperscript{th} and $l$\textsuperscript{th} traits.
 When $\eta > 0$, increasing multiple traits incurs an extra cost.
 Non-additive trade-offs are symmetrical (i.e., $\eta_{k,l} = \eta_{l,k}$ for all
 $l$ and $k$), and all values on the diagonal of $\mathbf{C}$ are 1.
-The relationships between trait values and other components of fitness
-(growth rates and effects of competition) are of the form
-$v^2 \propto X$ for parameter $X$, so $v = z$ is equivalent to $v = -z$.
-To avoid alternative outcomes due to artifacts of this relationship,
-traits are not allowed to be $< 0$.
-We did this by passing the equation for $\mathbf{V}_{t+1}$ through a
-ramp function.
-This implementation and its consequences on resulting derivatives are in
-Appendix A.
 
 
 The terms $\alpha_{ii}(\mathbf{V}_i)$ and
 $\alpha_{ij}(\mathbf{V}_i, \mathbf{V}_j)$
-in equation \ref{eq:fitness} represent how a trait decreases the effects
+in equation \ref{eq:fitness} represent how traits influence the effects
 of intraspecific and interspecific competition, respectively.
-Competition effects are given by
+Competitive effects are given by
 
 \begin{equation} \label{eq:competition}
 \begin{split}
@@ -121,27 +115,23 @@ Competitor evolution might be non-conflicting when they evolve
 dissimilar traits to reduce competition for resources \citep{Roughgarden:1976eh}.
 
 
-If we combine the above equations and simplify them, we get
-
-\begin{equation} \label{eq:fitness-full}
-\begin{split}
-    F_{i} &= \exp \left\{
-        r_0 - f ~ 
-        \mathbf{V}_i^{\textrm{T}} \, \mathbf{C} \, \mathbf{V}_{i} -
-        \alpha_0 ~\textrm{e}^{- \mathbf{V}_i^{\textrm{T}} \mathbf{V}_i } \mathbf{\Omega}_{i}
-        \right\} \\
-        \mathbf{\Omega}_i &\equiv N_i +
-            \sum_{j \ne i}^{n}{ N_j \textrm{e}^{
-            - \mathbf{V}_j^{\textrm{T}}
-            \mathbf{D} \mathbf{V}_j } }
-        \textrm{,}
-\end{split}
-\end{equation}
-
-\noindent where $\mathbf{\Omega}_i$ represents the community abundance scaled
-for the effect other species' trait values has on competition
-experienced by species $i$.
-Hereafter we will refer to $\mathbf{\Omega}_i$ as the scaled community size.
+The relationships between trait values and other components of fitness
+(growth rates and effects of competition) are of the form
+$X \propto v^2$ for parameter $X$, so $v = z$ is equivalent to $v = -z$.
+To avoid alternative outcomes due to artifacts of this relationship,
+traits are not allowed to be $< 0$.
+We did this by passing the equation for $\mathbf{V}_{t+1}$ through a
+ramp function.
+We used a ramp function instead of absolute values
+because the latter causes fluctuations
+in the trait values when they approach zero (they ``bounce off''
+the zero bound) that persist for a very long time;
+this caused the simulations to take a prohibitively long time to reach
+equilibrium.
+A more important disadvantage is that $d \lvert x \rvert / dx$ is
+undefined when $x = 0$.
+This implementation and its consequences on resulting derivatives are in
+Appendix A.
 
 
 
@@ -167,7 +157,7 @@ Assuming also that $\sigma^2_i$ is relatively small
 
 \begin{equation} \label{eq:trait-change}
     \mathbf{V}_{i,t+1} = \mathbf{V}_{i,t} + \left( \frac{1}{F_i}
-        \frac{\partial F_i}{\partial \mathbf{V}_{i}} \right) \sigma^2_i
+        \frac{\partial F_i}{\partial \mathbf{V}_{i,t}} \right) \sigma^2_i
     \textrm{.}
 \end{equation}
 
@@ -213,47 +203,88 @@ We also analyzed equilibrium solutions for the 2 trait case.
 This is found in Appendix B.
 
 
+\subsection*{Stochasticity}
+
+We added stochasticity to population dynamics by simply adding 
+a log-normal error term:
+
+\begin{equation} \label{eq:N-stochasticity}
+\begin{split}
+    N_{i,t+1} &= N_{i,t} \, F_{i,t} \; \text{e}^{\varepsilon_N} \\
+    \varepsilon_N &\sim \text{N}(0, \, \sigma^2_N)
+    \text{.}
+\end{split}
+\end{equation}
+
+
+Stochasticity for trait evolution takes the form of non-adaptive
+phenotypic plasticity,
+where phenotypes ($\mathbf{\ddot{V}}$) are the product of the
+genotypes ($\mathbf{V}$) and a log-normal error term:
+
+\begin{equation} \label{eq:V-stochasticity}
+\begin{split}
+    \mathbf{\ddot{V}}_{i,t+1} &= \mathbf{V}_{i,t+1} \; \text{e}^{\varepsilon_V} \\
+    \varepsilon_V &\sim \text{N}(0, \, \sigma^2_V)
+    \text{.}
+\end{split}
+\end{equation}
+
+Because the phenotypes interact with the environment, they are used
+to calculate all species' fitness values.
+Genotypes change through time based on the previous time point's 
+genotypes and how the phenotypes affect fitness:
+
+\begin{equation} \label{eq:trait-change-stochastic}
+    \mathbf{V}_{i,t+1} = \mathbf{V}_{i,t} + \left( \frac{1}{F_i}
+        \frac{\partial F_i}{\partial \mathbf{\ddot{V}}_{i,t}} \right) \sigma^2_i
+    \textrm{.}
+\end{equation}
+
+
 
 
 
 \subsection*{Simulations}
 
-We started simulations with 100 species, each of which
-had starting trait values generated from a truncated normal distribution 
-with a standard deviation of 2 and a lower bound of zero.
+We started simulations with one species, and each of 99 new species
+was added every 500 generations.
+We continued simulations for another 20,000 generations after all
+species were added.
+Each species had starting trait values generated from a truncated normal distribution 
+with a mean equal to the equilibrium solution for that trait,
+a standard deviation of 1, and a lower bound of zero.
 Species started with an abundance of 1.
 We tracked densities through time and considered a species extinct if its 
 density fell below $10^{-4}$.
-Thus, our simulations resemble those of traditional 'filtering' models
-in community ecology, 
-except that species' traits are not fixed through time.
 
-When generating multiple $\eta$ magnitudes for the different tradeoffs,
-we did so using a uniform distribution from 0.1 to 0.4.
-We intentionally avoided the use of simple $\eta$ values because
-when the sum of one or more $\eta$ equals another, this simplifies
-to additivity even when those $\eta \ne 0$.
-This only applies in the case of $q > 2$, since there is only one
-$\eta$ value when $q = 2$.
-When $q = 2$, we chose $\eta = 0.6$ because it was sufficiently large
-to show how its value changes the pattern of outcomes.
+
+% When generating multiple $\eta$ magnitudes for the different tradeoffs,
+% we did so using a uniform distribution from 0.1 to 0.4.
+% We intentionally avoided the use of simple $\eta$ values because
+% when the sum of one or more $\eta$ equals another, this simplifies
+% to additivity even when those $\eta \ne 0$.
+% This only applies in the case of $q > 2$, since there is only one
+% $\eta$ value when $q = 2$.
+% When $q = 2$, we chose $\eta = 0.6$ because it was sufficiently large
+% to show how its value changes the pattern of outcomes.
 
 For simulations that aim to find points in trait space associated with
 species surviving competitive environments, we set $d = 1$ 
 (non-conflicting evolution) so that many species
 survived and surveyed the trait space more effectively.
-This has the added benefit of being a symmetric case where
-all species in the community benefit equally when one
-species evolves an increased trait.
+% This has the added benefit of being a symmetric case where
+% all species in the community benefit equally when one
+% species evolves an increased trait.
 
 
-We first simulated 2-trait communities to survey many of the
-basic properties of the model.
-Next, we simulated 3- and 4-trait communities.
-With 3 traits, there is more than one tradeoff, so we could
-explore combinations of different types of additivity.
-With 4 traits, there are more tradeoffs than traits, which we
-thought might cause different possibilities in the model.
+% We first simulated 2-trait communities to survey many of the
+% basic properties of the model.
+% Next, we simulated 3- and 4-trait communities.
+% With 3 traits, there is more than one tradeoff, so we could
+% explore combinations of different types of additivity.
+% With 4 traits, there are more tradeoffs than traits, which we
+% thought might cause different possibilities in the model.
 
 
 

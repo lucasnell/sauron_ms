@@ -1,6 +1,5 @@
 \section*{Results}
 
-\subsection*{Two traits}
 
 With two traits, trait evolution followed patterns associated with the type 
 of tradeoff the two traits had when evolved together
@@ -15,25 +14,123 @@ alternative stable states, one for each trait being maximized while the
 other is zero.
 Lastly, when the tradeoff is additive ($\eta = 0$), traits
 evolve to any point on a neutrally stable ring.
-
+The locations of these states are determined by 
+the baseline growth rate, 
+the cost of increasing traits on the growth rate,
+and, when $\eta \ne 0$, the non-additive tradeoff
+(Equations \ref{eq:two-traits-finals-eta-negative},
+\ref{eq:two-traits-finals-eta-zero}, and 
+\ref{eq:two-traits-finals-eta-positive} for 
+$\eta < 0$, $\eta = 0$, and $\eta > 0$, respectively).
 
 \begin{figure}[ht!]
 \centering
 \includegraphics{1-outcomes_q2.pdf}
 \caption{Unique trait values for surviving species in simulations of 2-trait communities,
-    for tradeoffs being sub-additive, additive, or super-additive.}
+    for tradeoffs being sub-additive ($\eta < 0$), additive ($\eta = 0$), or 
+    super-additive ($\eta > 0$).}
 \label{fig:two-trait-outcomes}
 \end{figure}
 
 
-For communities containing species with widely varying starting trait values,
-coexistence occurs only when evolution for all traits is non-conflicting
-(Figure \ref{fig:coexist}A),
-and a value of 0 for any $d$ appears to represent a threshold with respect 
-to whether coexistence can occur (Figure \ref{fig:coexist}B).
-Even slightly negative values of $d$ cause exclusion to occur, although
-a less-negative $d$ causes the exclusions to happen more slowly
-(Figure \ref{fig:coexist}C).
+
+
+The proportion of the 100 species introduced to communities that survived and
+coexisted depended on the additive genetic variance, 
+the non-additive tradeoffs, and 
+how conflicting / non-conflicting evolution was (i.e., the values of $d_1$ 
+and $d_2$) (Figure \ref{fig:coexistence-spp}A).
+Greater additive genetic variance increased the probability of evolutionary 
+rescue, where species evolved quickly enough towards a fitness peak to
+prevent themselves from going extinct.
+Sub-additive tradeoffs resulted in greater numbers of species because
+the lower cost of evolving multiple traits caused species to evolve
+high values of both traits.
+When combined with non-conflicting evolution,
+this decreased competition experienced by all species, both on a 
+per-capita basis (the term $- \mathbf{V}_{j}^{\text{T}} \mathbf{D} \mathbf{V}_j$ 
+in equation \ref{eq:competition})
+and overall (because all $N_j$ are greater).
+Increasing $d_1$ and $d_2$ caused greater number of species to coexist
+because species evolving toward a fitness peak benefited rather than 
+harmed other species with high $d_1$ and $d_2$.
+There was an abrupt change when evolution was conflicting for both traits 
+(i.e., $d_1 < 0$ and $d_2 < 0$),
+where only one species ever survived.
+
+When we kept evolution for the first trait non-conflicting ($d_1 = 0.1$) and
+adjusted evolution for trait 2, the results were slightly more complicated
+(Figure \ref{fig:coexistence-spp}B).
+Additive genetic variance had a similar effect as when we varied both traits' evolution.
+The effect of varying $d_1$, however, depended on the tradeoffs.
+With sub-additive tradeoffs, the threshold for coexistence was $d_1 = -0.1$.
+This is because species evolve to maximize both traits, so $d_1 + d_2$
+determines the coexistence behavior of the community.
+When tradeoffs are super-additive, $\min (d_1, d_2)$ determines whether 
+coexistence can occur.
+This is because under super-additivity, species evolve to maximize one trait while 
+the other evolves to zero.
+When one $d$ is negative, if sufficient species are added to the community and 
+each starts with random trait values, 
+one will inevitably evolve to maximize the trait that is conflicting. 
+That species will exclude all others.
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics{2-coexist_spp.pdf}
+\caption{Proportion of species that survived in simulations of 100-species, 2-trait
+    communities with varying additive genetic variances ($\sigma_i^2$), and 
+    varying (A) $d_1$ and $d_2$ or (B) varying $d_1$ with $d_2$ fixed at 0.1.
+    Shown are both sub-additive ($\eta < 0$) or super-additive ($\eta > 0$) tradeoffs.}
+\label{fig:coexistence-spp}
+\end{figure}
+
+
+
+
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% 
+% LEFT OFF HERE
+% 
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+
+
+
+\ref{fig:conditional-coexistence}
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics{3-cond_coexist_conflicting.pdf}
+\caption{Conditional coexistence for 2-trait, 5-species communities when trait 1 has 
+    conflicting evolution and trait 2 has non-conflicting.
+    Panels show, for each of three situations,
+    (A) starting conditions for each species in trait space, 
+    (B) abundances through time, and 
+    (C) trait values through time.
+    Situations i and ii have super-additive tradeoffs, while situation iii has 
+    sub-additive.
+    In (A), the dotted line separates the basins of attraction for the two possible
+    trait states.
+    In (A,C), shapes of hollow points indicate the equilibrium trait state.
+    In (B,C), Xs mark extinction events.
+}
+\label{fig:conditional-coexistence}
+\end{figure}
+
+
+
+
+
+
+
 
 
 
@@ -52,77 +149,4 @@ One species evolves fastest to the conflicting state and
 excludes others, or
 multiple species evolve to the non-conflicting state
 and coexist.
-
-
-\begin{figure}[ht!]
-\centering
-\includegraphics{2-cond_coexist.pdf}
-\caption{Two simulations illustrating conditional coexistence for one
-    conflicting and one non-conflicting trait.
-    The left panels show exclusion, whereas the right show
-    conditional coexistence.
-    In the top two panels, each line is for a particular species.
-    In the bottom two panels, circles show starting trait values,
-    and lines show trajectories through trait space through time.
-    Xs show the trait values for surviving species.
-    The gray area is the basin of attraction for the
-    non-conflicting trait.
-    Here, $d_1 = d_2 = 0.1$}
-\label{fig:cond-coexist}
-\end{figure}
-
-
-
-
-\subsection*{Three and four traits}
-
-
-Many more patterns of possible trait states existed for the 3-trait case
-(Figure \ref{fig:three-trait-outcomes}).
-Similar to 2 traits, all sub-additive tradeoffs resulted in 1 stable state, and
-all super-additive tradeoffs resulted in $q$ stable states.
-Only one state existed when two or more tradeoffs were sub-additive,
-except when the tradeoff with the highest magnitude was super-additive while
-the others were sub-additive.
-Additivity in one trait often, but not always, resulted in a portion of a
-neutrally stable ring being ``available'' for surviving species.
-When no traits were sub-additive, part of a neutrally stable ring
-always represented the potential trait states.
-When all traits were additive, traits existed along a neutrally stable 
-three-dimensional shell.
-
-
-
-
-\begin{figure}[ht!]
-\centering
-\includegraphics{3-outcomes_q3.pdf}
-\caption{Unique trait values for surviving species in simulations of 3-trait communities,
-    for all 27 permutations of tradeoffs being sub-additive (``$-$''), additive (``$0$''),
-    or super-additive (``$+$'').
-    The point size indicates the value of trait 3.
-    Numbers in the corner of each panel indicate the number of unique trait states
-    for that particular permutation, and panels are arranged by this number.
-    For these simulations, the magnitudes of the $\eta$ values were 
-    $0.1487$ for $\eta_1$, $0.3423$ for $\eta_2$, and $0.1118$ for $\eta_3$.}
-\label{fig:three-trait-outcomes}
-\end{figure}
-
-
-
-
-
-
-
-\textbf{\textit{To-Do List:} }
-\begin{itemize}
-\item Should I do another set of simulations similar to those in figure
-    \ref{fig:three-trait-outcomes}, but with $d = 0.1$? If you recall, some
-    of the alternative trait states didn't exist when $d = 0.1$.
-\item Joe mentioned simulating 4 traits, one or more of which is conflicting,
-    because the number of tradeoffs is greater than the number of traits,
-    and this might allow for coexistence.
-\item I should include $N$ in the Jacobian because, as it stands, the Jacobians
-    tell me nothing about whether more species will go extinct.
-\end{itemize}
 
