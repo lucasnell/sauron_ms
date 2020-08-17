@@ -58,16 +58,16 @@ There was an abrupt change when evolution was conflicting for both traits
 (i.e., $d_1 < 0$ and $d_2 < 0$),
 where only one species ever survived.
 
-When we kept evolution for the first trait non-conflicting ($d_1 = 0.1$) and
-adjusted evolution for trait 2, the results were slightly more complicated
+When we kept evolution for the second trait non-conflicting ($d_2 = 0.1$) and
+adjusted evolution for trait 1, the results were slightly more complicated
 (Figure \ref{fig:coexistence-spp}B).
 Additive genetic variance had a similar effect as when we varied both traits' evolution.
 The effect of varying $d_1$, however, depended on the tradeoffs.
 With sub-additive tradeoffs, the threshold for coexistence was $d_1 = -0.1$.
 This is because species evolve to maximize both traits, so $d_1 + d_2$
-determines the coexistence behavior of the community.
-When tradeoffs are super-additive, $\min (d_1, d_2)$ determines whether 
-coexistence can occur.
+determined the coexistence behavior of the community.
+When tradeoffs are super-additive, $\min (d_1, d_2)$ determined whether 
+coexistence could occur.
 This is because under super-additivity, species evolve to maximize one trait while 
 the other evolves to zero.
 When one $d$ is negative, if sufficient species are added to the community and 
@@ -87,28 +87,29 @@ That species will exclude all others.
 \end{figure}
 
 
+We looked more closely at how coexistence is affected by tradeoffs and 
+species' starting trait values
+using simulations of simpler, 5-species communities where the first 
+trait is conflicting and the second is non-conflicting.
+We simulated three situations:
+(i) sub-additive tradeoffs where all species are near the single
+possible state where both traits are maximized,
+(ii) super-additive tradeoffs where all species added to the community
+are inside the basin of attraction for the non-conflicting trait
+being maximized,
+and
+(iii) super-additive tradeoffs where one species is
+inside the basin of attraction for the conflicting trait
+being maximized.
 
+When tradeoffs are super-additive 
 
-% ------------------------------------------------------------------------------
-% ------------------------------------------------------------------------------
-% ------------------------------------------------------------------------------
-% ------------------------------------------------------------------------------
-% 
-% LEFT OFF HERE
-% 
-% ------------------------------------------------------------------------------
-% ------------------------------------------------------------------------------
-% ------------------------------------------------------------------------------
-% ------------------------------------------------------------------------------
-
-
-
-\ref{fig:conditional-coexistence}
-
+ (Figure
+\ref{fig:conditional-coexistence})
 
 \begin{figure}[ht!]
 \centering
-\includegraphics{3-cond_coexist_conflicting.pdf}
+\includegraphics[width=0.9\textwidth]{3-cond_coexist_conflicting.pdf}
 \caption{Conditional coexistence for 2-trait, 5-species communities when trait 1 has 
     conflicting evolution and trait 2 has non-conflicting.
     Panels show, for each of three situations,
@@ -134,19 +135,19 @@ That species will exclude all others.
 
 
 
-Super-additivity can lead to multiple possible trait states in a 
-community.
-When species start with trait values that vary widely 
-across the trait space, both trait states can be occupied 
-simultaneously only when evolution for both traits is non-conflicting.
-However, when one trait is non-conflicting and all starting
-trait values in the community lie in the basin of attraction
-for that trait being maximized, then coexistence can occur
-(Figure \ref{fig:cond-coexist}).
-Thus, even in this simple case, community evolution can follow
-one of two paths depending on starting conditions:
-One species evolves fastest to the conflicting state and 
-excludes others, or
-multiple species evolve to the non-conflicting state
-and coexist.
+% Super-additivity can lead to multiple possible trait states in a 
+% community.
+% When species start with trait values that vary widely 
+% across the trait space, both trait states can be occupied 
+% simultaneously only when evolution for both traits is non-conflicting.
+% However, when one trait is non-conflicting and all starting
+% trait values in the community lie in the basin of attraction
+% for that trait being maximized, then coexistence can occur
+% (Figure \ref{fig:cond-coexist}).
+% Thus, even in this simple case, community evolution can follow
+% one of two paths depending on starting conditions:
+% One species evolves fastest to the conflicting state and 
+% excludes others, or
+% multiple species evolve to the non-conflicting state
+% and coexist.
 
