@@ -21,6 +21,4 @@
 *.mtc1
 *.out
 *.synctex.gz
-*.pdf
 *.png
-figures*
