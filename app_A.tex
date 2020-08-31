@@ -16,9 +16,33 @@ so $\mathbf{C} + \mathbf{C}^{\textrm{T}} = 2 \; \mathbf{C}$ and
 $\mathbf{D} + \mathbf{D}^{\textrm{T}} = 2 \; \mathbf{D}$.
 
 
+We can combine the equations in the Methods section as such:
+
+\begin{equation} \label{eq:fitness-full}
+\begin{split}
+    F_{i,t+1} &= \exp \left\{
+        r_0 - f \; \mathbf{v}_{i,t}^{\textrm{T}} \; \mathbf{C} \; \mathbf{v}_{i,t} -
+        \alpha_0 \;\textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} } \mathbf{\Omega}_{i,t}
+        \right\} \\
+        \mathbf{\Omega}_{i,t} &\equiv N_{i,t} +
+            \sum_{j \ne i}^{n}{ N_{j,t} \textrm{e}^{
+            - \mathbf{v}_{j,t}^{\textrm{T}}
+            \mathbf{D} \mathbf{v}_{j,t} } }
+        \textrm{.}
+\end{split}
+\end{equation}
+
+\noindent where $\mathbf{\Omega}_i$ represents the community abundance scaled
+for the effect other species' trait values has on competition
+experienced by species $i$.
+Hereafter we will refer to $\mathbf{\Omega}_i$ as the scaled community size.
+
+
+
+
 \subsection*{Trait change}
 
-From the main text, we know that
+From the main text and above, we know that
 
 \begin{equation*}
 \begin{split}

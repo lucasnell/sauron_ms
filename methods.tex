@@ -113,6 +113,7 @@ leads to arms races among competitors
 \citep{Abrams:1994th}.
 Competitor evolution might be non-conflicting when they evolve
 dissimilar traits to reduce competition for resources \citep{Roughgarden:1976eh}.
+Hereafter, $\mathbf{d}$ refers to the vector $\{d_1, \; \ldots, \; d_q \}$.
 
 
 The relationships between trait values and other components of fitness
@@ -226,9 +227,13 @@ genotypes ($\mathbf{v}$) and a log-normal error term:
 \begin{split}
     \mathbf{\ddot{v}}_{i,t+1} &= \mathbf{v}_{i,t+1} \; \text{e}^{\varepsilon_V} \\
     \varepsilon_V &\sim \text{N}(0, \, \sigma^2_V)
+    % \varepsilon_V &\sim \text{N}(\mu_V, \, \sigma^2_V)
     \text{.}
 \end{split}
 \end{equation}
+
+% \noindent To keep stochasticity from affecting the direction of trait evolution, 
+% we set $\mu_V$ to $-\sigma^2_V / 2$, so that the mean of $\text{e}^{\varepsilon_V}$ was 1.
 
 Because the phenotypes interact with the environment, they are used
 to calculate all species' fitness values.

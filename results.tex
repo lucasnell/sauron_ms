@@ -37,26 +37,34 @@ $\eta < 0$, $\eta = 0$, and $\eta > 0$, respectively).
 
 The proportion of the 100 species introduced to communities that survived and
 coexisted depended on the additive genetic variance, 
-the non-additive tradeoffs, and 
-how conflicting / non-conflicting evolution was (i.e., the values of $d_1$ 
-and $d_2$) (Figure \ref{fig:coexistence-spp}A).
-Greater additive genetic variance increased the probability of evolutionary 
-rescue, where species evolved quickly enough towards a fitness peak to
-prevent themselves from going extinct.
-Sub-additive tradeoffs resulted in greater numbers of species because
-the lower cost of evolving multiple traits caused species to evolve
+the tradeoffs, and
+how conflicting / non-conflicting evolution was (i.e., the values in $\mathbf{d}$)
+(Figure \ref{fig:coexistence-spp}A).
+Increasing values of $\mathbf{d}$ (where all values in the vector are equal)
+caused greater number of species to coexist
+because species evolving toward a fitness peak benefited rather than 
+harmed other species with high $\mathbf{d}$.
+This pattern was least obvious with additive tradeoffs.
+There was an abrupt change when evolution was conflicting for both traits 
+(i.e., $\mathbf{d} < 0$), where only one species ever survived.
+Greater additive genetic variance monotonically increased the proportion of 
+surviving species, via an increased probability 
+of evolutionary rescue: When genetic variance was high, 
+species could often evolve quickly enough towards a 
+fitness peak to prevent themselves from going extinct.
+The greatest number of surviving species occurred with additive tradeoffs
+because each new community member had only to evolve to anywhere along the
+neutrally stable ring to survive, rather than to one or two distinct points.
+Sub-additive tradeoffs resulted in greater numbers of species than super-additive
+because the lower cost of evolving multiple traits caused species to evolve
 high values of both traits.
 When combined with non-conflicting evolution,
 this decreased competition experienced by all species, both on a 
 per-capita basis (the term $- \mathbf{v}_{j}^{\text{T}} \mathbf{D} \mathbf{v}_j$ 
 in equation \ref{eq:competition})
 and overall (because all $N_j$ are greater).
-Increasing $d_1$ and $d_2$ caused greater number of species to coexist
-because species evolving toward a fitness peak benefited rather than 
-harmed other species with high $d_1$ and $d_2$.
-There was an abrupt change when evolution was conflicting for both traits 
-(i.e., $d_1 < 0$ and $d_2 < 0$),
-where only one species ever survived.
+
+
 
 When we kept evolution for the second trait non-conflicting ($d_2 = 0.1$) and
 adjusted evolution for trait 1, the results were slightly more complicated
@@ -66,14 +74,17 @@ The effect of varying $d_1$, however, depended on the tradeoffs.
 With sub-additive tradeoffs, the threshold for coexistence was $d_1 = -0.1$.
 This is because species evolve to maximize both traits, so $d_1 + d_2$
 determined the coexistence behavior of the community.
-When tradeoffs are super-additive, $\min (d_1, d_2)$ determined whether 
+When tradeoffs are additive or super-additive, $\min (d_1, d_2)$ determined whether 
 coexistence could occur.
-This is because under super-additivity, species evolve to maximize one trait while 
+Under super-additivity, this occurs because species evolve to maximize one trait while
 the other evolves to zero.
 When one $d$ is negative, if sufficient species are added to the community and 
 each starts with random trait values, 
 one will inevitably evolve to maximize the trait that is conflicting. 
 That species will exclude all others.
+A similar dynamic occurs when tradeoffs are additive, except that
+the excluding species evolves to be near, rather than exactly on, 
+the conflicting trait being maximized.
 
 
 \begin{figure}[ht!]
@@ -82,72 +93,162 @@ That species will exclude all others.
 \caption{Proportion of species that survived in simulations of 100-species, 2-trait
     communities with varying additive genetic variances ($\sigma_i^2$), and 
     varying (A) $d_1$ and $d_2$ or (B) varying $d_1$ with $d_2$ fixed at 0.1.
-    Shown are both sub-additive ($\eta < 0$) or super-additive ($\eta > 0$) tradeoffs.}
+    Shown for sub-additive ($\eta < 0$), additive ($\eta = 0$), and 
+    super-additive ($\eta > 0$) tradeoffs.}
 \label{fig:coexistence-spp}
 \end{figure}
+
+
+We also ran some of these simulations with varying levels of stochasticity
+in the population dynamics and trait evolution.
+Stochasticity had particularly strong negative effects on the proportion
+of species surviving at low values of $d_1$ and $d_2$ and at low $d_1$
+when $d_2$ was fixed \label{fig:stoch-coexist-nspp}.
+Very strong stochasticity, particularly at low values of $d$, often caused
+extinction of all species.
+
 
 
 We looked more closely at how coexistence is affected by tradeoffs and 
 species' starting trait values
 using simulations of simpler, 5-species communities where the first 
 trait is conflicting and the second is non-conflicting.
-We simulated three situations:
+We simulated five situations:
 (i) sub-additive tradeoffs where all species are near the single
 possible state where both traits are maximized,
 (ii) super-additive tradeoffs where all species added to the community
 are inside the basin of attraction for the non-conflicting trait
 being maximized,
-and
-(iii) super-additive tradeoffs where one species is
+(iii) additive tradeoffs where all species added to the community
+are near non-conflicting trait being maximized,
+(iv) super-additive tradeoffs where one species is
 inside the basin of attraction for the conflicting trait
-being maximized.
+being maximized,
+and
+(v) additive tradeoffs where one species is near the conflicting 
+trait being maximized.
 
-When tradeoffs are super-additive 
+In situation i, the first species evolves to the single
+trait state and reaches a high abundance (Figure
+\ref{fig:conditional-coexistence}).
+Subsequent species evolve to the same trait state, but the first trait
+being conflicting and the resident species being abundant keep them
+at low abundances.
+In situation ii, all species evolve to have the non-conflicting trait
+be maximized while the conflicting trait is zero.
+This removes the effect of the conflicting trait entirely, causing all
+species to coexist at the same abundance.
+In situation iii, species evolve to the nearest point along the
+neutral ring, and greater equilibrium values of trait 1 cause
+higher equilibrium abundances.
+Situations iv and v show what was described previously:
+With additive or super-additive tradeoffs and both conflicting
+and non-conflicting traits, if one species evolves to have a greater
+value of the conflicting trait, it will exclude all others.
 
- (Figure
-\ref{fig:conditional-coexistence})
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=0.9\textwidth]{3-cond_coexist_conflicting.pdf}
+\includegraphics[width=0.7\textwidth]{3-cond_coexist_conflicting.pdf}
 \caption{Conditional coexistence for 2-trait, 5-species communities when trait 1 has 
     conflicting evolution and trait 2 has non-conflicting.
-    Panels show, for each of three situations,
-    (A) starting conditions for each species in trait space, 
+    Panels show, for each of five situations,
+    (A) starting conditions and trajectories for each species in trait space, 
     (B) abundances through time, and 
     (C) trait values through time.
-    Situations i and ii have super-additive tradeoffs, while situation iii has 
-    sub-additive.
-    In (A), the dotted line separates the basins of attraction for the two possible
-    trait states.
-    In (A,C), shapes of hollow points indicate the equilibrium trait state.
-    In (B,C), Xs mark extinction events.
+    Situation i has sub-additive tradeoffs, situations ii and iv have 
+    super-additive, and iii and v have additive.
+    (A) Dashed arcs show the location of neutrally stable rings
+    when tradeoffs are additive, and 
+    the dotted lines separate the basins of attraction for the two possible
+    trait states when tradeoffs are super-additive.
+    (A,C) Shapes of hollow points indicate the equilibrium trait state.
+    (C) For situations iii and v, line width is proportional to the 
+    distance from the neutrally stable ring.
+    Xs mark extinction events.
 }
 \label{fig:conditional-coexistence}
 \end{figure}
 
 
+The outcomes of these simulations changed somewhat when we included stochasticity
+into these simulations.
+Stochasticity in abundance decreased coexistence across nearly all situations
+(Figure \ref{fig:conditional-coexistence-stoch}A).
+The exception was situation ii, which resulted in all 5 species coexisting 
+in all simulations for both trait and abundance stochasticity
+(Figure \ref{fig:conditional-coexistence-stoch}A,B).
+For situations iv and v, where coexistence did not occur in deterministic
+simulations, abundance stochasticity changed nothing.
+
+Like population stochasticity, trait stochasticity had a strong negative 
+effect on coexistence for situations i and iii but had no effect on
+situation iv (Figure \ref{fig:conditional-coexistence-stoch}B).
+For situation v, however, trait stochasticity allowed for coexistence
+when deterministic simulations resulted in exclusion, 
+and it resulted in different species surviving.
+This is because the trait stochasticity caused species to evolve 
+along the ring (towards the center) instead of staying in place once they 
+reached it (Figure \ref{fig:cond-coexist-Vstoch-sit-v}).
+[[NOTE: Could this be because the error term is log-normal, so its mean is
+$> 1$ and causes both traits to increase??]]
+This resulted in the first two species being ``better equipped'' to evolve in 
+response to the invader that is closer to the conflicting trait being
+maximized.
+It also caused the invader to evolve away from maximizing the conflicting
+trait, which reduced its ability to exclude the others.
 
 
 
+\begin{figure}[ht!]
+\centering
+\includegraphics{4-cond_coexist_stoch.pdf}
+\caption{Outcomes from stochastic simulations of 2-trait, 5-species communities 
+    when trait 1 has conflicting evolution and trait 2 has non-conflicting.
+    Panels show scaled relative abundance(s)
+    ($\sqrt{N_i} \, / \, \sum_k^n{\sqrt{N_k}}$) 
+    of surviving species for simulations with
+    (A) abundance stochasticity ($\sigma_N = 0.1$) and
+    (B) trait stochasticity ($\sigma_V = 0.1$).
+    Each bar in each sub-panel represents a simulation repetition.
+    Bars to the left of the black vertical lines are for when there was no 
+    stochasticity.
+    Small numbers above bars indicate the number of species that coexisted
+    when coexistence occurred.}
+\label{fig:conditional-coexistence-stoch}
+\end{figure}
 
 
 
+To explore the effect of trait evolution stochasticity on coexistence across 
+the trait space,
+we simulated a one-species equilibrium community that was invaded by 
+a species that varied in its starting trait values.
+We compared the probability of coexistence with stochasticity to that without.
+We found a largely negative effect across much of the trait space
+(Figure \ref{fig:inv-sims-heatmap-coexist}).
+The exception was in marginal starting trait values, where some locations
+had drastic improvements in coexistence probability---0 in deterministic 
+simulations and 1 in stochastic simulations.
+The range where improvements occurred varied with $d_1$ and with tradeoff type.
+Additive tradeoffs showed no areas where stochasticity helped coexistence.
 
-
-% Super-additivity can lead to multiple possible trait states in a 
-% community.
-% When species start with trait values that vary widely 
-% across the trait space, both trait states can be occupied 
-% simultaneously only when evolution for both traits is non-conflicting.
-% However, when one trait is non-conflicting and all starting
-% trait values in the community lie in the basin of attraction
-% for that trait being maximized, then coexistence can occur
-% (Figure \ref{fig:cond-coexist}).
-% Thus, even in this simple case, community evolution can follow
-% one of two paths depending on starting conditions:
-% One species evolves fastest to the conflicting state and 
-% excludes others, or
-% multiple species evolve to the non-conflicting state
-% and coexist.
-
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.5\textwidth]{5-inv_sims_hm_coexist.pdf}
+\caption{Effect of stochasticity on coexistence of a resident species and 
+    an invader based on the invader's starting trait values (x and y axes),
+    magnitude of stochasticity (sub-panel columns), and 
+    value of $d_1$ (sub-panel rows).
+    The fill color of each cell indicates how much stochasticity changed
+    the probability of coexistence compared to deterministic simulations,
+    and white indicates no effect.
+    Round points indicate the trait values of the resident species,
+    triangle points indicate an alternative stable equilibrium state, 
+    and a gray line indicates a neutrally stable ring.
+    The area of the heatmap outlined by a thin, black line is where
+    coexistence occurred in deterministic simulations.
+    For these simulations, $d_2 = 0.1$ and $\sigma_i = 0.05$.
+    Shown for sub-additive, additive, and super-additive tradeoffs.}
+\label{fig:inv-sims-heatmap-coexist}
+\end{figure}
