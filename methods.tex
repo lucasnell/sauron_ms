@@ -4,44 +4,44 @@
 
 \subsection*{Model overview}
 
-We used a simple model of competition to evaluate how evolving competitive traits
+We used a simple model of competition to evaluate how evolving competitive axes
 affect the outcomes of community assembly.
-Each of $n$ species has $q$ traits that affect competition.
-These traits do not define the species (i.e., species that evolve to have
-the same trait values are still considered separate species).
+Each of $n$ species has $q$ axes that affect competition.
+These axes do not define the species (i.e., species that evolve to have
+the same axis values are still considered separate species).
 This is done for two reasons:
 First, we aim to keep the speciation process explicitly
 separate from the processes we are simulating.
-Second, we seek to minimize the constrains on our definition of a trait
+Second, we seek to minimize the constrains on our definition of a axis
 in this context to keep the model general.
 
 
-All traits are symmetrical in that the benefits and tradeoffs are 
-the same for all $q$ traits.
-All species are symmetrical in that when species share the same trait values and abundance, 
+All axes are symmetrical in that the benefits and tradeoffs are 
+the same for all $q$ axes.
+All species are symmetrical in that when species share the same axis values and abundance, 
 they will always have the same effect on each other.
-Increases in traits benefit the species via reduced
+Increases in axes benefit the species via reduced
 effects of both interspecific and intraspecific competition;
 they also incur a cost by decreasing the species' population growth rate.
-In both the costs and benefits, trait effects are concave functions that,
-combined, ensure that one fitness peak exists for each trait.
-Traits can also have non-additive trade-offs that either increase or decrease
-the cost associated with increasing multiple traits compared to increasing
+In both the costs and benefits, axis effects are concave functions that,
+combined, ensure that one fitness peak exists for each axis.
+axes can also have non-additive trade-offs that either increase or decrease
+the cost associated with increasing multiple axes compared to increasing
 just one.
 
 
-The competition experienced by each species is a product of the traits in all
+The competition experienced by each species is a product of the axes in all
 species in the community.
-Trait evolution can be either conflicting or non-conflicting:
-When conflicting, greater trait values for a species increase the effects of
+axis evolution can be either conflicting or non-conflicting:
+When conflicting, greater axis values for a species increase the effects of
 competition for all other species.
-When non-conflicting, all competitors' competition is reduced when traits
+When non-conflicting, all competitors' competition is reduced when axes
 increase in one species.
 
 
 We used a discrete-time, modified Lotka--Volterra competition model similar to
 that by \citet{Northfield:2013if}.
-In it, species $i$ has a length-$q$ vector of traits ($\mathbf{v}_i$), and
+In it, species $i$ has a length-$q$ vector of axes ($\mathbf{v}_i$), and
 its per-capita growth---equivalent to fitness---is
 
 \begin{equation} \label{eq:fitness}
@@ -52,7 +52,7 @@ its per-capita growth---equivalent to fitness---is
 \end{equation}
 
 \noindent where $N_i$ is the population density of  species $i$.
-The parameter $r(\mathbf{v}_i)$ describes how traits affect
+The parameter $r(\mathbf{v}_i)$ describes how axes affect
 the growth rate:
 
 \begin{equation} \label{eq:growth-rate}
@@ -68,17 +68,17 @@ the growth rate:
 \end{equation}
 
 \noindent where $r_0$ is the baseline growth rate,
-$f$ is the cost of increasing traits on the growth rate, and
+$f$ is the cost of increasing axes on the growth rate, and
 $\eta_{k,l}$ is the non-additive trade-off of increasing both the
-$k$\textsuperscript{th} and $l$\textsuperscript{th} traits.
-When $\eta > 0$, increasing multiple traits incurs an extra cost.
+$k$\textsuperscript{th} and $l$\textsuperscript{th} axes.
+When $\eta > 0$, increasing multiple axes incurs an extra cost.
 Non-additive trade-offs are symmetrical (i.e., $\eta_{k,l} = \eta_{l,k}$ for all
 $l$ and $k$), and all values on the diagonal of $\mathbf{C}$ are 1.
 
 
 The terms $\alpha_{ii}(\mathbf{v}_i)$ and
 $\alpha_{ij}(\mathbf{v}_i, \mathbf{v}_j)$
-in equation \ref{eq:fitness} represent how traits influence the effects
+in equation \ref{eq:fitness} represent how axes influence the effects
 of intraspecific and interspecific competition, respectively.
 Competitive effects are given by
 
@@ -99,33 +99,35 @@ Competitive effects are given by
 \end{split}
 \end{equation}
 
+
+
 \noindent where $\alpha_0$ is the base density dependence.
-Matrix $\mathbf{D}$ contains parameters that determine how evolution of traits
+Matrix $\mathbf{D}$ contains parameters that determine how evolution of axes
 in one species affects competition experienced by others:
 When $d_k < 0$, increases in $v_{i,k}$ decrease the
 effect of competition on species $i$, but increase it in all others.
 Alternatively, when $d_k > 0$, increases in $v_{i,k}$ decrease the effect of
 competition on all species including itself.
 Thus $d_k < 0$ causes conflicting and $d_k > 0$ causes non-conflicting evolution
-for trait $k$ \citep{Northfield:2013if}.
+for axis $k$ \citep{Northfield:2013if}.
 We could expect conflicting evolution to occur when contest competition
 leads to arms races among competitors
 \citep{Abrams:1994th}.
 Competitor evolution might be non-conflicting when they evolve
-dissimilar traits to reduce competition for resources \citep{Roughgarden:1976eh}.
+dissimilar axes to reduce competition for resources \citep{Roughgarden:1976eh}.
 Hereafter, $\mathbf{d}$ refers to the vector $\{d_1, \; \ldots, \; d_q \}$.
 
 
-The relationships between trait values and other components of fitness
+The relationships between axis values and other components of fitness
 (growth rates and effects of competition) are of the form
 $X \propto v^2$ for parameter $X$, so $v = z$ is equivalent to $v = -z$.
 To avoid alternative outcomes due to artifacts of this relationship,
-traits are not allowed to be $< 0$.
+axes are not allowed to be $< 0$.
 We did this by passing the equation for $\mathbf{v}_{t+1}$ through a
 ramp function.
 We used a ramp function instead of absolute values
 because the latter causes fluctuations
-in the trait values when they approach zero (they ``bounce off''
+in the axis values when they approach zero (they ``bounce off''
 the zero bound) that persist for a very long time;
 this caused the simulations to take a prohibitively long time to reach
 equilibrium.
@@ -139,32 +141,32 @@ Appendix A.
 
 % \subsection*{Adaptive dynamics}
 %
-% We started simulations with a single competitive species with trait values set to zero.
+% We started simulations with a single competitive species with axis values set to zero.
 % We tracked species population densities through time using equation \ref{eq:fitness} and
 % considered a species extinct if its density fell below $10^{-4}$.
 % Species produced daughter species with a probability of 0.01 per species per time step.
-% We generated daughter-species trait values from normal distributions with means of the
-% mother trait values and standard deviations of $\sigma_{d}$.
+% We generated daughter-species axis values from normal distributions with means of the
+% mother axis values and standard deviations of $\sigma_{d}$.
 
 
 \subsection*{Quantitative genetics}
 
-We used a quantitative genetics framework for trait evolution.
-We assumed that all traits in $\mathbf{v}_i$ represent means for species $i$
+We used a quantitative genetics framework for axis evolution.
+We assumed that all axes in $\mathbf{v}_i$ represent means for species $i$
 and that their among-individual distributions are symmetrical with additive
 genetic variance $\sigma^2_i$.
 Assuming also that $\sigma^2_i$ is relatively small
-\citep{Iwasa:1991eo,Abrams:2001va,Abrams:1993cr}, traits at time $t+1$ are
+\citep{Iwasa:1991eo,Abrams:2001va,Abrams:1993cr}, axes at time $t+1$ are
 
-\begin{equation} \label{eq:trait-change}
+\begin{equation} \label{eq:axis-change}
     \mathbf{v}_{i,t+1} = \mathbf{v}_{i,t} + \left( \frac{1}{F_i}
         \frac{\partial F_i}{\partial \mathbf{v}_{i,t}} \right) \sigma^2_i
     \textrm{.}
 \end{equation}
 
-To determine the stability of ending points (trait values and abundances of
+To determine the stability of ending points (axis values and abundances of
 surviving competitor(s)), we computed the $n (q+1) \times n (q+1)$ Jacobian matrices
-of first derivatives for the traits and abundances of each species:
+of first derivatives for the axes and abundances of each species:
 
 \begin{equation} \label{eq:jacobian}
     \begin{pmatrix}
@@ -197,10 +199,10 @@ We considered a state stable when $\lambda < 1$,
 neutrally stable when $\lambda = 1$,
 and unstable when $\lambda > 1$.
 
-Full analytical solutions to matrix derivatives (for trait change and
+Full analytical solutions to matrix derivatives (for axis change and
 Jacobian matrices) are found in appendix A.
 
-We also analyzed equilibrium solutions for the 2 trait case.
+We also analyzed equilibrium solutions for the 2 axis case.
 This is found in Appendix B.
 
 
@@ -218,7 +220,7 @@ a log-normal error term:
 \end{equation}
 
 
-Stochasticity for trait evolution takes the form of non-adaptive
+Stochasticity for axis evolution takes the form of non-adaptive
 phenotypic plasticity,
 where phenotypes ($\mathbf{\ddot{v}}$) are the product of the
 genotypes ($\mathbf{v}$) and a log-normal error term:
@@ -232,7 +234,7 @@ genotypes ($\mathbf{v}$) and a log-normal error term:
 \end{split}
 \end{equation}
 
-% \noindent To keep stochasticity from affecting the direction of trait evolution, 
+% \noindent To keep stochasticity from affecting the direction of axis evolution, 
 % we set $\mu_V$ to $-\sigma^2_V / 2$, so that the mean of $\text{e}^{\varepsilon_V}$ was 1.
 
 Because the phenotypes interact with the environment, they are used
@@ -240,7 +242,7 @@ to calculate all species' fitness values.
 Genotypes change through time based on the previous time point's 
 genotypes and how the phenotypes affect fitness:
 
-\begin{equation} \label{eq:trait-change-stochastic}
+\begin{equation} \label{eq:axis-change-stochastic}
     \mathbf{v}_{i,t+1} = \mathbf{v}_{i,t} + \left( \frac{1}{F_i}
         \frac{\partial F_i}{\partial \mathbf{\ddot{v}}_{i,t}} \right) \sigma^2_i
     \textrm{.}
@@ -256,8 +258,8 @@ We started simulations with one species, and each of 99 new species
 was added every 500 generations.
 We continued simulations for another 20,000 generations after all
 species were added.
-Each species had starting trait values generated from a truncated normal distribution 
-with a mean equal to the equilibrium solution for that trait,
+Each species had starting axis values generated from a truncated normal distribution 
+with a mean equal to the equilibrium solution for that axis,
 a standard deviation of 1, and a lower bound of zero.
 Species started with an abundance of 1.
 We tracked densities through time and considered a species extinct if its 
@@ -274,21 +276,21 @@ density fell below $10^{-4}$.
 % When $q = 2$, we chose $\eta = 0.6$ because it was sufficiently large
 % to show how its value changes the pattern of outcomes.
 
-For simulations that aim to find points in trait space associated with
+For simulations that aim to find points in axis space associated with
 species surviving competitive environments, we set $d = 1$ 
 (non-conflicting evolution) so that many species
-survived and surveyed the trait space more effectively.
+survived and surveyed the axis space more effectively.
 % This has the added benefit of being a symmetric case where
 % all species in the community benefit equally when one
-% species evolves an increased trait.
+% species evolves an increased axis.
 
 
-% We first simulated 2-trait communities to survey many of the
+% We first simulated 2-axis communities to survey many of the
 % basic properties of the model.
-% Next, we simulated 3- and 4-trait communities.
-% With 3 traits, there is more than one tradeoff, so we could
+% Next, we simulated 3- and 4-axis communities.
+% With 3 axes, there is more than one tradeoff, so we could
 % explore combinations of different types of additivity.
-% With 4 traits, there are more tradeoffs than traits, which we
+% With 4 axes, there are more tradeoffs than axes, which we
 % thought might cause different possibilities in the model.
 
 
@@ -299,7 +301,7 @@ We simulated models using a combination of R \citep{RCoreTeam:2019wf} and
 C++ via the Rcpp and RcppArmadillo packages
 \citep{Eddelbuettel:2014ad,Eddelbuettel:2013if,Sanderson:2016cs}.
 We double-checked our derivations by simulating 100 datasets
-(4 species with 3 traits each) and computing derivatives using the Theano Python
+(4 species with 3 axes each) and computing derivatives using the Theano Python
 library's automatic differentiation \citep{TheanoDevelopmentTeam:2016uc}.
 All code can be found on GitHub
 % AmNat does double-blind reviews, so the next line will be un-commented after review
