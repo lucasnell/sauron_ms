@@ -1,6 +1,6 @@
 
 
-\section*{Supplemental Information}
+\section*{\huge{Supplemental Information}}
 
 \renewcommand{\thefigure}{S\arabic{figure}}
 \renewcommand{\theequation}{S\arabic{equation}}
@@ -28,9 +28,9 @@ We can combine the equations in the Methods section as such:
 \begin{split}
     F_{i,t+1} &= \exp \left\{
         r_0 - f \; \mathbf{v}_{i,t}^{\textrm{T}} \; \mathbf{C} \; \mathbf{v}_{i,t} -
-        \alpha_0 \;\textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} } \mathbf{\Omega}_{i,t}
+        \alpha_0 \;\textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} } \bm{\Omega}_{i,t}
         \right\} \\
-        \mathbf{\Omega}_{i,t} &\equiv N_{i,t} +
+        \bm{\Omega}_{i,t} &\equiv N_{i,t} +
             \sum_{j \ne i}^{n}{ N_{j,t} \textrm{e}^{
             - \mathbf{v}_{j,t}^{\textrm{T}}
             \mathbf{D} \mathbf{v}_{j,t} } }
@@ -38,10 +38,10 @@ We can combine the equations in the Methods section as such:
 \end{split}
 \end{equation}
 
-\noindent where $\mathbf{\Omega}_i$ represents the community abundance scaled
+\noindent where $\bm{\Omega}_i$ represents the community abundance scaled
 for the effect other species' axes values has on competition
 experienced by species $i$.
-Hereafter we will refer to $\mathbf{\Omega}_i$ as the scaled community size.
+Hereafter we will refer to $\bm{\Omega}_i$ as the scaled community size.
 
 
 
@@ -54,7 +54,7 @@ From the main text and above, we know that
 \begin{split}
     F_{i,t+1} &= \exp \left\{
         r_0 - f \; \mathbf{v}_{i,t}^{\textrm{T}} \; \mathbf{C} \; \mathbf{v}_{i,t} -
-        \alpha_0 \;\textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} } \mathbf{\Omega}_{i,t}
+        \alpha_0 \;\textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} } \bm{\Omega}_{i,t}
         \right\} \\
     \mathbf{v}_{i,t+1} &= \mathbf{v}_{i,t} + \left( \frac{1}{F_{i,t+1}}
         \frac{\partial F_{i,t+1}}{\partial \mathbf{v}_{i,t}} \right) \sigma^2_i
@@ -72,14 +72,14 @@ The partial derivative of fitness in relation to axes for species $i$ is
         \exp \left\{
             r_0
             - f \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{C} \mathbf{v}_{i,t}
-            - \alpha_0  \mathbf{\Omega}_{i,t} \,
+            - \alpha_0  \bm{\Omega}_{i,t} \,
                 \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}}
         \right\}
         \frac{\partial \!
             \left(
                 r_0
                 - f \; \mathbf{v}_{i,t}^{\textrm{T}} \; \mathbf{C} \; \mathbf{v}_{i,t}
-                - \alpha_0 \; \mathbf{\Omega}_{i,t} \;
+                - \alpha_0 \; \bm{\Omega}_{i,t} \;
                     \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}}
             \right)
             }{ \partial \mathbf{v}_{i,t} } \\
@@ -87,12 +87,12 @@ The partial derivative of fitness in relation to axes for species $i$ is
         \exp \left\{
             r_0
             - f \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{C} \mathbf{v}_{i,t}
-            - \alpha_0  \mathbf{\Omega}_{i,t} \,
+            - \alpha_0  \bm{\Omega}_{i,t} \,
                 \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}}
         \right\}
         \left[
             - 2 f \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{C}
-            - \alpha_0 \, \mathbf{\Omega}_{i,t} \,
+            - \alpha_0 \, \bm{\Omega}_{i,t} \,
                 \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} } \:
                 \frac{\partial \! \left( - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} \right)
                     }{ \partial \mathbf{v}_{i,t} }
@@ -101,11 +101,11 @@ The partial derivative of fitness in relation to axes for species $i$ is
         \exp \left\{
             r_0
             - f \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{C} \mathbf{v}_{i,t}
-            - \alpha_0  \mathbf{\Omega}_{i,t} \,
+            - \alpha_0  \bm{\Omega}_{i,t} \,
                 \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}}
         \right\}
         \left[
-            2 \alpha_0 \mathbf{\Omega}_{i,t} \,
+            2 \alpha_0 \bm{\Omega}_{i,t} \,
                 \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}} \:
                 \mathbf{v}_{i,t}^{\textrm{T}}
             - 2 f \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{C}
@@ -122,7 +122,7 @@ time $t+1$ are
 \begin{equation} \label{eq:supp-axis-change-full}
     \mathbf{v}_{i,t+1} = \mathbf{v}_{i,t} + 2 \sigma_i^2
     \left(
-        \alpha_0 \, \mathbf{\Omega}_{i,t} \:
+        \alpha_0 \, \bm{\Omega}_{i,t} \:
             \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}} \:
             \mathbf{v}_{i,t}^{\textrm{T}}
         - f \, \mathbf{v}_{i,t}^{\textrm{T}} \: \mathbf{C}
@@ -161,7 +161,7 @@ to species $i$ axes at time $t$ are
         2 \; \sigma_i^2
         \left(
             \frac{ \partial \;
-                \alpha_0 \; \mathbf{\Omega}_{i,t} \;
+                \alpha_0 \; \bm{\Omega}_{i,t} \;
                     \textrm{e}^{-\mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}} \,
                     \mathbf{v}_{i,t}^{\textrm{T}}}{\partial \; \mathbf{v}_{i,t} } -
             \frac{ \partial \; f \, \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{C}}{\partial \; \mathbf{v}_{i,t} }
@@ -170,7 +170,7 @@ to species $i$ axes at time $t$ are
         \mathbf{I} +
         2 \; \sigma_i^2
         \left[
-            \alpha_0 \; \mathbf{\Omega}_{i,t} \,
+            \alpha_0 \; \bm{\Omega}_{i,t} \,
             \left(
                 \textrm{e}^{-\mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}} +
                 \frac{ \partial \;
@@ -181,7 +181,7 @@ to species $i$ axes at time $t$ are
             \right] \\[2ex]
     \frac{ \partial \, \mathbf{v}_{i,t+1} }{ \partial \, \mathbf{v}_{i,t} } &= \mathbf{I} + 2 ~ \sigma_i^2 ~
         \left[
-            \alpha_0 ~ \mathbf{\Omega}_{i,t} ~ \textrm{e}^{ - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} }
+            \alpha_0 ~ \bm{\Omega}_{i,t} ~ \textrm{e}^{ - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} }
             \left(
                 \mathbf{I} - 2 ~ \mathbf{v}_{i,t} \mathbf{v}_{i,t}^{\textrm{T}}
             \right) -
@@ -943,6 +943,157 @@ Now looking at the relationship between $\hat{N}_1$ and $\hat{N}_2$:
 
 
 
+% ========================================================================================
+% ========================================================================================
+% ========================================================================================
+% ========================================================================================
+% ========================================================================================
+% ========================================================================================
+% ========================================================================================
+
+
+\section*{Effects of stochasticity on axis evolution}
+
+From the main text, we know that when there is variability in axis evolution, 
+
+\begin{equation*}
+\begin{split}
+    \mathbf{\ddot{v}}_{i,t+1} &= \mathbf{v}_{i,t+1} \; \text{e}^{\varepsilon_V} \\
+    \varepsilon_V &\sim \text{N}(0, \, \sigma^2_V) \\
+    \mathbf{v}_{i,t+1} &= \mathbf{v}_{i,t} + \left( \frac{1}{F_i}
+        \frac{\partial F_i}{\partial \mathbf{\ddot{v}}_{i,t}} \right) \sigma^2_i
+    \text{.}
+\end{split}
+\end{equation*}
+
+
+
+For the two-axis case, we can define the function $G_1$ for axis 1 as a function 
+of the random variables $\varepsilon_1$ and $\varepsilon_2$:
+
+\begin{equation*}
+    G_1(\varepsilon_1, \varepsilon_2) = v_{i1,t} + 2 \; \sigma_i^2
+    \left[
+        \alpha_0 \; \Omega_{i,t} \;
+            \text{e}^{-(v_{i1,t} \text{e}^{\varepsilon_1})^2 - (v_{i2,t} \text{e}^{\varepsilon_2})^2} \; v_{i1,t} \text{e}^{\varepsilon_1}
+        - f \; ( v_{i1,t} \text{e}^{\varepsilon_1} + \eta \; v_{i2,t} \text{e}^{\varepsilon_2} )
+    \right]
+\end{equation*}
+
+
+The second order Taylor series approximation for $G_1(\varepsilon_1, \varepsilon_2)$,
+about $\bm{\theta} = \{ \mu_{\varepsilon_1}, \mu_{\varepsilon_2} \} = \{ 0, 0 \}$, is
+
+\begin{equation}
+\label{eq:taylor-expansion-outline}
+    \text{E}(G_1(\varepsilon_1, \varepsilon_2)) \approx G_1(\bm{\theta}) + 
+        \frac{1}{2} \left[ 
+            \left. \frac{\partial^2 G_1}{\partial^2 \varepsilon_1} \right\lvert_{\bm{\theta}} \; \sigma^2_{\varepsilon_1} +
+            \left. \frac{\partial^2 G_1}{\partial^2 \varepsilon_2} \right\lvert_{\bm{\theta}} \; \sigma^2_{\varepsilon_2}
+        \right]
+\text{.}
+\end{equation}
+
+
+In the derivatives below, we have removed indices for species and time for clarity.
+To avoid confusion in later equations, $\sigma_A^2$ is additive genetic variance.
+
+We have the following derivatives of $G_1$ with respect to the random variables $\varepsilon_1$ and $\varepsilon_1$:
+
+\begin{equation*}
+\begin{split}
+    \frac{\partial \, G_1}{\partial \, \varepsilon_1} &= 2 \; \sigma_A^2 \: v_{1} \: \text{e}^{\varepsilon_1}
+    \left[
+        \alpha_0 \; \Omega \;
+            \text{e}^{-(v_{1} \: \text{e}^{\varepsilon_1})^2 - (v_{2} \: \text{e}^{\varepsilon_2})^2}
+            \left(
+                1 - 2 \, v_{1}^2 \: \text{e}^{2 \varepsilon_1}
+            \right)
+        - f
+    \right] \\
+% 
+    \frac{\partial^2 G_1}{\partial^2 \varepsilon_1} &= 2 \; \sigma_A^2 \: v_{1} \: \text{e}^{\varepsilon_1}
+    \left[
+        \alpha_0 \; \Omega \;
+            \text{e}^{-(v_{1} \: \text{e}^{\varepsilon_1})^2 - (v_{2} \: \text{e}^{\varepsilon_2})^2}
+            \left(
+                1 - 8 \, v_{1}^2 \: \text{e}^{2 \varepsilon_1}
+            \right)
+        - f
+    \right] \\[2ex]
+%
+%
+    \frac{\partial \, G_1}{\partial \, \varepsilon_2} &= - 2 \; \sigma_A^2
+    \left[
+        2 \: \alpha_0 \; \Omega \; v_1 \; v_2^2 \;
+            \text{e}^{-(v_{1} \: \text{e}^{\varepsilon_1})^2 - (v_{2} \: \text{e}^{\varepsilon_2})^2 + \varepsilon_1 + 2 \, \varepsilon_2}
+        + f \: \eta \: v_2 \: \text{e}^{\varepsilon_2}
+    \right] \\
+% 
+    \frac{\partial^2 G_1}{\partial^2 \varepsilon_2} &= - 2 \; \sigma_A^2
+    \left[
+        4 \: \alpha_0 \; \Omega \; v_1 \; v_2^2 \;
+            \text{e}^{-(v_{1} \: \text{e}^{\varepsilon_1})^2 - (v_{2} \: \text{e}^{\varepsilon_2})^2 + \varepsilon_1 + 2 \, \varepsilon_2}
+            \left(
+                1 - v_{2}^2 \: \text{e}^{2 \varepsilon_2}
+            \right)
+        + f \: \eta \: v_2 \: \text{e}^{\varepsilon_2}
+    \right]
+\text{.}
+\end{split}
+\end{equation*}
+
+
+Combining these with equation \ref{eq:taylor-expansion-outline} give us 
+
+\begin{equation*}
+\begin{split}
+    \text{E}(G_1(\varepsilon_1, \varepsilon_2)) \approx \; &
+        v_1 + 2 \; \sigma_A^2 \left[ 
+            \alpha_0 \; \Omega \; v_1 \; \text{e}^{-v_1^2 - v_2^2} - f (v_1 + \eta \; v_2)
+        \right] \\
+        &+ \frac{1}{2} \Bigg\{
+            2 \; \sigma_A^2 \; v_1 \left[
+                \alpha_0 \; \Omega \; \text{e}^{-v_1^2 - v_2^2} \left( 1 - 8 \; v_1^2 \right) - f
+            \right] \sigma^2_{\varepsilon_1} \\
+            & \hspace{2.5em} - 2 \; \sigma_A^2 \left[
+                4 \; \alpha_0 \; \Omega \; v_1 \; v_2^2 \; \text{e}^{-v_1^2 - v_2^2} \left( 1 - v_2^2 \right) + f \; \eta \; v_2
+            \right] \sigma^2_{\varepsilon_2}
+        \Bigg\} %\\[2ex]
+%
+%
+%    \approx ~ & v_1 + \sigma_A^2 \Big[ 
+%            2 \alpha_0 \Omega v_1 \text{e}^{-v_1^2 - v_2^2} + 2 f (v_1 + \eta v_2)
+%            + \\ & \hspace*{4em} \sigma_{\varepsilon_1}^2 v_1 \alpha_0 \Omega \text{e}^{-v_1^2 - v_2^2} (1 - 8 v_1^2) + \sigma_{\varepsilon_1}^2 v_1 f
+%            - \\ & \hspace*{4em} \sigma_{\varepsilon_2}^2 4 \alpha_0 \Omega v_1 v_2^2 \text{e}^{-v_1^2 - v_2^2} (1 - v_2^2) - \sigma_{\varepsilon_2}^2 f \eta v_2^2
+%        \Big] \\[2ex]
+%
+%
+\text{.}
+\end{split}
+\end{equation*}
+
+This simplifies to 
+
+\begin{equation}
+\label{eq:taylor-expansion-final-supp}
+\begin{split}
+    \text{E}(G_1(\varepsilon_1, \varepsilon_2)) \approx
+        v_1 + 2 \; \sigma_A^2 \Bigg\{ 
+            & \alpha_0 \; \Omega \; v_1 \; \text{e}^{-v_1^2 - v_2^2} 
+            \bigg[ 
+                1 + \sigma^2_{\varepsilon_1} \left( \frac{1}{2} - 4 \; v_1^2 \right)
+                - 2 \; \sigma^2_{\varepsilon_2} \, v_2^2 \left( 1 - v_2^2 \right)
+            \bigg] \\
+            & - f \bigg[
+                v_1 + \eta \; v_2 + \frac{1}{2} \left(
+                    \sigma^2_{\varepsilon_1} \, v_1 + \sigma^2_{\varepsilon_2} \, \eta \; v_2
+                \right)
+            \bigg]
+        \Bigg\}
+\text{.}
+\end{split}
+\end{equation}
 
 
 

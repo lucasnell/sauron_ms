@@ -8,22 +8,31 @@ The long history of research on coevolving, competitive communities has resulted
 many mechanisms that affect coexistence among species.
 Here, we provide general insights into the process of coexistence that span
 many of these mechanisms.
-We did this using a simple model of competitive communities where 
-species can evolve to reduce competition by increasing
-``competition investment axes.''
+We did this using both deterministic and stochastic simulations of a
+simple model of competitive communities where species can evolve to reduce 
+competition by investing in ``competition axes.''
 Each axis represents an amalgam of multiple traits that similarly decrease
 competition as species increase its value.
-We found that investment tradeoffs and whether evolution is conflicting
-(i.e., investment by one species increases the effects of competition 
-on others) together determine the rule(s) of coexistence for a system.
-These can be a single rule across the entire axis space, or
-a set of rules that depend on the axis values present in the community.
-In the latter case, starting conditions can drastically affect the outcomes.
-Stochasticity had both positive and negative effects on coexistence:
-It reduced effects of resident species on new invaders, 
-but increased the base rate of extinction.
-Deterministic rules were robust to these effects in some cases, but
-they broke down completely in others.
+Species have at least two axes:
+a conflicting axis, where investment by one species increases the effects of
+competition on others, and 
+an ameliorative axis, where investment decreases competition for all species.
+Deterministic simulations show that coexistence cannot occur when tradeoffs are 
+sub-additive (investing in multiple axes is less costly than the sum cost of 
+investing in them separately) and the strength of the
+ameliorative axis is less than that for the conflicting axis.
+Coexistence also cannot occur when tradeoffs are 
+super-additive or additive and just one species invests more in the conflicting axis
+than the ameliorative axis.
+Adding stochasticity in axis evolution caused a switch for additive tradeoffs, 
+where the system behaved more like when there were sub-additive than super-additive 
+tradeoffs.
+Stochasticity also affected coexistence via transient effects early during
+species invasions.
+Over most of the axis space, stochasticity had a negative effect
+on probability of coexistence, but stochasticity allowed for coexistence
+in marginal areas immediately outside where deterministic rules
+would dictate exclusion of invaders.
 Our results help us understand how the general properties underlying
 competition affect coexistence among coevolving species.
 
