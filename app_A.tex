@@ -72,7 +72,36 @@ This, combined with equation \ref{eq:axis-change}, means that axes change as fol
 
 \subsection*{Jacobian}
 
-The Jacobian is made up of the following derivatives:
+The Jacobian is
+
+\begin{equation} \label{eq:jacobian}
+    \begin{pmatrix}
+        \frac{\partial \mathbf{v}_{1,t+1}}{\partial \mathbf{v}_{1,t}} & \cdots &
+            \frac{\partial \mathbf{v}_{1,t+1}}{\partial \mathbf{v}_{n,t}} &
+            \frac{\partial \mathbf{v}_{1,t+1}}{\partial N_{1,t}} & \cdots &
+            \frac{\partial \mathbf{v}_{1,t+1}}{\partial N_{n,t}} \\
+        \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+        \frac{\partial \mathbf{v}_{n,t+1}}{\partial \mathbf{v}_{1,t}} & \cdots &
+            \frac{\partial \mathbf{v}_{n,t+1}}{\partial \mathbf{v}_{n,t}} &
+            \frac{\partial \mathbf{v}_{n,t+1}}{\partial N_{1,t}} & \cdots &
+            \frac{\partial \mathbf{v}_{n,t+1}}{\partial N_{n,t}} \\[1ex]
+%
+%
+        \frac{\partial N_{1,t+1}}{\partial \mathbf{v}_{1,t}} & \cdots &
+            \frac{\partial N_{1,t+1}}{\partial \mathbf{v}_{n,t}} &
+            \frac{\partial N_{1,t+1}}{\partial N_{1,t}} & \cdots &
+            \frac{\partial N_{1,t+1}}{\partial N_{n,t}} \\
+        \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+        \frac{\partial N_{n,t+1}}{\partial \mathbf{v}_{1,t}} & \cdots &
+            \frac{\partial N_{n,t+1}}{\partial \mathbf{v}_{n,t}} &
+            \frac{\partial N_{n,t+1}}{\partial N_{1,t}} & \cdots &
+            \frac{\partial N_{n,t+1}}{\partial N_{n,t}} \\
+    \end{pmatrix}
+    \text{.}
+\end{equation}
+
+
+It is made up of the following derivatives:
 
 \begin{equation*}
 \begin{split}

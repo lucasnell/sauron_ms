@@ -4,39 +4,35 @@
 
 \subsection*{Model overview}
 
-We used a simple model of competition to evaluate how evolving competitive axes
-affect the outcomes of community assembly.
-Each of $n$ species has $q$ axes that affect competition.
-These axes do not define the species (i.e., species that evolve to have
-the same axis values are still considered separate species).
-This is done for two reasons:
-First, we aim to keep the speciation process explicitly
-separate from the processes we are simulating.
-Second, we seek to minimize the constrains on our definition of a axis
-in this context to keep the model general.
-
-
-All axes are symmetrical in that the benefits and tradeoffs are 
-the same for all $q$ axes.
-All species are symmetrical in that when species share the same axis values and abundance, 
-they will always have the same effect on each other.
-Increases in axes benefit the species via reduced
-effects of both interspecific and intraspecific competition;
-they also incur a cost by decreasing the species' population growth rate.
+We used a simple model of competition to evaluate how evolving investment in 
+competition affects coexistence among species.
+Each of $n$ species has $q$ competition axes.
+Competition axes are combinations of multiple traits that together affect 
+competition similarly.
+Investing in an axis has a cost to the population growth rate and 
+a benefit via reduced interspecific and intraspecific competition.
+Species have at least two axes:
+(a) a conflicting axis, where investment by one species increases the 
+effects of competition for all other species, and
+(b) an ameliorative axis, where all species' competition is reduced when
+one species invests in it.
+Thus, the overall competition experienced by each species is a product of 
+the axes in all species in the community.
+All species are symmetrical in that when species share the same axis 
+values, they will always have the same per-capita effect on each other.
+The benefits and tradeoffs are the same for all axes.
 In both the costs and benefits, axis effects are concave functions that,
 combined, ensure that one fitness peak exists for each axis.
-axes can also have non-additive trade-offs that either increase or decrease
+Axes can also have non-additive trade-offs that either increase or decrease
 the cost associated with increasing multiple axes compared to increasing
 just one.
 
-
-The competition experienced by each species is a product of the axes in all
-species in the community.
-axis evolution can be either conflicting or non-conflicting:
-When conflicting, greater axis values for a species increase the effects of
-competition for all other species.
-When non-conflicting, all competitors' competition is reduced when axes
-increase in one species.
+% Here, I think it makes sense to define what we mean by axes:
+We could expect conflicting evolution to occur when contest competition
+leads to arms races among competitors
+\citep{Abrams:1994th}.
+Competitor evolution might be ameliorative when they evolve
+dissimilar resource-usage traits to reduce competition \citep{Roughgarden:1976eh}.
 
 
 We used a discrete-time, modified Lotka--Volterra competition model similar to
@@ -104,18 +100,13 @@ Competitive effects are given by
 \noindent where $\alpha_0$ is the base density dependence.
 Matrix $\mathbf{D}$ contains parameters that determine how evolution of axes
 in one species affects competition experienced by others:
-When $d_k < 0$, increases in $v_{i,k}$ decrease the
+When $d_k < 0$, investment in by species $i$ in axis $k$ decrease the
 effect of competition on species $i$, but increase it in all others.
-Alternatively, when $d_k > 0$, increases in $v_{i,k}$ decrease the effect of
-competition on all species including itself.
-Thus $d_k < 0$ causes conflicting and $d_k > 0$ causes non-conflicting evolution
+Alternatively, when $d_k > 0$, the same investment decreases the effect of
+competition on all species including $i$.
+Thus $d_k < 0$ causes conflicting and $d_k > 0$ causes ameliorative evolution
 for axis $k$ \citep{Northfield:2013if}.
-We could expect conflicting evolution to occur when contest competition
-leads to arms races among competitors
-\citep{Abrams:1994th}.
-Competitor evolution might be non-conflicting when they evolve
-dissimilar axes to reduce competition for resources \citep{Roughgarden:1976eh}.
-Hereafter, $\mathbf{d}$ refers to the vector $\{d_1, \; \ldots, \; d_q \}$.
+% Hereafter, $\mathbf{d}$ refers to the vector $\{d_1, \; \ldots, \; d_q \}$.
 
 
 The relationships between axis values and other components of fitness
@@ -166,42 +157,14 @@ Assuming also that $\sigma^2_i$ is relatively small
 
 To determine the stability of ending points (axis values and abundances of
 surviving competitor(s)), we computed the $n (q+1) \times n (q+1)$ Jacobian matrices
-of first derivatives for the axes and abundances of each species:
-
-\begin{equation} \label{eq:jacobian}
-    \begin{pmatrix}
-        \frac{\partial \mathbf{v}_{1,t+1}}{\partial \mathbf{v}_{1,t}} & \cdots &
-            \frac{\partial \mathbf{v}_{1,t+1}}{\partial \mathbf{v}_{n,t}} &
-            \frac{\partial \mathbf{v}_{1,t+1}}{\partial N_{1,t}} & \cdots &
-            \frac{\partial \mathbf{v}_{1,t+1}}{\partial N_{n,t}} \\
-        \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
-        \frac{\partial \mathbf{v}_{n,t+1}}{\partial \mathbf{v}_{1,t}} & \cdots &
-            \frac{\partial \mathbf{v}_{n,t+1}}{\partial \mathbf{v}_{n,t}} &
-            \frac{\partial \mathbf{v}_{n,t+1}}{\partial N_{1,t}} & \cdots &
-            \frac{\partial \mathbf{v}_{n,t+1}}{\partial N_{n,t}} \\[1ex]
-%
-%
-        \frac{\partial N_{1,t+1}}{\partial \mathbf{v}_{1,t}} & \cdots &
-            \frac{\partial N_{1,t+1}}{\partial \mathbf{v}_{n,t}} &
-            \frac{\partial N_{1,t+1}}{\partial N_{1,t}} & \cdots &
-            \frac{\partial N_{1,t+1}}{\partial N_{n,t}} \\
-        \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
-        \frac{\partial N_{n,t+1}}{\partial \mathbf{v}_{1,t}} & \cdots &
-            \frac{\partial N_{n,t+1}}{\partial \mathbf{v}_{n,t}} &
-            \frac{\partial N_{n,t+1}}{\partial N_{1,t}} & \cdots &
-            \frac{\partial N_{n,t+1}}{\partial N_{n,t}} \\
-    \end{pmatrix}
-    \text{.}
-\end{equation}
-
-\noindent We then computed the primary eigenvalue of this matrix ($\lambda$).
+of first derivatives for the axes and abundances of each species (Equation \ref{eq:jacobian}).
+We then computed the primary eigenvalue of this matrix ($\lambda$).
 We considered a state stable when $\lambda < 1$,
 neutrally stable when $\lambda = 1$,
 and unstable when $\lambda > 1$.
 
 Full analytical solutions to matrix derivatives (for axis change and
 Jacobian matrices) are found in appendix A.
-
 We also analyzed equilibrium solutions for the 2 axis case.
 This is found in Appendix B.
 
@@ -278,7 +241,7 @@ density fell below $10^{-4}$.
 
 For simulations that aim to find points in axis space associated with
 species surviving competitive environments, we set $d = 1$ 
-(non-conflicting evolution) so that many species
+(ameliorative evolution) so that many species
 survived and surveyed the axis space more effectively.
 % This has the added benefit of being a symmetric case where
 % all species in the community benefit equally when one
