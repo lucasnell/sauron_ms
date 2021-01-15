@@ -1,5 +1,5 @@
 
-\section*{Methods}
+\section*{Material and methods}
 
 
 \subsection*{Model overview}
@@ -11,13 +11,16 @@ Competition axes are combinations of multiple traits that together affect
 competition similarly.
 Investing in an axis has a cost to the population growth rate and 
 a benefit via reduced interspecific and intraspecific competition.
-Species have at least two axes:
-(a) a conflicting axis, where investment by one species increases the 
-effects of competition for all other species, and
-(b) an ameliorative axis, where all species' competition is reduced when
-one species invests in it.
-Thus, the overall competition experienced by each species is a product of 
+The overall competition experienced by each species is a product of 
 the axes in all species in the community.
+This is because all species have at least two axes, 
+one conflicting, and one ameliorative.
+For a conflicting competition axis, investment by one species 
+strengthens competition for all other species.
+For an ameliorative axis, all species' competition is reduced when
+one species invests in it.
+
+
 All species are symmetrical in that when species share the same axis 
 values, they will always have the same per-capita effect on each other.
 The benefits and tradeoffs are the same for all axes.
@@ -25,18 +28,18 @@ In both the costs and benefits, axis effects are concave functions that,
 combined, ensure that one fitness peak exists for each axis.
 Axes can also have non-additive trade-offs that either increase or decrease
 the cost associated with increasing multiple axes compared to increasing
-just one.
+just one \citep{Northfield2021}.
 
 % Here, I think it makes sense to define what we mean by axes:
 We could expect conflicting evolution to occur when contest competition
 leads to arms races among competitors
-\citep{Abrams:1994th}.
+\citep{Abrams1994}.
 Competitor evolution might be ameliorative when they evolve
-dissimilar resource-usage traits to reduce competition \citep{Roughgarden:1976eh}.
+dissimilar resource-usage traits to reduce competition \citep{Roughgarden1976}.
 
 
 We used a discrete-time, modified Lotka--Volterra competition model similar to
-that by \citet{Northfield:2013if}.
+that by \citet{Northfield2013a}.
 In it, species $i$ has a length-$q$ vector of axes ($\mathbf{v}_i$), and
 its per-capita growth---equivalent to fitness---is
 
@@ -47,7 +50,7 @@ its per-capita growth---equivalent to fitness---is
     \right\}\textrm{,}
 \end{equation}
 
-\noindent where $N_i$ is the population density of  species $i$.
+\noindent where $N_i$ is the population density of species $i$.
 The parameter $r(\mathbf{v}_i)$ describes how axes affect
 the growth rate:
 
@@ -101,12 +104,11 @@ Competitive effects are given by
 Matrix $\mathbf{D}$ contains parameters that determine how evolution of axes
 in one species affects competition experienced by others:
 When $d_k < 0$, investment in by species $i$ in axis $k$ decrease the
-effect of competition on species $i$, but increase it in all others.
+effect of competition on species $i$, but increase it in all others
+(i.e., axis $k$ is conflicting).
 Alternatively, when $d_k > 0$, the same investment decreases the effect of
-competition on all species including $i$.
-Thus $d_k < 0$ causes conflicting and $d_k > 0$ causes ameliorative evolution
-for axis $k$ \citep{Northfield:2013if}.
-% Hereafter, $\mathbf{d}$ refers to the vector $\{d_1, \; \ldots, \; d_q \}$.
+competition on all species including $i$ (i.e., axis $k$ is ameliorative)
+\citep{Northfield2013a}.
 
 
 The relationships between axis values and other components of fitness
@@ -147,7 +149,12 @@ We assumed that all axes in $\mathbf{v}_i$ represent means for species $i$
 and that their among-individual distributions are symmetrical with additive
 genetic variance $\sigma^2_i$.
 Assuming also that $\sigma^2_i$ is relatively small
-\citep{Iwasa:1991eo,Abrams:2001va,Abrams:1993cr}, axes at time $t+1$ are
+\citep{Iwasa1991a,Abrams2001a,Abrams1993b} and that
+
+\cite{DeVries2019}
+
+
+, axes at time $t+1$ are
 
 \begin{equation} \label{eq:axis-change}
     \mathbf{v}_{i,t+1} = \mathbf{v}_{i,t} + \left( \frac{1}{F_i}
@@ -217,16 +224,27 @@ genotypes and how the phenotypes affect fitness:
 
 \subsection*{Simulations}
 
-We started simulations with one species, and each of 99 new species
+
+We started simulations with one species, and each of $n-1$ new species
 was added every 500 generations.
+Species started with an abundance of 1.
 We continued simulations for another 20,000 generations after all
 species were added.
-Each species had starting axis values generated from a truncated normal distribution 
-with a mean equal to the equilibrium solution for that axis,
-a standard deviation of 1, and a lower bound of zero.
-Species started with an abundance of 1.
 We tracked densities through time and considered a species extinct if its 
 density fell below $10^{-4}$.
+
+% Species starting axis values were generated from truncated normal 
+% distributions with standard deviations of 1 and lower bound of zero.
+% The means varied by the type of simulation.
+
+
+
+
+% Each species had starting axis values generated from a truncated normal distribution 
+% with a mean equal to the equilibrium solution for that axis,
+% a standard deviation of 1, and a lower bound of zero.
+
+% Species started with an abundance of 1.
 
 
 % When generating multiple $\eta$ magnitudes for the different tradeoffs,
@@ -239,10 +257,10 @@ density fell below $10^{-4}$.
 % When $q = 2$, we chose $\eta = 0.6$ because it was sufficiently large
 % to show how its value changes the pattern of outcomes.
 
-For simulations that aim to find points in axis space associated with
-species surviving competitive environments, we set $d = 1$ 
-(ameliorative evolution) so that many species
-survived and surveyed the axis space more effectively.
+% For simulations that aim to find points in axis space associated with
+% species surviving competitive environments, we set $d = 1$ 
+% (ameliorative evolution) so that many species
+% survived and surveyed the axis space more effectively.
 % This has the added benefit of being a symmetric case where
 % all species in the community benefit equally when one
 % species evolves an increased axis.
@@ -260,14 +278,12 @@ survived and surveyed the axis space more effectively.
 
 \subsection*{Code}
 
-We simulated models using a combination of R \citep{RCoreTeam:2019wf} and
+We simulated models using a combination of R \citep{RCoreTeam2020} and
 C++ via the Rcpp and RcppArmadillo packages
-\citep{Eddelbuettel:2014ad,Eddelbuettel:2013if,Sanderson:2016cs}.
+\citep{Eddelbuettel2014a,Eddelbuettel2013a,Sanderson2016}.
 We double-checked our derivations by simulating 100 datasets
 (4 species with 3 axes each) and computing derivatives using the Theano Python
-library's automatic differentiation \citep{TheanoDevelopmentTeam:2016uc}.
+library's automatic differentiation \citep{TheanoTeam2016a}.
 All code can be found on GitHub
-% AmNat does double-blind reviews, so the next line will be un-commented after review
-% (\texttt{https://github.com/lucasnell/sauron}).
-(links are available from the journal office).
+(\url{https://github.com/lucasnell/sauron}).
 

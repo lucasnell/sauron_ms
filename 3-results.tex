@@ -1,36 +1,49 @@
 \section*{Results}
 
 
-With two axes, axis evolution followed patterns associated with the type 
-of tradeoff the two axes had when evolved together
-(i.e., with the value of $\eta$)
+We first conducted simulations to find points in axis space 
+representing stable equilibria.
+The tradeoffs associated with investing in multiple axes
+determined the location(s) of these states in axis space
 (Figure \ref{fig:two-axis-outcomes}).
-When the tradeoff is sub-additive ($\eta = -0.6$), there is a single
-stable point in the axis space, where both axes are
+For sub-additive tradeoffs 
+(investing in one axis facilitates investment in another; $\eta = -0.6$), 
+there is a single stable point where both axes are
 maximized---within the limits imposed by axes' negative effects on 
 the growth rate.
-When the tradeoff is super-additive ($\eta = 0.6$), there are two
+When the tradeoffs are super-additive ($\eta = 0.6$), there are two
 alternative stable states, one for each axis being maximized while the 
 other is zero.
-Lastly, when the tradeoff is additive ($\eta = 0$), axes
+Lastly, for additive tradeoffs ($\eta = 0$), axes
 evolve to any point on a neutrally stable ring.
 The locations of these states are determined by 
 the baseline growth rate, 
 the cost of increasing axes on the growth rate,
-and, when $\eta \ne 0$, the non-additive tradeoff
-(Equations \ref{eq:two-axes-finals-eta-negative},
-\ref{eq:two-axes-finals-eta-zero}, and 
-\ref{eq:two-axes-finals-eta-positive} for 
-$\eta < 0$, $\eta = 0$, and $\eta > 0$, respectively).
+and the non-additive tradeoff
+(Equations \ref{eq:two-axes-finals-eta-negative}--%,
+% \ref{eq:two-axes-finals-eta-zero}, and 
+\ref{eq:two-axes-finals-eta-positive}).
 
 \begin{figure}[ht!]
 \centering
 \includegraphics{1-outcomes_q2.pdf}
-\caption{Unique axis values for surviving species in simulations of 2-axis communities,
+\caption{Unique axis values for surviving species in 99 simulations of 2-axis, 
+    10-species communities,
     for tradeoffs being sub-additive ($\eta < 0$), additive ($\eta = 0$), or 
-    super-additive ($\eta > 0$).}
+    super-additive ($\eta > 0$).
+    The line in the additive case shows the location of the neutrally stable ring.
+    Species' starting axis values were $\sim \text{N}(0,1)$ truncated $\ge 0$.
+    We used a low magnitude for the conflicting axis ($d_1 = 10^{-4}$) 
+    so that species surveyed the axis space more effectively.}
 \label{fig:two-axis-outcomes}
 \end{figure}
+
+
+We next aimed to determine the effects of axis evolution (ameliorative and
+conflicting) on the global rules of coexistence.
+(By global, we mean that they apply when species' starting axis values are not
+restricted.)
+
 
 
 The proportion of the 100 species introduced to communities that survived and

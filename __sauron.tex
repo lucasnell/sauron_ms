@@ -1,16 +1,21 @@
-\documentclass[11pt]{article}
+\documentclass[12pt]{article}
 \usepackage[sc]{mathpazo} % Like Palatino with extensive math support
 \usepackage{fullpage}
-\usepackage[authoryear,sectionbib,sort]{natbib}
-\linespread{1.7}
+\usepackage[authoryear,sort]{natbib}
 \usepackage[utf8]{inputenc}
 \usepackage{lineno}
+\usepackage{setspace}
 \usepackage{titlesec}
 \titleformat{\section}[block]{\Large\bfseries\filcenter}{\thesection}{1em}{}
 \titleformat{\subsection}[block]{\Large\itshape\filcenter}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}[block]{\large\itshape}{\thesubsubsection}{1em}{}
 \titleformat{\paragraph}[runin]{\itshape}{\theparagraph}{1em}{}[. ]\renewcommand{\refname}{Literature Cited}
 
+% For Icelandic ð symbol:
+\DeclareTextSymbolDefault{\dh}{T1}
+
+\usepackage[shortlabels]{enumitem}
+\setlist{nolistsep,leftmargin=*}
 
 
 %%%%%%%%%%%%%%%%%%%%%
@@ -37,9 +42,6 @@
 % competition
 % evolution
 
-% Running title: 
-% (must be < 40 characters)
-% Properties of competitive coexistence
 
 
 % This version of the LaTeX template was last updated on
@@ -48,15 +50,10 @@
 %%%%%%%%%%%%%%%%%%%%%
 % Authorship
 %%%%%%%%%%%%%%%%%%%%%
-% Please remove authorship information while your paper is under review,
-% unless you wish to waive your anonymity under double-blind review. You
-% will need to add this information back in to your final files after
-% acceptance.
-%
-% \author{Lucas A. Nell$^{1,\ast}$ \\
-% Joseph S. Phillips$^{1}$ \\
-% Anthony R. Ives$^{1}$}
-\author{}
+
+\author{Lucas A. Nell$^{a,1}$,
+Joseph S. Phillips$^{b,c}$,
+Anthony R. Ives$^{d}$}
 
 
 \usepackage{amsmath} % for split math environment
@@ -78,32 +75,42 @@
 
 
 
-
 \date{}
 
 \begin{document}
 
+\singlespacing
+\linenumbers{}
+\modulolinenumbers[1]
 
 \maketitle
+\author{}
 
 \raggedright
 \setlength{\parskip}{1em}
 
 
+\begin{enumerate}[a.]
+\item
+Department of Integrative Biology, University of Wisconsin, Madison, WI 53706, USA. lucas@lucasnell.com
+\item
+Department of Integrative Biology, University of Wisconsin, Madison, WI 53706, USA. joseph@mail.holar.is
+\item
+Department of Aquaculture and Fish Biology, H\'{o}lar University, Skagafj\"{o}r{\dh}ur 551 Iceland
+\item 
+Department of Integrative Biology, University of Wisconsin, Madison, WI 53706, USA. arives@wisc.edu \\[1ex]
+\item[1.]
+Correspondence: lucas@lucasnell.com, +1 (717) 476-7653
+\end{enumerate}
 
-% \noindent{} 1. University of Wisconsin, Madison, Wisconsin 53706;
-%
-% \noindent{} $\ast$ Corresponding author; e-mail: lucas@lucasnell.com.
-
-\bigskip
-
-% UNCOMMENT WHEN DONE:
-% \textit{Manuscript elements}: %Figure~1, figure~2, table~1, online appendices~A and B (including $-- figure~A1 and figure~A2). Figure~2 is to print in color.
-
-\bigskip
 
 
-\textit{Keywords}: {
+
+% <= 45 characters
+\noindent Running title: Competition, coevolution, and coexistence
+
+% <= 10
+\noindent Keywords: {
 community assembly,
 competition,
 % alternative stable states,
@@ -111,21 +118,34 @@ historical contingency,
 evolutionarily stable communities,
 eco-evolutionary dynamics}
 
+\bigskip
+
+\noindent Article type: Letter \\
+\noindent Abstract words:  \\
+\noindent Main text words:  \\ % (excluding abstract, acknowledgements, references, table and figure legends)
+\noindent References: \\
+\noindent Tables: 0 \\
+\noindent Figures:  \\
+\noindent Text boxes: 0 \\
+
 
 \bigskip
 
-\textit{Manuscript type}: Article.
 
-\bigskip
+\textbf{Author contributions:} LAN and ARI conceived the study,
+and LAN wrote the first draft of the article.
+All authors developed and analyzed the models, and revised the manuscript.
 
-\noindent{\footnotesize Prepared using the suggested \LaTeX{} template for \textit{Am.\ Nat.}}
-
-\linenumbers{}
-\modulolinenumbers[3]
+\textbf{Data accessibility:} R and C++ code used to simulate the models
+is available from GitHub (\url{https://www.github.com/lucasnell/sauron}),
+and will be archived on Zenodo upon acceptance.
 
 
 
 \clearpage
+
+
+\doublespacing
 
 
 
@@ -136,10 +156,10 @@ eco-evolutionary dynamics}
 % ---------------------------------------------------------------------------------------
 % ---------------------------------------------------------------------------------------
 
-\input{abstract}
+\input{0-abstract}
 
 
-% \newpage{}
+% \clearpage
 
 
 
@@ -149,7 +169,7 @@ eco-evolutionary dynamics}
 % ---------------------------------------------------------------------------------------
 % ---------------------------------------------------------------------------------------
 
-\input{introduction}
+\input{1-introduction}
 
 
 
@@ -161,7 +181,7 @@ eco-evolutionary dynamics}
 % ---------------------------------------------------------------------------------------
 
 
-\input{methods}
+\input{2-methods}
 
 
 
@@ -171,7 +191,7 @@ eco-evolutionary dynamics}
 % ---------------------------------------------------------------------------------------
 % ---------------------------------------------------------------------------------------
 
-\input{results}
+\input{3-results}
 
 
 
@@ -183,7 +203,7 @@ eco-evolutionary dynamics}
 % ---------------------------------------------------------------------------------------
 % ---------------------------------------------------------------------------------------
 
-\input{discussion}
+\input{4-discussion}
 
 
 
@@ -244,9 +264,10 @@ eco-evolutionary dynamics}
 % The list below includes sample journal articles, book chapters, and
 % Dryad references.
 
-\bibliographystyle{amnatnat.bst}
+% \bibliographystyle{amnatnat.bst}
+\bibliographystyle{ecology_letters.bst}
 \clearpage
-\bibliography{refs.bib}
+\bibliography{library.bib}
 
 
 
