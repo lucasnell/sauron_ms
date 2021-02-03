@@ -409,7 +409,7 @@ FUNCTION {format.names}
                 {
                   " " * bbl.etal emphasize *
                 }
-                { "and"
+                { "\&"
                   space.word * t *
                 }
               if$
