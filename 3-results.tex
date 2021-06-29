@@ -24,20 +24,6 @@ and the non-additive tradeoff
 % \ref{eq:two-axes-finals-eta-zero}, and 
 \ref{eq:two-axes-finals-eta-positive}).
 
-\begin{figure}[ht!]
-\centering
-\includegraphics{1-outcomes_q2.pdf}
-\caption{Unique axis values for surviving species in 99 simulations of 2-axis, 
-    10-species communities,
-    for tradeoffs being sub-additive ($\eta < 0$), additive ($\eta = 0$), or 
-    super-additive ($\eta > 0$).
-    The line in the additive case shows the location of the neutrally stable ring.
-    Species' starting axis values were $\sim \text{N}(0,1)$ truncated $\ge 0$.
-    We used a low magnitude for the conflicting axis ($d_1 = 10^{-4}$) 
-    so that species surveyed the axis space more effectively.}
-\label{fig:two-axis-outcomes}
-\end{figure}
-
 
 We next aimed to determine the effects of axis evolution (ameliorative and
 conflicting) on the global rules of coexistence.
@@ -98,16 +84,16 @@ the excluding species evolves to be near, rather than exactly on,
 the conflicting axis being maximized.
 
 
-\begin{figure}[ht!]
-\centering
-\includegraphics{2-coexist_spp.pdf}
-\caption{Proportion of species that survived in simulations of 100-species, 2-axis
-    communities with varying additive genetic variances ($\sigma_i^2$), and 
-    varying (A) $d_1$ and $d_2$ or (B) varying $d_1$ with $d_2$ fixed at 0.1.
-    Shown for sub-additive ($\eta < 0$), additive ($\eta = 0$), and 
-    super-additive ($\eta > 0$) tradeoffs.}
-\label{fig:coexistence-spp}
-\end{figure}
+% \begin{figure}[ht!]
+% \centering
+% \includegraphics{2-coexist_spp.pdf}
+% \caption{Proportion of species that survived in simulations of 100-species, 2-axis
+%     communities with varying additive genetic variances ($\sigma_i^2$), and 
+%     varying (A) $d_1$ and $d_2$ or (B) varying $d_1$ with $d_2$ fixed at 0.1.
+%     Shown for sub-additive ($\eta < 0$), additive ($\eta = 0$), and 
+%     super-additive ($\eta > 0$) tradeoffs.}
+% \label{fig:coexistence-spp}
+% \end{figure}
 
 
 We also ran some of these simulations with varying levels of stochasticity
@@ -158,28 +144,28 @@ and non-conflicting axes, if one species evolves to have a greater
 value of the conflicting axis, it will exclude all others.
 
 
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=0.7\textwidth]{3-cond_coexist_conflicting.pdf}
-\caption{Conditional coexistence for 2-axis, 5-species communities when axis 1 has 
-    conflicting evolution and axis 2 has non-conflicting.
-    Panels show, for each of five situations,
-    (A) starting conditions and trajectories for each species in axis space, 
-    (B) abundances through time, and 
-    (C) axis values through time.
-    Situation i has sub-additive tradeoffs, situations ii and iv have 
-    super-additive, and iii and v have additive.
-    (A) Dashed arcs show the location of neutrally stable rings
-    when tradeoffs are additive, and 
-    the dotted lines separate the basins of attraction for the two possible
-    axis states when tradeoffs are super-additive.
-    (A,C) Shapes of hollow points indicate the equilibrium axis state.
-    (C) For situations iii and v, line width is proportional to the 
-    distance from the neutrally stable ring.
-    Xs mark extinction events.
-}
-\label{fig:conditional-coexistence}
-\end{figure}
+% \begin{figure}[ht!]
+% \centering
+% \includegraphics[width=0.7\textwidth]{3-cond_coexist_conflicting.pdf}
+% \caption{Conditional coexistence for 2-axis, 5-species communities when axis 1 has 
+%     conflicting evolution and axis 2 has non-conflicting.
+%     Panels show, for each of five situations,
+%     (A) starting conditions and trajectories for each species in axis space, 
+%     (B) abundances through time, and 
+%     (C) axis values through time.
+%     Situation i has sub-additive tradeoffs, situations ii and iv have 
+%     super-additive, and iii and v have additive.
+%     (A) Dashed arcs show the location of neutrally stable rings
+%     when tradeoffs are additive, and 
+%     the dotted lines separate the basins of attraction for the two possible
+%     axis states when tradeoffs are super-additive.
+%     (A,C) Shapes of hollow points indicate the equilibrium axis state.
+%     (C) For situations iii and v, line width is proportional to the 
+%     distance from the neutrally stable ring.
+%     Xs mark extinction events.
+% }
+% \label{fig:conditional-coexistence}
+% \end{figure}
 
 
 The outcomes of these simulations changed somewhat when we included stochasticity
@@ -214,23 +200,23 @@ axis, which reduced its ability to exclude the others.
 
 
 
-\begin{figure}[ht!]
-\centering
-\includegraphics{4-cond_coexist_stoch.pdf}
-\caption{Outcomes from stochastic simulations of 2-axis, 5-species communities 
-    when axis 1 has conflicting evolution and axis 2 has non-conflicting.
-    Panels show scaled relative abundance(s)
-    ($\sqrt{N_i} \, / \, \sum_k^n{\sqrt{N_k}}$) 
-    of surviving species for simulations with
-    (A) abundance stochasticity ($\sigma_N = 0.1$) and
-    (B) axis stochasticity ($\sigma_V = 0.1$).
-    Each bar in each sub-panel represents a simulation repetition.
-    Bars to the left of the black vertical lines are for when there was no 
-    stochasticity.
-    Small numbers above bars indicate the number of species that coexisted
-    when coexistence occurred.}
-\label{fig:conditional-coexistence-stoch}
-\end{figure}
+% \begin{figure}[ht!]
+% \centering
+% \includegraphics{4-cond_coexist_stoch.pdf}
+% \caption{Outcomes from stochastic simulations of 2-axis, 5-species communities 
+%     when axis 1 has conflicting evolution and axis 2 has non-conflicting.
+%     Panels show scaled relative abundance(s)
+%     ($\sqrt{N_i} \, / \, \sum_k^n{\sqrt{N_k}}$) 
+%     of surviving species for simulations with
+%     (A) abundance stochasticity ($\sigma_N = 0.1$) and
+%     (B) axis stochasticity ($\sigma_V = 0.1$).
+%     Each bar in each sub-panel represents a simulation repetition.
+%     Bars to the left of the black vertical lines are for when there was no 
+%     stochasticity.
+%     Small numbers above bars indicate the number of species that coexisted
+%     when coexistence occurred.}
+% \label{fig:conditional-coexistence-stoch}
+% \end{figure}
 
 
 
@@ -247,22 +233,22 @@ simulations and 1 in stochastic simulations.
 The range where improvements occurred varied with $d_1$ and with tradeoff type.
 Additive tradeoffs showed no areas where stochasticity helped coexistence.
 
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=0.5\textwidth]{5-inv_sims_hm_coexist.pdf}
-\caption{Effect of stochasticity on coexistence of a resident species and 
-    an invader based on the invader's starting axis values (x and y axes),
-    magnitude of stochasticity (sub-panel columns), and 
-    value of $d_1$ (sub-panel rows).
-    The fill color of each cell indicates how much stochasticity changed
-    the probability of coexistence compared to deterministic simulations,
-    and white indicates no effect.
-    Round points indicate the axis values of the resident species,
-    triangle points indicate an alternative stable equilibrium state, 
-    and a gray line indicates a neutrally stable ring.
-    The area of the heatmap outlined by a thin, black line is where
-    coexistence occurred in deterministic simulations.
-    For these simulations, $d_2 = 0.1$ and $\sigma_i = 0.05$.
-    Shown for sub-additive, additive, and super-additive tradeoffs.}
-\label{fig:inv-sims-heatmap-coexist}
-\end{figure}
+% \begin{figure}[ht!]
+% \centering
+% \includegraphics[width=0.5\textwidth]{5-inv_sims_hm_coexist.pdf}
+% \caption{Effect of stochasticity on coexistence of a resident species and 
+%     an invader based on the invader's starting axis values (x and y axes),
+%     magnitude of stochasticity (sub-panel columns), and 
+%     value of $d_1$ (sub-panel rows).
+%     The fill color of each cell indicates how much stochasticity changed
+%     the probability of coexistence compared to deterministic simulations,
+%     and white indicates no effect.
+%     Round points indicate the axis values of the resident species,
+%     triangle points indicate an alternative stable equilibrium state, 
+%     and a gray line indicates a neutrally stable ring.
+%     The area of the heatmap outlined by a thin, black line is where
+%     coexistence occurred in deterministic simulations.
+%     For these simulations, $d_2 = 0.1$ and $\sigma_i = 0.05$.
+%     Shown for sub-additive, additive, and super-additive tradeoffs.}
+% \label{fig:inv-sims-heatmap-coexist}
+% \end{figure}

@@ -1,16 +1,5 @@
 
-\section*{Material and methods}
-
-
-** Because conflicting axis investment reduces intraspecific competition for 
-species i but increases interspecific for others, it's equivalent to a
-"de-stabilizing" axis (Chesson 2000)
-
-** If an invading species invests in the ameliorative axis,
-it will increase fitness for both itself and the resident,
-but the magnitude of the effect will be greater on the invader
-(due to the rarity of the invader),
-so this an "equalizing" axis (Chesson 2000)
+\section*{Methods}
 
 
 \subsection*{Model overview}
@@ -19,22 +8,24 @@ We used a simple model of competition to evaluate how evolving investment in
 competition affects coexistence among species.
 Each of $n$ species has $q$ competition axes.
 Competition axes are combinations of multiple traits that together affect 
-competition similarly.
+competition similarly (Figure \ref{fig:model-description}).
 Investing in an axis has a cost to the population growth rate and 
-a benefit via reduced interspecific and intraspecific competition.
+a benefit via reduced interspecific competition.
 The overall competition experienced by each species is a product of 
 the axes in all species in the community.
 This is because all species have at least two axes, 
-one conflicting, and one ameliorative.
-For a conflicting competition axis, investment by one species 
-strengthens competition for all other species.
-For an ameliorative axis, all species' competition is reduced when
-one species invests in it.
+one conflicting axis, and one ameliorative axis.
+For a conflicting competition axis, investment by species $i$
+strengthens the competitive effect that species $i$ has on all
+other competitors.
+For an ameliorative axis, all species' competition with 
+$i$ is reduced when it invests in this axis.
+
+
 
 
 All species are symmetrical in that when species share the same axis 
 values, they will always have the same per-capita effect on each other.
-The benefits and tradeoffs are the same for all axes.
 In both the costs and benefits, axis effects are concave functions that,
 combined, ensure that one fitness peak exists for each axis.
 Axes can also have non-additive trade-offs that either increase or decrease
@@ -56,7 +47,7 @@ its per-capita growth---equivalent to fitness---is
 
 \begin{equation} \label{eq:fitness}
     F_{i} = \exp \left\{ r_i(\mathbf{v}_i) - 
-        \alpha_{ii}(\mathbf{v}_i) \, N_i - \sum_{j \ne i}^{n}{
+        \alpha_{0} \, N_i - \sum_{j \ne i}^{n}{
             \alpha_{ij}(\mathbf{v}_i, \mathbf{v}_j) \, N_j}  
     \right\}\textrm{,}
 \end{equation}
@@ -86,17 +77,12 @@ Non-additive trade-offs are symmetrical (i.e., $\eta_{k,l} = \eta_{l,k}$ for all
 $l$ and $k$), and all values on the diagonal of $\mathbf{C}$ are 1.
 
 
-The terms $\alpha_{ii}(\mathbf{v}_i)$ and
-$\alpha_{ij}(\mathbf{v}_i, \mathbf{v}_j)$
-in equation \ref{eq:fitness} represent how axes influence the effects
-of intraspecific and interspecific competition, respectively.
-Competitive effects are given by
+The term $\alpha_{ij}(\mathbf{v}_i, \mathbf{v}_j)$
+in equation \ref{eq:fitness} represents how axes influence the effects
+of interspecific competition:
 
 \begin{equation} \label{eq:competition}
 \begin{split}
-    \alpha_{ii}(\mathbf{v}_i) &= \alpha_0 ~\exp \left\{
-        - \mathbf{v}_i^{\textrm{T}}
-        \mathbf{v}_i \right\} \\
     \alpha_{ij}(\mathbf{v}_i, \mathbf{v}_j) &= \alpha_0 ~\exp \left\{
         - \mathbf{v}_i^{\textrm{T}} \mathbf{v}_i -
         \mathbf{v}_j^{\textrm{T}} \mathbf{D} \mathbf{v}_j \right\} \\
@@ -114,11 +100,11 @@ Competitive effects are given by
 \noindent where $\alpha_0$ is the base density dependence.
 Matrix $\mathbf{D}$ contains parameters that determine how evolution of axes
 in one species affects competition experienced by others:
-When $d_k < 0$, investment in by species $i$ in axis $k$ decrease the
-effect of competition on species $i$, but increase it in all others
+When $d_k < 0$, investment by species $i$ in axis $k$ decreases the
+effect of competition on species $i$, but increases it in all others
 (i.e., axis $k$ is conflicting).
 Alternatively, when $d_k > 0$, the same investment decreases the effect of
-competition on all species including $i$ (i.e., axis $k$ is ameliorative)
+competition on all species (i.e., axis $k$ is ameliorative)
 \citep{Northfield2013a}.
 
 
@@ -140,6 +126,9 @@ undefined when $x = 0$.
 This implementation and its consequences on resulting derivatives are in
 Appendix A.
 
+Species started with an abundance of 1.
+We tracked densities through time and considered a species extinct if its 
+density fell below 1.
 
 
 
@@ -158,18 +147,14 @@ Appendix A.
 We used a quantitative genetics framework for axis evolution.
 We assumed that all axes in $\mathbf{v}_i$ represent means for species $i$
 and that their among-individual distributions are symmetrical with additive
-genetic variance $\sigma^2_i$.
-Assuming also that $\sigma^2_i$ is relatively small
-\citep{Iwasa1991a,Abrams2001a,Abrams1993b} and that
-
-\cite{DeVries2019}
-
-
-, axes at time $t+1$ are
+genetic variance $\sigma^2_A$.
+Assuming also that $\sigma^2_A$ is relatively small
+\citep{Iwasa1991a,Abrams2001a,Abrams1993b}, 
+axes at time $t+1$ are
 
 \begin{equation} \label{eq:axis-change}
     \mathbf{v}_{i,t+1} = \mathbf{v}_{i,t} + \left( \frac{1}{F_i}
-        \frac{\partial F_i}{\partial \mathbf{v}_{i,t}} \right) \sigma^2_i
+        \frac{\partial F_i}{\partial \mathbf{v}_{i,t}} \right) \sigma^2_A
     \textrm{.}
 \end{equation}
 
@@ -189,34 +174,17 @@ This is found in Appendix B.
 
 \subsection*{Stochasticity}
 
-We added stochasticity to population dynamics by simply adding 
-a log-normal error term:
-
-\begin{equation} \label{eq:N-stochasticity}
-\begin{split}
-    N_{i,t+1} &= N_{i,t} \, F_{i,t} \; \text{e}^{\varepsilon_N} \\
-    \varepsilon_N &\sim \text{N}(0, \, \sigma^2_N)
-    \text{.}
-\end{split}
-\end{equation}
-
-
-Stochasticity for axis evolution takes the form of non-adaptive
-phenotypic plasticity,
-where phenotypes ($\mathbf{\ddot{v}}$) are the product of the
+We added stochasticity to axis evolution by creating phenotypes
+($\mathbf{\ddot{v}}$) that are the product of the
 genotypes ($\mathbf{v}$) and a log-normal error term:
 
 \begin{equation} \label{eq:V-stochasticity}
 \begin{split}
-    \mathbf{\ddot{v}}_{i,t+1} &= \mathbf{v}_{i,t+1} \; \text{e}^{\varepsilon_V} \\
-    \varepsilon_V &\sim \text{N}(0, \, \sigma^2_V)
-    % \varepsilon_V &\sim \text{N}(\mu_V, \, \sigma^2_V)
+    \mathbf{\ddot{v}}_{i,t+1} &= \mathbf{v}_{i,t+1} \; \text{e}^{\varepsilon_v} \\
+    \varepsilon_v &\sim \text{N}(0, \, \sigma^2_V)
     \text{.}
 \end{split}
 \end{equation}
-
-% \noindent To keep stochasticity from affecting the direction of axis evolution, 
-% we set $\mu_V$ to $-\sigma^2_V / 2$, so that the mean of $\text{e}^{\varepsilon_V}$ was 1.
 
 Because the phenotypes interact with the environment, they are used
 to calculate all species' fitness values.
@@ -225,7 +193,7 @@ genotypes and how the phenotypes affect fitness:
 
 \begin{equation} \label{eq:axis-change-stochastic}
     \mathbf{v}_{i,t+1} = \mathbf{v}_{i,t} + \left( \frac{1}{F_i}
-        \frac{\partial F_i}{\partial \mathbf{\ddot{v}}_{i,t}} \right) \sigma^2_i
+        \frac{\partial F_i}{\partial \mathbf{\ddot{v}}_{i,t}} \right) \sigma^2_A
     \textrm{.}
 \end{equation}
 
@@ -233,58 +201,16 @@ genotypes and how the phenotypes affect fitness:
 
 
 
-\subsection*{Simulations}
-
-
-We started simulations with one species, and each of $n-1$ new species
-was added every 500 generations.
-Species started with an abundance of 1.
-We continued simulations for another 20,000 generations after all
-species were added.
-We tracked densities through time and considered a species extinct if its 
-density fell below $10^{-4}$.
-
-% Species starting axis values were generated from truncated normal 
-% distributions with standard deviations of 1 and lower bound of zero.
-% The means varied by the type of simulation.
-
-
-
-
-% Each species had starting axis values generated from a truncated normal distribution 
-% with a mean equal to the equilibrium solution for that axis,
-% a standard deviation of 1, and a lower bound of zero.
-
+% \subsection*{Simulations}
+% 
+% 
+% We started simulations with one species, and each of $n-1$ new species
+% was added every 500 generations.
 % Species started with an abundance of 1.
-
-
-% When generating multiple $\eta$ magnitudes for the different tradeoffs,
-% we did so using a uniform distribution from 0.1 to 0.4.
-% We intentionally avoided the use of simple $\eta$ values because
-% when the sum of one or more $\eta$ equals another, this simplifies
-% to additivity even when those $\eta \ne 0$.
-% This only applies in the case of $q > 2$, since there is only one
-% $\eta$ value when $q = 2$.
-% When $q = 2$, we chose $\eta = 0.6$ because it was sufficiently large
-% to show how its value changes the pattern of outcomes.
-
-% For simulations that aim to find points in axis space associated with
-% species surviving competitive environments, we set $d = 1$ 
-% (ameliorative evolution) so that many species
-% survived and surveyed the axis space more effectively.
-% This has the added benefit of being a symmetric case where
-% all species in the community benefit equally when one
-% species evolves an increased axis.
-
-
-% We first simulated 2-axis communities to survey many of the
-% basic properties of the model.
-% Next, we simulated 3- and 4-axis communities.
-% With 3 axes, there is more than one tradeoff, so we could
-% explore combinations of different types of additivity.
-% With 4 axes, there are more tradeoffs than axes, which we
-% thought might cause different possibilities in the model.
-
+% We continued simulations for another 20,000 generations after all
+% species were added.
+% We tracked densities through time and considered a species extinct if its 
+% density fell below 1.
 
 
 \subsection*{Code}
@@ -292,9 +218,8 @@ density fell below $10^{-4}$.
 We simulated models using a combination of R \citep{RCoreTeam2020} and
 C++ via the Rcpp and RcppArmadillo packages
 \citep{Eddelbuettel2014a,Eddelbuettel2013a,Sanderson2016}.
-We double-checked our derivations by simulating 100 datasets
-(4 species with 3 axes each) and computing derivatives using the Theano Python
-library's automatic differentiation \citep{TheanoTeam2016a}.
 All code can be found on GitHub
 (\url{https://github.com/lucasnell/sauron}).
+
+
 

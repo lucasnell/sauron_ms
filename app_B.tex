@@ -11,36 +11,5 @@
 
 
 
-\subsection*{Effects of stochasticity on axis evolution}
-
-When there is stochasticity in axis evolution,
-the second order Taylor series approximation for the expected
-value of axis 1 at time $t+1$ is
-
-\begin{equation}
-\label{eq:taylor-expansion-final}
-\begin{split}
-    \text{E}(v_{1,t+1}) \approx
-        v_{1,t} + 2 \; \sigma_A^2 \Bigg\{ 
-            & \alpha_0 \; \Omega \; v_{1,t} \; \text{e}^{-v_{1,t}^2 - v_{2,t}^2} 
-            \bigg[ 
-                1 + \sigma^2_{\varepsilon_1} \left( \frac{1}{2} - 4 \; v_{1,t}^2 \right)
-                - 2 \; \sigma^2_{\varepsilon_2} \, v_{2,t}^2 \left( 1 - v_{2,t}^2 \right)
-            \bigg] \\
-            & - f \bigg[
-                v_{1,t} + \eta \; v_{2,t} + \frac{1}{2} \left(
-                    \sigma^2_{\varepsilon_1} \, v_{1,t} + \sigma^2_{\varepsilon_2} \, \eta \; v_{2,t}
-                \right)
-            \bigg]
-        \Bigg\}
-\text{,}
-\end{split}
-\end{equation}
-
-where we drop the index for species to reduce clutter.
-Subscripts for axes are reversed for the approximation for axis 2.
-
-
-
 
 

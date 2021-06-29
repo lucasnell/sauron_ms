@@ -22,113 +22,6 @@ so $\mathbf{C} + \mathbf{C}^{\textrm{T}} = 2 \; \mathbf{C}$ and
 $\mathbf{D} + \mathbf{D}^{\textrm{T}} = 2 \; \mathbf{D}$.
 
 
-We can combine the equations in the Methods section as such:
-
-\begin{equation} \label{eq:fitness-full}
-\begin{split}
-    F_{i,t+1} &= \exp \left\{
-        r_0 - f \; \mathbf{v}_{i,t}^{\textrm{T}} \; \mathbf{C} \; \mathbf{v}_{i,t} -
-        \alpha_0 \;\textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} } \bm{\Omega}_{i,t}
-        \right\} \\
-        \bm{\Omega}_{i,t} &\equiv N_{i,t} +
-            \sum_{j \ne i}^{n}{ N_{j,t} \textrm{e}^{
-            - \mathbf{v}_{j,t}^{\textrm{T}}
-            \mathbf{D} \mathbf{v}_{j,t} } }
-        \textrm{.}
-\end{split}
-\end{equation}
-
-\noindent where $\bm{\Omega}_i$ represents the community abundance scaled
-for the effect other species' axes values has on competition
-experienced by species $i$.
-Hereafter we will refer to $\bm{\Omega}_i$ as the scaled community size.
-
-
-
-
-\subsection*{Axis evolution}
-
-From the main text and above, we know that
-
-\begin{equation}\label{eq:main-text-info-axis-change}
-\begin{split}
-    F_{i,t+1} &= \exp \left\{
-        r_0 - f \; \mathbf{v}_{i,t}^{\textrm{T}} \; \mathbf{C} \; \mathbf{v}_{i,t} -
-        \alpha_0 \;\textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} } \bm{\Omega}_{i,t}
-        \right\} \\
-    \mathbf{v}_{i,t+1} &= \mathbf{v}_{i,t} + \left( \frac{1}{F_{i,t+1}}
-        \frac{\partial F_{i,t+1}}{\partial \mathbf{v}_{i,t}} \right) \sigma^2_i
-    \textrm{.}
-\end{split}
-\end{equation}
-
-
-The partial derivative of fitness in relation to axes for species $i$ is
-
-
-\begin{equation*}
-\begin{split}
-    \frac{\partial F_{i,t+1}}{\partial \mathbf{v}_{i,t}} &=
-        \exp \left\{
-            r_0
-            - f \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{C} \mathbf{v}_{i,t}
-            - \alpha_0  \bm{\Omega}_{i,t} \,
-                \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}}
-        \right\}
-        \frac{\partial \!
-            \left(
-                r_0
-                - f \; \mathbf{v}_{i,t}^{\textrm{T}} \; \mathbf{C} \; \mathbf{v}_{i,t}
-                - \alpha_0 \; \bm{\Omega}_{i,t} \;
-                    \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}}
-            \right)
-            }{ \partial \mathbf{v}_{i,t} } \\
-     &=
-        \exp \left\{
-            r_0
-            - f \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{C} \mathbf{v}_{i,t}
-            - \alpha_0  \bm{\Omega}_{i,t} \,
-                \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}}
-        \right\}
-        \left[
-            - 2 f \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{C}
-            - \alpha_0 \, \bm{\Omega}_{i,t} \,
-                \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} } \:
-                \frac{\partial \! \left( - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} \right)
-                    }{ \partial \mathbf{v}_{i,t} }
-        \right] \\[2ex]
-    \frac{ \partial F_{i,t} }{ \partial \mathbf{v}_{i,t} } &=
-        \exp \left\{
-            r_0
-            - f \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{C} \mathbf{v}_{i,t}
-            - \alpha_0  \bm{\Omega}_{i,t} \,
-                \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}}
-        \right\}
-        \left[
-            2 \alpha_0 \bm{\Omega}_{i,t} \,
-                \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}} \:
-                \mathbf{v}_{i,t}^{\textrm{T}}
-            - 2 f \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{C}
-        \right]
-    \textrm{.}
-\end{split}
-\end{equation*}
-
-
-
-Combining above with equation \ref{eq:main-text-info-axis-change}, we find that axis values at
-time $t+1$ are
-
-\begin{equation} \label{eq:supp-axis-change-full}
-    \mathbf{v}_{i,t+1} = \mathbf{v}_{i,t} + 2 \sigma_i^2
-    \left(
-        \alpha_0 \, \bm{\Omega}_{i,t} \:
-            \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}} \:
-            \mathbf{v}_{i,t}^{\textrm{T}}
-        - f \, \mathbf{v}_{i,t}^{\textrm{T}} \: \mathbf{C}
-    \right)
-    \textrm{.}
-\end{equation}
 
 
 \subsection*{Jacobian matrix}
@@ -158,19 +51,29 @@ to species $i$ axes at time $t$ are
 \begin{split}
     \frac{ \partial \, \mathbf{v}_{i,t+1} }{ \partial \, \mathbf{v}_{i,t} } &=
         \frac{ \partial \, \mathbf{v}_{i,t} }{ \partial \, \mathbf{v}_{i,t} } +
-        2 \; \sigma_i^2
+        2 \; \sigma_A^2
         \left(
             \frac{ \partial \;
-                \alpha_0 \; \bm{\Omega}_{i,t} \;
+                \alpha_0 \; 
+                \left( 
+                    \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
+                    - \mathbf{v}_{j,t}^{\textrm{T}}
+                    \mathbf{D} \mathbf{v}_{j,t} } }
+                \right) \;
                     \textrm{e}^{-\mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}} \,
                     \mathbf{v}_{i,t}^{\textrm{T}}}{\partial \; \mathbf{v}_{i,t} } -
             \frac{ \partial \; f \, \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{C}}{\partial \; \mathbf{v}_{i,t} }
         \right) \\
     &=
         \mathbf{I} +
-        2 \; \sigma_i^2
+        2 \; \sigma_A^2
         \left[
-            \alpha_0 \; \bm{\Omega}_{i,t} \,
+            \alpha_0
+            \left( 
+                \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
+                - \mathbf{v}_{j,t}^{\textrm{T}}
+                \mathbf{D} \mathbf{v}_{j,t} } }
+            \right) \,
             \left(
                 \textrm{e}^{-\mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}} +
                 \frac{ \partial \;
@@ -179,9 +82,15 @@ to species $i$ axes at time $t$ are
             \right) -
             f \, \mathbf{C}^{\textrm{T}}
             \right] \\[2ex]
-    \frac{ \partial \, \mathbf{v}_{i,t+1} }{ \partial \, \mathbf{v}_{i,t} } &= \mathbf{I} + 2 ~ \sigma_i^2 ~
+    \frac{ \partial \, \mathbf{v}_{i,t+1} }{ \partial \, \mathbf{v}_{i,t} } &= \mathbf{I} + 2 ~ \sigma_A^2 ~
         \left[
-            \alpha_0 ~ \bm{\Omega}_{i,t} ~ \textrm{e}^{ - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} }
+            \alpha_0 
+            \left( 
+                \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
+                - \mathbf{v}_{j,t}^{\textrm{T}}
+                \mathbf{D} \mathbf{v}_{j,t} } }
+            \right)
+            \textrm{e}^{ - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} }
             \left(
                 \mathbf{I} - 2 ~ \mathbf{v}_{i,t} \mathbf{v}_{i,t}^{\textrm{T}}
             \right) -
@@ -196,29 +105,27 @@ to species $i$ axes at time $t$ are
 
 Next we have the partial derivatives of species $i$ axes at time $t+1$ with respect to 
 species $k$ axes at time $t$, where $k \ne i$.
-To calculate this, it's useful to rearrange equation \ref{eq:axes-change-full} and
+To calculate this, it's useful to slightly rearrange equation \ref{eq:axes-change-full} to
 extract the portion that includes $\mathbf{v}_{k,t}$:
 
 
 \begin{equation*}
-\begin{split}
-    \mathbf{v}_{i,t+1} &= \mathbf{v}_{i,t} + 2 \; \sigma_i^2
+    \mathbf{v}_{i,t+1} = \mathbf{v}_{i,t} + 2 \; \sigma_A^2
     \left[
         \left(
             N_{k,t} \; \textrm{e}^{ -\mathbf{v}_{k,t}^{\textrm{T}} \mathbf{D}
-            \mathbf{v}_{k,t} } + \mathbf{\Phi}_{i,t}
+            \mathbf{v}_{k,t} } + 
+            \sum_{j \ne i, j \ne k}^{n}{ N_{j,t} \, \textrm{e}^{
+                - \mathbf{v}_{j,t}^{\textrm{T}}
+                \mathbf{D} \mathbf{v}_{j,t} } }
         \right)
         \left(
             \alpha_0 \; \textrm{e}^{-\mathbf{v}_{i,t}^{\textrm{T}}
             \mathbf{v}_{i,t} } \; \mathbf{v}_{i,t}^{\textrm{T}}
         \right)
         - f \: \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{C}
-    \right] \\
-    \mathbf{\Phi}_{i,t} &= N_{i,t} + \sum_{j \ne i, j \ne k}^{n}{
-        N_{j,t} \; \textrm{e}^{- \mathbf{v}_{j,t}^{\textrm{T}}
-        \mathbf{D} \mathbf{v}_{j,t} } }
+    \right]
     \textrm{.}
-\end{split}
 \end{equation*}
 
 From this we calculated the partial derivative of $\mathbf{v}_{i,t+1}$ in relation to
@@ -229,22 +136,24 @@ $\mathbf{v}_{k,t}$
 \begin{split}
     \frac{ \partial \: \mathbf{v}_{i,t+1} }{ \partial \: \mathbf{v}_{k,t} } &=
         \frac{ \partial \: \mathbf{v}_{i,t} }{ \partial \: \mathbf{v}_{k,t} } +
-        2 \; \sigma_i^2 \;
+        2 \; \sigma_A^2 \;
         \left[
             \frac{ \partial \:
                 \left(
                     N_{k,t} \textrm{e}^{- \mathbf{v}_{k,t}^{\textrm{T}} \mathbf{D}
-                    \mathbf{v}_{k,t}} + \mathbf{\Phi}_{i,t}
+                    \mathbf{v}_{k,t}} + 
+                    \sum_{j \ne i, j \ne k}^{n}{ N_{j,t} \, \textrm{e}^{
+                        - \mathbf{v}_{j,t}^{\textrm{T}}
+                        \mathbf{D} \mathbf{v}_{j,t} } }
                 \right)
                 \left(
                     \alpha_0 \; \textrm{e}^{ - \mathbf{v}_{i,t}^{\textrm{T}}
                     \mathbf{v}_{i,t} } \mathbf{v}_{i,t}^{\textrm{T}}
                 \right)
             }{ \partial \:  \mathbf{v}_{k,t} } -
-            \frac{ \partial \:  f \, \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{C} }{
-            \partial \: \mathbf{v}_{k,t} }
+            0
         \right] \\
-    &= 2 \; \sigma_i^2 \; \alpha_0 \; N_{k,t} \; \mathbf{v}_{i,t} \;
+    &= 2 \; \sigma_A^2 \; \alpha_0 \; N_{k,t} \; \mathbf{v}_{i,t} \;
         \textrm{e}^{ - \mathbf{v}_{i,t}^{\textrm{T}}
         \mathbf{v}_{i,t} } \; 
         \frac{ \partial \:
@@ -252,7 +161,7 @@ $\mathbf{v}_{k,t}$
                     - \mathbf{v}_{k,t}^{\textrm{T}} \mathbf{D} \mathbf{v}_{k,t}
                     }
             }{ \partial \:  \mathbf{v}_{k,t} } \\
-    &= 2 \; \sigma_i^2 \; \alpha_0 \; N_{k,t} \; \mathbf{v}_{i,t} \;
+    &= 2 \; \sigma_A^2 \; \alpha_0 \; N_{k,t} \; \mathbf{v}_{i,t} \;
         \textrm{e}^{
                     - \mathbf{v}_{k,t}^{\textrm{T}} \mathbf{D} \mathbf{v}_{k,t}
                     - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}
@@ -261,7 +170,7 @@ $\mathbf{v}_{k,t}$
             - 2 \, \mathbf{v}_{k,t}^{\textrm{T}} \, \mathbf{D}
         \right] \\
     \frac{ \partial \: \mathbf{v}_{i,t+1} }{ \partial \: \mathbf{v}_{k,t}} &=
-        -4 \; \sigma_i^2 \; \alpha_0 \; N_{k,t} \; \mathbf{v}_{i,t} \;
+        -4 \; \sigma_A^2 \; \alpha_0 \; N_{k,t} \; \mathbf{v}_{i,t} \;
         \textrm{e}^{
                     - \mathbf{v}_{k,t}^{\textrm{T}} \mathbf{D} \mathbf{v}_{k,t}
                     - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}
@@ -276,11 +185,9 @@ and species $k$ abundances are
 
 \begin{equation*}
 \begin{split}
-    \frac{ \partial \: \mathbf{v}_{i,t+1} }{ \partial \: N_{i,t} } &=
-        2 \; \sigma_i^2 \; \alpha_0 \; \mathbf{v}_{i,t} \;
-        \textrm{e}^{ - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} } \\
+    \frac{ \partial \: \mathbf{v}_{i,t+1} }{ \partial \: N_{i,t} } &= 0 \\
     \frac{ \partial \: \mathbf{v}_{i,t+1} }{ \partial \: N_{k,t} } &=
-        2 \; \sigma_i^2 \; \alpha_0 \; \mathbf{v}_{i,t} \;
+        2 \; \sigma_A^2 \; \alpha_0 \; \mathbf{v}_{i,t} \;
         \textrm{e}^{ - \mathbf{v}_{k,t}^{\textrm{T}} \mathbf{D} \mathbf{v}_{k,t}
             - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} }
     \textrm{.} \\
@@ -291,22 +198,25 @@ and species $k$ abundances are
 
 
 For partial derivatives of abundances in relation to the other state variables,
-we use the following equations from above:
+we can combine equations from the Methods:
 
-
-\begin{equation*}
+\begin{equation} \label{eq:fitness-full}
 \begin{split}
     N_{i,t+1} &= N_{i,t} \; F_{i,t+1} \\
-    F_{i,t+1} &=  \exp \left\{
-        r_0 - f \, \mathbf{v}_{i,t}^{\text{T}} \, \mathbf{C} \, \mathbf{v}_{i,t} - 
-        \alpha_0 \, \text{e}^{-\mathbf{v}_{i,t}^{\text{T}} \, \mathbf{v}_{i,t}} \,
-        \Omega_{i,t}
-    \right\} \\
-    \Omega_{i,t} &= N_{i,t} + \sum_{j \ne i}^{n}{ N_j \:
-        \text{e}^{- \mathbf{v}_{j,t}^{\text{T}} \, \mathbf{D} \, \mathbf{v}_{j,t} } }
-    \textrm{.} \\
+    F_{i,t+1} &= \exp \left\{
+        r_0 - f \; \mathbf{v}_{i,t}^{\textrm{T}} \; \mathbf{C} \; \mathbf{v}_{i,t} -
+        \alpha_0 \, N_{i,t} -
+        \alpha_0 \;\textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} } \left( 
+            \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
+                - \mathbf{v}_{j,t}^{\textrm{T}}
+                \mathbf{D} \mathbf{v}_{j,t} } }
+        \right)
+        \right\}
+    \textrm{.}
 \end{split}
-\end{equation*}
+\end{equation}
+
+
 
 
 
@@ -317,11 +227,17 @@ to axes:
 \begin{split}
     \frac{ \partial N_{i,t+1} }{ \partial \mathbf{v}_{i,t} } &= 
         2 \, F_{i,t+1} \,  N_{i,t}
-        \left(
-            \alpha_0 \, \Omega_{i,t} \, \text{e}^{ -\mathbf{v}_{i,t}^{\text{T}}
+        \left[
+            \alpha_0 \, 
+            \left( 
+                \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
+                    - \mathbf{v}_{j,t}^{\textrm{T}}
+                    \mathbf{D} \mathbf{v}_{j,t} } }
+            \right)
+            \, \text{e}^{ -\mathbf{v}_{i,t}^{\text{T}}
             \mathbf{v}_{i,t} } \, \mathbf{v}_{i,t}^{\text{T}}
             - f \, \mathbf{v}_{i,t}^{\text{T}} \, \mathbf{C}
-        \right) \\
+        \right] \\
     \frac{ \partial N_{i,t+1} }{ \partial \mathbf{v}_{k,t} } &= 
         2 \, F_{i,t+1} \, N_{i,t} \, N_{k,t} \, \alpha_0 \: 
         \text{e}^{ -\mathbf{v}_{i,t}^{\text{T}} \mathbf{v}_{i,t} -
@@ -339,8 +255,7 @@ to those at time $t$:
     \frac{ \partial N_{i,t+1} }{ \partial N_{i,t} } &= 
         F_{i,t+1}
         \left(
-            1 - N_{i,t} \: \alpha_0 \: 
-            \text{e}^{ -\mathbf{v}_{i,t}^{\text{T}} \mathbf{v}_{i,t} } 
+            1 - \alpha_0 \: N_{i,t} 
         \right) \\
     %
     \frac{ \partial N_{i,t+1} }{ \partial N_{k,t} } &= 
@@ -392,13 +307,13 @@ The two axes for species $i$ change as follows:
 
 \begin{equation*}
 \begin{split}
-    v_{i1,t+1} &= v_{i1,t} + 2 \; \sigma^2
+    v_{i1,t+1} &= v_{i1,t} + 2 \; \sigma_A^2
     \left[
         \alpha_0 \; \Omega_{i,t} \;
             \textrm{e}^{-v_{i1,t}^2 - v_{i2,t}^2} \; v_{i1,t}
         - f \; ( v_{i1,t} + \eta \; v_{i2,t} )
     \right] \\
-    v_{i2,t+1} &= v_{i2,t} + 2 \; \sigma^2
+    v_{i2,t+1} &= v_{i2,t} + 2 \; \sigma_A^2
     \left[
         \alpha_0 \; \Omega_{i,t} \;
             \textrm{e}^{-v_{i2,t}^2 - v_{i1,t}^2} \; v_{i2,t}
@@ -417,7 +332,7 @@ focusing on just one species and time point.
 
 
 
-At equilibrium (assuming that $\sigma > 0$),
+At equilibrium (assuming that $\sigma_A > 0$),
 
 \begin{equation}
 \begin{split}
@@ -958,10 +873,10 @@ From the main text, we know that when there is variability in axis evolution,
 
 \begin{equation*}
 \begin{split}
-    \mathbf{\ddot{v}}_{i,t+1} &= \mathbf{v}_{i,t+1} \; \text{e}^{\varepsilon_V} \\
-    \varepsilon_V &\sim \text{N}(0, \, \sigma^2_V) \\
+    \mathbf{\ddot{v}}_{i,t+1} &= \mathbf{v}_{i,t+1} \; \text{e}^{\varepsilon_v} \\
+    \varepsilon_v &\sim \text{N}(0, \, \sigma^2_V) \\
     \mathbf{v}_{i,t+1} &= \mathbf{v}_{i,t} + \left( \frac{1}{F_i}
-        \frac{\partial F_i}{\partial \mathbf{\ddot{v}}_{i,t}} \right) \sigma^2_i
+        \frac{\partial F_i}{\partial \mathbf{\ddot{v}}_{i,t}} \right) \sigma_A^2
     \text{.}
 \end{split}
 \end{equation*}
@@ -969,75 +884,85 @@ From the main text, we know that when there is variability in axis evolution,
 
 
 For the two-axis case, we can define the function $G_1$ for axis 1 as a function 
-of the random variables $\varepsilon_1$ and $\varepsilon_2$:
+of the random variables $\varepsilon_{v_1}$ and $\varepsilon_{v_2}$:
 
 \begin{equation*}
-    G_1(\varepsilon_1, \varepsilon_2) = v_{i1,t} + 2 \; \sigma_i^2
-    \left[
-        \alpha_0 \; \Omega_{i,t} \;
-            \text{e}^{-(v_{i1,t} \text{e}^{\varepsilon_1})^2 - (v_{i2,t} \text{e}^{\varepsilon_2})^2} \; v_{i1,t} \text{e}^{\varepsilon_1}
-        - f \; ( v_{i1,t} \text{e}^{\varepsilon_1} + \eta \; v_{i2,t} \text{e}^{\varepsilon_2} )
-    \right]
+\begin{split}
+    G_1(\varepsilon_{v_1}, \varepsilon_{v_2}) &= v_{i1,t} + 2 \; \sigma_A^2
+    \Bigg[
+        \alpha_0
+            \Omega_i \;
+            \text{e}^{-(v_{i1,t} \text{e}^{\varepsilon_{v_1}})^2 - (v_{i2,t} \text{e}^{\varepsilon_{v_2}})^2} \; v_{i1,t} \, 
+            \text{e}^{\varepsilon_{v_1}}
+        - f \; ( v_{i1,t} \, \text{e}^{\varepsilon_{v_1}} + \eta \; v_{i2,t} \,
+            \text{e}^{\varepsilon_{v_2}} )
+    \Bigg] \\
+    \Omega_i &\equiv \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
+                    - \mathbf{\ddot{v}}_{j,t}^{\textrm{T}}
+                    \mathbf{D} \, \mathbf{\ddot{v}}_{j,t} } }
+    \textrm{.}
+\end{split}
 \end{equation*}
 
-
-The second order Taylor series approximation for $G_1(\varepsilon_1, \varepsilon_2)$,
-about $\bm{\theta} = \{ \mu_{\varepsilon_1}, \mu_{\varepsilon_2} \} = \{ 0, 0 \}$, is
+Here, $\Omega_i$ is the influence of other species on the effect of interspecific competition,
+which is defined here to reduce clutter in later equations.
+The second order Taylor series approximation for $G_1(\varepsilon_{v_1}, \varepsilon_{v_2})$,
+about $\bm{\theta} = \{ \mu_{\varepsilon_{v_1}}, \mu_{\varepsilon_{v_2}} \} = \{ 0, 0 \}$, is
 
 \begin{equation}
 \label{eq:taylor-expansion-outline}
-    \text{E}(G_1(\varepsilon_1, \varepsilon_2)) \approx G_1(\bm{\theta}) + 
+    \text{E}(G_1(\varepsilon_{v_1}, \varepsilon_{v_2})) \approx G_1(\bm{\theta}) + 
         \frac{1}{2} \left[ 
-            \left. \frac{\partial^2 G_1}{\partial^2 \varepsilon_1} \right\lvert_{\bm{\theta}} \; \sigma^2_{\varepsilon_1} +
-            \left. \frac{\partial^2 G_1}{\partial^2 \varepsilon_2} \right\lvert_{\bm{\theta}} \; \sigma^2_{\varepsilon_2}
+            \left. \frac{\partial^2 G_1}{\partial^2 \varepsilon_{v_1}} \right\lvert_{\bm{\theta}} \; \sigma^2_{\varepsilon_{v_1}} +
+            \left. \frac{\partial^2 G_1}{\partial^2 \varepsilon_{v_2}} \right\lvert_{\bm{\theta}} \; \sigma^2_{\varepsilon_{v_2}}
         \right]
 \text{.}
 \end{equation}
 
 
 In the derivatives below, we have removed indices for species and time for clarity.
-To avoid confusion in later equations, $\sigma_A^2$ is additive genetic variance.
 
-We have the following derivatives of $G_1$ with respect to the random variables $\varepsilon_1$ and $\varepsilon_1$:
+
+We have the following derivatives of $G_1$ with respect to the random variables $\varepsilon_{v_1}$ and $\varepsilon_{v_1}$:
 
 \begin{equation*}
 \begin{split}
-    \frac{\partial \, G_1}{\partial \, \varepsilon_1} &= 2 \; \sigma_A^2 \: v_{1} \: \text{e}^{\varepsilon_1}
+    \frac{\partial \, G_1}{\partial \, \varepsilon_{v_1}} &= 2 \; \sigma_A^2 \: v_{1} \: \text{e}^{\varepsilon_{v_1}}
     \left[
         \alpha_0 \; \Omega \;
-            \text{e}^{-(v_{1} \: \text{e}^{\varepsilon_1})^2 - (v_{2} \: \text{e}^{\varepsilon_2})^2}
+            \text{e}^{-(v_{1} \: \text{e}^{\varepsilon_{v_1}})^2 - (v_{2} \: \text{e}^{\varepsilon_{v_2}})^2}
             \left(
-                1 - 2 \, v_{1}^2 \: \text{e}^{2 \varepsilon_1}
+                1 - 2 \, v_{1}^2 \: \text{e}^{2 \varepsilon_{v_1}}
             \right)
         - f
     \right] \\
 % 
-    \frac{\partial^2 G_1}{\partial^2 \varepsilon_1} &= 2 \; \sigma_A^2 \: v_{1} \: \text{e}^{\varepsilon_1}
+    \frac{\partial^2 G_1}{\partial^2 \varepsilon_{v_1}} &= 2 \; \sigma_A^2 \: v_{1} \: \text{e}^{\varepsilon_{v_1}}
     \left[
         \alpha_0 \; \Omega \;
-            \text{e}^{-(v_{1} \: \text{e}^{\varepsilon_1})^2 - (v_{2} \: \text{e}^{\varepsilon_2})^2}
+            \text{e}^{-(v_{1} \: \text{e}^{\varepsilon_{v_1}})^2 - (v_{2} \: \text{e}^{\varepsilon_{v_2}})^2}
             \left(
-                1 - 8 \, v_{1}^2 \: \text{e}^{2 \varepsilon_1}
+                1 - 8 \, v_{1}^2 \: \text{e}^{2 \varepsilon_{v_1}}
             \right)
         - f
     \right] \\[2ex]
 %
 %
-    \frac{\partial \, G_1}{\partial \, \varepsilon_2} &= - 2 \; \sigma_A^2
+    \frac{\partial \, G_1}{\partial \, \varepsilon_{v_2}} &= - 2 \; \sigma_A^2
     \left[
         2 \: \alpha_0 \; \Omega \; v_1 \; v_2^2 \;
-            \text{e}^{-(v_{1} \: \text{e}^{\varepsilon_1})^2 - (v_{2} \: \text{e}^{\varepsilon_2})^2 + \varepsilon_1 + 2 \, \varepsilon_2}
-        + f \: \eta \: v_2 \: \text{e}^{\varepsilon_2}
+            \text{e}^{-(v_{1} \: \text{e}^{\varepsilon_{v_1}})^2 - (v_{2} \: \text{e}^{\varepsilon_{v_2}})^2 + \varepsilon_{v_1} + 2 \, \varepsilon_{v_2}}
+        + f \: \eta \: v_2 \: \text{e}^{\varepsilon_{v_2}}
     \right] \\
 % 
-    \frac{\partial^2 G_1}{\partial^2 \varepsilon_2} &= - 2 \; \sigma_A^2
+    \frac{\partial^2 G_1}{\partial^2 \varepsilon_{v_2}} &= - 2 \; \sigma_A^2
     \left[
         4 \: \alpha_0 \; \Omega \; v_1 \; v_2^2 \;
-            \text{e}^{-(v_{1} \: \text{e}^{\varepsilon_1})^2 - (v_{2} \: \text{e}^{\varepsilon_2})^2 + \varepsilon_1 + 2 \, \varepsilon_2}
+            \text{e}^{-(v_{1} \: \text{e}^{\varepsilon_{v_1}})^2 - (v_{2} \: \text{e}^{\varepsilon_{v_2}})^2 + \varepsilon_{v_1} + 2 \, \varepsilon_{v_2}}
             \left(
-                1 - v_{2}^2 \: \text{e}^{2 \varepsilon_2}
+                1 - v_{2}^2 \: \text{e}^{2 \varepsilon_{v_2}}
             \right)
-        + f \: \eta \: v_2 \: \text{e}^{\varepsilon_2}
+        + f \: \eta \: v_2 \: \text{e}^{\varepsilon_{v_2}}
     \right]
 \text{.}
 \end{split}
@@ -1048,24 +973,24 @@ Combining these with equation \ref{eq:taylor-expansion-outline} give us
 
 \begin{equation*}
 \begin{split}
-    \text{E}(G_1(\varepsilon_1, \varepsilon_2)) \approx \; &
+    \text{E}(G_1(\varepsilon_{v_1}, \varepsilon_{v_2})) \approx \; &
         v_1 + 2 \; \sigma_A^2 \left[ 
             \alpha_0 \; \Omega \; v_1 \; \text{e}^{-v_1^2 - v_2^2} - f (v_1 + \eta \; v_2)
         \right] \\
         &+ \frac{1}{2} \Bigg\{
             2 \; \sigma_A^2 \; v_1 \left[
                 \alpha_0 \; \Omega \; \text{e}^{-v_1^2 - v_2^2} \left( 1 - 8 \; v_1^2 \right) - f
-            \right] \sigma^2_{\varepsilon_1} \\
+            \right] \sigma^2_{\varepsilon_{v_1}} \\
             & \hspace{2.5em} - 2 \; \sigma_A^2 \left[
                 4 \; \alpha_0 \; \Omega \; v_1 \; v_2^2 \; \text{e}^{-v_1^2 - v_2^2} \left( 1 - v_2^2 \right) + f \; \eta \; v_2
-            \right] \sigma^2_{\varepsilon_2}
+            \right] \sigma^2_{\varepsilon_{v_2}}
         \Bigg\} %\\[2ex]
 %
 %
 %    \approx ~ & v_1 + \sigma_A^2 \Big[ 
 %            2 \alpha_0 \Omega v_1 \text{e}^{-v_1^2 - v_2^2} + 2 f (v_1 + \eta v_2)
-%            + \\ & \hspace*{4em} \sigma_{\varepsilon_1}^2 v_1 \alpha_0 \Omega \text{e}^{-v_1^2 - v_2^2} (1 - 8 v_1^2) + \sigma_{\varepsilon_1}^2 v_1 f
-%            - \\ & \hspace*{4em} \sigma_{\varepsilon_2}^2 4 \alpha_0 \Omega v_1 v_2^2 \text{e}^{-v_1^2 - v_2^2} (1 - v_2^2) - \sigma_{\varepsilon_2}^2 f \eta v_2^2
+%            + \\ & \hspace*{4em} \sigma_{\varepsilon_{v_1}}^2 v_1 \alpha_0 \Omega \text{e}^{-v_1^2 - v_2^2} (1 - 8 v_1^2) + \sigma_{\varepsilon_{v_1}}^2 v_1 f
+%            - \\ & \hspace*{4em} \sigma_{\varepsilon_{v_2}}^2 4 \alpha_0 \Omega v_1 v_2^2 \text{e}^{-v_1^2 - v_2^2} (1 - v_2^2) - \sigma_{\varepsilon_{v_2}}^2 f \eta v_2^2
 %        \Big] \\[2ex]
 %
 %
@@ -1078,16 +1003,16 @@ This simplifies to
 \begin{equation}
 \label{eq:taylor-expansion-final-supp}
 \begin{split}
-    \text{E}(G_1(\varepsilon_1, \varepsilon_2)) \approx
+    \text{E}(G_1(\varepsilon_{v_1}, \varepsilon_{v_2})) \approx
         v_1 + 2 \; \sigma_A^2 \Bigg\{ 
             & \alpha_0 \; \Omega \; v_1 \; \text{e}^{-v_1^2 - v_2^2} 
             \bigg[ 
-                1 + \sigma^2_{\varepsilon_1} \left( \frac{1}{2} - 4 \; v_1^2 \right)
-                - 2 \; \sigma^2_{\varepsilon_2} \, v_2^2 \left( 1 - v_2^2 \right)
+                1 + \sigma^2_{\varepsilon_{v_1}} \left( \frac{1}{2} - 4 \; v_1^2 \right)
+                - 2 \; \sigma^2_{\varepsilon_{v_2}} \, v_2^2 \left( 1 - v_2^2 \right)
             \bigg] \\
             & - f \bigg[
                 v_1 + \eta \; v_2 + \frac{1}{2} \left(
-                    \sigma^2_{\varepsilon_1} \, v_1 + \sigma^2_{\varepsilon_2} \, \eta \; v_2
+                    \sigma^2_{\varepsilon_{v_1}} \, v_1 + \sigma^2_{\varepsilon_{v_2}} \, \eta \; v_2
                 \right)
             \bigg]
         \Bigg\}
@@ -1116,77 +1041,77 @@ This simplifies to
 
 
 
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=0.9\textwidth]{S3-stoch_coexist.pdf}
-\caption{Proportion of species that survived in simulations of 100-species, 2-axis
-    communities with
-    (A) varying $d_1$ and $d_2$ or 
-    (B) varying just $d_1$ with $d_2$ fixed at 0.1.
-    Standard deviations are for stochasticity in
-    population dynamics ($\sigma_N$) and
-    axis evolution ($\sigma_V$).
-    Shown for sub-additive ($\eta < 0$), additive ($\eta = 0$), and 
-    super-additive ($\eta > 0$) tradeoffs.
-    Additive genetic variance ($\sigma_i^2$) was fixed at 0.05 for 
-    these simulations.}
-\label{fig:stoch-coexist-nspp}
-\end{figure}
+% \begin{figure}[ht!]
+% \centering
+% \includegraphics[width=0.9\textwidth]{S3-stoch_coexist.pdf}
+% \caption{Proportion of species that survived in simulations of 100-species, 2-axis
+%     communities with
+%     (A) varying $d_1$ and $d_2$ or 
+%     (B) varying just $d_1$ with $d_2$ fixed at 0.1.
+%     Standard deviations are for stochasticity in
+%     population dynamics ($\sigma_N$) and
+%     axis evolution ($\sigma_V$).
+%     Shown for sub-additive ($\eta < 0$), additive ($\eta = 0$), and 
+%     super-additive ($\eta > 0$) tradeoffs.
+%     Additive genetic variance ($\sigma_A^2$) was fixed at 0.05 for 
+%     these simulations.}
+% \label{fig:stoch-coexist-nspp}
+% \end{figure}
 
 
 
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=0.7\textwidth]{S1-cond_coexist_non-conflicting.pdf}
-\caption{Coexistence for 2-axis, 5-species communities when
-    both axes have non-conflicting evolution.
-    Panels show, for each of five situations,
-    (A) starting conditions and trajectories for each species in axis space, 
-    (B) abundances through time, and 
-    (C) axis values through time.
-    Situation i has sub-additive tradeoffs, situations ii and iv have 
-    super-additive, and iii and v have additive.
-    (A) Dashed arcs show the location of neutrally stable rings
-    when tradeoffs are additive, and 
-    the dotted lines separate the basins of attraction for the two possible
-    axis states when tradeoffs are super-additive.
-    (A,C) Shapes of hollow points indicate the equilibrium axis state.
-    (C) For situations iii and v, line width is proportional to the 
-    distance from the neutrally stable ring.}
-\label{fig:cond-coexist-non-conflicting}
-\end{figure}
+% \begin{figure}[ht!]
+% \centering
+% \includegraphics[width=0.7\textwidth]{S1-cond_coexist_non-conflicting.pdf}
+% \caption{Coexistence for 2-axis, 5-species communities when
+%     both axes have non-conflicting evolution.
+%     Panels show, for each of five situations,
+%     (A) starting conditions and trajectories for each species in axis space, 
+%     (B) abundances through time, and 
+%     (C) axis values through time.
+%     Situation i has sub-additive tradeoffs, situations ii and iv have 
+%     super-additive, and iii and v have additive.
+%     (A) Dashed arcs show the location of neutrally stable rings
+%     when tradeoffs are additive, and 
+%     the dotted lines separate the basins of attraction for the two possible
+%     axis states when tradeoffs are super-additive.
+%     (A,C) Shapes of hollow points indicate the equilibrium axis state.
+%     (C) For situations iii and v, line width is proportional to the 
+%     distance from the neutrally stable ring.}
+% \label{fig:cond-coexist-non-conflicting}
+% \end{figure}
 
 
-\begin{figure}[ht!]
-\centering
-\includegraphics{S2-cc_sigmaV_sit_v.pdf}
-\caption{Genotype trajectories through axis space for 12 repetitions under 
-scenario v (see main text), with axis stochasticity ($\sigma_V = 0.1$).
-Points indicate starting locations, and color indicates species.}
-\label{fig:cond-coexist-Vstoch-sit-v}
-\end{figure}
+% \begin{figure}[ht!]
+% \centering
+% \includegraphics{S2-cc_sigmaV_sit_v.pdf}
+% \caption{Genotype trajectories through axis space for 12 repetitions under 
+% scenario v (see main text), with axis stochasticity ($\sigma_V = 0.1$).
+% Points indicate starting locations, and color indicates species.}
+% \label{fig:cond-coexist-Vstoch-sit-v}
+% \end{figure}
 
 
 
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=0.5\textwidth]{S4-inv_sims_hm_replace.pdf}
-\caption{Effect of stochasticity on replacement of resident species by invader
-    based on the invader's starting axis values (x and y axes),
-    magnitude of stochasticity (sub-panel columns), and 
-    value of $d_1$ (sub-panel rows).
-    Shown for sub-additive, additive, and super-additive tradeoffs.}
-\label{fig:inv-sims-heatmap-replace}
-\end{figure}
+% \begin{figure}[ht!]
+% \centering
+% \includegraphics[width=0.5\textwidth]{S4-inv_sims_hm_replace.pdf}
+% \caption{Effect of stochasticity on replacement of resident species by invader
+%     based on the invader's starting axis values (x and y axes),
+%     magnitude of stochasticity (sub-panel columns), and 
+%     value of $d_1$ (sub-panel rows).
+%     Shown for sub-additive, additive, and super-additive tradeoffs.}
+% \label{fig:inv-sims-heatmap-replace}
+% \end{figure}
 
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=0.5\textwidth]{S5-inv_sims_hm_extinct.pdf}
-\caption{Effect of stochasticity on extinction of both resident and invader
-    species based on the invader's starting axis values (x and y axes),
-    magnitude of stochasticity (sub-panel columns), and 
-    value of $d_1$ (sub-panel rows).
-    Shown for sub-additive, additive, and super-additive tradeoffs.}
-\label{fig:inv-sims-heatmap-extinct}
-\end{figure}
+% \begin{figure}[ht!]
+% \centering
+% \includegraphics[width=0.5\textwidth]{S5-inv_sims_hm_extinct.pdf}
+% \caption{Effect of stochasticity on extinction of both resident and invader
+%     species based on the invader's starting axis values (x and y axes),
+%     magnitude of stochasticity (sub-panel columns), and 
+%     value of $d_1$ (sub-panel rows).
+%     Shown for sub-additive, additive, and super-additive tradeoffs.}
+% \label{fig:inv-sims-heatmap-extinct}
+% \end{figure}
 

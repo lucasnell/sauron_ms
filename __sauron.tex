@@ -239,8 +239,8 @@ and will be archived on Zenodo upon acceptance.
 
 \clearpage
 \input{app_A}
-\clearpage
-\input{app_B}
+% \clearpage
+% \input{app_B}
 % \clearpage
 % \input{app_C}
 % \clearpage
@@ -267,7 +267,149 @@ and will be archived on Zenodo upon acceptance.
 % \bibliographystyle{amnatnat.bst}
 \bibliographystyle{ecology_letters.bst}
 \clearpage
-\bibliography{library.bib}
+\bibliography{references.bib}
+
+
+
+
+\clearpage
+
+
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\theequation}{\arabic{equation}}
+\renewcommand{\thetable}{\arabic{table}}
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.9\textwidth,keepaspectratio]{1-diag.pdf}
+\caption{Graphical model description.
+% 
+(a) Competition axes consist of suites of traits that together affect competition
+similarly. Traits for a given axis can differ among species.
+% 
+(b) If species $i$ evolves an increase in a competition axis, this reduces its
+per-capita growth rate and the effects of competition species $i$ experiences 
+from other species in the community.
+% 
+(c) The cost associated with investing in multiple axes depends on whether 
+tradeoffs are sub-additive, additive, or super-additive. 
+Note that arrows within plots in this panel are all the same length.
+% 
+(d) Investment by species $i$ can either increase or decrease its effect on other
+species in the community, depending on the type of competition axis it invests in.
+Investment in an ameliorative axis by species $i$ reduces the effect of $i$ on all
+other species.
+The first example shown is behavioral avoidance of areas where heterospecifics
+forage.
+Next, investment in defensive traits that cause natural enemies to have 
+differing effects on hosts can reduce apparent competition between hosts.
+Lastly, multivariate traits can contribute to reduced resource-use overlap
+between consumer species.
+Investment in a conflicting axis by species $i$ increases the effect of $i$ on all
+other species.
+Traits that could contribute to conflicting axes include 
+aggressive behavior toward heterospecifics near food sources,
+chemical suppression of competitors for space, and
+rapid growth that shades nearby plants.}
+\label{fig:model-description}
+\end{figure}
+
+
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics{2-outcomes_q2.pdf}
+\caption{Unique axis values for surviving species in 2-axis communities
+with varying numbers of species (indicated by color), and 
+    for tradeoffs being sub-additive ($\eta < 0$), additive ($\eta = 0$), or 
+    super-additive ($\eta > 0$).
+    The lines in the additive case show the locations of the neutrally stable rings.
+    Both axes are neutral (i.e., $\mathbf{d} = \{ 0, 0 \}$) to show only
+    the effects of axis investment on the focal species.}
+\label{fig:two-axis-outcomes}
+\end{figure}
+
+
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.6\textwidth,keepaspectratio]{3-comm.pdf}
+\caption{Effects of axis strength and species investments on 
+how permissive communities are to coexistence.
+(a) How conflicting and ameliorative axis strength affect scaled community size,
+for different communities (indicated by color) and tradeoffs
+(solid for super-additive, dashed for sub-additive).
+Scaled community size
+($\sum_j^n{N_j \text{exp} \{ -\mathbf{v}_{j}^{\text{T}} \mathbf{D} \mathbf{v}_j \}}$)
+represents the community abundance accounting
+for the effect of species' axes on competition experienced by others in the
+community. 
+A lower value indicates a community more conducive to further species packing.
+In each sub-panel, the non-focal axis strength is fixed at 0.6.
+Crosses indicate points where a community type is no longer stable,
+and roman numerals indicate the community represented in panel (b).
+(b) Invasibility of some communities representing how tradeoffs and species
+investments influence coexistence.
+Points in these plots indicate the axis values for equilibrium species, and 
+numbers inside these points indicate the number of species at each point.
+The background color shows what happens when a third species is added:
+This invader either is excluded (white), 
+excludes one or more residents (orange or pink), or 
+coexists with residents to form a new, 3-species community (purple).
+}
+\label{fig:comms-d}
+\end{figure}
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics{4-stab.pdf}
+\caption{Effects of the number of species investing in the conflicting axis
+in 10-species communities with super-additive tradeoffs on 
+(a) conflicting-axis investment per species,
+(b) ameliorative-axis investment per species, and 
+(c) scaled community size (inversely related to how conducive a community 
+is to adding more species).
+Color indicates whether the conflicting axis is strong ($d_{\text{conf}} = 1$),
+moderate ($d_{\text{conf}} = 0.5$), or weak ($d_{\text{conf}} = 0.1$).
+The ameliorative axis was fixed at $d_{\text{amel}} = 0.5$.
+}
+\label{fig:stabilizers}
+\end{figure}
+
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.9\textwidth,keepaspectratio]{5-stoch.pdf}
+\caption{Examples of how stochasticity affects tradeoffs, 
+possible communities, and how conducive communities are to coexistence.
+Shown are the effects of axis-evolution stochasticity when
+(a) variance is equal among axes and tradeoffs are super-additive and 
+(b) variance is unequal among axes and tradeoffs are sub-additive.
+The upper row of each sub-panel shows the trajectories in axis space
+for 4 species started under each scenario.
+Open points indicate starting axis values.
+Closed points indicate ending axis values, and 
+numbers inside these points indicate the number of species at each point.
+Gray shaded curves outside each plot show the probability density for
+the normal distributions used to generate stochasticity in the
+conflicting (top curve) or ameliorative (right curve) axis.
+The lower row shows scaled community size through time for each community
+in the top row;
+a lower scaled community size indicates that the community is more 
+conducive to further species packing.
+The first 1,000 time steps are removed to better highlight differences
+between communities after the initial period of population expansions.
+}
+\label{fig:stochasticity}
+\end{figure}
 
 
 

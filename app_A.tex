@@ -10,15 +10,6 @@
 \section*{Appendix A: Matrix derivatives in quantitative genetics equations}
 
 
-% In this section, we make the following abbreviation in the equations:
-
-% \begin{equation*}
-%     \mathbf{\Omega}_{i,t} \equiv N_{i,t} +
-%             \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
-%             - \mathbf{v}_{j,t}^{\textrm{T}}
-%             \mathbf{D} \mathbf{v}_{j,t} } }
-% \end{equation*}
-
 \subsection*{Axis change}
 
 The partial derivative of fitness with respect to axes is
@@ -29,19 +20,21 @@ The partial derivative of fitness with respect to axes is
         \exp & \left\{
             r_0
             - f \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{C} \mathbf{v}_{i,t}
-            - \alpha_0  \left(
-                N_{i,t} + \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
+            - \alpha_0 \, N_{i,t}
+            - \alpha_0 \,
+                \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}}
+            \left(
+                \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
                 - \mathbf{v}_{j,t}^{\textrm{T}}
                 \mathbf{D} \mathbf{v}_{j,t} } }
-            \right) \,
-                \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}}
+            \right)
         \right\} \\
         & \left[
-            2 \alpha_0 \left(
-                N_{i,t} + \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
+            2 \, \alpha_0 \left(
+                \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
                 - \mathbf{v}_{j,t}^{\textrm{T}}
                 \mathbf{D} \mathbf{v}_{j,t} } }
-            \right) \,
+            \right)
                 \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}} \:
                 \mathbf{v}_{i,t}^{\textrm{T}}
             - 2 f \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{C}
@@ -54,10 +47,9 @@ The partial derivative of fitness with respect to axes is
 This, combined with equation \ref{eq:axis-change}, means that axes change as follows:
 
 \begin{equation} \label{eq:axes-change-full}
-    \mathbf{v}_{i,t+1} = \mathbf{v}_{i,t} + 2 \sigma_i^2
+    \mathbf{v}_{i,t+1} = \mathbf{v}_{i,t} + 2 \sigma_A^2
     \left[
         \alpha_0 \, \left(
-            N_{i,t} +
             \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
             - \mathbf{v}_{j,t}^{\textrm{T}}
             \mathbf{D} \mathbf{v}_{j,t} } }
@@ -106,10 +98,10 @@ It is made up of the following derivatives:
 \begin{equation*}
 \begin{split}
     \frac{ \partial \, \mathbf{v}_{i,t+1} }{ \partial \, \mathbf{v}_{i,t} } &= 
-    \mathbf{I} + 2 ~ \sigma_i^2 ~
+    \mathbf{I} + 2 ~ \sigma_A^2 ~
         \left[
             \alpha_0 ~ \left(
-                N_{i,t} + \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
+                \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
                 - \mathbf{v}_{j,t}^{\textrm{T}}
                 \mathbf{D} \mathbf{v}_{j,t} } }
             \right) ~ \textrm{e}^{ - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} }
@@ -117,20 +109,19 @@ It is made up of the following derivatives:
                 \mathbf{I} - 2 ~ \mathbf{v}_{i,t} \mathbf{v}_{i,t}^{\textrm{T}}
             \right) -
             f \: \mathbf{C}^{\textrm{T}}
-        \right] \\
+        \right] \\\
+% 
     \frac{ \partial \: \mathbf{v}_{i,t+1} }{ \partial \: \mathbf{v}_{k,t}} &=
-        -4 \; \sigma_i^2 \; \alpha_0 \; N_{k,t} \; \mathbf{v}_{i,t} \;
+        -4 \; \sigma_A^2 \; \alpha_0 \; N_{k,t} \; \mathbf{v}_{i,t} \;
         \textrm{e}^{
                     - \mathbf{v}_{k,t}^{\textrm{T}} \mathbf{D} \mathbf{v}_{k,t}
                     - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}
                 } \;
         \mathbf{v}_{k,t}^{\textrm{T}} \; \mathbf{D} \\
 % 
-    \frac{ \partial \: \mathbf{v}_{i,t+1} }{ \partial \: N_{i,t} } &=
-        2 \; \sigma_i^2 \; \alpha_0 \; \mathbf{v}_{i,t} \;
-        \textrm{e}^{ - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} } \\
+    \frac{ \partial \: \mathbf{v}_{i,t+1} }{ \partial \: N_{i,t} } &= 0 \\
     \frac{ \partial \: \mathbf{v}_{i,t+1} }{ \partial \: N_{k,t} } &=
-        2 \; \sigma_i^2 \; \alpha_0 \; \mathbf{v}_{i,t} \;
+        2 \; \sigma_A^2 \; \alpha_0 \; \mathbf{v}_{i,t} \;
         \textrm{e}^{ - \mathbf{v}_{k,t}^{\textrm{T}} \mathbf{D} \mathbf{v}_{k,t}
             - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} } \\
 % 
@@ -138,7 +129,7 @@ It is made up of the following derivatives:
         2 \, F_{i,t+1} \,  N_{i,t}
         \left[
             \alpha_0 \, \left(
-                N_{i,t} + \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
+                \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
                 - \mathbf{v}_{j,t}^{\textrm{T}}
                 \mathbf{D} \mathbf{v}_{j,t} } }
             \right) \, \text{e}^{ -\mathbf{v}_{i,t}^{\text{T}}
@@ -152,11 +143,7 @@ It is made up of the following derivatives:
         \mathbf{v}_{k,t}^{\text{T}} \, \mathbf{D} \\
 % 
     \frac{ \partial N_{i,t+1} }{ \partial N_{i,t} } &= 
-        F_{i,t+1}
-        \left(
-            1 - N_{i,t} \: \alpha_0 \: 
-            \text{e}^{ -\mathbf{v}_{i,t}^{\text{T}} \mathbf{v}_{i,t} } 
-        \right) \\
+        F_{i,t+1} \left( 1 - \alpha_0 \: N_{i,t} \right) \\
     \frac{ \partial N_{i,t+1} }{ \partial N_{k,t} } &= 
         - F_{i,t+1} \: N_{i,t} \: \alpha_0 \: 
         \text{e}^{ -\mathbf{v}_{i,t}^{\text{T}} \mathbf{v}_{i,t} -
@@ -199,5 +186,45 @@ To keep axes $\ge 0$, we used the ramp function, $R(x)$, which is defined as
 Thus, all axis derivatives of the form $\partial \mathbf{v} / \partial x$
 are changed to $H(\mathbf{v}(x)) \: \partial \mathbf{v} / \partial x$ to 
 account for axes being non-negative.
+
+
+
+
+
+
+\subsection*{Effects of stochasticity on axis evolution}
+
+When there is stochasticity in axis evolution,
+the second order Taylor series approximation for the expected
+value of axis 1 at time $t+1$ is
+
+\begin{equation}
+\label{eq:taylor-expansion-final}
+\begin{split}
+    \text{E}(v_{1,t+1}) & \approx
+        v_{1,t} + 2 \; \sigma_A^2 \; \Bigg\{ \\
+            & \alpha_0
+            \left(
+                \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
+                    - \mathbf{\ddot{v}}_{j,t}^{\textrm{T}}
+                    \mathbf{D} \, \mathbf{\ddot{v}}_{j,t} } }
+            \right)
+            v_{1,t} \; \text{e}^{-v_{1,t}^2 - v_{2,t}^2} 
+            \bigg[ 
+                1 + \sigma^2_{\varepsilon_{v_1}} \left( \frac{1}{2} - 4 \; v_{1,t}^2 \right) \\
+                & \hspace*{6em} - 2 \; \sigma^2_{\varepsilon_{v_2}} \, v_{2,t}^2 \left( 1 - v_{2,t}^2 \right)
+            \bigg] \\
+            & - f \bigg[
+                v_{1,t} + \eta \; v_{2,t} + \frac{1}{2} \left(
+                    \sigma^2_{\varepsilon_{v_1}} \, v_{1,t} + \sigma^2_{\varepsilon_{v_2}} \, \eta \; v_{2,t}
+                \right)
+            \bigg]
+        \Bigg\}
+\text{,}
+\end{split}
+\end{equation}
+
+where we drop the index for species to reduce clutter.
+Subscripts for axes are reversed for the approximation for axis 2.
 
 
