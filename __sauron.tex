@@ -33,14 +33,15 @@
 %
 % (Thanks to Vlastimil Krivan for pointing this out to us!)
 
-% \title{Alternative states and coexistence in the evolution of a competitive community}
-\title{Coexistence in a general model of coevolving, competing species}
+\title{Coexistence in a general model of coevolving competitors}
 
 
 % coexistence
-% community
+% general
 % competition
-% evolution
+% evolution / coevolution
+% plasticity?
+% community
 
 
 
@@ -72,6 +73,9 @@ Anthony R. Ives$^{d}$}
 \hypersetup{
     colorlinks=false
 }
+
+% color in math mode (only used for supplement)
+\usepackage{xcolor}
 
 
 
@@ -107,16 +111,17 @@ Correspondence: lucas@lucasnell.com, +1 (717) 476-7653
 
 
 % <= 45 characters
-\noindent Running title: Competition, coevolution, and coexistence
+\noindent Running title: Coexistence, competition, and coevolution
 
 % <= 10
 \noindent Keywords: {
 community assembly,
 competition,
 % alternative stable states,
-historical contingency,
+% historical contingency,
 evolutionarily stable communities,
-eco-evolutionary dynamics}
+eco-evolutionary dynamics,
+plasticity}
 
 \bigskip
 
@@ -337,6 +342,8 @@ with varying numbers of species (indicated by color), and
 
 
 
+
+
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=0.6\textwidth,keepaspectratio]{3-comm.pdf}
@@ -350,22 +357,22 @@ Scaled community size
 represents the community abundance accounting
 for the effect of species' axes on competition experienced by others in the
 community. 
-A lower value indicates a community more conducive to further species packing.
+A lower value indicates greater invasibility.
 In each sub-panel, the non-focal axis strength is fixed at 0.6.
 Crosses indicate points where a community type is no longer stable,
 and roman numerals indicate the community represented in panel (b).
 (b) Invasibility of some communities representing how tradeoffs and species
 investments influence coexistence.
-Points in these plots indicate the axis values for equilibrium species, and 
+Points in these plots indicate the axis values for equilibrium resident species, and 
 numbers inside these points indicate the number of species at each point.
 The background color shows what happens when a third species is added:
 This invader either is excluded (white), 
 excludes one or more residents (orange or pink), or 
 coexists with residents to form a new, 3-species community (purple).
+Note that ii and v show the same community at different axis strengths.
 }
 \label{fig:comms-d}
 \end{figure}
-
 
 \begin{figure}[ht!]
 \centering
@@ -374,14 +381,14 @@ coexists with residents to form a new, 3-species community (purple).
 in 10-species communities with super-additive tradeoffs on 
 (a) conflicting-axis investment per species,
 (b) ameliorative-axis investment per species, and 
-(c) scaled community size (inversely related to how conducive a community 
-is to adding more species).
+(c) scaled community size (inversely related to invasibility).
 Color indicates whether the conflicting axis is strong ($d_{\text{conf}} = 1$),
 moderate ($d_{\text{conf}} = 0.5$), or weak ($d_{\text{conf}} = 0.1$).
 The ameliorative axis was fixed at $d_{\text{amel}} = 0.5$.
-}
 \label{fig:stabilizers}
+}
 \end{figure}
+
 
 
 
@@ -389,7 +396,7 @@ The ameliorative axis was fixed at $d_{\text{amel}} = 0.5$.
 \centering
 \includegraphics[width=0.9\textwidth,keepaspectratio]{5-stoch.pdf}
 \caption{Examples of how stochasticity affects tradeoffs, 
-possible communities, and how conducive communities are to coexistence.
+possible communities, and invasibility.
 Shown are the effects of axis-evolution stochasticity when
 (a) variance is equal among axes and tradeoffs are super-additive and 
 (b) variance is unequal among axes and tradeoffs are sub-additive.
@@ -403,8 +410,7 @@ the normal distributions used to generate stochasticity in the
 conflicting (top curve) or ameliorative (right curve) axis.
 The lower row shows scaled community size through time for each community
 in the top row;
-a lower scaled community size indicates that the community is more 
-conducive to further species packing.
+a lower scaled community size indicates greater invasibility.
 The first 1,000 time steps are removed to better highlight differences
 between communities after the initial period of population expansions.
 }

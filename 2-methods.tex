@@ -5,23 +5,27 @@
 \subsection*{Model overview}
 
 We used a simple model of competition to evaluate how evolving investment in 
-competition affects coexistence among species.
+reducing interspecific competition affects coexistence among species.
 Each of $n$ species has $q$ competition axes.
 Competition axes are combinations of multiple traits that together affect 
-competition similarly (Figure \ref{fig:model-description}).
-Investing in an axis has a cost to the population growth rate and 
-a benefit via reduced interspecific competition.
+competition (Figure \ref{fig:model-description}).
+Investing in an axis has a cost to the species' per-capita 
+population growth rate and a benefit via reduced interspecific competition.
 The overall competition experienced by each species is a product of 
-the axes in all species in the community.
+the investments made by all species in the community.
 This is because all species have at least two axes, 
 one conflicting axis, and one ameliorative axis.
 For a conflicting competition axis, investment by species $i$
 strengthens the competitive effect that species $i$ has on all
 other competitors.
+This might occur when contest competition leads to arms races among competitors
+\citep{Abrams1994}.
 For an ameliorative axis, all species' competition with 
 $i$ is reduced when it invests in this axis.
-
-
+Evolving dissimilar resource-usage traits to reduce competition
+would be an example of evolving along an ameliorative axis
+\citep{Roughgarden1976}.
+For more examples, see Figure \ref{fig:model-description}d.
 
 
 All species are symmetrical in that when species share the same axis 
@@ -32,18 +36,11 @@ Axes can also have non-additive trade-offs that either increase or decrease
 the cost associated with increasing multiple axes compared to increasing
 just one \citep{Northfield2021}.
 
-% Here, I think it makes sense to define what we mean by axes:
-We could expect conflicting evolution to occur when contest competition
-leads to arms races among competitors
-\citep{Abrams1994}.
-Competitor evolution might be ameliorative when they evolve
-dissimilar resource-usage traits to reduce competition \citep{Roughgarden1976}.
-
 
 We used a discrete-time, modified Lotka--Volterra competition model similar to
 that by \citet{Northfield2013a}.
-In it, species $i$ has a length-$q$ vector of axes ($\mathbf{v}_i$), and
-its per-capita growth---equivalent to fitness---is
+In it, species $i$ has a length-$q$ vector of axis values ($\mathbf{v}_i$), and
+its per-capita growth---here equivalent to fitness---is
 
 \begin{equation} \label{eq:fitness}
     F_{i} = \exp \left\{ r_i(\mathbf{v}_i) - 
@@ -52,7 +49,8 @@ its per-capita growth---equivalent to fitness---is
     \right\}\textrm{,}
 \end{equation}
 
-\noindent where $N_i$ is the population density of species $i$.
+\noindent where $N_i$ is the population density of species $i$,
+and $\alpha_0$ is the base density dependence.
 The parameter $r(\mathbf{v}_i)$ describes how axes affect
 the growth rate:
 
@@ -91,13 +89,11 @@ of interspecific competition:
         \vdots  & \ddots    & \vdots \\
         0       & \ldots    & d_q
         \end{pmatrix}
-	\textrm{,}
+	\textrm{.}
 \end{split}
 \end{equation}
 
 
-
-\noindent where $\alpha_0$ is the base density dependence.
 Matrix $\mathbf{D}$ contains parameters that determine how evolution of axes
 in one species affects competition experienced by others:
 When $d_k < 0$, investment by species $i$ in axis $k$ decreases the
@@ -125,10 +121,6 @@ A more important disadvantage is that $d \lvert x \rvert / dx$ is
 undefined when $x = 0$.
 This implementation and its consequences on resulting derivatives are in
 Appendix A.
-
-Species started with an abundance of 1.
-We tracked densities through time and considered a species extinct if its 
-density fell below 1.
 
 
 
@@ -158,33 +150,46 @@ axes at time $t+1$ are
     \textrm{.}
 \end{equation}
 
-To determine the stability of ending points (axis values and abundances of
-surviving competitor(s)), we computed the $n (q+1) \times n (q+1)$ Jacobian matrices
+To determine the stability of different communities, 
+we computed the $n (q+1) \times n (q+1)$ Jacobian matrices
 of first derivatives for the axes and abundances of each species (Equation \ref{eq:jacobian}).
-We then computed the primary eigenvalue of this matrix ($\lambda$).
+We then calculated the primary eigenvalue of this matrix ($\lambda$).
 We considered a state stable when $\lambda < 1$,
 neutrally stable when $\lambda = 1$,
 and unstable when $\lambda > 1$.
 
 Full analytical solutions to matrix derivatives (for axis change and
 Jacobian matrices) are found in appendix A.
-We also analyzed equilibrium solutions for the 2 axis case.
-This is found in Appendix B.
+
 
 
 \subsection*{Stochasticity}
 
-We added stochasticity to axis evolution by creating phenotypes
-($\mathbf{\ddot{v}}$) that are the product of the
-genotypes ($\mathbf{v}$) and a log-normal error term:
+We added stochasticity to axis evolution to evaluate how coexistence
+is affected by species being unable to perfectly evolve to fitness peaks.
+Many mechanisms can constrain evolution such that phenotypes do not 
+align with fitness peaks
+\citep[e.g., behavioral syndromes, pleiotropy, time lags;][]{Langerhans2002,Sih2004,Padilla1996}.
+As indirect effects of stress responses, non-adaptive plastic
+changes are probably ubiquitous in natural communities
+\citep{Miner2005,Ghalambor2007}.
+Moreover, they can affect adaptive evolution \citep{Ghalambor2015a}
+and community dynamics \citep{Langerhans2002,Peacor2006}.
+In our model, we added stochasticity via non-adaptive plasticity
+by having phenotypes ($\mathbf{\ddot{v}}$) 
+that are the product of the genotypes ($\mathbf{v}$) and a log-normal error term:
+
 
 \begin{equation} \label{eq:V-stochasticity}
 \begin{split}
-    \mathbf{\ddot{v}}_{i,t+1} &= \mathbf{v}_{i,t+1} \; \text{e}^{\varepsilon_v} \\
-    \varepsilon_v &\sim \text{N}(0, \, \sigma^2_V)
+    \mathbf{\ddot{v}}_{i,t+1} &= \mathbf{v}_{i,t+1} \; \text{e}^{\varepsilon_1} \\
+    \varepsilon_1 &\sim \text{N}(0, \, \sigma^2_{\varepsilon_1})
     \text{.}
 \end{split}
 \end{equation}
+
+
+
 
 Because the phenotypes interact with the environment, they are used
 to calculate all species' fitness values.
@@ -201,21 +206,12 @@ genotypes and how the phenotypes affect fitness:
 
 
 
-% \subsection*{Simulations}
-% 
-% 
-% We started simulations with one species, and each of $n-1$ new species
-% was added every 500 generations.
-% Species started with an abundance of 1.
-% We continued simulations for another 20,000 generations after all
-% species were added.
-% We tracked densities through time and considered a species extinct if its 
-% density fell below 1.
+\subsection*{Simulations and code}
 
-
-\subsection*{Code}
-
-We simulated models using a combination of R \citep{RCoreTeam2020} and
+In all simulations, species started with an abundance of 1.
+We tracked axis values and densities through time and considered 
+a species extinct if its density fell below 1.
+We used a combination of R \citep{RCoreTeam2020} and
 C++ via the Rcpp and RcppArmadillo packages
 \citep{Eddelbuettel2014a,Eddelbuettel2013a,Sanderson2016}.
 All code can be found on GitHub

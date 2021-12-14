@@ -1,254 +1,147 @@
 \section*{Results}
 
 
+
+
+
 We first conducted simulations to find points in axis space 
 representing stable equilibria.
-The tradeoffs associated with investing in multiple axes
-determined the location(s) of these states in axis space
+For these simulations, we used two axes that were both
+neutral (i.e., $\mathbf{d} = \{0,0\}$) and thus had
+no direct effect on other species.
+This allowed us to determine where species evolve when investments
+made by other species have no effect.
+In this case, the number of species in the community and 
+tradeoffs associated with investing in multiple axes
+determine the location(s) of these stable axis states
 (Figure \ref{fig:two-axis-outcomes}).
-For sub-additive tradeoffs 
-(investing in one axis facilitates investment in another; $\eta = -0.6$), 
-there is a single stable point where both axes are
+Species invest more in competition axes when there are
+more species in the community, and make no investments
+when they are the only species present.
+Sub-additive tradeoffs 
+(when investing in one axis facilitates investment in another; $\eta < 0$), 
+result in a single stable point where both axes are
 maximized---within the limits imposed by axes' negative effects on 
 the growth rate.
-When the tradeoffs are super-additive ($\eta = 0.6$), there are two
+When the tradeoffs are super-additive ($\eta > 0$), there are two
 alternative stable states, one for each axis being maximized while the 
 other is zero.
 Lastly, for additive tradeoffs ($\eta = 0$), axes
 evolve to any point on a neutrally stable ring.
-The locations of these states are determined by 
-the baseline growth rate, 
-the cost of increasing axes on the growth rate,
-and the non-additive tradeoff
-(Equations \ref{eq:two-axes-finals-eta-negative}--%,
-% \ref{eq:two-axes-finals-eta-zero}, and 
-\ref{eq:two-axes-finals-eta-positive}).
 
 
-We next aimed to determine the effects of axis evolution (ameliorative and
-conflicting) on the global rules of coexistence.
-(By global, we mean that they apply when species' starting axis values are not
-restricted.)
+% The locations of these states are determined by 
+% the baseline growth rate, 
+% the cost of increasing axes on the growth rate,
+% and the non-additive tradeoff
+% (Equations \ref{eq:two-axes-finals-eta-negative}--%,
+% % \ref{eq:two-axes-finals-eta-zero}, and 
+% \ref{eq:two-axes-finals-eta-positive}).
 
 
+The next set of simulations explored how axis strength and axis investments
+within communities affected coexistence.
+We simulated 2-species, 2-axis communities where one axis was conflicting
+and the other ameliorative.
+We found all possible stable communities for scenarios with varying 
+strengths of the two axes for both sub- and super-additive tradeoffs.
+For each community and scenario, we calculated the 
+scaled community size
+($\sum_j^n{N_j \text{exp} \{ -\mathbf{v}_{j}^{\text{T}} \mathbf{D} \mathbf{v}_j \}}$), which represents the community abundance accounting
+for the effect of species' axes on competition experienced by others in the
+community.
+A higher value of the scaled community size indicates a lower invasibility.
+However, this trend only occurs within the same type of tradeoffs
+because the costs associated with different tradeoffs are not the
+same when summed across axis space (Figure \ref{fig:tradeoffs-r}).
+From these simulations, we find that community type and axis strength
+have strong effects on coexistence, as does their interaction
+(Figure \ref{fig:comms-d}).
+Super-additive tradeoffs always allow for more possible communities,
+with up to 3 communities across much of the range of axis strengths.
+Sub-additive tradeoffs only ever allow for 1 possible community,
+but axis strengths can cause a switch in the possible community
+(communities v and vi in Figure \ref{fig:comms-d}a).
+Sub-additive communities are always sensitive to axis strengths
+because all species always invest in both axes.
+However, in super-additive communities, each species invests in 
+only one axis, and this results in large variation in how
+super-additive communities are affected by axis strengths.
+For example, when both species invest in the conflicting axis,
+that community's invasibility is greatly reduced with a
+stronger conflicting axis (e.g., changing conflicting axis for community i).
+Alternatively, strength of an axis that neither species invests in has
+no effect on invasibility (e.g., community i with changing ameliorative axis).
 
-The proportion of the 100 species introduced to communities that survived and
-coexisted depended on the additive genetic variance, 
-the tradeoffs, and
-how conflicting / non-conflicting evolution was (i.e., the values in $\mathbf{d}$)
-(Figure \ref{fig:coexistence-spp}A).
-Increasing values of $\mathbf{d}$ (where all values in the vector are equal)
-caused greater number of species to coexist
-because species evolving toward a fitness peak benefited rather than 
-harmed other species with high $\mathbf{d}$.
-This pattern was least obvious with additive tradeoffs.
-There was an abrupt change when evolution was conflicting for both axes 
-(i.e., $\mathbf{d} < 0$), where only one species ever survived.
-Greater additive genetic variance monotonically increased the proportion of 
-surviving species, via an increased probability 
-of evolutionary rescue: When genetic variance was high, 
-species could often evolve quickly enough towards a 
-fitness peak to prevent themselves from going extinct.
-The greatest number of surviving species occurred with additive tradeoffs
-because each new community member had only to evolve to anywhere along the
-neutrally stable ring to survive, rather than to one or two distinct points.
-Sub-additive tradeoffs resulted in greater numbers of species than super-additive
-because the lower cost of evolving multiple axes caused species to evolve
-high values of both axes.
-When combined with non-conflicting evolution,
-this decreased competition experienced by all species, both on a 
-per-capita basis (the term $- \mathbf{v}_{j}^{\text{T}} \mathbf{D} \mathbf{v}_j$ 
-in equation \ref{eq:competition})
-and overall (because all $N_j$ are greater).
+We also find that increasing axis strength does not necessarily produce
+outcomes consistent with how that axis affects coexistence
+(greater coexistence with ameliorative, less with conflicting).
+This is because varying axis strengths can change which
+communities are stable.
+For sub-additive tradeoffs, we find that increasing the ameliorative
+axis strength past a certain threshold causes a new community to 
+be the lone stable possible community (v changes to vi in Figure \ref{fig:comms-d}).
+This new community has a greater competitive effect on invaders
+(Figure \ref{fig:comms-d}a) and is more susceptible to losing a resident
+species when an invader invests in the conflicting axis
+(Figure \ref{fig:comms-d}b).
+For super-additive tradeoffs, a community where both species invest in
+the conflicting axis is no longer stable with a strong conflicting
+axis, nor is a community with both investing in the ameliorative axis
+stable for a strong ameliorative axis
+(i and iv, respectively, in Figure \ref{fig:comms-d}).
 
+Because the investments made by community members appears to be so important,
+we next simulated equilibrium, 10-species communities with super-additive 
+tradeoffs where 0--10 species invested in the conflicting axis
+(the others invested in the ameliorative axis).
+More species investing in the conflicting axis increases the investment
+per species for all species (Figure \ref{fig:stabilizers}a,b).
+A stronger conflicting axis generally causes a greater investment per species,
+but this effect levels off with greater numbers of species investing in 
+the conflicting axis.
+The exception to this is when only one species invests in the conflicting axis.
+In this case, the investment per species in the conflicting axis is lower
+when then conflicting axis is strong.
+This is because when the conflicting axis is strong and there is only one
+species that invests in it, that species strongly suppresses all other species 
+without experiencing competition from others investing in the conflicting axis.
+The result is a lower scaled community size experienced by the species
+investing in the conflicting axis, and species invest less with greater
+scaled community size (Equation \ref{eq:2-axis-super-solns}).
+The number of species investing in the conflicting axis and 
+conflicting axis strength both also increased the scaled community 
+size, an effect that levelled off more quickly for a strong conflicting axis
+(Figure \ref{fig:stabilizers}c);
+this levelling off was not as apparent when costs to investment ($f$) were reduced.
+The effect of ameliorative axis strength was opposite to that of conflicting axis
+strength (Figure \ref{fig:stabilizers2}).
+Additionally, the effects of number of species investing in the conflicting
+axis was much less asymptotic with a strong ameliorative axis than for a strong
+conflicting axis.
 
+Analytical results indicate that adding stochasticity to axis evolution
+changes expected values of axes similar to changes in tradeoffs
+(Equations \ref{eq:taylor-expansion-final}, \ref{eq:taylor-expansion-final-supp}).
+Simulations when tradeoffs are weak ($| \eta |= 0.01$) support this.
+The first example shown is when tradeoffs are super-additive and 
+variance in axis-evolution stochasticity is the same across both axes
+(Figure \ref{fig:stochasticity}a).
+When variance is low, the simulations act similarly to when there is no
+stochasticity, and species evolve to maximize one axis while the other is zero.
+With a higher variance, a third attracting fixed point forms where species
+invest in both axes.
+With even higher variance, the first two points are no longer attractors,
+resulting in species evolving to a single point where both axes are maximized.
+Axis evolution thus behaves similarly to when tradeoffs are sub-additive.
+Increasing variance in this case causes a decrease in scaled community size,
+but changes in species starting axis values can result in the 
+opposite effect (Figure \ref{fig:alt-stochasticity}).
+Outcomes with sub-additive tradeoffs are not similarly affected when
+stochasticity variance is equal for both axes (Figure \ref{fig:stochasticity}b).
+However, if the variance in axis-evolution stochasticity is greater in one axis,
+the attracting fixed point moves such that it is reduced for that axis
+and increased for the other.
+Therefore, a higher variance in the conflicting axis makes the community
+more invasible, while higher variance in the ameliorative axis makes it less.
 
-When we kept evolution for the second axis non-conflicting ($d_2 = 0.1$) and
-adjusted evolution for axis 1, the results were slightly more complicated
-(Figure \ref{fig:coexistence-spp}B).
-Additive genetic variance had a similar effect as when we varied both axes' evolution.
-The effect of varying $d_1$, however, depended on the tradeoffs.
-With sub-additive tradeoffs, the threshold for coexistence was $d_1 = -0.1$.
-This is because species evolve to maximize both axes, so $d_1 + d_2$
-determined the coexistence behavior of the community.
-When tradeoffs are additive or super-additive, $\min (d_1, d_2)$ determined whether 
-coexistence could occur.
-Under super-additivity, this occurs because species evolve to maximize one axis while
-the other evolves to zero.
-When one $d$ is negative, if sufficient species are added to the community and 
-each starts with random axis values, 
-one will inevitably evolve to maximize the axis that is conflicting. 
-That species will exclude all others.
-A similar dynamic occurs when tradeoffs are additive, except that
-the excluding species evolves to be near, rather than exactly on, 
-the conflicting axis being maximized.
-
-
-% \begin{figure}[ht!]
-% \centering
-% \includegraphics{2-coexist_spp.pdf}
-% \caption{Proportion of species that survived in simulations of 100-species, 2-axis
-%     communities with varying additive genetic variances ($\sigma_i^2$), and 
-%     varying (A) $d_1$ and $d_2$ or (B) varying $d_1$ with $d_2$ fixed at 0.1.
-%     Shown for sub-additive ($\eta < 0$), additive ($\eta = 0$), and 
-%     super-additive ($\eta > 0$) tradeoffs.}
-% \label{fig:coexistence-spp}
-% \end{figure}
-
-
-We also ran some of these simulations with varying levels of stochasticity
-in the population dynamics and axis evolution.
-Stochasticity had particularly strong negative effects on the proportion
-of species surviving at low values of $d_1$ and $d_2$ and at low $d_1$
-when $d_2$ was fixed (Figure \ref{fig:stoch-coexist-nspp}).
-Very strong stochasticity, particularly at low values of $d$, often caused
-extinction of all species.
-
-
-
-We looked more closely at how coexistence is affected by tradeoffs and 
-species' starting axis values
-using simulations of simpler, 5-species communities where the first 
-axis is conflicting and the second is non-conflicting.
-We simulated five situations:
-(i) sub-additive tradeoffs where all species are near the single
-possible state where both axes are maximized,
-(ii) super-additive tradeoffs where all species added to the community
-are inside the basin of attraction for the non-conflicting axis
-being maximized,
-(iii) additive tradeoffs where all species added to the community
-are near non-conflicting axis being maximized,
-(iv) super-additive tradeoffs where one species is
-inside the basin of attraction for the conflicting axis
-being maximized,
-and
-(v) additive tradeoffs where one species is near the conflicting 
-axis being maximized.
-
-In situation i, the first species evolves to the single
-axis state and reaches a high abundance (Figure
-\ref{fig:conditional-coexistence}).
-Subsequent species evolve to the same axis state, but the first axis
-being conflicting and the resident species being abundant keep them
-at low abundances.
-In situation ii, all species evolve to have the non-conflicting axis
-be maximized while the conflicting axis is zero.
-This removes the effect of the conflicting axis entirely, causing all
-species to coexist at the same abundance.
-In situation iii, species evolve to the nearest point along the
-neutral ring, and greater equilibrium values of axis 1 cause
-higher equilibrium abundances.
-Situations iv and v show what was described previously:
-With additive or super-additive tradeoffs and both conflicting
-and non-conflicting axes, if one species evolves to have a greater
-value of the conflicting axis, it will exclude all others.
-
-
-% \begin{figure}[ht!]
-% \centering
-% \includegraphics[width=0.7\textwidth]{3-cond_coexist_conflicting.pdf}
-% \caption{Conditional coexistence for 2-axis, 5-species communities when axis 1 has 
-%     conflicting evolution and axis 2 has non-conflicting.
-%     Panels show, for each of five situations,
-%     (A) starting conditions and trajectories for each species in axis space, 
-%     (B) abundances through time, and 
-%     (C) axis values through time.
-%     Situation i has sub-additive tradeoffs, situations ii and iv have 
-%     super-additive, and iii and v have additive.
-%     (A) Dashed arcs show the location of neutrally stable rings
-%     when tradeoffs are additive, and 
-%     the dotted lines separate the basins of attraction for the two possible
-%     axis states when tradeoffs are super-additive.
-%     (A,C) Shapes of hollow points indicate the equilibrium axis state.
-%     (C) For situations iii and v, line width is proportional to the 
-%     distance from the neutrally stable ring.
-%     Xs mark extinction events.
-% }
-% \label{fig:conditional-coexistence}
-% \end{figure}
-
-
-The outcomes of these simulations changed somewhat when we included stochasticity
-into these simulations.
-Stochasticity in abundance decreased coexistence across nearly all situations
-(Figure \ref{fig:conditional-coexistence-stoch}A).
-The exception was situation ii, which resulted in all 5 species coexisting 
-in all simulations for both axis and abundance stochasticity
-(Figure \ref{fig:conditional-coexistence-stoch}A,B).
-For situations iv and v, where coexistence did not occur in deterministic
-simulations, abundance stochasticity changed nothing.
-
-Like population stochasticity, axis stochasticity had a strong negative 
-effect on coexistence for situations i and iii but had no effect on
-situation iv (Figure \ref{fig:conditional-coexistence-stoch}B).
-For situation v, however, axis stochasticity allowed for coexistence
-when deterministic simulations resulted in exclusion, 
-and it resulted in different species surviving.
-This is because the axis stochasticity caused species to evolve 
-along the ring (towards the center) instead of staying in place once they 
-reached it (Figure \ref{fig:cond-coexist-Vstoch-sit-v}).
-The change of behavior happened because axes interacting with the 
-community via phenotypes that are
-random variables causes the equation for the expected value of each axis genotype at 
-the next time point to have extra additive terms
-(see Equation \ref{eq:taylor-expansion-final}).
-This resulted in the first two species being ``better equipped'' to evolve in 
-response to the invader that is closer to the conflicting axis being
-maximized.
-It also caused the invader to evolve away from maximizing the conflicting
-axis, which reduced its ability to exclude the others.
-
-
-
-% \begin{figure}[ht!]
-% \centering
-% \includegraphics{4-cond_coexist_stoch.pdf}
-% \caption{Outcomes from stochastic simulations of 2-axis, 5-species communities 
-%     when axis 1 has conflicting evolution and axis 2 has non-conflicting.
-%     Panels show scaled relative abundance(s)
-%     ($\sqrt{N_i} \, / \, \sum_k^n{\sqrt{N_k}}$) 
-%     of surviving species for simulations with
-%     (A) abundance stochasticity ($\sigma_N = 0.1$) and
-%     (B) axis stochasticity ($\sigma_V = 0.1$).
-%     Each bar in each sub-panel represents a simulation repetition.
-%     Bars to the left of the black vertical lines are for when there was no 
-%     stochasticity.
-%     Small numbers above bars indicate the number of species that coexisted
-%     when coexistence occurred.}
-% \label{fig:conditional-coexistence-stoch}
-% \end{figure}
-
-
-
-To explore the effect of axis evolution stochasticity on coexistence across 
-the axis space,
-we simulated a one-species equilibrium community that was invaded by 
-a species that varied in its starting axis values.
-We compared the probability of coexistence with stochasticity to that without.
-We found a largely negative effect across much of the axis space
-(Figure \ref{fig:inv-sims-heatmap-coexist}).
-The exception was in marginal starting axis values, where some locations
-had drastic improvements in coexistence probability---0 in deterministic 
-simulations and 1 in stochastic simulations.
-The range where improvements occurred varied with $d_1$ and with tradeoff type.
-Additive tradeoffs showed no areas where stochasticity helped coexistence.
-
-% \begin{figure}[ht!]
-% \centering
-% \includegraphics[width=0.5\textwidth]{5-inv_sims_hm_coexist.pdf}
-% \caption{Effect of stochasticity on coexistence of a resident species and 
-%     an invader based on the invader's starting axis values (x and y axes),
-%     magnitude of stochasticity (sub-panel columns), and 
-%     value of $d_1$ (sub-panel rows).
-%     The fill color of each cell indicates how much stochasticity changed
-%     the probability of coexistence compared to deterministic simulations,
-%     and white indicates no effect.
-%     Round points indicate the axis values of the resident species,
-%     triangle points indicate an alternative stable equilibrium state, 
-%     and a gray line indicates a neutrally stable ring.
-%     The area of the heatmap outlined by a thin, black line is where
-%     coexistence occurred in deterministic simulations.
-%     For these simulations, $d_2 = 0.1$ and $\sigma_i = 0.05$.
-%     Shown for sub-additive, additive, and super-additive tradeoffs.}
-% \label{fig:inv-sims-heatmap-coexist}
-% \end{figure}

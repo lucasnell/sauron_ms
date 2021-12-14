@@ -7,7 +7,7 @@
 \setcounter{table}{0}
 
 
-\section*{Appendix A: Matrix derivatives in quantitative genetics equations}
+\section*{Appendix A: Matrix derivatives and supplementary analytical results}
 
 
 \subsection*{Axis change}
@@ -189,6 +189,74 @@ account for axes being non-negative.
 
 
 
+\subsection*{Two-axis solutions}
+
+Two-axis versions of the equations for fitness and axis change:
+
+\begin{equation}
+\label{eq:2-axis-equations}
+\begin{split}
+    F_{i,t+1} &= \exp\left\{
+        r_0 - f \, \left( v_{i1,t}^2 + 2 \eta \, v_{i1,t} \, v_{i2,t} + v_{i2,t}^2 \right)
+        - \alpha_0 N_{i,t} - \alpha_0 \, \text{e}^{-v_{i1,t}^2 - v_{i2,t}^2} \, \Omega_{i,t}
+        \right\} \\
+    v_{i1,t+1} &= v_{i1,t} + 2 \, \sigma_A^2 \left[
+            \alpha_0 \, \Omega_{i,t} \, \text{e}^{-v_{i1,t}^2 - v_{i2,t}^2} v_{i1,t} - f \left( v_{i1,t} + \eta \, v_{i2,t} \right) 
+        \right] \\
+    v_{i2,t+1} &= v_{i2,t} + 2 \, \sigma_A^2 \left[
+            \alpha_0 \, \Omega_{i,t} \, \text{e}^{-v_{i1,t}^2 - v_{i2,t}^2} v_{i2,t} - f \left( v_{i2,t} + \eta \, v_{i1,t} \right) 
+        \right] \\
+    \Omega_{i,t} &\equiv \sum_{j \ne i}^{n}{ N_{j,t} \, 
+        \text{e}^{ -d_1 \, v_{j1,t}^2 - d_2 \, v_{j2,t}^2 } }
+    \text{.}
+\end{split}
+\end{equation}
+
+For a 1-species community, unless $\eta = -1$,
+
+\begin{equation}
+\label{eq:2-axis-1spp-solns}
+\begin{split}
+    \hat{v}_{i1} = \hat{v}_{i2} &= 0 \\
+    \hat{N}_i &= \frac{r_0}{\alpha_0}
+    \text{.}
+\end{split}
+\end{equation}
+
+In a multispecies community at equilibrium, 
+if $\hat{v}_{i1} \ne 0 \And \hat{v}_{i2} \ne 0$,
+
+\begin{equation}
+\label{eq:2-axis-sub-solns}
+\begin{split}
+    \hat{v}_{i1} = \hat{v}_{i2} &= \sqrt{\frac{1}{2} \log \left( 
+        \frac{\alpha_0 \, \hat{\Omega}_i}{f (1 + \eta)}  \right)} \\
+    \hat{N}_i &= \frac{1}{\alpha_0} \left(
+        r_0 - f (1 + \eta) \left[
+            \log\left( \frac{\alpha_0 \, \hat{\Omega}_i }{f (1 + \eta)}
+            \right) + 1 
+        \right]
+    \right)
+    \text{.}
+\end{split}
+\end{equation}
+
+If instead $\hat{v}_{i1} \ne 0 \And \hat{v}_{i2} = 0$, then 
+
+\begin{equation}
+\label{eq:2-axis-super-solns}
+\begin{split}
+    \hat{v}_{i1} &= \sqrt{\log \left( \frac{\alpha_0 \, \hat{\Omega}_i}{f} 
+        \right)} \\
+    \hat{N}_i &= \frac{1}{\alpha_0} \left(
+        r_0 - f \left[
+            \log\left( \frac{\alpha_0 \, \hat{\Omega}_i }{f}
+            \right) + 1 
+        \right]
+    \right)
+    \text{.}
+\end{split}
+\end{equation}
 
 
 
@@ -203,20 +271,15 @@ value of axis 1 at time $t+1$ is
 \begin{split}
     \text{E}(v_{1,t+1}) & \approx
         v_{1,t} + 2 \; \sigma_A^2 \; \Bigg\{ \\
-            & \alpha_0
-            \left(
-                \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
-                    - \mathbf{\ddot{v}}_{j,t}^{\textrm{T}}
-                    \mathbf{D} \, \mathbf{\ddot{v}}_{j,t} } }
-            \right)
+            & \alpha_0 \: \Omega \: 
             v_{1,t} \; \text{e}^{-v_{1,t}^2 - v_{2,t}^2} 
             \bigg[ 
-                1 + \sigma^2_{\varepsilon_{v_1}} \left( \frac{1}{2} - 4 \; v_{1,t}^2 \right) \\
-                & \hspace*{6em} - 2 \; \sigma^2_{\varepsilon_{v_2}} \, v_{2,t}^2 \left( 1 - v_{2,t}^2 \right)
+                1 + \sigma^2_{\varepsilon_{1}} \left( \frac{1}{2} - 4 \; v_{1,t}^2 \right) \\
+                & \hspace*{6em} - 2 \; \sigma^2_{\varepsilon_{2}} \, v_{2,t}^2 \left( 1 - v_{2,t}^2 \right)
             \bigg] \\
             & - f \bigg[
                 v_{1,t} + \eta \; v_{2,t} + \frac{1}{2} \left(
-                    \sigma^2_{\varepsilon_{v_1}} \, v_{1,t} + \sigma^2_{\varepsilon_{v_2}} \, \eta \; v_{2,t}
+                    \sigma^2_{\varepsilon_{1}} \, v_{1,t} + \sigma^2_{\varepsilon_{2}} \, \eta \; v_{2,t}
                 \right)
             \bigg]
         \Bigg\}
@@ -225,6 +288,5 @@ value of axis 1 at time $t+1$ is
 \end{equation}
 
 where we drop the index for species to reduce clutter.
-Subscripts for axes are reversed for the approximation for axis 2.
 
 

@@ -1,135 +1,79 @@
 
 \section*{Introduction}
 
-
-Competitive communities are formed through both ecological and evolutionary processes.
-The ecologically relevant traits available to competitors are a result of 
-evolutionary history and of ongoing evolution.
-How the use of these traits affects others in the community, and
-how these effects feed back to affect the focal species,
-are ecological processes.
-Given our somewhat recent understanding that ecological and evolutionary processes
-can occur on the same timescales, theoretical models increasingly
-include both components, and they are providing new insights into how species coexist.
-
-% Stabilizing mechanisms:
-Many mechanisms can allow for coexistence among competitors.
-Often in theoretical studies of competitive coexistence, 
-an emphasis is placed on differences among competitors
-along a resource gradient.
-Greater differences among competitors in their use along the gradient reduces
-the effect of competition among them, which provides a density-dependent 
-stabilizing effect and increases the ability for them to coexist.
-
-
-% Destabilizing mechanisms:
-However, these coexistence mechanisms do not exist in an ecological vacuum.
-Even when coexistence mechanisms exist between competitors, other
-ecological interactions between them may undermine their coexistence.
-Even if two birds evolve to reduce spatial overlap in foraging areas,
-selection may also favor increased aggression towards heterospecifics
-when they do interact.
-Similarly, not all species in a community are likely to evolve
-traits contributing to mechanisms that stabilize coexistence.
-If two plants evolve to assimilate nutrients at different ratios,
-but a third plant evolves allelopathy, 
-how does the latter affect coexistence among all three species?
-When these complexities might arise and how they affect coexistence is 
-not obvious.
+Competitive communities contain a wide array of ways in which
+competitors interact, and these interactions often influence
+species coexistence.
+Interactions that weaken interspecific competition in relation to
+intraspecific competition should help stabilize coexistence,
+while those doing the opposite should help destabilize it 
+\citep{Chesson2000}.
+A large body of work has provided many mechanisms that should stabilize
+coexistence, most of which center on ecological disparities among species.
+These include differences in species'
+use of resources \citep{Macarthur1967a,Roughgarden1976,Abrams2009}, 
+effects from natural enemies \citep{Grover1998,Vandermeer1998,Ehrlich2017a,Abrams2002},
+and environmental responses
+\citep{Chesson1997,Armstrong1976,Loreau1992,Chesson1994,Kremer2017,Pacala1994}.
+Other factors can increase a species' per-capita effect on its competitors.
+Traits that could produce these effects include
+tree height \citep{Falster2003}, 
+propagule size \citep{Geritz1999,Fagerstrdm2016},
+or aggressive behavior \citep{Brown1971}.
+Without strong coinciding tradeoffs, these mechanisms can result 
+in strict hierarchies for competitive outcomes and 
+can limit stable coexistence \citep{Abrams1994,Falster2003}.
+Natural competitive communities likely contain a wide range of
+both coexistence- and exclusion-promoting interactions,
+and the effects of combinations of different interaction types
+is unclear.
 
 
-Here, we use a simple model to describe what happens when competitors'
-coevolution can strengthen both stabilizing and destabilizing mechanisms.
-In contrast to many other models, we do not impose a particular mechanism
-of coexistence (e.g., niche breadth) in our model.
-In our model, species can evolve to reduce the effects they experience from
-competition by investing in ``competition axes.''
-These axes directly affect their per-capita growth rates by reducing the 
-density-dependent effects they experience from other species.
-Axes take one of two forms: 
-Investment by species $i$ either reduces the effects of competition on all other species (an ``ameliorative axis'') or 
-it increases it (a ``conflicting axis'').
+Evolution of ecologically relevant traits---and 
+associated species interactions---adds to this complexity,
+since it can have strong effects on coexistence
+\citep{Wagner2017a,TerHorst2018}.
+Community dynamics are affected by evolutionary change
+for initial assembly \citep{Vellend2010},
+subsequent invasions \citep{Faillace2016},
+and long-term equilibria, both
+stationary \citep{Lankau2011,Barabas2016}
+and cyclical \citep{Fussmann2013,Vasseur2011a,Kremer2017}.
+Evolution can contribute to coexistence by
+improving invasion success \citep{Faillace2016}
+or buffering against environmental perturbations 
+\citep{Barabas2016,Fussmann2013,Osmond2013,Bell2017}.
+More complex mechanisms of evolution mediating coexistence, 
+such as synergistic pleiotropy \citep{Schreiber2018a}
+or ``neighbor-dependent selection'' \citep{Vasseur2011a},
+have also been demonstrated.
+Alternatively, some evidence suggests that evolution can 
+reduce species persistence \citep{Ferriere2013},
+increase exclusion of invaders by resident species \citep{Faillace2016},
+and destabilize long-term coexistence \citep{Shoresh2008}.
+Recently, \citet{Pastore2021} found that evolution often caused
+exclusion in a 2-species, consumer--resource model, 
+largely due to evolutionary changes in competitive differences.
+
+
+Here, we use a simple model to describe what happens when competitors
+can evolve to reduce the effects they experience from interspecific
+competition via both stabilizing and destabilizing mechanisms.
+In contrast to many other models, we do not impose a specific mechanism
+of coexistence (e.g., niche differences) in our model and instead focus 
+on general insights that apply to many types of interactions.
+In seeking generality, the model is necessarily phenomenological:
+species directly affect competition experienced by themselves and
+others in the community.
+They do this via evolutionary investment in ``competition axes.''
+Competition axes take one of two forms: 
+For an ``ameliorative axis,'' investment by any species reduces 
+the effects of competition on all other species.
+For a ``conflicting axis,'' investment by one species
+increases competitive effects for all others.
 Investment also has a cost, and this cost can be either more or less
-costly when a species invests in two or more axes.
-Using this general framework, we explore when coexistence is most likely,
-and we compare these results to some of the other coexistence mechanisms
-that are often discussed.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% Alternative community states can be described by both the number of species present and by the
-% ecologically relevant traits that those species possess. How communities arrive at these states
-% is a longstanding question in community ecology
-% \citep{Drake:1991bv,Weiher:1999tf,Gleason:1927cj,Clements:1936hw}.
-% How community processes shape trait evolution and species filtering is an equally enduring
-% question in evolutionary ecology
-% \citep{Darwin:1859to,Loeuille:2018cx,Pontarp:2018hv,MacArthur:1964uv,Schluter:2000jz,Muschick:2012ha}.
-% Despite the length of time spent on these topics, few generalizations exist \citep{Lawton:1999fj}, at
-% least partly because of context-dependent mechanisms \citep{Drake:1991bv} and the complex effects of
-% history \citep{Drake:1991bv,Chase:2003ko,Weiher:1999tf}.
-%
-% Competition has been a particularly well-studied process for shaping communities and trait evolution
-% \citep{Simpson:1953wr,Volterra:1928fy,Macarthur:1964kv,Hardin:1960ep,Roughgarden:1976eh,Rosenzweig:1978bj,
-% Armstrong:1980id,Hutchinson:1959tq,BrownJr:1956wi,Day:2004db}.
-% In many theoretical models, competition strength between two species is inversely proportional to
-% the difference in their ecologically relevant trait values
-% (\citealp{Abrams:1983jz,Macarthur:1967jf,Volterra:1928fy,Macarthur:1964kv,Rosenzweig:1978bj};
-% reviewed in \citealp{Taper:1992kz,Taper:1985ub,Abrams:1986tx,Dayan:2005ub}).
-% Models can include this relationship either explicitly \citep[e.g.,][]{Burger:2006tq,Roughgarden:1976eh,Zu:2008uw}
-% or implicitly, where trait values represent the ability to extract different resources
-% \citep[e.g.,][]{Macarthur:1964kv,Ackermann:2004bb}. In either case, this process can generate or maintain
-% trait diversity in a range of forms, including alternative stable states and limit cycles
-% \citep{Gilpin:1975gz,Burger:2006tq}.
-% In other models, traits change how species perform in competitive contests.
-% This can often lead to arms races, where traits cycle or continually increase
-% \citep{MaynardSmith:1986tw,Parker:1983io}.
-% When \citet{Abrams:1994th} explicitly included population dynamics into a similar model, more complex
-% patterns emerged, such as dimorphism and alternative stable states.
-%
-
-
-
-% Ecological limits to evolutionary rescue
-
+costly when a species invests in two or more axes, compared to just one.
+We explore when coexistence is most likely,
+and we compare these results to some of the other coexistence and exclusion
+mechanisms that are often discussed.
 
