@@ -4,144 +4,179 @@
 
 
 
-We first conducted simulations to find points in axis space 
-representing stable equilibria.
-For these simulations, we used two axes that were both
-neutral (i.e., $\mathbf{d} = \{0,0\}$) and thus had
-no direct effect on other species.
-This allowed us to determine where species evolve when investments
-made by other species have no effect.
-In this case, the number of species in the community and 
-tradeoffs associated with investing in multiple axes
-determine the location(s) of these stable axis states
-(Figure \ref{fig:two-axis-outcomes}).
-Species invest more in competition axes when there are
-more species in the community, and make no investments
-when they are the only species present.
-Sub-additive tradeoffs 
-(when investing in one axis facilitates investment in another; $\eta < 0$), 
-result in a single stable point where both axes are
-maximized---within the limits imposed by axes' negative effects on 
-the growth rate.
-When the tradeoffs are super-additive ($\eta > 0$), there are two
-alternative stable states, one for each axis being maximized while the 
-other is zero.
-Lastly, for additive tradeoffs ($\eta = 0$), axes
-evolve to any point on a neutrally stable ring.
+We first conducted simulations to see how investment-cost additivity 
+determines the locations in investment space to which species evolve
+ (Figure \ref{fig:tradeoffs-outcomes}).
+We find that sub-additive costs (when investing in one suite facilitates
+investment in the other; $\eta < 0$) result in a single outcome where all 
+species invest in both suites of traits.
+Additive costs ($\eta = 0$) result in a neutrally stable ring, where
+any location along that ring is an equally viable investment strategy.
+Lastly, when investment costs are super-additive ($\eta > 0$), there are two
+alternative stable states, one where species invest only in conflicting traits,
+another where they only invest in partitioning traits.
 
 
-% The locations of these states are determined by 
-% the baseline growth rate, 
-% the cost of increasing axes on the growth rate,
-% and the non-additive tradeoff
-% (Equations \ref{eq:two-axes-finals-eta-negative}--%,
-% % \ref{eq:two-axes-finals-eta-zero}, and 
-% \ref{eq:two-axes-finals-eta-positive}).
+The relative investment in each suite of traits is also affected by
+non-adaptive stochasticity, especially when investment costs are weakly
+non-additive (Figure \ref{fig:stochasticity}).
+When stochastic variances are equal for both suites of traits, 
+this has no effect when costs are sub-additive (Figure
+\ref{fig:stochasticity}\textit{A}), but
+for super-additive costs, increasing variances results in a third
+attractor point where species invest in both suites of traits
+(Figure \ref{fig:stochasticity}\textit{B}).
+Further increasing variances widens the basin of attraction for this point,
+potentially resulting in most species evolving to invest in both suites 
+of traits.
+When variances are unequal, this reduces the investment for the suite of traits 
+with the greater variance.
+When costs are sub-additive, the single attractor point in investment
+space moves away from the axis for the suite of traits with greater variance 
+(Figure \ref{fig:stochasticity}\textit{A}).
+When costs are super-additive, the basin of attraction widens for the point
+where species only invest in the suite of traits with lower stochastic variance
+(Figure \ref{fig:stochasticity}\textit{B}).
+If the distribution of starting investments are symmetrical across investment
+space, this should result in more species specializing in the suite of traits
+with weaker non-adaptive stochasticity.
+That non-adaptive stochasticity affects investment evolution is also 
+supported by analytical results (Equation \ref{eq:taylor-expansion-final}).
 
 
-The next set of simulations explored how axis strength and axis investments
-within communities affected coexistence.
-We simulated 2-species, 2-axis communities where one axis was conflicting
-and the other ameliorative.
-We found all possible stable communities for scenarios with varying 
-strengths of the two axes for both sub- and super-additive tradeoffs.
-For each community and scenario, we calculated the 
-scaled community size
-($\sum_j^n{N_j \text{exp} \{ -\mathbf{v}_{j}^{\text{T}} \mathbf{D} \mathbf{v}_j \}}$), which represents the community abundance accounting
-for the effect of species' axes on competition experienced by others in the
-community.
-A higher value of the scaled community size indicates a lower invasibility.
-However, this trend only occurs within the same type of tradeoffs
-because the costs associated with different tradeoffs are not the
-same when summed across axis space (Figure \ref{fig:tradeoffs-r}).
-From these simulations, we find that community type and axis strength
-have strong effects on coexistence, as does their interaction
-(Figure \ref{fig:comms-d}).
-Super-additive tradeoffs always allow for more possible communities,
-with up to 3 communities across much of the range of axis strengths.
-Sub-additive tradeoffs only ever allow for 1 possible community,
-but axis strengths can cause a switch in the possible community
-(communities v and vi in Figure \ref{fig:comms-d}a).
-Sub-additive communities are always sensitive to axis strengths
-because all species always invest in both axes.
-However, in super-additive communities, each species invests in 
-only one axis, and this results in large variation in how
-super-additive communities are affected by axis strengths.
-For example, when both species invest in the conflicting axis,
-that community's invasibility is greatly reduced with a
-stronger conflicting axis (e.g., changing conflicting axis for community i).
-Alternatively, strength of an axis that neither species invests in has
-no effect on invasibility (e.g., community i with changing ameliorative axis).
+The total amount invested unsurprisingly depends on the investment costs
+(which are fixed in this model) and benefits.
+The benefits depend on the number, abundances, and investments of other 
+species in the community.
+If there are many other species in the community that are all abundant 
+and invested heavily in conflicting traits, this will create selection 
+for the focal species to invest more heavily to avoid this strong 
+interspecific competition.
+On the other extreme, where there are few others competitors that are rare
+and invested heavily in partitioning traits, selection would favor lower
+investments since the cost of investing is less justified.
+In our model, where a community sits on this gradient, from the perspective
+of species $i$, can be calculated as
+$\sum_{j \ne i}^{n}{ N_j \text{e}^{ d_x x_j^2 - d_p p_j^2 } }$.
+We call this the ``scaled community size'' ($\Omega_i$) and define it as the
+total community abundance accounting for the effect of species' investments 
+on competition experienced by species $i$.
+Our analytical solutions show that when there are no competitors, 
+species should not invest at all
+(Equation \ref{eq:analytical-1spp-solns})
+and that in multi-species communities, 
+total investment is proportional to $\Omega_i$
+(Equations \ref{eq:analytical-sub-solns}, \ref{eq:analytical-super-solns}).
 
-We also find that increasing axis strength does not necessarily produce
-outcomes consistent with how that axis affects coexistence
-(greater coexistence with ameliorative, less with conflicting).
-This is because varying axis strengths can change which
-communities are stable.
-For sub-additive tradeoffs, we find that increasing the ameliorative
-axis strength past a certain threshold causes a new community to 
-be the lone stable possible community (v changes to vi in Figure \ref{fig:comms-d}).
-This new community has a greater competitive effect on invaders
-(Figure \ref{fig:comms-d}a) and is more susceptible to losing a resident
-species when an invader invests in the conflicting axis
-(Figure \ref{fig:comms-d}b).
-For super-additive tradeoffs, a community where both species invest in
-the conflicting axis is no longer stable with a strong conflicting
-axis, nor is a community with both investing in the ameliorative axis
-stable for a strong ameliorative axis
-(i and iv, respectively, in Figure \ref{fig:comms-d}).
 
-Because the investments made by community members appears to be so important,
-we next simulated equilibrium, 10-species communities with super-additive 
-tradeoffs where 0--10 species invested in the conflicting axis
-(the others invested in the ameliorative axis).
-More species investing in the conflicting axis increases the investment
-per species for all species (Figure \ref{fig:stabilizers}a,b).
-A stronger conflicting axis generally causes a greater investment per species,
-but this effect levels off with greater numbers of species investing in 
-the conflicting axis.
-The exception to this is when only one species invests in the conflicting axis.
-In this case, the investment per species in the conflicting axis is lower
-when then conflicting axis is strong.
-This is because when the conflicting axis is strong and there is only one
-species that invests in it, that species strongly suppresses all other species 
-without experiencing competition from others investing in the conflicting axis.
-The result is a lower scaled community size experienced by the species
-investing in the conflicting axis, and species invest less with greater
-scaled community size (Equation \ref{eq:2-axis-super-solns}).
-The number of species investing in the conflicting axis and 
-conflicting axis strength both also increased the scaled community 
-size, an effect that levelled off more quickly for a strong conflicting axis
-(Figure \ref{fig:stabilizers}c);
-this levelling off was not as apparent when costs to investment ($f$) were reduced.
-The effect of ameliorative axis strength was opposite to that of conflicting axis
-strength (Figure \ref{fig:stabilizers2}).
-Additionally, the effects of number of species investing in the conflicting
-axis was much less asymptotic with a strong ameliorative axis than for a strong
-conflicting axis.
 
-Analytical results indicate that adding stochasticity to axis evolution
-changes expected values of axes similar to changes in tradeoffs
-(Equations \ref{eq:taylor-expansion-final}, \ref{eq:taylor-expansion-final-supp}).
-Simulations when tradeoffs are weak ($| \eta |= 0.01$) support this.
-The first example shown is when tradeoffs are super-additive and 
-variance in axis-evolution stochasticity is the same across both axes
-(Figure \ref{fig:stochasticity}a).
-When variance is low, the simulations act similarly to when there is no
-stochasticity, and species evolve to maximize one axis while the other is zero.
-With a higher variance, a third attracting fixed point forms where species
-invest in both axes.
-With even higher variance, the first two points are no longer attractors,
-resulting in species evolving to a single point where both axes are maximized.
-Axis evolution thus behaves similarly to when tradeoffs are sub-additive.
-Increasing variance in this case causes a decrease in scaled community size,
-but changes in species starting axis values can result in the 
-opposite effect (Figure \ref{fig:alt-stochasticity}).
-Outcomes with sub-additive tradeoffs are not similarly affected when
-stochasticity variance is equal for both axes (Figure \ref{fig:stochasticity}b).
-However, if the variance in axis-evolution stochasticity is greater in one axis,
-the attracting fixed point moves such that it is reduced for that axis
-and increased for the other.
-Therefore, a higher variance in the conflicting axis makes the community
-more invasible, while higher variance in the ameliorative axis makes it less.
+The effect of scaled community size on total investment results in feedbacks
+between community investment composition and subsequent investment by new
+species (Figure \ref{fig:community-invasions-zero}).
+When all members of a community invest in partitioning traits, this reduces
+the total amount invested per species for a given community size, with the
+potential for some species to avoid investment altogether.
+In Figure \ref{fig:community-invasions-zero}\textit{A--C}, all species invading
+the community invest only in partitioning traits. 
+The species that first invades (species 1) evolves to invest less during 
+the period it remains alone, so when the others arrive, it has the lowest 
+total investment in the community.
+Because of these starting conditions and because a community full of
+partitioning investment selects for low investment,
+species 1 slowly evolves to not invest at all.
+Figure \ref{fig:community-invasions-zero}\textit{D--F} shows that this can also 
+happen when one of the species (species 3) invests only in conflicting traits.
+The main differences here are that
+(1)~the species evolving to no investment does not need to start with 
+less overall investment than the other species and
+(2)~the evolution to zero investment occurs faster.
+Moreover, before species 3 evolves to invest less, it causes a precipitous
+decline in the abundances of the other species and a slightly less 
+dramatic increase in their total investments.
+Despite species 1 being more abundant, it declines more severely than 
+species 2  after species 3 arrives.
+This is because species 1 is less invested in reducing interspecific competition
+and thus more vulnerable to a species investing in conflicting traits.
+
+
+Figure \ref{fig:community-invasions-armsrace}\textit{A--C} shows that
+the effects of strong partitioning investment in a community can be quickly
+torn apart when just two species arrive that invest in conflicting traits.
+This is because these two species engage in an arms race where one invests
+more heavily and expands in population, then slowly invests less as others
+in the community become less abundant.
+The other species then evolves to invest more in conflicting traits
+because of the increased competition it experiences from the abundant species,
+and it subsequently becomes most common.
+This results in damped oscillations that eventually reach an equilibrium 
+where both species have invested much more than when they started.
+During this back-and-forth, the species that invest only in partitioning 
+traits increase their own investments to compensate for the increasing 
+competition they experience.
+Invaders investing in partitioning traits are excluded unless
+they have already invested heavily.
+Whether this arms race occurs depends on the time between successive 
+invasions of species investing in conflicting traits
+(Figure \ref{fig:community-invasions-armsrace}\textit{D--F}).
+With a large gap between conflicting investors,
+the early-arriving species, with only partitioning investors to compete with,
+evolves a low enough investment that it is excluded when a new 
+conflicting investor arrives.
+The partitioning investors that had already evolved increased investment
+in response to each other and the first conflicting investor
+survive both invasions of conflicting investors.
+The partitioning investor that evolved no investment quickly went extinct
+upon invasion of the first species with conflicting investment.
+A new invader with moderate investment in partitioning traits
+can coexist in this community because of the reduced investment
+evolved by the conflicting investor.
+These results are similar to those where resident species invest in
+only conflicting traits:
+If the gap between new invaders is short, the invader must have
+invested heavily in either suite of traits to successfully invade.
+If the gap is long, then invaders more heavily invested in conflicting traits
+than the resident will exclude the resident that has evolved reduced investment
+while it is alone;
+moderately invested partitioning invaders will coexist with the resident.
+
+
+In the previous two examples (Figures \ref{fig:community-invasions-zero} and
+\ref{fig:community-invasions-armsrace}), costs are super-additive, and 
+to adjust the community-wide strength of a given suite of traits, 
+we simply change the proportion of species specializing in it.
+Communities with sub-additive costs can similarly differ in the effects of
+existing investment in partitioning versus conflicting traits.
+This occurs not because of differences in investments among species since 
+they all eventually invest in both suites equally.
+Instead, this happens when one suite of traits has a stronger effect on other
+species for each unit invested (i.e., $d_x \ne d_p$).
+Whichever suite has a greater per-unit-invested effect is more influential 
+as species evolve to invest in both, and new species' total investments are
+affected in a qualitatively similar way to when tradeoffs are super-additive
+(Equations \ref{eq:analytical-sub-solns}, \ref{eq:analytical-super-solns}).
+The exception to this is when $\eta \le -1$, a scenario where investing
+in both suites of traits in the same amounts will cost nothing or even 
+provide a benefit to the per-capita growth rate.
+This lack of tradeoff results in ever-increasing investments that are
+unlikely in natural populations.
+A more important difference between the sub- and super-additive cases
+is that the feedbacks between current community investments and those
+of new invaders are usually transient when costs are sub-additive because
+the invaders always evolve to invest in both suites of traits.
+The only time these feedbacks have lasting effects is when invaders
+evolve to not invest or instigate a resident species to do the same, 
+which can also occur when $d_x \ll d_p$.
+Exactly the same dynamics as the super-additive case could be observed
+if species differed in their values of $d_x$ and $d_p$, which 
+we do not include our model but would of course be the case in real communities.
+In summary, we focused on the super-additive case because
+(1)~the feedbacks are qualitatively the same,
+(2)~any differences in dynamics are caused by unrealistic assumptions
+of the model, and
+(3)~the super-additive case is easier to visualize.
+
+
+
+
+
 

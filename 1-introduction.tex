@@ -1,79 +1,173 @@
 
 \section*{Introduction}
 
-Competitive communities contain a wide array of ways in which
-competitors interact, and these interactions often influence
-species coexistence.
-Interactions that weaken interspecific competition in relation to
+Interactions among competing species influence their ability to coexist.
+Those that weaken interspecific competition in relation to
 intraspecific competition should help stabilize coexistence,
 while those doing the opposite should help destabilize it 
 \citep{Chesson2000}.
-A large body of work has provided many mechanisms that should stabilize
-coexistence, most of which center on ecological disparities among species.
-These include differences in species'
-use of resources \citep{Macarthur1967a,Roughgarden1976,Abrams2009}, 
-effects from natural enemies \citep{Grover1998,Vandermeer1998,Ehrlich2017a,Abrams2002},
-and environmental responses
-\citep{Chesson1997,Armstrong1976,Loreau1992,Chesson1994,Kremer2017,Pacala1994}.
-Other factors can increase a species' per-capita effect on its competitors.
-Traits that could produce these effects include
-tree height \citep{Falster2003}, 
-propagule size \citep{Geritz1999,Fagerstrdm2016},
-or aggressive behavior \citep{Brown1971}.
-Without strong coinciding tradeoffs, these mechanisms can result 
-in strict hierarchies for competitive outcomes and 
-can limit stable coexistence \citep{Abrams1994,Falster2003}.
-Natural competitive communities likely contain a wide range of
-both coexistence- and exclusion-promoting interactions,
-and the effects of combinations of different interaction types
-is unclear.
+Mechanisms that should cause a relative decrease in species'
+per-capita effects on their competitors should help stabilize coexistence.
+These often involve some form of niche partitioning, 
+where species differ in the factors that affect their population growth rate.
+Classic examples include species using different resources
+\citep{Macarthur1967a,Roughgarden1976,Abrams2009},
+but other differences among species, such as their 
+effects from natural enemies
+\citep{Grover1998,Vandermeer1998,Ehrlich2017a,Abrams2002}
+or responses to environmental change
+\citep{Chesson1997,Armstrong1976,Loreau1992,Chesson1994,Kremer2017,Pacala1994}
+may also have similar effects.
+Alternatively, mechanisms that can increase species' per-capita effects on 
+their competitors should destabilize coexistence.
+These typically occur when species possess traits that cause conflict
+between their interests and those of their competitors.
+One example of a conflicting trait is plant height, since taller plants 
+more successfully access light but shade their shorter competitors.
+This can lead to an arms race among plants for increased height, 
+within the constraints imposed by the physiological cost of being tall
+\citep{Falster2003}.
+Other examples of conflicting traits include
+seed size \citep{Geritz1999,Fagerstrdm2016},
+aggressive behavior \citep{Brown1971},
+and body size \citep{Kisdi2001}.
+Tradeoffs and frequency dependence can allow for coexistence despite
+among-species variation in these traits
+\citep{Kisdi2001,Falster2003}, but in isolation, the effects these traits have
+on other species act to limit stable coexistence.
 
 
-Evolution of ecologically relevant traits---and 
-associated species interactions---adds to this complexity,
-since it can have strong effects on coexistence
-\citep{Wagner2017a,TerHorst2018}.
-Community dynamics are affected by evolutionary change
-for initial assembly \citep{Vellend2010},
-subsequent invasions \citep{Faillace2016},
-and long-term equilibria, both
-stationary \citep{Lankau2011,Barabas2016}
-and cyclical \citep{Fussmann2013,Vasseur2011a,Kremer2017}.
-Evolution can contribute to coexistence by
-improving invasion success \citep{Faillace2016}
-or buffering against environmental perturbations 
-\citep{Barabas2016,Fussmann2013,Osmond2013,Bell2017}.
-More complex mechanisms of evolution mediating coexistence, 
-such as synergistic pleiotropy \citep{Schreiber2018a}
-or ``neighbor-dependent selection'' \citep{Vasseur2011a},
-have also been demonstrated.
-Alternatively, some evidence suggests that evolution can 
-reduce species persistence \citep{Ferriere2013},
-increase exclusion of invaders by resident species \citep{Faillace2016},
-and destabilize long-term coexistence \citep{Shoresh2008}.
-Recently, \citet{Pastore2021} found that evolution often caused
-exclusion in a 2-species, consumer--resource model, 
-largely due to evolutionary changes in competitive differences.
+The traits underlying both conflicting and partitioning mechanisms 
+are thus important forces mediating competitive interactions that 
+affect coexistence.
+Under what conditions should they evolve?
+Despite the long history of research on competition's effects on traits
+\citep[e.g., ][]{Schreiber2011,Taper1992,Pastore2021,Abrams1983a,Roughgarden1976,Vasseur2011a}, 
+we know much less about how traits that either stabilize or destabilize
+coexistence result from coevolution among competitors in communities of 
+mixed trait types.
+For example, what happens to resource partitioning among some species in a
+community when others have evolved to instead aggressively defend resources?
+Alternatively, how are arms races among competitors affected by a subset of 
+the community that vary in their responses to environmental change?
+Feedbacks between eco-evolutionary elements of communities combined with 
+the fact that the effects of species interactions can depend on context
+\citep{Saavedra2017, Song2020}
+make these questions non-trivial.
+Moreover, both types of traits are likely ubiquitous in competitive communities.
+In tropical forest tree communities, competitors have evolved to better capture
+light (and thereby shade competitors), but many mechanisms, such as
+species-specific responses to herbivores, also play roles in maintaining 
+the rich species diversity seen here \citep{Wright2002}.
 
 
-Here, we use a simple model to describe what happens when competitors
-can evolve to reduce the effects they experience from interspecific
-competition via both stabilizing and destabilizing mechanisms.
-In contrast to many other models, we do not impose a specific mechanism
-of coexistence (e.g., niche differences) in our model and instead focus 
-on general insights that apply to many types of interactions.
-In seeking generality, the model is necessarily phenomenological:
-species directly affect competition experienced by themselves and
-others in the community.
-They do this via evolutionary investment in ``competition axes.''
-Competition axes take one of two forms: 
-For an ``ameliorative axis,'' investment by any species reduces 
-the effects of competition on all other species.
-For a ``conflicting axis,'' investment by one species
-increases competitive effects for all others.
-Investment also has a cost, and this cost can be either more or less
-costly when a species invests in two or more axes, compared to just one.
-We explore when coexistence is most likely,
-and we compare these results to some of the other coexistence and exclusion
-mechanisms that are often discussed.
+
+
+
+
+
+% mention these as limitations? (maybe also fluctuation-dependent mechanisms?)
+% storage effect \citep{Warner1985,Abrams2013}
+% frequency-dependent predation \citep{Gendron1987}
+
+Here, we use a simple model of coevolving competitors to evaluate how 
+partitioning and conflicting traits evolve in a community.
+Competitors can evolve to reduce the interspecific competition they experience
+by investing in two suites of competitive traits, where suites are 
+distinguished by their effects on other competitors
+(Figure \ref{fig:model-description}).
+In the first suite (``conflicting traits''), investment by species $i$
+strengthens the competitive effect that species $i$ has on all
+other competitors.
+% Investment in this suite would promote competitive exclusion and 
+% might occur when contest competition leads to arms races among competitors
+% \citep{Falster2003}.
+In the second suite (``partitioning traits''), all competitors' competition
+from species $i$ is reduced when it invests in this suite.
+% This would promote competitive coexistence, and might occur when species evolve
+% to exploit different resources from other competitors
+% \citep{Roughgarden1976}.
+% These across-species effects of investing mean that the overall 
+% competition experienced by any species is affected by 
+% the investments made by all community members.
+Investment also incurs a cost to the per-capita growth rate, and 
+these costs can be non-additive for simultaneous investments in both suites.
+For sub-additive costs, it is less costly to invest in both suites, and
+for super-additive, it is more costly.
+As an illustrative example, we can return to plant height, where we
+consider a forest with trees of varying heights.
+If the shading of taller trees increases the competition experienced by 
+the shorter ones, the cost of maintaining a tall stem would represent the 
+tall trees' investments in conflicting traits.
+To decrease the overall competition they experience from tall trees,
+short trees might evolve to use different below-ground resources.
+If this change in resource use has a fitness cost and if the tall trees also
+experience reduced competition from the short trees as a result, then 
+the short trees are investing in a partitioning suite of traits.
+If having both a tall canopy and different resource use is more costly
+than the summed cost of both separately, then costs are super-additive.
+
+
+
+Each suite of traits is modeled as one unit and only in terms of its 
+effects throughout the community, so
+investments do not imply any specific changes in values of the
+underlying traits.
+Within the constrains of needing to act together, what traits can
+constitute a suite are quite flexible:
+In the example above, the partitioning suite of traits that allows for 
+resource partitioning could be the physiological traits associated with 
+relative uptake rates of various nutrients, or it could be a derived trait 
+such as average resource use along a gradient.
+This abstraction also means that (1) investments do not define species
+(i.e., species with the same investments are not considered the same species)
+as they often do in eco-evolutionary models \citep[e.g., ][]{Northfield2021}
+and
+(2) similarity in investment has no effect on the strength with which 
+species compete.
+Additionally, all species are symmetrical in that when species make the
+same investments, they will always have the same per-capita effect on
+each other.
+Under these assumptions, we seek general insights into how conflicting 
+and partitioning traits result from coevolution among competitors.
+
+
+
+
+
+
+
+
+
+% \citep{Doebeli2010a}
+
+
+% eco-evo affecting competition: \citep{Pantel2015}
+
+% Evolution of ecologically relevant traits---and 
+% associated species interactions---adds to this complexity,
+% since it can have strong effects on coexistence
+% \citep{Wagner2017a,TerHorst2018}.
+% Community dynamics are affected by evolutionary change
+% for initial assembly \citep{Vellend2010},
+% subsequent invasions \citep{Faillace2016},
+% and long-term equilibria, both
+% stationary \citep{Lankau2011,Barabas2016}
+% and cyclical \citep{Fussmann2013,Vasseur2011a,Kremer2017}.
+% Evolution can contribute to coexistence by
+% improving invasion success \citep{Faillace2016}
+% or buffering against environmental perturbations 
+% \citep{Barabas2016,Fussmann2013,Osmond2013,Bell2017}.
+% More complex mechanisms of evolution mediating coexistence, 
+% such as synergistic pleiotropy \citep{Schreiber2018a}
+% or ``neighbor-dependent selection'' \citep{Vasseur2011a},
+% have also been demonstrated.
+% Alternatively, some evidence suggests that evolution can 
+% reduce species persistence \citep{Ferriere2013},
+% increase exclusion of invaders by resident species \citep{Faillace2016},
+% and destabilize long-term coexistence \citep{Shoresh2008}.
+% Recently, \citet{Pastore2021} found that evolution often caused
+% exclusion in a 2-species, consumer--resource model, 
+% largely due to evolutionary changes in competitive differences.
+
 

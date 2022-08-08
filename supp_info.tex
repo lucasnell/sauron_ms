@@ -2,12 +2,16 @@
 
 \section*{\huge{Supplemental Information}}
 
+
+% You should ultimately use the supplement template offered by AmNat
+
 \renewcommand{\thefigure}{S\arabic{figure}}
 \renewcommand{\theequation}{S\arabic{equation}}
 \renewcommand{\thetable}{S\arabic{table}}
 \setcounter{equation}{0}
 \setcounter{figure}{0}
 \setcounter{table}{0}
+
 
 
 % Note: this should go into a separate document eventually
@@ -44,8 +48,8 @@ for all $i \in \{ 1, \: \ldots \, , \: n \}$
 and $\zeta \in \{ 1, \: \ldots \, , \: n \}$.
 
 
-The partial derivatives of species $i$ axes at time $t+1$ with respect
-to species $i$ axes at time $t$ are
+The partial derivatives of species $i$ investments at time $t+1$ with respect
+to species $i$ investments at time $t$ are
 
 \begin{equation*}
 \begin{split}
@@ -103,9 +107,9 @@ to species $i$ axes at time $t$ are
 \noindent where $\mathbf{I}$ is a $q \times q$ identity matrix.
 
 
-Next we have the partial derivatives of species $i$ axes at time $t+1$ with respect to 
-species $k$ axes at time $t$, where $k \ne i$.
-To calculate this, it's useful to slightly rearrange equation \ref{eq:axes-change-full} to
+Next we have the partial derivatives of species $i$ investments at time $t+1$ with respect to 
+species $k$ investments at time $t$, where $k \ne i$.
+To calculate this, it's useful to slightly rearrange equation \ref{eq:matrix-invest-change} to
 extract the portion that includes $\mathbf{v}_{k,t}$:
 
 
@@ -180,7 +184,7 @@ $\mathbf{v}_{k,t}$
 \end{split}
 \end{equation*}
 
-The partial derivatives of species $i$ axes in relation to species $i$ 
+The partial derivatives of species $i$ investments in relation to species $i$ 
 and species $k$ abundances are
 
 \begin{equation*}
@@ -221,7 +225,7 @@ we can combine equations from the Methods:
 
 
 Using these, we have the following derivatives of abundances in relation
-to axes:
+to investments:
 
 \begin{equation*}
 \begin{split}
@@ -276,111 +280,115 @@ to those at time $t$:
 
 
 
-% ========================================================================================
-% ========================================================================================
-% ========================================================================================
-% ========================================================================================
-% ========================================================================================
-% ========================================================================================
-% ========================================================================================
+% ==============================================================================
+% ==============================================================================
+% ==============================================================================
+% ==============================================================================
+% ==============================================================================
+% ==============================================================================
+% ==============================================================================
 
 
-\section*{Effects of stochasticity on axis evolution}
+\section*{Effects of stochasticity on investment evolution}
 
-From the main text, we know that when there is variability in axis evolution, 
+Here, I am showing the equations just for the exclusionary suite of traits
+(i.e., $x$), but the math is exactly the same for $p$.
+
+From the main text, we know that when there is stochasticity in 
+investment evolution, 
 
 \begin{equation*}
 \begin{split}
-    \mathbf{\ddot{v}}_{i,t+1} &= \mathbf{v}_{i,t+1} \; \text{e}^{\varepsilon_1} \\
-    \varepsilon_1 &\sim \text{N}(0, \, \sigma^2_{\varepsilon_1}) \\
-    \mathbf{v}_{i,t+1} &= \mathbf{v}_{i,t} + \left( \frac{1}{F_i}
-        \frac{\partial F_i}{\partial \mathbf{\ddot{v}}_{i,t}} \right) \sigma_A^2
+    \ddot{x}_{i,t+1} &= x_{i,t+1} \; \text{e}^{\varepsilon_x} \\
+    \varepsilon_x &\sim \text{N}(0, \, \sigma^2_{x}) \\
+    x_{i,t+1} &= x_{i,t} + \left( \frac{1}{F_i}
+        \frac{\partial F_i}{\partial \ddot{x}_{i,t}} \right) \sigma_A^2 \, \text{e}^{\varepsilon_x}
     \text{.}
 \end{split}
 \end{equation*}
 
 
 
-For the two-axis case---now abandoning matrix notation---we can define the
-function $G_1$ for axis 1 as a function 
-of the random variables $\varepsilon_{1}$ and $\varepsilon_{2}$:
+We can define the function $G_x$ for exclusionary traits as a function 
+of the random variables $\varepsilon_{x}$ and $\varepsilon_{p}$:
 
 \begin{equation*}
 \begin{split}
-    G_1(\varepsilon_{1}, \varepsilon_{2}) &= v_{i1,t} + 2 \; \sigma_A^2
+    G_x(\varepsilon_{x}, \varepsilon_{p}) &= x_{i,t} + 2 \; \sigma_A^2 \, \text{e}^{\varepsilon_x}
     \Bigg[
         \alpha_0
             \Omega_i \;
-            \text{e}^{-(v_{i1,t} \text{e}^{\varepsilon_{1}})^2 - (v_{i2,t} \text{e}^{\varepsilon_{2}})^2} \; v_{i1,t} \, 
-            \text{e}^{\varepsilon_{1}}
-        - f \; ( v_{i1,t} \, \text{e}^{\varepsilon_{1}} + \eta \; v_{i2,t} \,
-            \text{e}^{\varepsilon_{2}} )
+            \text{e}^{-(x_{i,t} \text{e}^{\varepsilon_{x}})^2 - (p_{i,t} \text{e}^{\varepsilon_{p}})^2} \; x_{i,t} \, 
+            \text{e}^{\varepsilon_{x}}
+        - f \; ( x_{i,t} \, \text{e}^{\varepsilon_{x}} + \eta \; p_{i,t} \,
+            \text{e}^{\varepsilon_{p}} )
     \Bigg] \\
     \Omega_i &\equiv \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
-                    - d_1 \ddot{v}_{j1,t} - d_2 \ddot{v}_{j2,t} } }
+                    - d_x \ddot{x}_{j,t} - d_p \ddot{p}_{j,t} } }
     \textrm{.}
 \end{split}
 \end{equation*}
 
-Here, $\Omega_i$ is the influence of other species on the effect of interspecific competition,
+Here, $\Omega_i$ is the influence of other species on the effect of
+interspecific competition,
 which is defined here to reduce clutter in later equations.
-The second order Taylor series approximation for $G_1(\varepsilon_{1}, \varepsilon_{2})$,
-about $\bm{\theta} = \{ \mu_{\varepsilon_{1}}, \mu_{\varepsilon_{2}} \} = \{ 0, 0 \}$, is
+The second order Taylor series approximation for $G_x(\varepsilon_{x}, \varepsilon_{p})$,
+about $\bm{\theta} = \{ \mu_{\varepsilon_{x}}, \mu_{\varepsilon_{p}} \} = \{ 0, 0 \}$, is
 
 \begin{equation}
 \label{eq:taylor-expansion-outline}
-    \text{E}(G_1(\varepsilon_{1}, \varepsilon_{2})) \approx G_1(\bm{\theta}) + 
+    \text{E}(G_x(\varepsilon_{x}, \varepsilon_{p})) \approx G_x(\bm{\theta}) + 
         \frac{1}{2} \left[ 
-            \left. \frac{\partial^2 G_1}{\partial^2 \varepsilon_{1}} \right\lvert_{\bm{\theta}} \; \sigma^2_{\varepsilon_{1}} +
-            \left. \frac{\partial^2 G_1}{\partial^2 \varepsilon_{2}} \right\lvert_{\bm{\theta}} \; \sigma^2_{\varepsilon_{2}}
+            \left. \frac{\partial^2 G_x}{\partial^2 \varepsilon_{x}} \right\lvert_{\bm{\theta}} \; \sigma^2_{x} +
+            \left. \frac{\partial^2 G_x}{\partial^2 \varepsilon_{p}} \right\lvert_{\bm{\theta}} \; \sigma^2_{p}
         \right]
 \text{.}
 \end{equation}
 
 
-In the derivatives below, we have removed indices for species and time for clarity.
-
-
-We have the following derivatives of $G_1$ with respect to the random variables $\varepsilon_{1}$ and $\varepsilon_{1}$:
+In the derivatives below, we have removed indices for species and time for
+clarity.
+We have the following derivatives of $G_x$ with respect to the random variables
+$\varepsilon_{x}$ and $\varepsilon_{p}$:
 
 \begin{equation*}
 \begin{split}
-    \frac{\partial \, G_1}{\partial \, \varepsilon_{1}} &= 2 \; \sigma_A^2 \: v_{1} \: \text{e}^{\varepsilon_{1}}
+    \frac{\partial \, G_x}{\partial \, \varepsilon_{x}} &= 2 \; \sigma_A^2 \: x \: \text{e}^{\varepsilon_{x}}
     \left[
         \alpha_0 \; \Omega \;
-            \text{e}^{-(v_{1} \: \text{e}^{\varepsilon_{1}})^2 - (v_{2} \: \text{e}^{\varepsilon_{2}})^2}
+            \text{e}^{-(x \: \text{e}^{\varepsilon_{x}})^2 - (p \: \text{e}^{\varepsilon_{p}})^2}
             \left(
-                1 - 2 \, v_{1}^2 \: \text{e}^{2 \varepsilon_{1}}
+                1 - 2 \, x^2 \: \text{e}^{2 \varepsilon_{x}}
             \right)
         - f
     \right] \\
 % 
-    \frac{\partial^2 G_1}{\partial^2 \varepsilon_{1}} &= 2 \; \sigma_A^2 \: v_{1} \: \text{e}^{\varepsilon_{1}}
+    \frac{\partial^2 G_x}{\partial^2 \varepsilon_{x}} &= 2 \; \sigma_A^2 \: x \: \text{e}^{\varepsilon_{x}}
     \left[
         \alpha_0 \; \Omega \;
-            \text{e}^{-(v_{1} \: \text{e}^{\varepsilon_{1}})^2 - (v_{2} \: \text{e}^{\varepsilon_{2}})^2}
+            \text{e}^{-(x \: \text{e}^{\varepsilon_{x}})^2 - (p \: \text{e}^{\varepsilon_{p}})^2}
             \left(
-                1 - 8 \, v_{1}^2 \: \text{e}^{2 \varepsilon_{1}}
+                1 - 8 \, x^2 \: \text{e}^{2 \varepsilon_{x}}
             \right)
         - f
     \right] \\[2ex]
 %
 %
-    \frac{\partial \, G_1}{\partial \, \varepsilon_{2}} &= - 2 \; \sigma_A^2
+    \frac{\partial \, G_x}{\partial \, \varepsilon_{p}} &= - 2 \; \sigma_A^2
     \left[
-        2 \: \alpha_0 \; \Omega \; v_1 \; v_2^2 \;
-            \text{e}^{-(v_{1} \: \text{e}^{\varepsilon_{1}})^2 - (v_{2} \: \text{e}^{\varepsilon_{2}})^2 + \varepsilon_{1} + 2 \, \varepsilon_{2}}
-        + f \: \eta \: v_2 \: \text{e}^{\varepsilon_{2}}
+        2 \: \alpha_0 \; \Omega \; x \; p^2 \;
+            \text{e}^{-(x \: \text{e}^{\varepsilon_{x}})^2 - (p \: \text{e}^{\varepsilon_{p}})^2 + \varepsilon_{x} + 2 \, \varepsilon_{p}}
+        + f \: \eta \: p \: \text{e}^{\varepsilon_{p}}
     \right] \\
 % 
-    \frac{\partial^2 G_1}{\partial^2 \varepsilon_{2}} &= - 2 \; \sigma_A^2
+    \frac{\partial^2 G_x}{\partial^2 \varepsilon_{p}} &= - 2 \; \sigma_A^2
     \left[
-        4 \: \alpha_0 \; \Omega \; v_1 \; v_2^2 \;
-            \text{e}^{-(v_{1} \: \text{e}^{\varepsilon_{1}})^2 - (v_{2} \: \text{e}^{\varepsilon_{2}})^2 + \varepsilon_{1} + 2 \, \varepsilon_{2}}
+        4 \: \alpha_0 \; \Omega \; x \; p^2 \;
+            \text{e}^{-(x \: \text{e}^{\varepsilon_{x}})^2 - (p \: \text{e}^{\varepsilon_{p}})^2 + \varepsilon_{x} + 2 \, \varepsilon_{p}}
             \left(
-                1 - v_{2}^2 \: \text{e}^{2 \varepsilon_{2}}
+                1 - p^2 \: \text{e}^{2 \varepsilon_{p}}
             \right)
-        + f \: \eta \: v_2 \: \text{e}^{\varepsilon_{2}}
+        + f \: \eta \: p \: \text{e}^{\varepsilon_{p}}
     \right]
 \text{.}
 \end{split}
@@ -391,24 +399,24 @@ Combining these with equation \ref{eq:taylor-expansion-outline} give us
 
 \begin{equation*}
 \begin{split}
-    \text{E}(G_1(\varepsilon_{1}, \varepsilon_{2})) \approx \; &
-        v_1 + 2 \; \sigma_A^2 \left[ 
-            \alpha_0 \; \Omega \; v_1 \; \text{e}^{-v_1^2 - v_2^2} - f (v_1 + \eta \; v_2)
+    \text{E}(G_x(\varepsilon_{x}, \varepsilon_{p})) \approx \; &
+        x + 2 \; \sigma_A^2 \left[ 
+            \alpha_0 \; \Omega \; x \; \text{e}^{-x^2 - p^2} - f (x + \eta \; p)
         \right] \\
         &+ \frac{1}{2} \Bigg\{
-            2 \; \sigma_A^2 \; v_1 \left[
-                \alpha_0 \; \Omega \; \text{e}^{-v_1^2 - v_2^2} \left( 1 - 8 \; v_1^2 \right) - f
-            \right] \sigma^2_{\varepsilon_{1}} \\
+            2 \; \sigma_A^2 \; x \left[
+                \alpha_0 \; \Omega \; \text{e}^{-x^2 - p^2} \left( 1 - 8 \; x^2 \right) - f
+            \right] \sigma^2_{x} \\
             & \hspace{2.5em} - 2 \; \sigma_A^2 \left[
-                4 \; \alpha_0 \; \Omega \; v_1 \; v_2^2 \; \text{e}^{-v_1^2 - v_2^2} \left( 1 - v_2^2 \right) + f \; \eta \; v_2
-            \right] \sigma^2_{\varepsilon_{2}}
+                4 \; \alpha_0 \; \Omega \; x \; p^2 \; \text{e}^{-x^2 - p^2} \left( 1 - p^2 \right) + f \; \eta \; p
+            \right] \sigma^2_{p}
         \Bigg\} %\\[2ex]
 %
 %
-%    \approx ~ & v_1 + \sigma_A^2 \Big[ 
-%            2 \alpha_0 \Omega v_1 \text{e}^{-v_1^2 - v_2^2} + 2 f (v_1 + \eta v_2)
-%            + \\ & \hspace*{4em} \sigma_{\varepsilon_{1}}^2 v_1 \alpha_0 \Omega \text{e}^{-v_1^2 - v_2^2} (1 - 8 v_1^2) + \sigma_{\varepsilon_{1}}^2 v_1 f
-%            - \\ & \hspace*{4em} \sigma_{\varepsilon_{2}}^2 4 \alpha_0 \Omega v_1 v_2^2 \text{e}^{-v_1^2 - v_2^2} (1 - v_2^2) - \sigma_{\varepsilon_{2}}^2 f \eta v_2^2
+%    \approx ~ & x + \sigma_A^2 \Big[ 
+%            2 \alpha_0 \Omega x \text{e}^{-x^2 - p^2} + 2 f (x + \eta p)
+%            + \\ & \hspace*{4em} \sigma_{\varepsilon_{x}}^2 x \alpha_0 \Omega \text{e}^{-x^2 - p^2} (1 - 8 x^2) + \sigma_{\varepsilon_{x}}^2 x f
+%            - \\ & \hspace*{4em} \sigma_{\varepsilon_{p}}^2 4 \alpha_0 \Omega x p^2 \text{e}^{-x^2 - p^2} (1 - p^2) - \sigma_{\varepsilon_{p}}^2 f \eta p^2
 %        \Big] \\[2ex]
 %
 %
@@ -421,17 +429,17 @@ This simplifies to
 \begin{equation}
 \label{eq:taylor-expansion-final-supp}
 \begin{split}
-    \text{E}(G_1(\varepsilon_{1}, \varepsilon_{2})) \approx
-        v_1 + 2 \; \sigma_A^2 \Bigg\{ 
-            & \alpha_0 \; \Omega \; v_1 \; \text{e}^{-v_1^2 - v_2^2} 
+    \text{E}(G_x(\varepsilon_{x}, \varepsilon_{p})) \approx
+        x + 2 \; \sigma_A^2 \Bigg\{ 
+            & \alpha_0 \; \Omega \; x \; \text{e}^{-x^2 - p^2} 
             \color{red} \bigg[ 
-                1 + \sigma^2_{\varepsilon_{1}} \left( \frac{1}{2} - 4 \; v_1^2 \right)
-                - 2 \; \sigma^2_{\varepsilon_{2}} \, v_2^2 \left( 1 - v_2^2 \right)
+                1 + \sigma^2_{x} \left( \frac{1}{2} - 4 \; x^2 \right)
+                - 2 \; \sigma^2_{p} \, p^2 \left( 1 - p^2 \right)
             \bigg] \\
             & - f \bigg[
-                v_1 + \eta \; v_2 
+                x + \eta \; p 
                 {\color{red} + \frac{1}{2} \left(
-                    \sigma^2_{\varepsilon_{1}} \, v_1 + \sigma^2_{\varepsilon_{2}} \, \eta \; v_2
+                    \sigma^2_{x} \, x + \sigma^2_{p} \, \eta \; p
                 \right)}
             \bigg]
         \Bigg\}
@@ -457,67 +465,9 @@ Red text indicates parts not present in the non-stochastic version.
 % ========================================================================================
 % ========================================================================================
 
-\clearpage
+% \clearpage
 
-\section*{Supplemental figures}
-
-
+% \section*{Supplemental figures}
 
 
-\begin{figure}[ht!]
-\centering
-\includegraphics{S1-tradeoffs_r.pdf}
-\caption{Costs across axis space, for sub-additive ($\eta = -0.6$), 
-additive ($\eta = 0$), and super-additive ($\eta = 0.6$) tradeoffs.
-Color indicates the per-capita growth rate without any competition
-($\text{e}^{r_0 - f \, \mathbf{v}_i^{\text{T}} \, \mathbf{C} \, \mathbf{v}_i}$),
-so darker colors indicate a greater cost.}
-\label{fig:tradeoffs-r}
-\end{figure}
-
-
-
-
-
-\begin{figure}[ht!]
-\centering
-\includegraphics{S2-stab_p2.pdf}
-\caption{Effects of the number of species investing in the conflicting axis
-in 10-species communities with super-additive tradeoffs on 
-(a) conflicting-axis investment per species,
-(b) ameliorative-axis investment per species, and 
-(c) scaled community size (inversely related to how conducive a community 
-is to adding more species).
-Color indicates whether the ameliorative axis is strong ($d_{\text{amel}} = 1$),
-moderate ($d_{\text{amel}} = 0.5$), or weak ($d_{\text{amel}} = 0.1$).
-The conflicting axis was fixed at $d_{\text{conf}} = 0.5$.
-}
-\label{fig:stabilizers2}
-\end{figure}
-
-
-\begin{figure}[ht!]
-\centering
-\includegraphics{S3-alt_stoch.pdf}
-\caption{Alternative example of how stochasticity affects tradeoffs, 
-possible communities, and how conducive communities are to coexistence.
-Shown are the effects of axis-evolution stochasticity when
-variance is equal among axes and tradeoffs are super-additive.
-The upper row shows the trajectories in axis space
-for 4 species started under each scenario of stochasticity variances.
-Open points indicate starting axis values.
-Closed points indicate ending axis values, and 
-numbers inside these points indicate the number of species at each point.
-Gray shaded curves outside each plot show the probability density for
-the normal distributions used to generate stochasticity in the
-conflicting (top curve) or ameliorative (right curve) axis.
-The lower row shows scaled community size through time for each community
-in the top row;
-a lower scaled community size indicates that the community is more 
-conducive to further species packing.
-The first 1,000 time steps are removed to better highlight differences
-between communities after the initial period of population expansions.
-}
-\label{fig:alt-stochasticity}
-\end{figure}
 

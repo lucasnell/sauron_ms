@@ -1,21 +1,21 @@
-\documentclass[12pt]{article}
-\usepackage[sc]{mathpazo} % Like Palatino with extensive math support
+\documentclass[11pt]{article}
+\usepackage[sc]{mathpazo} %Like Palatino with extensive math support
 \usepackage{fullpage}
-\usepackage[authoryear,sort]{natbib}
+\usepackage[authoryear,sectionbib,sort]{natbib}
+\linespread{1.7}
 \usepackage[utf8]{inputenc}
 \usepackage{lineno}
-\usepackage{setspace}
 \usepackage{titlesec}
 \titleformat{\section}[block]{\Large\bfseries\filcenter}{\thesection}{1em}{}
 \titleformat{\subsection}[block]{\Large\itshape\filcenter}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}[block]{\large\itshape}{\thesubsubsection}{1em}{}
 \titleformat{\paragraph}[runin]{\itshape}{\theparagraph}{1em}{}[. ]\renewcommand{\refname}{Literature Cited}
 
-% For Icelandic ð symbol:
-\DeclareTextSymbolDefault{\dh}{T1}
 
-\usepackage[shortlabels]{enumitem}
-\setlist{nolistsep,leftmargin=*}
+% Below, I commented out all parts of MS that make it for Ecology Letters rather than American Naturalist using `%%>%%`
+
+%%>%% \usepackage[shortlabels]{enumitem}
+%%>%% \setlist{nolistsep,leftmargin=*}
 
 
 %%%%%%%%%%%%%%%%%%%%%
@@ -33,15 +33,14 @@
 %
 % (Thanks to Vlastimil Krivan for pointing this out to us!)
 
-\title{Coexistence in a general model of coevolving competitors}
+\title{When should coevolution among competitors promote coexistence versus exclusion?}
 
-
-% coexistence
-% general
+% coevolution
 % competition
-% evolution / coevolution
-% plasticity?
-% community
+% coexistence / exclusion / partitioning
+% traits?
+
+
 
 
 
@@ -51,10 +50,17 @@
 %%%%%%%%%%%%%%%%%%%%%
 % Authorship
 %%%%%%%%%%%%%%%%%%%%%
+% Please remove authorship information while your paper is under review,
+% unless you wish to waive your anonymity under double-blind review. You
+% will need to add this information back in to your final files after
+% acceptance.
 
-\author{Lucas A. Nell$^{a,1}$,
-Joseph S. Phillips$^{b,c}$,
-Anthony R. Ives$^{d}$}
+% \author{Lucas A. Nell$^{1,\ast}$,
+% Joseph S. Phillips$^{2}$,
+% Anthony R. Ives$^{1}$}
+\author{}
+
+\date{}
 
 
 \usepackage{amsmath} % for split math environment
@@ -76,125 +82,165 @@ Anthony R. Ives$^{d}$}
 
 % color in math mode (only used for supplement)
 \usepackage{xcolor}
+% single spacing in table, with extra space between rows (only used for supplement)
+\usepackage{setspace}
 
 
-
-\date{}
 
 \begin{document}
 
-\singlespacing
-\linenumbers{}
-\modulolinenumbers[1]
+
+%%>%% \singlespacing
+%%>%% \linenumbers{}
+%%>%% \modulolinenumbers[1]
 
 \maketitle
-\author{}
 
-\raggedright
-\setlength{\parskip}{1em}
+% \noindent{} 1. Department of Integrative Biology, University of Wisconsin, Madison, Wisconsin 53706;
+%
+% \noindent{} 2. Department of Biology, Creighton University, Omaha, Nebraska 68178.
+%
+% \noindent{} $\ast$ Corresponding author; e-mail: lucas@lucasnell.com.
 
+\bigskip
 
-\begin{enumerate}[a.]
-\item
-Department of Integrative Biology, University of Wisconsin, Madison, WI 53706, USA. lucas@lucasnell.com
-\item
-Department of Integrative Biology, University of Wisconsin, Madison, WI 53706, USA. joseph@mail.holar.is
-\item
-Department of Aquaculture and Fish Biology, H\'{o}lar University, Skagafj\"{o}r{\dh}ur 551 Iceland
-\item 
-Department of Integrative Biology, University of Wisconsin, Madison, WI 53706, USA. arives@wisc.edu \\[1ex]
-\item[1.]
-Correspondence: lucas@lucasnell.com, +1 (717) 476-7653
-\end{enumerate}
+{
+\parindent0pt
 
-
-
-
-% <= 45 characters
-\noindent Running title: Coexistence, competition, and coevolution
-
-% <= 10
-\noindent Keywords: {
-community assembly,
+% 4-6 keywords
+\textit{Keywords}: {
+coexistence,
 competition,
-% alternative stable states,
-% historical contingency,
-evolutionarily stable communities,
-eco-evolutionary dynamics,
-plasticity}
-
-\bigskip
-
-\noindent Article type: Letter \\
-\noindent Abstract words:  \\
-\noindent Main text words:  \\ % (excluding abstract, acknowledgements, references, table and figure legends)
-\noindent References: \\
-\noindent Tables: 0 \\
-\noindent Figures:  \\
-\noindent Text boxes: 0 \\
+community assembly,
+coevolution,
+evolutionarily stable communities}
 
 
 \bigskip
 
 
-\textbf{Author contributions:} LAN and ARI conceived the study,
-and LAN wrote the first draft of the article.
-All authors developed and analyzed the models, and revised the manuscript.
+\textit{Manuscript elements}: Figure~1, figure~2, figure~3, figure~4, figure~5,
+online appendix~A, online appendix~B,
+supplemental material
 
-\textbf{Data accessibility:} R and C++ code used to simulate the models
-is available from GitHub (\url{https://www.github.com/lucasnell/sauron}),
-and will be archived on Zenodo upon acceptance.
+\bigskip
 
+\textit{Words in text}: ZZZ
 
+\bigskip
 
-\clearpage
-
-
-\doublespacing
+\textit{Manuscript type}: Article.
 
 
+\bigskip
+
+\footnotesize Prepared using the suggested \LaTeX{} template for \textit{Am.\ Nat.}
+}
+
+\linenumbers{}
+\modulolinenumbers[3]
+
+\newpage{}
+\raggedright
+\setlength{\parindent}{20pt}
 
 
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+%%>%% \raggedright
+%%>%% \setlength{\parskip}{1em}
+%%>%%
+%%>%% \begin{enumerate}[a.]
+%%>%% \item
+%%>%% Department of Integrative Biology, University of Wisconsin, Madison, WI 53706, USA. lucas@lucasnell.com
+%%>%% \item
+%%>%% Department of Integrative Biology, University of Wisconsin, Madison, WI 53706, USA. joseph@mail.holar.is
+%%>%% \item
+%%>%% Department of Aquaculture and Fish Biology, H\'{o}lar University, Skagafj\"{o}r{\dh}ur 551 Iceland
+%%>%% \item 
+%%>%% Department of Integrative Biology, University of Wisconsin, Madison, WI 53706, USA. arives@wisc.edu \\[1ex]
+%%>%% \item[1.]
+%%>%% Correspondence: lucas@lucasnell.com, +1 (717) 476-7653
+%%>%% \end{enumerate}
+%%>%%
+%%>%% % <= 45 characters
+%%>%% \noindent Running title: Coexistence, competition, and coevolution
+%%>%%
+%%>%% % <= 10
+%%>%% \noindent Keywords: {
+%%>%% community assembly,
+%%>%% competition,
+%%>%% % alternative stable states,
+%%>%% % historical contingency,
+%%>%% evolutionarily stable communities,
+%%>%% eco-evolutionary dynamics,
+%%>%% plasticity}
+%%>%%
+%%>%% \bigskip
+%%>%%
+%%>%% \noindent Article type: Letter \\
+%%>%% \noindent Abstract words:  \\
+%%>%% \noindent Main text words:  \\ % (excluding abstract, acknowledgements, references, table and figure legends)
+%%>%% \noindent References: \\
+%%>%% \noindent Tables: 0 \\
+%%>%% \noindent Figures:  \\
+%%>%% \noindent Text boxes: 0 \\
+%%>%%
+%%>%% \bigskip
+%%>%%
+%%>%% \textbf{Author contributions:} LAN and ARI conceived the study,
+%%>%% and LAN wrote the first draft of the article.
+%%>%% All authors developed and analyzed the models, and revised the manuscript.
+%%>%%
+%%>%% \textbf{Data accessibility:} R and C++ code used to simulate the models
+%%>%% is available from GitHub (\url{https://www.github.com/lucasnell/sauron}),
+%%>%% and will be archived on Zenodo upon acceptance.
+%%>%%
+%%>%% \clearpage
+
+
+
+
+
+
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 % Abstract
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 
 \input{0-abstract}
 
 
-\clearpage
+\newpage{}
 
 
 
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 % Introduction
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 
 \input{1-introduction}
 
 
 
 
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 % Methods
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 
 
 \input{2-methods}
 
 
 
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 % Results
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 
 \input{3-results}
 
@@ -202,22 +248,22 @@ and will be archived on Zenodo upon acceptance.
 
 
 
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 % Discussion
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 
 \input{4-discussion}
 
 
 
 
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 % Acknowledgments
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 % You may wish to remove the Acknowledgments section while your paper
 % is under review (unless you wish to waive your anonymity under
 % double-blind review) if the Acknowledgments reveal your identity.
@@ -234,6 +280,9 @@ and will be archived on Zenodo upon acceptance.
 % which is supported by the National Science Foundation and the U.S. Department of Energy's 
 % Office of Science.
 
+% Matthew McCary --> help with garlic mustard info
+
+
 
 
 % ---------------------------------------------------------------------------------------
@@ -242,14 +291,11 @@ and will be archived on Zenodo upon acceptance.
 % ---------------------------------------------------------------------------------------
 % ---------------------------------------------------------------------------------------
 
-\clearpage
+\newpage{}
 \input{app_A}
-% \clearpage
-% \input{app_B}
-% \clearpage
-% \input{app_C}
-% \clearpage
-% \input{app_D}
+\newpage{}
+\input{app_B}
+
 
 
 % ---------------------------------------------------------------------------------------
@@ -269,15 +315,14 @@ and will be archived on Zenodo upon acceptance.
 % The list below includes sample journal articles, book chapters, and
 % Dryad references.
 
-% \bibliographystyle{amnatnat.bst}
-\bibliographystyle{ecology_letters.bst}
-\clearpage
+\bibliographystyle{amnatnat.bst}
+\newpage{}
 \bibliography{references.bib}
 
 
 
 
-\clearpage
+\newpage{}
 
 
 \renewcommand{\thefigure}{\arabic{figure}}
@@ -288,138 +333,70 @@ and will be archived on Zenodo upon acceptance.
 \setcounter{table}{0}
 
 
+
+
+% Authors can upload PDFs or they can upload the source files in a variety of formats for peer review. Manuscript PDFs can show figures and tables in the run of text for the convenience of reviewers. If authors are not supplying their own PDF, Editorial Manager will combine figure and text files into a single PDF (figures and tables will appear at the end of the PDF). Either way, embedded or at the end, the figure legend should, whenever possible, be placed on the same page as the figure to help reviewers.
+
+
+
+
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=0.9\textwidth,keepaspectratio]{1-diag.pdf}
-\caption{Graphical model description.
-% 
-(a) Competition axes consist of suites of traits that together affect competition
-similarly. Traits for a given axis can differ among species.
-% 
-(b) If species $i$ evolves an increase in a competition axis, this reduces its
-per-capita growth rate and the effects of competition species $i$ experiences 
-from other species in the community.
-% 
-(c) The cost associated with investing in multiple axes depends on whether 
-tradeoffs are sub-additive, additive, or super-additive. 
-Note that arrows within plots in this panel are all the same length.
-% 
-(d) Investment by species $i$ can either increase or decrease its effect on other
-species in the community, depending on the type of competition axis it invests in.
-Investment in an ameliorative axis by species $i$ reduces the effect of $i$ on all
-other species.
-The first example shown is behavioral avoidance of areas where heterospecifics
-forage.
-Next, investment in defensive traits that cause natural enemies to have 
-differing effects on hosts can reduce apparent competition between hosts.
-Lastly, multivariate traits can contribute to reduced resource-use overlap
-between consumer species.
-Investment in a conflicting axis by species $i$ increases the effect of $i$ on all
-other species.
-Traits that could contribute to conflicting axes include 
-aggressive behavior toward heterospecifics near food sources,
-chemical suppression of competitors for space, and
-rapid growth that shades nearby plants.}
+\includegraphics[width=0.8\textwidth,keepaspectratio]{1-diagram.pdf}
+\caption{Demonstration of how investment by one species affects other species in the community. (A) We start with a two-species community where the abundance and investments of species A are constant and not affected by species B, while those of species B are affected by species A and change though time as specified by the model. There is only one suite of traits. (B) If we perturb the system by instantly increasing the investment by species A, the effects this has on species B depend on the type of traits they can invest in. (C) For partitioning traits ($d = 1$), investment by A weakens the interspecific competition experienced by species B and causes a rapid initial increase in the abundance of B. Because reduced competition makes investment less necessary, species B also has a slower evolutionary decrease in investment. The reduced costs of investing cause the slow increase in abundance by species B after the initial response. (D) For conflicting traits ($d = -1$), investment by A strengthens the interspecific competition experienced by species B and causes a rapid initial decrease in the abundance of B. Species B then evolves greater investment to reduce the effects of competition from A, which allows species B to increase in abundance after the initial decrease. (C–D) Before the perturbation to species A, this community was simulated for 10,000 generations to allow species B to reach an equilibrium.}
 \label{fig:model-description}
 \end{figure}
 
-
-
-
-\begin{figure}[ht!]
-\centering
-\includegraphics{2-outcomes_q2.pdf}
-\caption{Unique axis values for surviving species in 2-axis communities
-with varying numbers of species (indicated by color), and 
-    for tradeoffs being sub-additive ($\eta < 0$), additive ($\eta = 0$), or 
-    super-additive ($\eta > 0$).
-    The lines in the additive case show the locations of the neutrally stable rings.
-    Both axes are neutral (i.e., $\mathbf{d} = \{ 0, 0 \}$) to show only
-    the effects of axis investment on the focal species.}
-\label{fig:two-axis-outcomes}
-\end{figure}
-
-
-
-
+\clearpage
 
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=0.6\textwidth,keepaspectratio]{3-comm.pdf}
-\caption{Effects of axis strength and species investments on 
-how permissive communities are to coexistence.
-(a) How conflicting and ameliorative axis strength affect scaled community size,
-for different communities (indicated by color) and tradeoffs
-(solid for super-additive, dashed for sub-additive).
-Scaled community size
-($\sum_j^n{N_j \text{exp} \{ -\mathbf{v}_{j}^{\text{T}} \mathbf{D} \mathbf{v}_j \}}$)
-represents the community abundance accounting
-for the effect of species' axes on competition experienced by others in the
-community. 
-A lower value indicates greater invasibility.
-In each sub-panel, the non-focal axis strength is fixed at 0.6.
-Crosses indicate points where a community type is no longer stable,
-and roman numerals indicate the community represented in panel (b).
-(b) Invasibility of some communities representing how tradeoffs and species
-investments influence coexistence.
-Points in these plots indicate the axis values for equilibrium resident species, and 
-numbers inside these points indicate the number of species at each point.
-The background color shows what happens when a third species is added:
-This invader either is excluded (white), 
-excludes one or more residents (orange or pink), or 
-coexists with residents to form a new, 3-species community (purple).
-Note that ii and v show the same community at different axis strengths.
-}
-\label{fig:comms-d}
-\end{figure}
-
-\begin{figure}[ht!]
-\centering
-\includegraphics{4-stab.pdf}
-\caption{Effects of the number of species investing in the conflicting axis
-in 10-species communities with super-additive tradeoffs on 
-(a) conflicting-axis investment per species,
-(b) ameliorative-axis investment per species, and 
-(c) scaled community size (inversely related to invasibility).
-Color indicates whether the conflicting axis is strong ($d_{\text{conf}} = 1$),
-moderate ($d_{\text{conf}} = 0.5$), or weak ($d_{\text{conf}} = 0.1$).
-The ameliorative axis was fixed at $d_{\text{amel}} = 0.5$.
-\label{fig:stabilizers}
-}
-\end{figure}
-
-
-
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=0.9\textwidth,keepaspectratio]{5-stoch.pdf}
-\caption{Examples of how stochasticity affects tradeoffs, 
-possible communities, and invasibility.
-Shown are the effects of axis-evolution stochasticity when
-(a) variance is equal among axes and tradeoffs are super-additive and 
-(b) variance is unequal among axes and tradeoffs are sub-additive.
-The upper row of each sub-panel shows the trajectories in axis space
-for 4 species started under each scenario.
-Open points indicate starting axis values.
-Closed points indicate ending axis values, and 
-numbers inside these points indicate the number of species at each point.
-Gray shaded curves outside each plot show the probability density for
-the normal distributions used to generate stochasticity in the
-conflicting (top curve) or ameliorative (right curve) axis.
-The lower row shows scaled community size through time for each community
-in the top row;
-a lower scaled community size indicates greater invasibility.
-The first 1,000 time steps are removed to better highlight differences
-between communities after the initial period of population expansions.
-}
-\label{fig:stochasticity}
+\includegraphics{2-tradeoffs_outcomes.pdf}
+\caption{Costs of investing (background color) and unique investment states for surviving species in two-species communities (points and dotted line) for investment costs being sub-additive ($\eta < 0$), additive ($\eta = 0$), or super-additive ($\eta > 0$). The line in the additive case shows the location of the neutrally stable ring. Both suites of traits are nearly neutral ($d_x = -10^{-6}$; $d_p = 10^{-6}$) to isolate the effects of investment cost to the investing species only. Background color indicates the proportional reduction from the maximum fitness without competition 
+($\left[ \text{exp} (r_0) - \text{exp} (r_0 - f ( x_i^2 + 2 \eta x_i p_i + 
+p_i^2 )) \right] / \text{exp}(r_0)$),
+so darker colors indicate a greater cost of investment. 
+Arrows show the direction and strength of selection
+($ F_i^{-1} \partial F_i / \partial x_i $ and 
+$ F_i^{-1} \partial F_i / \partial p_i $)
+if a species at the nearest equilibrium point is perturbed to the arrow’s
+starting location.}
+\label{fig:tradeoffs-outcomes}
 \end{figure}
 
 
 
 \clearpage
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics{3-all_stoch.pdf}
+\caption{Examples of how non-adaptive stochasticity affects investment evolution, for investment costs being (A) weakly sub-additive ($\eta = -0.01$) and (B) weakly super-additive ($\eta = 0.01$). Each sub-panel shows the trajectories (lines) in investment space for 4 species started under each scenario. Open points indicate starting investments. Closed, black points indicate ending investments. Gray shaded curves inside each plot show the probability density for the normal distributions used to generate stochasticity in conflicting (bottom curve) or partitioning (left curve) investment evolution. No curve indicates no stochasticity.}
+\label{fig:stochasticity}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.75\textwidth,keepaspectratio]{4-comm_inv.pdf}
+\caption{Effects of a community with strong partitioning investment on subsequent species evolution. Shown are simulations of 3-species communities where the species are added 100 generations apart. Costs are super-additive, and two simulations were run: (A--C) all three species invest in partitioning traits and (D--F) two invest in partitioning and one in conflicting traits. The left-most panels (A,D) show starting species investments (open points) and where they evolve to at equilibrium (closed points); numbers inside points indicate the order species were added. All points here lie on one axis; some points were shifted to avoid overlapping. The upper sub-panels in the right column (B,E) show how both conflicting (closed points, solid lines) and partitioning (open points, dashed lines) investments change through time. The lower sub-panels in the right column (C,F) show how abundances change through time. For all panels in the right column, points show conditions when the species first invades the community. In all plots, colors indicate species and are consistent within rows.}
+\label{fig:community-invasions-zero}
+\end{figure}
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.75\textwidth,keepaspectratio]{5-comm_inv_ar.pdf}
+\caption{Effects of multiple investors in conflicting traits on community coevolution. Shown are simulations of 6-species communities where investment costs are super-additive and where four species invest in partitioning traits and two in conflicting traits. Two simulations were run: (A--C) one where species were added 100 generations apart, and (D--F) another where species were added 1,000 generations apart. The left-most panels (A,D) show starting species investments (open points) and where they evolve to at equilibrium (closed points). Numbers inside points indicate the order species were added, and species with no equilibrium points went extinct. All points here lie on one axis; some points were shifted to avoid overlapping. The upper sub-panels in the right column (B,E) show how both conflicting (closed points, solid lines) and partitioning (open points, dashed lines) investments change through time. The lower sub-panels in the right column (C,F) show how abundances change through time. For all panels in the right column, points show conditions when the species first invades the community, and Xs indicate extinctions. In all plots, colors indicate species and are consistent within rows.}
+\label{fig:community-invasions-armsrace}
+\end{figure}
+
+
+\clearpage
+
 \input{supp_info}
 
 
