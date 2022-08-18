@@ -1,182 +1,267 @@
 \section*{Results}
 
 
+Our model of ecological and evolutionary dynamics investigates selection
+for partitioning and conflict traits, and how selection structures
+competition in the resulting community. To illustrate the central
+differences between partitioning and conflict traits, consider the case
+of two species and the effects on species B when species A changes its
+investment in either a partitioning or a conflict trait (fig. \ref{fig:model-description}). To
+clarify this illustration, we fix the abundance and investment
+level of species A, rather than allow them to change as described above.
+When species A invests in a partitioning trait, the abundance of species
+B increases (fig. \ref{fig:model-description}B), because greater investment in partitioning by
+species A reduces competition experienced by species B. With reduced
+competition, selection favors lower investment by species B. In
+contrast, for a conflict trait increased investment by species A causes
+a decrease in abundance of species B, and species B experiences
+selection for increased investment in the conflict trait (fig. \ref{fig:model-description}C).
+Thus, investment in partitioning and conflict traits by species A have
+opposite effects on the abundance and selection for species B.
+
+\subsection*{Investment-cost additivity}
+
+We first show how different types of communities arise due to sub- and
+super-additive investment costs (fig. \ref{fig:tradeoffs-outcomes}). 
+We simulated 2-species communities
+where investment costs were either sub-additive ($\eta = - 0.6$),
+additive ($\eta = 0$), or super-additive ($\eta = 0.6$). We added
+both species at the same time to avoid effects of evolution before
+interspecific competition starts. We set both suites of traits to be
+nearly neutral ($d_{x} = d_{p} = 10^{- 6}$) to reduce the effects of 
+species’ investments on each other, which helps to highlight the effects of 
+cost additivity only.
+The starting investments
+by all species were generated from a uniform distribution between 0 and
+0.5. Sub-additive costs resulted in species evolving to a single point
+in investment space where each invests in both conflict and partitioning 
+traits equally. Super-additive costs resulted in two
+alternative stable investment states: species evolved to invest in only
+partitioning or only conflict traits depending on their investments at
+the start of the simulations; different species could occupy different
+investment states even within the same community.
+Additive costs resulted in an intermediate
+case, with a neutrally stable ring given by
+$\sqrt{{p_{i}}^{2} + {x_{i}}^{2}}$ containing an infinite number of
+investment strategies with the same fitness; like the super-additive case,
+species within the same community can occupy different states.
+Because the total investment ($\sqrt{{p_{i}}^{2} + {x_{i}}^{2}}$) 
+defining a ring is proportional to both the costs (eq. \ref{eq:growth-rate})
+and benefits (eq. \ref{eq:competition}) of investment, the ring observed in
+the additive case is also present in the other two cases.
+For sub-additive and super-additive costs, species trait values evolve
+towards the $\sqrt{{p_{i}}^{2} + {x_{i}}^{2}}$ ring and then either
+converge to equal investment in partitioning and conflict traits
+(sub-additive) or diverge to investment in only partitioning or only
+conflict traits (super-additive) (fig. S1).
+Furthermore, larger magnitudes of $\eta$ cause more rapid evolution around
+the ring (fig. S2).
+These results can be derived analytically
+(eqs. \ref{eq:analytical-super-solns}--\ref{eq:analytical-sub-solns}).
 
 
+Sub-additivity and super-additivity generate communities that differ in
+structure. At the community scale, sub-additive investment costs allow
+for only one possible stable configuration, where all species invest in
+both suites. For super-additive costs, there are three stable 2-species
+configurations: both species investing in partitioning traits, both
+investing in conflict traits, and one species investing in each. There
+are infinite community configurations for additive costs.
 
-We first conducted simulations to see how investment-cost additivity 
-determines the locations in investment space to which species evolve
- (Figure \ref{fig:tradeoffs-outcomes}).
-We find that sub-additive costs (when investing in one suite facilitates
-investment in the other; $\eta < 0$) result in a single outcome where all 
-species invest in both suites of traits.
-Additive costs ($\eta = 0$) result in a neutrally stable ring, where
-any location along that ring is an equally viable investment strategy.
-Lastly, when investment costs are super-additive ($\eta > 0$), there are two
-alternative stable states, one where species invest only in conflicting traits,
-another where they only invest in partitioning traits.
+\subsection*{Non-heritable variation}
 
+Because non-heritable variation can alter the effects of selection, we next
+explored the effects of non-heritable variation using simulations in
+which communities contained four species each with an initial total
+investment $\sqrt{{p_{i}}^{2} + {x_{i}}^{2}}$ = 1. Two species had
+initial investments favoring partitioning traits, and the other two had
+higher initial investments in conflict traits (fig. \ref{fig:non-heritable}). We considered
+three levels of non-heritable variation: non-existent
+($\sigma_{p} = \ \sigma_{x} = 0$), low
+($\sigma_{p} = \ \sigma_{x} = \ 0.11$), or high
+($\sigma_{p} = \ \sigma_{x} = 0.2$). We crossed these levels to give
+nine permutations of non-heritable variation, for example,
+$\sigma_{p}\  = \ 0.2$ and $\sigma_{x}$ = 0 in the top-left panels
+of figs. \ref{fig:non-heritable}A, \ref{fig:non-heritable}B, and \ref{fig:non-heritable}C (where the non-heritable variation is given in the
+gray distributions on the sides of the panels). For the case when
+non-heritable variation affects partitioning and conflict traits the same
+(figs. \ref{fig:non-heritable}A, \ref{fig:non-heritable}B, \ref{fig:non-heritable}C, subpanels along the diagonal),  adding non-heritable variation causes the additive and super-additive cases to behave like the sub-additive case, whereby the neutrally stable ring and alternative stable states are replaced by a single stable state with investment in both partitioning and conflict traits. Furthermore, non-heritable variation reduces the efficacy of selection for a given trait; for example, when non-heritable variation for the partitioning trait is greater than for the conflict trait, the stable investment state has higher investment in the conflict trait. This is a manifestation of the classic result in quantitative genetics whereby the efficacy of selection is scaled by the additive-genetic variance (i.e., heritable) relative to the non-heritable variance 
+\citep{Fisher1930a, Wright1931b, Barton2017}.
+These results are derived analytically
+in Appendix A (eq. \ref{eq:taylor-expansion-final}).
+However, our results for non-heritable variation only apply for 
+weakly super-additive traits. When costs are
+strongly non-additive ($\eta = - 0.6$ or $\eta = 0.6$), non-heritable
+variation has little effect (fig. S3).
 
-The relative investment in each suite of traits is also affected by
-non-adaptive stochasticity, especially when investment costs are weakly
-non-additive (Figure \ref{fig:stochasticity}).
-When stochastic variances are equal for both suites of traits, 
-this has no effect when costs are sub-additive (Figure
-\ref{fig:stochasticity}\textit{A}), but
-for super-additive costs, increasing variances results in a third
-attractor point where species invest in both suites of traits
-(Figure \ref{fig:stochasticity}\textit{B}).
-Further increasing variances widens the basin of attraction for this point,
-potentially resulting in most species evolving to invest in both suites 
-of traits.
-When variances are unequal, this reduces the investment for the suite of traits 
-with the greater variance.
-When costs are sub-additive, the single attractor point in investment
-space moves away from the axis for the suite of traits with greater variance 
-(Figure \ref{fig:stochasticity}\textit{A}).
-When costs are super-additive, the basin of attraction widens for the point
-where species only invest in the suite of traits with lower stochastic variance
-(Figure \ref{fig:stochasticity}\textit{B}).
-If the distribution of starting investments are symmetrical across investment
-space, this should result in more species specializing in the suite of traits
-with weaker non-adaptive stochasticity.
-That non-adaptive stochasticity affects investment evolution is also 
-supported by analytical results (Equation \ref{eq:taylor-expansion-final}).
+\subsection*{Coevolution when communities are invaded}
 
+Non-additivity of costs ($\eta$) and non-heritable variation
+($\sigma_{p}$ and $\sigma_{x}$) affect the possible states to which
+species can evolve in 2-species communities (figs. \ref{fig:tradeoffs-outcomes}
+and \ref{fig:non-heritable}). To address
+more broadly how competitive trait coevolution affects the structure of
+communities, we consider the invasion of 2-species communities by a
+competitor that invests in either partitioning or conflict traits, and
+analyze the ecological (abundance) and evolutionary (trait investment)
+responses of the resident species and the invading species. Our focus is
+on the final configuration of the community, specifically the investment
+of species in partitioning and conflict traits, and whether this
+configuration is stable to the addition of new species exhibiting
+different investments.
 
-The total amount invested unsurprisingly depends on the investment costs
-(which are fixed in this model) and benefits.
-The benefits depend on the number, abundances, and investments of other 
-species in the community.
-If there are many other species in the community that are all abundant 
-and invested heavily in conflicting traits, this will create selection 
-for the focal species to invest more heavily to avoid this strong 
-interspecific competition.
-On the other extreme, where there are few others competitors that are rare
-and invested heavily in partitioning traits, selection would favor lower
-investments since the cost of investing is less justified.
-In our model, where a community sits on this gradient, from the perspective
-of species $i$, can be calculated as
-$\sum_{j \ne i}^{n}{ N_j \text{e}^{ d_x x_j^2 - d_p p_j^2 } }$.
-We call this the ``scaled community size'' ($\Omega_i$) and define it as the
-total community abundance accounting for the effect of species' investments 
-on competition experienced by species $i$.
-Our analytical solutions show that when there are no competitors, 
-species should not invest at all
-(Equation \ref{eq:analytical-1spp-solns})
-and that in multi-species communities, 
-total investment is proportional to $\Omega_i$
-(Equations \ref{eq:analytical-sub-solns}, \ref{eq:analytical-super-solns}).
+A key factor needed to understand the evolution of trait investment for
+species is the total strength of competition it experiences, which
+depends on the number, abundances, and trait investments of the other
+species in the community. For example, if there are many other species
+in the community that have high population abundance and invest heavily
+in conflict traits, this will create strong selection for the focal
+species to invest in traits to decrease interspecific competition. The
+strength of interspecific competition experienced by species $i$ is
+given by
+$\sum_{j \neq i}^{n}{N_{j}\text{e}^{- d_{p}p_{j}^{2} + d_{x}x_{j}^{2}}}$.
+We call this the ``effective competitive neighborhood'', $\Omega_{i}$.
+Analytical solutions show that the optimal investment for a species is
+proportional to the interspecific competition it experiences at the
+stationary state, denoted ${\hat{\Omega}}_{i}$
+(eqs. \ref{eq:analytical-1spp-solns}--\ref{eq:analytical-sub-solns},
+fig. S4).
 
+To investigate the effect of trait investments by both resident and
+invading species on community coevolution, we conducted simulations
+where we varied whether resident communities and the invader invest in
+partitioning or conflict traits in a 2x2 design. We assumed additive
+costs ($\eta = 0$) for residents and invaders. Because costs were
+additive, we could set whether residents invested more in partitioning
+or conflict traits by selecting appropriate trait starting values in the
+simulations. Starting with two resident species with greater investment 
+in either partitioning or conflict traits, we first ran the simulations 
+to stationarity for the residents. We then introduced the invader
+that either invested mostly in partitioning traits or in conflict
+traits. To allow the direct comparison between partitioning and conflict
+traits, we assumed that they have the same magnitude of effects on the
+non-focal species ($d_{p} = d_{x} = 0.6$). 
+Because we were interested in coevolutionary patterns and not exclusion, we 
+also chose values of $d_p$ and $d_x$ that allowed both residents and invaders 
+to persist.
 
+When both residents and the invader invested mostly in conflict traits
+(fig. \ref{fig:one-invader}A), the residents experienced greater effective competitive
+neighborhoods, which selected for an increase in their overall
+investment and caused a decrease in their abundance. The invader also
+evolved greater overall investment and had an equilibrium abundance
+similar to the residents. The effective competitive neighborhood for the
+invader changed little because the decrease in the abundance of
+residents offset the effect of their increased investments. When a
+species investing in partitioning traits invaded the same resident
+community (fig. \ref{fig:one-invader}B), investments and abundances of residents changed
+little. The invader, however, evolved greater investment and reached a
+lower abundance than the residents. The abundance and investment by the
+partitioning invader matched those of the conflicting invader when they
+invaded the same community (fig. \ref{fig:one-invader}A,B). When a species investing mostly
+in conflict traits invaded a community of partitioning residents, this
+increased the investment and decreased the abundance for residents, and
+resulted in low investment and highest abundance for the invader (fig.
+\ref{fig:one-invader}C). An invader that invested in partitioning traits invading a resident
+community of species investing in partitioning traits resulted in little
+change for all species (fig. \ref{fig:one-invader}D).
 
-The effect of scaled community size on total investment results in feedbacks
-between community investment composition and subsequent investment by new
-species (Figure \ref{fig:community-invasions-zero}).
-When all members of a community invest in partitioning traits, this reduces
-the total amount invested per species for a given community size, with the
-potential for some species to avoid investment altogether.
-In Figure \ref{fig:community-invasions-zero}\textit{A--C}, all species invading
-the community invest only in partitioning traits. 
-The species that first invades (species 1) evolves to invest less during 
-the period it remains alone, so when the others arrive, it has the lowest 
-total investment in the community.
-Because of these starting conditions and because a community full of
-partitioning investment selects for low investment,
-species 1 slowly evolves to not invest at all.
-Figure \ref{fig:community-invasions-zero}\textit{D--F} shows that this can also 
-happen when one of the species (species 3) invests only in conflicting traits.
-The main differences here are that
-(1)~the species evolving to no investment does not need to start with 
-less overall investment than the other species and
-(2)~the evolution to zero investment occurs faster.
-Moreover, before species 3 evolves to invest less, it causes a precipitous
-decline in the abundances of the other species and a slightly less 
-dramatic increase in their total investments.
-Despite species 1 being more abundant, it declines more severely than 
-species 2  after species 3 arrives.
-This is because species 1 is less invested in reducing interspecific competition
-and thus more vulnerable to a species investing in conflicting traits.
+Overall, these simulations show that investment in conflict traits by
+both invader and resident species leads to additional investment,
+whereas investment in partitioning traits leads to relatively less
+selection for changes in investment. This is true for the effects of
+invaders on residents (fig. \ref{fig:one-invader}A,C versus \ref{fig:one-invader}B,D) and of residents on
+invaders (fig. \ref{fig:one-invader}A,B versus \ref{fig:one-invader}C,D). However, these contrasting effects of
+investing in conflict versus partitioning traits are not necessarily
+symmetrical.
 
+When species $i$ invests in either type of trait, it reduces its own
+competition, which allows it to increase in abundance. An increase in
+$N_{i}$ increases competition for all other species in the community
+(i.e., it increases $\Omega_{j}$ for all $j\  \neq i$). If species
+$i$ had invested in partitioning traits, this increase in $N_{i}$
+undercuts the competition-reducing effects of increasing $p_{i}$ on
+all other species. If species $i$ had invested in conflict traits, the
+increase in $N_{i}$ exacerbates the competition-increasing effects of
+increasing $x_{i}$. Therefore, conflict trait investment by one
+species increases the competition experienced by other species through
+its effects on both the investor's abundance and traits, whereas when a
+species invests in partitioning traits, the abundance- and
+trait-mediated effects on other species counteract one another. This can
+be seen in the simulations when residents invested heavily in conflict
+traits and invaders in partitioning traits (fig. \ref{fig:one-invader}B) and when residents
+invested heavily in partitioning traits and invaders in conflict traits
+(fig. \ref{fig:one-invader}C), where we found that the species investing in conflict traits
+had a greater influence on investments than those investing in
+partitioning traits. Thus, in communities with species expressing both
+partitioning and conflict traits, we expect the evolution of conflict
+traits to be the stronger driver of trait evolution for all species.
 
-Figure \ref{fig:community-invasions-armsrace}\textit{A--C} shows that
-the effects of strong partitioning investment in a community can be quickly
-torn apart when just two species arrive that invest in conflicting traits.
-This is because these two species engage in an arms race where one invests
-more heavily and expands in population, then slowly invests less as others
-in the community become less abundant.
-The other species then evolves to invest more in conflicting traits
-because of the increased competition it experiences from the abundant species,
-and it subsequently becomes most common.
-This results in damped oscillations that eventually reach an equilibrium 
-where both species have invested much more than when they started.
-During this back-and-forth, the species that invest only in partitioning 
-traits increase their own investments to compensate for the increasing 
-competition they experience.
-Invaders investing in partitioning traits are excluded unless
-they have already invested heavily.
-Whether this arms race occurs depends on the time between successive 
-invasions of species investing in conflicting traits
-(Figure \ref{fig:community-invasions-armsrace}\textit{D--F}).
-With a large gap between conflicting investors,
-the early-arriving species, with only partitioning investors to compete with,
-evolves a low enough investment that it is excluded when a new 
-conflicting investor arrives.
-The partitioning investors that had already evolved increased investment
-in response to each other and the first conflicting investor
-survive both invasions of conflicting investors.
-The partitioning investor that evolved no investment quickly went extinct
-upon invasion of the first species with conflicting investment.
-A new invader with moderate investment in partitioning traits
-can coexist in this community because of the reduced investment
-evolved by the conflicting investor.
-These results are similar to those where resident species invest in
-only conflicting traits:
-If the gap between new invaders is short, the invader must have
-invested heavily in either suite of traits to successfully invade.
-If the gap is long, then invaders more heavily invested in conflicting traits
-than the resident will exclude the resident that has evolved reduced investment
-while it is alone;
-moderately invested partitioning invaders will coexist with the resident.
+\subsection*{Competitive exclusion}
 
+In our model, species that invest more in conflict traits are generally more
+abundant and invest less overall than species investing mostly in partitioning
+traits (fig. \ref{fig:one-invader}). If an invader invested heavily in conflict
+traits---the type most likely to cause competitive exclusion---arrives
+to a community, greater total investments by residents help shield them from 
+the new source of competition, whereas greater resident abundance should 
+slow invader population growth and provide the resident a longer time for
+evolutionary rescue via greater investment. Our next simulations assess how
+these factors together affect the likelihood of an invader excluding resident
+species that invest in either partitioning or conflict traits.
 
-In the previous two examples (Figures \ref{fig:community-invasions-zero} and
-\ref{fig:community-invasions-armsrace}), costs are super-additive, and 
-to adjust the community-wide strength of a given suite of traits, 
-we simply change the proportion of species specializing in it.
-Communities with sub-additive costs can similarly differ in the effects of
-existing investment in partitioning versus conflicting traits.
-This occurs not because of differences in investments among species since 
-they all eventually invest in both suites equally.
-Instead, this happens when one suite of traits has a stronger effect on other
-species for each unit invested (i.e., $d_x \ne d_p$).
-Whichever suite has a greater per-unit-invested effect is more influential 
-as species evolve to invest in both, and new species' total investments are
-affected in a qualitatively similar way to when tradeoffs are super-additive
-(Equations \ref{eq:analytical-sub-solns}, \ref{eq:analytical-super-solns}).
-The exception to this is when $\eta \le -1$, a scenario where investing
-in both suites of traits in the same amounts will cost nothing or even 
-provide a benefit to the per-capita growth rate.
-This lack of tradeoff results in ever-increasing investments that are
-unlikely in natural populations.
-A more important difference between the sub- and super-additive cases
-is that the feedbacks between current community investments and those
-of new invaders are usually transient when costs are sub-additive because
-the invaders always evolve to invest in both suites of traits.
-The only time these feedbacks have lasting effects is when invaders
-evolve to not invest or instigate a resident species to do the same, 
-which can also occur when $d_x \ll d_p$.
-Exactly the same dynamics as the super-additive case could be observed
-if species differed in their values of $d_x$ and $d_p$, which 
-we do not include our model but would of course be the case in real communities.
-In summary, we focused on the super-additive case because
-(1)~the feedbacks are qualitatively the same,
-(2)~any differences in dynamics are caused by unrealistic assumptions
-of the model, and
-(3)~the super-additive case is easier to visualize.
+We simulated the invasion of 2-species equilibrium communities similar
+as in the last section, but with one resident species always invested in
+conflict traits and the other always invested in partitioning traits.
+The invader only invested in conflict traits (invader
+$p_{t = 0} = 0,\ x_{t = 0} = 1$).
 
 
+We simulated the invasion of 2-species equilibrium communities as in the
+previous section, but with one resident species always invested more in
+partitioning traits (partitioning resident: $p_t \gg x_t$) and the other 
+always invested more in conflict traits (conflict resident: $p_t \ll x_t$). 
+We varied the strength of effects of
+trait investment on other species ($d_{p}$ and $d_{x}$) because
+these parameters shape interactions between residents and invaders.
+We varied the strength of the effect of investing in traits on other species
+($d_{p}$ and $d_{x}$) because these parameters shape interactions between
+residents and invaders, but we focused on $d_p$ since this had the strongest
+effect on the coevolutionary dynamics (fig. S5). 
+At equilibrium, the conflict resident invested less overall and was more
+abundant than the partitioning resident, and these disparities increased with
+$d_p$ (fig. \ref{fig:exclusion}A,B). Specifically, when $d_p$ = 0.3, the
+conflict resident moderately invested, while it invested very minimally when
+$d_p$ = 0.7; the portioning resident maintained high investment in both
+scenarios (fig. \ref{fig:exclusion}C,D). When an invader investing in conflict
+traits (conflict invader: $p_{t=0} = 0$, $x_{t=0} = 1$) was added to the
+equilibrium 2-species community, overall investment was more important than
+abundance in determining which resident was excluded.
+When the conflict resident invested moderately ($d_p=0.3$;
+fig. \ref{fig:exclusion}C) at the 2-species equilibrium, the addition of the
+invader caused only a temporary drop in the conflict resident’s abundance in
+response to the increase in the effective competitive neighborhood (fig.
+\ref{fig:exclusion}E). In contrast, when the conflict resident invested
+minimally ($d_p=0.7$; fig. \ref{fig:exclusion}D), it went extinct as it was
+unable to increase its investment rapidly enough in response to the increase in
+the effective competitive neighborhood (fig. \ref{fig:exclusion}F).
+Because the partitioning resident always
+invested more overall, the effects of the conflict invader were less
+severe and did not cause it to go extinct. This pattern where the
+conflict resident was easier to exclude than the partitioning resident
+was constant over a wide range of $d_{p}$, $d_{x}$, and the conflict
+invader's starting total investment (fig. S6).
 
 
-
+These simulations show that investing in conflict traits can make
+species more likely to be excluded from a community that also contains
+species that invest in partitioning traits. By reducing other
+competitors' abundances, thereby selecting for reduced investment for
+itself and increased investment for others, competitors invested
+proportionally more in conflict traits make themselves the most vulnerable to
+exclusion despite being the most abundant in the community. We might
+therefore expect higher turnover and greater variation in abundance for
+species invested in conflict traits. This bias in exclusion risk could
+result in communities that, on average, contain fewer species investing
+strongly in conflict traits.
 

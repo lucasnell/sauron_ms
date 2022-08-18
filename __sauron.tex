@@ -12,10 +12,7 @@
 \titleformat{\paragraph}[runin]{\itshape}{\theparagraph}{1em}{}[. ]\renewcommand{\refname}{Literature Cited}
 
 
-% Below, I commented out all parts of MS that make it for Ecology Letters rather than American Naturalist using `%%>%%`
 
-%%>%% \usepackage[shortlabels]{enumitem}
-%%>%% \setlist{nolistsep,leftmargin=*}
 
 
 %%%%%%%%%%%%%%%%%%%%%
@@ -34,12 +31,6 @@
 % (Thanks to Vlastimil Krivan for pointing this out to us!)
 
 \title{When should coevolution among competitors promote coexistence versus exclusion?}
-
-% coevolution
-% competition
-% coexistence / exclusion / partitioning
-% traits?
-
 
 
 
@@ -85,14 +76,23 @@
 % single spacing in table, with extra space between rows (only used for supplement)
 \usepackage{setspace}
 
+% This keeps appendix figures / equations / tables from breaking hyperref
+% from https://tex.stackexchange.com/a/295909
+\usepackage{xassoccnt}
+\NewTotalDocumentCounter{displayFigure}
+\NewTotalDocumentCounter{displayTable}
+\NewTotalDocumentCounter{displayEquation}
+\DeclareAssociatedCounters{figure}{displayFigure}
+\DeclareAssociatedCounters{table}{displayTable}
+\DeclareAssociatedCounters{equation}{displayEquation}
+
+
 
 
 \begin{document}
 
+\raggedright
 
-%%>%% \singlespacing
-%%>%% \linenumbers{}
-%%>%% \modulolinenumbers[1]
 
 \maketitle
 
@@ -121,11 +121,12 @@ evolutionarily stable communities}
 
 \textit{Manuscript elements}: Figure~1, figure~2, figure~3, figure~4, figure~5,
 online appendix~A, online appendix~B,
-supplemental material
+supplemental material  (figures S1--S6)
 
 \bigskip
 
-\textit{Words in text}: ZZZ
+% Not including literature cited
+\textit{Words in text}: 6,405 (+ 763 in appendices)
 
 \bigskip
 
@@ -141,60 +142,9 @@ supplemental material
 \modulolinenumbers[3]
 
 \newpage{}
-\raggedright
 \setlength{\parindent}{20pt}
 
 
-%%>%% \raggedright
-%%>%% \setlength{\parskip}{1em}
-%%>%%
-%%>%% \begin{enumerate}[a.]
-%%>%% \item
-%%>%% Department of Integrative Biology, University of Wisconsin, Madison, WI 53706, USA. lucas@lucasnell.com
-%%>%% \item
-%%>%% Department of Integrative Biology, University of Wisconsin, Madison, WI 53706, USA. joseph@mail.holar.is
-%%>%% \item
-%%>%% Department of Aquaculture and Fish Biology, H\'{o}lar University, Skagafj\"{o}r{\dh}ur 551 Iceland
-%%>%% \item 
-%%>%% Department of Integrative Biology, University of Wisconsin, Madison, WI 53706, USA. arives@wisc.edu \\[1ex]
-%%>%% \item[1.]
-%%>%% Correspondence: lucas@lucasnell.com, +1 (717) 476-7653
-%%>%% \end{enumerate}
-%%>%%
-%%>%% % <= 45 characters
-%%>%% \noindent Running title: Coexistence, competition, and coevolution
-%%>%%
-%%>%% % <= 10
-%%>%% \noindent Keywords: {
-%%>%% community assembly,
-%%>%% competition,
-%%>%% % alternative stable states,
-%%>%% % historical contingency,
-%%>%% evolutionarily stable communities,
-%%>%% eco-evolutionary dynamics,
-%%>%% plasticity}
-%%>%%
-%%>%% \bigskip
-%%>%%
-%%>%% \noindent Article type: Letter \\
-%%>%% \noindent Abstract words:  \\
-%%>%% \noindent Main text words:  \\ % (excluding abstract, acknowledgements, references, table and figure legends)
-%%>%% \noindent References: \\
-%%>%% \noindent Tables: 0 \\
-%%>%% \noindent Figures:  \\
-%%>%% \noindent Text boxes: 0 \\
-%%>%%
-%%>%% \bigskip
-%%>%%
-%%>%% \textbf{Author contributions:} LAN and ARI conceived the study,
-%%>%% and LAN wrote the first draft of the article.
-%%>%% All authors developed and analyzed the models, and revised the manuscript.
-%%>%%
-%%>%% \textbf{Data accessibility:} R and C++ code used to simulate the models
-%%>%% is available from GitHub (\url{https://www.github.com/lucasnell/sauron}),
-%%>%% and will be archived on Zenodo upon acceptance.
-%%>%%
-%%>%% \clearpage
 
 
 
@@ -272,24 +222,17 @@ supplemental material
 
 % \section*{Acknowledgments}
 %
-% This research was performed using the compute resources and assistance of the UW-Madison Center 
-% For High Throughput Computing (CHTC) in the Department of Computer Sciences. 
-% The CHTC is supported by UW-Madison, the Advanced Computing Initiative, the 
-% Wisconsin Alumni Research Foundation, the Wisconsin Institutes for Discovery, and 
-% the National Science Foundation, and is an active member of the Open Science Grid, 
-% which is supported by the National Science Foundation and the U.S. Department of Energy's 
-% Office of Science.
-
-% Matthew McCary --> help with garlic mustard info
+% We thank Matthew McCary for insightful feedback on the implications of 
+% this work.
 
 
 
 
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 % Appendices
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 
 \newpage{}
 \input{app_A}
@@ -298,11 +241,11 @@ supplemental material
 
 
 
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 % Literature Cited
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 
 % You can either type your references following the examples below, or
 % compile your BiBTeX database and paste the contents of your .bbl file
@@ -314,6 +257,14 @@ supplemental material
 %
 % The list below includes sample journal articles, book chapters, and
 % Dryad references.
+% 
+% Not necessary to do this until acceptance!
+% 
+% For how to create a .bbl file from an Overleaf project:
+% https://www.overleaf.com/learn/how-to/How_do_I_download_the_automatically_generated_files_(e.g._.bbl%2C_.aux%2C_.ind%2C_.gls)_for_my_project%3F_My_publisher_asked_me_to_include_them_in_my_submission
+% 
+
+
 
 \bibliographystyle{amnatnat.bst}
 \newpage{}
@@ -325,12 +276,12 @@ supplemental material
 \newpage{}
 
 
-\renewcommand{\thefigure}{\arabic{figure}}
-\renewcommand{\theequation}{\arabic{equation}}
-\renewcommand{\thetable}{\arabic{table}}
-\setcounter{equation}{0}
-\setcounter{figure}{0}
-\setcounter{table}{0}
+\renewcommand{\thefigure}{\arabic{displayFigure}}
+\renewcommand{\theequation}{\arabic{displayEquation}}
+\renewcommand{\thetable}{\arabic{displayTable}}
+\setcounter{displayFigure}{0}
+\setcounter{displayEquation}{0}
+\setcounter{displayTable}{0}
 
 
 
@@ -340,10 +291,32 @@ supplemental material
 
 
 
+
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=0.8\textwidth,keepaspectratio]{1-diagram.pdf}
-\caption{Demonstration of how investment by one species affects other species in the community. (A) We start with a two-species community where the abundance and investments of species A are constant and not affected by species B, while those of species B are affected by species A and change though time as specified by the model. There is only one suite of traits. (B) If we perturb the system by instantly increasing the investment by species A, the effects this has on species B depend on the type of traits they can invest in. (C) For partitioning traits ($d = 1$), investment by A weakens the interspecific competition experienced by species B and causes a rapid initial increase in the abundance of B. Because reduced competition makes investment less necessary, species B also has a slower evolutionary decrease in investment. The reduced costs of investing cause the slow increase in abundance by species B after the initial response. (D) For conflicting traits ($d = -1$), investment by A strengthens the interspecific competition experienced by species B and causes a rapid initial decrease in the abundance of B. Species B then evolves greater investment to reduce the effects of competition from A, which allows species B to increase in abundance after the initial decrease. (C–D) Before the perturbation to species A, this community was simulated for 10,000 generations to allow species B to reach an equilibrium.}
+\includegraphics[width=0.7\textwidth,keepaspectratio]{1-diagram}
+\caption{Simplified scenario demonstrating how investment by
+one species affects other species in the community. We start with a
+two-species community where the abundance and investments of species B
+are affected by species A and change though time as specified by the
+model. To show direct effects without feedbacks that complicate
+interpretation, these simulations have two differences from those
+throughout the rest of the paper: First, the abundance and investments
+of species A are constant and not affected by species B. Second, there
+is only one suite of traits. (A)~If we perturb the system by instantly
+increasing the investment by species A, the effects this has on species
+B depend on the type of traits species A invests in. (B)~If species A
+invests in partitioning traits, greater investment by A weakens the
+interspecific competition experienced by species B and causes a rapid
+initial increase in the abundance of B. Because reduced competition
+makes investment less beneficial, species B decreases its investment.
+The reduced costs of investing cause the slow increase in abundance of
+species B. (C)~If species A invests in conflict traits, greater
+investment by A strengthens the interspecific competition experienced by
+species B and causes a rapid initial decrease in the abundance of B.
+Species B then evolves greater investment to reduce the effects of
+competition from A, which allows species B to increase in abundance
+after the initial decrease.}
 \label{fig:model-description}
 \end{figure}
 
@@ -352,16 +325,20 @@ supplemental material
 
 \begin{figure}[ht!]
 \centering
-\includegraphics{2-tradeoffs_outcomes.pdf}
-\caption{Costs of investing (background color) and unique investment states for surviving species in two-species communities (points and dotted line) for investment costs being sub-additive ($\eta < 0$), additive ($\eta = 0$), or super-additive ($\eta > 0$). The line in the additive case shows the location of the neutrally stable ring. Both suites of traits are nearly neutral ($d_x = -10^{-6}$; $d_p = 10^{-6}$) to isolate the effects of investment cost to the investing species only. Background color indicates the proportional reduction from the maximum fitness without competition 
-($\left[ \text{exp} (r_0) - \text{exp} (r_0 - f ( x_i^2 + 2 \eta x_i p_i + 
-p_i^2 )) \right] / \text{exp}(r_0)$),
-so darker colors indicate a greater cost of investment. 
-Arrows show the direction and strength of selection
-($ F_i^{-1} \partial F_i / \partial x_i $ and 
-$ F_i^{-1} \partial F_i / \partial p_i $)
-if a species at the nearest equilibrium point is perturbed to the arrow’s
-starting location.}
+\includegraphics[width=\textwidth,keepaspectratio]{2-tradeoffs_outcomes}
+\caption{Costs of investing (background color) and unique
+investment states for 2-species communities (points and dotted line) for
+sub-additive ($\eta < 0$), additive ($\eta = 0$), or super-additive
+($\eta > 0$) investment costs. The dashed line in the additive case
+shows the location of the neutrally stable ring. Background color
+indicates the proportional reduction from the maximum per capita growth without
+competition
+($\lbrack \text{exp}( r_{0} ) - \text{exp}( r_{0} - f( p_{i}^{2} + 2 \eta p_{i} x_{i} + x_{i}^{2} ) ) \rbrack \, / \, \text{exp}( r_{0} )$),
+so darker colors indicate a greater cost of investment. Arrows show the
+direction and strength of selection
+($F_{i}^{- 1} \, \partial F_{i} \, / \, \partial p_{i}$ and
+$F_{i}^{- 1} \, \partial F_{i} \, / \, \partial x_{i}$) if a species at the
+nearest equilibrium point is perturbed to the arrow's starting location.}
 \label{fig:tradeoffs-outcomes}
 \end{figure}
 
@@ -372,32 +349,75 @@ starting location.}
 
 \begin{figure}[ht!]
 \centering
-\includegraphics{3-all_stoch.pdf}
-\caption{Examples of how non-adaptive stochasticity affects investment evolution, for investment costs being (A) weakly sub-additive ($\eta = -0.01$) and (B) weakly super-additive ($\eta = 0.01$). Each sub-panel shows the trajectories (lines) in investment space for 4 species started under each scenario. Open points indicate starting investments. Closed, black points indicate ending investments. Gray shaded curves inside each plot show the probability density for the normal distributions used to generate stochasticity in conflicting (bottom curve) or partitioning (left curve) investment evolution. No curve indicates no stochasticity.}
-\label{fig:stochasticity}
+\includegraphics[width=\textwidth,keepaspectratio]{3-all_stoch}
+\caption{Representative simulations showing how non-heritable
+variation affects selection on investment for (A) weak sub-additive
+($\eta = - 0.01$), (B) additive ($\eta = 0$), or (C) weak
+super-additive ($\eta = 0.01$) investment costs. Each sub-panel shows
+the trajectories (lines) in investment space for four species started
+under each scenario. Open points indicate starting investments, and
+closed black points indicate ending investments. Gray shaded curves
+inside each plot show the probability density for the normal
+distributions used to generate non-heritable variation in conflict (bottom
+curve) or partitioning (left curve) trait investment evolution. No curve
+indicates no non-heritable variation.}
+\label{fig:non-heritable}
 \end{figure}
 
 \clearpage
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=0.75\textwidth,keepaspectratio]{4-comm_inv.pdf}
-\caption{Effects of a community with strong partitioning investment on subsequent species evolution. Shown are simulations of 3-species communities where the species are added 100 generations apart. Costs are super-additive, and two simulations were run: (A--C) all three species invest in partitioning traits and (D--F) two invest in partitioning and one in conflicting traits. The left-most panels (A,D) show starting species investments (open points) and where they evolve to at equilibrium (closed points); numbers inside points indicate the order species were added. All points here lie on one axis; some points were shifted to avoid overlapping. The upper sub-panels in the right column (B,E) show how both conflicting (closed points, solid lines) and partitioning (open points, dashed lines) investments change through time. The lower sub-panels in the right column (C,F) show how abundances change through time. For all panels in the right column, points show conditions when the species first invades the community. In all plots, colors indicate species and are consistent within rows.}
-\label{fig:community-invasions-zero}
+\includegraphics[width=0.9\textwidth,keepaspectratio]{4-one-invader}
+\caption{Effects of initial investments by invading and
+resident species on subsequent evolution of investment. Shown are
+z-scored total investment ($\sqrt{{p_{i}}^{2} + {x_{i}}^{2}}$), effective
+competitive neighborhood ($\Omega_{i}$), and abundance ($N_{i}$) for
+residents (dark or light blue) of a 2-species community at stationarity
+that is invaded by a third species (red). Points indicate the values of
+each parameter when the invader was added, and arrows point to the value
+where the new 3-species community reached a new equilibrium. Note that
+invader points are the only points that do not indicate equilibrium
+values and thus do not conform to equations
+\ref{eq:analytical-super-solns}--\ref{eq:analytical-additive-solns} and
+equilibrium relationships described in text. Panel rows separate the relative
+investment of the resident species in conflict versus partitioning
+traits, while columns do the same for the invader. Insets show the exact
+investments ($p_{i}$ and $x_{i}$) for all three species when the
+invader was added. Z-scoring was done within each panel (parameter set)
+so that they can be compared across panels. Because starting $N_{i}$
+for the invader was always 1, we did not include this value in the
+z-scoring and indicated this by having the starting point outside the
+plot range.}
+\label{fig:one-invader}
 \end{figure}
-
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=0.75\textwidth,keepaspectratio]{5-comm_inv_ar.pdf}
-\caption{Effects of multiple investors in conflicting traits on community coevolution. Shown are simulations of 6-species communities where investment costs are super-additive and where four species invest in partitioning traits and two in conflicting traits. Two simulations were run: (A--C) one where species were added 100 generations apart, and (D--F) another where species were added 1,000 generations apart. The left-most panels (A,D) show starting species investments (open points) and where they evolve to at equilibrium (closed points). Numbers inside points indicate the order species were added, and species with no equilibrium points went extinct. All points here lie on one axis; some points were shifted to avoid overlapping. The upper sub-panels in the right column (B,E) show how both conflicting (closed points, solid lines) and partitioning (open points, dashed lines) investments change through time. The lower sub-panels in the right column (C,F) show how abundances change through time. For all panels in the right column, points show conditions when the species first invades the community, and Xs indicate extinctions. In all plots, colors indicate species and are consistent within rows.}
-\label{fig:community-invasions-armsrace}
-\end{figure}
-
 
 \clearpage
 
-\input{supp_info}
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=4.75in,keepaspectratio]{5-exclusion}
+\caption{Factors affecting exclusion of residents in a
+2-species mixed community. For the equilibrium 2-species resident
+community, (A)~total investment
+($\sqrt{{\hat{p}}_{i}^{2} + {\hat{x}}_{i}^{2}}$) and (B)
+abundance (${\hat{N}}_{i}$) by the species investing more in
+partitioning traits (``partitioning resident''; gold) and by the species
+investing more in conflict traits (``conflict resident''; purple) depend
+on how strongly partitioning investment affects the competition
+experienced by other species ($d_{p}$). (C)~Equilibrium investments
+for the 2-species community when $d_{p} = 0.3$ and (D)~when
+$d_{p} = 0.7$, with investments of the invader species shown in orange.
+(E,F)~Total investment ($\sqrt{{p_{i}}^{2} + {x_{i}}^{2}}$), effective
+competitive neighborhood ($\Omega_{i}$), and abundance ($N_{i}$) for
+both residents and an invader invested in conflict traits (``conflict
+invader''; orange) added to the community from (E)~panel C or (F)~panel
+D. Crosses indicate extinction.}
+\label{fig:exclusion}
+\end{figure}
+
+
+
 
 
 \end{document}

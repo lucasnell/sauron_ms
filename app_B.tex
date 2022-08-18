@@ -1,15 +1,13 @@
 
-\renewcommand{\thefigure}{B\arabic{figure}}
-\renewcommand{\theequation}{B\arabic{equation}}
-\renewcommand{\thetable}{B\arabic{table}}
-\setcounter{equation}{0}
-\setcounter{figure}{0}
-\setcounter{table}{0}
+\renewcommand{\thefigure}{B\arabic{displayFigure}}
+\renewcommand{\theequation}{B\arabic{displayEquation}}
+\renewcommand{\thetable}{B\arabic{displayTable}}
+\setcounter{displayFigure}{0}
+\setcounter{displayEquation}{0}
+\setcounter{displayTable}{0}
 
 
 \section*{Appendix B: General matrix forms of equations and Jacobian}
-
-
 
 
 \subsection*{Matrix forms of equations}
@@ -40,7 +38,7 @@ See Table \ref{tab:matrix-parameters-table} for descriptions of the parameters.
     $n$ & The number of species in the community. \\
     $\mathbf{v}_i$ & A $q \times 1$ vector containing the  investments for
         species $i$. \\
-    $F_i$ & Fitness for species $i$. \\
+    $F_i$ & Per-capita growth for species $i$. \\
     $N_i$ & Population density of species $i$. \\
     $\alpha_0$ & Base density dependence. \\
     $r_0$ & Baseline growth rate. \\
@@ -64,6 +62,7 @@ See Table \ref{tab:matrix-parameters-table} for descriptions of the parameters.
         Alternatively, when $d_k > 0$, the same investment decreases the 
         effect of competition on all species (i.e., the $k$\textsuperscript{th}
         traits are partitioning). \\
+    $\sigma_A^2$ & Additive genetic variance. \\
     %
     \bottomrule
     \end{tabular}
@@ -73,14 +72,14 @@ See Table \ref{tab:matrix-parameters-table} for descriptions of the parameters.
 
 
 The following 4 equations correspond to Equations
-% \ref{eq:fitness}, \ref{eq:growth-rate}, \ref{eq:competition}, and
+% \ref{eq:pg-growth}, \ref{eq:growth-rate}, \ref{eq:competition}, and
 % \ref{eq:invest-change} 
-\ref{eq:fitness}--\ref{eq:invest-change} 
+\ref{eq:pg-growth}--\ref{eq:invest-change} 
 from the main text.
 
-The per-capita growth---here equivalent to fitness---for species $i$ is
+The per-capita growth for species $i$ is
 
-\begin{equation} \label{eq:matrix-fitness}
+\begin{equation} \label{eq:matrix-pg-growth}
     F_{i} = \exp \left\{ r_i(\mathbf{v}_i) - 
         \alpha_{0} \, N_i - \sum_{j \ne i}^{n}{
             \alpha_{ij}(\mathbf{v}_i, \mathbf{v}_j) \, N_j}  
@@ -110,8 +109,8 @@ the growth rate:
 
 \newpage{}
 
-The term $\alpha_{ij}(\mathbf{v}_i, \mathbf{v}_j))$ in equation
-\ref{eq:matrix-fitness}
+The term $\alpha_{ij}(\mathbf{v}_i, \mathbf{v}_j)$ in equation
+\ref{eq:matrix-pg-growth}
 represents how investments influence the effects
 of interspecific competition:
 
@@ -140,7 +139,7 @@ Investments at time $t+1$ are
 \begin{equation} \label{eq:matrix-invest-change}
 \begin{split}
     \mathbf{v}_{i,t+1} &= \mathbf{v}_{i,t} + \left( \frac{1}{F_i}
-        \frac{\partial F_i}{\partial \mathbf{v}_{i,t}} \right) \sigma^2_A \\
+        \frac{\partial \, F_i}{\partial \, \mathbf{v}_{i,t}} \right) \sigma^2_A \\
      &= \mathbf{v}_{i,t} + 2 \sigma_A^2
     \left[
         \alpha_0 \, \left(
@@ -251,10 +250,5 @@ It is made up of the following derivatives:
     \textrm{.}
 \end{split}
 \end{equation*}
-
-
-
-
-
 
 
