@@ -23,3 +23,5 @@
 *.synctex.gz
 *.png
 *.pdf
+.Rproj.user
+*.Rproj
