@@ -1,70 +1,147 @@
 
 \section*{Discussion}
 
-Here, we first showed how tradeoffs, initial conditions, and conflicting/ameliorative coevolution
-combine to set the relevant deterministic rules for coexistence in a competitive system.
-Tradeoff additivity (i.e., how the cost of investing in multiple axes together 
-compares to the sum of investing separately) shapes how fitness maps onto the axis space,
-creating stable fitness peak(s) or a neutrally stable ridge.
-For multiple peaks or a neutrally stable ridge, initial conditions (i.e., where in the 
-axis space species start) determine the peak or ridge location to which each species will evolve.
-The extent to which coevolution is conflicting (i.e., investing by one species increases 
-competition experience by all others) or ameliorative for each axis affects
-how permissible coexistence should be across the axis space.
-Thus, tradeoffs and initial conditions dictate where in the axis space evolution will take species, and 
-conflicting/ameliorative coevolution determines how well they can 
-coexist when they get there.
+
+Here, we showed how coevolution shapes the evolution of traits that govern 
+the strength of competition between species. Two types of competition traits
+have distinct effects on the rate and outcome of coevolution. Conflict traits
+increase the impacts of competition on other species while simultaneously
+reducing competition for the evolving species. In contrast, partitioning 
+traits simultaneously reduce the strength of competition experienced by the
+species evolving the traits and the species with which it interacts. 
+The level of investment in conflict and partitioning traits depends on 
+whether costs for investing simultaneously in both types of traits are 
+additive, sub-additive, or super-additive. If the trade-off between 
+partitioning and conflict traits are sub-additive or additive, we would 
+expect species to invest in both, whereas super-additive costs should 
+result in investment strategies of only partitioning or only conflict traits.
+Furthermore, non-heritable variation acts to make the effective trade-off 
+more sub-additive; additive and even weakly super-additive trade-offs 
+become effectively sub-additive when there is sufficient non-heritable
+variation, resulting in simultaneous investment in both trait types. 
+Thus, the nature of investment costs, and how they are modified by 
+non-heritable variation, determine whether species evolve a mixed 
+strategy comprising both partitioning and conflict traits (sub-additive) 
+or evolve a specialist strategy of only partitioning or only conflict 
+traits (super-additive). In both cases, however, we would expect that
+communities should always contain mixed investments, either by all species
+showing mixed strategies or by different species specializing on 
+different strategies.
+Although partitioning and conflict traits should occur simultaneously in
+communities, they affect community coevolution in different ways. 
+The evolution of conflict traits by a species causes both increases in 
+the abundance of the evolving species (by reducing competition it 
+experiences) and increases in the per capita strength of competition 
+it exerts on other species. Therefore, the evolution of conflict traits 
+leads to greater ecological (abundance) and evolutionary (traits) impacts 
+on a community than partitioning traits.
+
+Despite the ubiquity of conflict traits, their impacts on competitive
+communities are relatively understudied, partly because the question of 
+how so many species can coexist in nature is assumed to be answered by 
+resource partitioning. However, some empirical evidence has shown that
+exclusion-promoting traits, not necessarily niche partitioning, often 
+evolve in response to changes in competition 
+\citep{Germain2020, Hart2019, Miller2014, Zhao2016}.
+Furthermore, recent work on annual plant communities
+found that average fitness shows greater phylogenetic signal than niche
+partitioning \citep{Godoy2014} and that many commonly measured
+functional traits correspond more closely to competitive dominance than
+to niche differences \citep{Kraft2015}. These together suggest
+that conflict traits that reduce competition for a focal species at the
+expense of its competitors might be important for the evolution of
+competitive communities. Our results support this hypothesis and show
+that trait evolution for entire communities should be driven most
+strongly by investments in conflict traits.
+
+Although investors in conflict traits should drive greater investments
+in other species, their suppression of competitors' abundances combined
+with a cost to investment causes these conflict species themselves to
+evolve reduced investment. Conflict-investing species invading a
+community should therefore experience evolutionary disarmament after the
+initial period of ecological suppression of competitors. On the surface,
+this appears to conflict with two major hypotheses related to invasive
+species evolution. First, the novel weapons hypothesis predicts
+evolution of stronger armament after the invasion because of selection
+to suppress native competitors \citep{Callaway2004,
+Inderjit2006}. Second, the evolution of increased competitive
+ability (EICA) hypothesis predicts evolution of greater competitive
+dominance of invaders because they are released from selection due to
+natural enemies \citep{Blossey1995}. However, our simulations do
+show small evolutionary increases in investments by invaders upon
+arrival (fig. \ref{fig:exclusion}E,F), but this is followed by a slower and stronger
+decrease after native species are suppressed. This suggests a secondary
+stage of invasive species competitive coevolution, where they evolve
+reduced suppressive traits when natives are rare enough that the costs
+of maintaining those traits are no longer outweighed by the benefits.
+
+These two stages of invader evolution, first to increase investment in
+competitive traits and then to decrease investment, may also play out
+through space as the invasive species coevolves with natives that are
+more abundant at the edge of the invader's range \citep{Miller2020,
+Thompson2005a}. Empirical evidence for this comes from garlic
+mustard (\emph{Alliaria petiolata}), a widespread Eurasian invader of
+North American forest understories. Garlic mustard produces allelopathic
+compounds that suppress heterospecific plants but are costly when only
+competing with conspecifics \citep{Evans2016}. A number of
+studies have shown that its allelopathic effects on North American
+competitors decrease with time after invasion and that this pattern is
+consistent with evolution via selection for reduced allelopathy
+\citep{Bossdorf2004, Evans2016, Huang2018, Lankau2009}. For
+costly traits that effectively suppress native species, this secondary
+stage of disarmament might be common.
+
+Another effect of evolutionary disarmament by conflict-trait investors
+is that these species should have the greatest likelihood of being
+excluded from a community. This ``what goes around comes around''
+phenomenon makes communities containing many species with conflict
+traits eco-evolutionarily transitory. It also means that native species 
+that suppress others but have gone through disarmament might be most 
+vulnerable to exclusion, despite being more abundant than their 
+competitors. Like many eco--evolutionary processes
+\citep{Losos2009}, the impermanence of heavy conflict investors
+might be most obvious on remote islands. With long periods of
+evolutionary disarmament in the absence of new colonizations, repeat
+invasions by conflict investors from the competitor-rich mainland to
+competitor-poor islands could produce cycles of invasion, dominance,
+disarmament, and extinction. This is similar to ``taxon cycles,'' where
+species go through repeated periods of greater dispersal to islands,
+followed by evolved specialization and range fragmentation once they
+establish on islands that ultimately cause them to go extinct
+\citep{Losos2009, Wilson1961a}. The evidence for taxon cycles is
+mixed \citep{Losos1992, Losos1990, Mayr2001, Taper1992} but
+strongest for birds in the West Indies \citep{Ricklefs2002} and
+for Melanesian ants \citep{Darwell2020, Economo2012,
+Wilson1961a}. One of the main observations made to support taxon
+cycles is the transition of recent invaders being abundant and
+widespread to older taxa having a greater risk of extinction
+\citep{Ricklefs2010}. This is also consistent with serially
+invading conflict investors followed by disarmament and may indicate
+that this, along with other processes such as coevolution of natural
+enemies \citep{Ricklefs2002}, might underlie some of the
+episodic extinction--colonization events that exemplify taxon cycles.
 
 
 
+% ==============================================================================
+% ==============================================================================
 
+\section*{Conclusions}
 
-We also showed how stochasticity could bend and break these deterministic rules.
-Stochasticity always affected coexistence via transient effects during the 
-critical period immediately after a new invader arrived to the community.
-Stochasticity in population dynamics had both positive and negative effects on
-coexistence, via varying effects on both resident and invading species.
-It increased the chances of rare species going extinct,
-but it could temporarily increase their abundance and help them persist.
-It could also increase or decrease fitness for
-the resident species at critical times for an invader, which
-could increase or decrease the chances for the invader to survive long enough 
-for evolutionary rescue.
-Stochasticity in evolution had both positive and negative effects on
-coexistence, but its positive effects were more consistent than for stochasticity in 
-population dynamics.
-It could reduce or increase the invader's ability for 
-evolutionary rescue by changing the distance in axis space from the phenotype to 
-to the equilibrium state, compared to the genotype.
-It also kept phenotypes from remaining at the optimal 
-axis values (i.e., $\ddot{v}_{ij} \ne \hat{v}_{ij}$),
-which affected resident species in two ways.
-First, it could increase or decrease their effects on other species in the community.
-Second, it reduced their fitness and abundance, which had a consistently 
-positive effect on coexistence.
-This latter effect is why evolution stochasticity had a more consistent positive effect
-on coexistence than population-dynamics stochasticity.
-Despite the different mechanisms, both types of stochasticity usually had qualitatively
-similar effects on coexistence:
-When deterministic rules allowed for coexistence among species, 
-stochasticity could only have negative effects on it.
-On the margins, just outside the bounds of where these rules permitted coexistence, 
-stochasticity improved the chances of multi-species coexistence.
+In trying to understand how trait evolution affects species
+coexistence, research most often focuses
+only on traits promoting coexistence, such as those
+generating resource partitioning. Here, we show that communities are
+likely to contain evolutionary investments in both coexistence- and
+exclusion-promoting traits, and that the latter should have the greatest
+community-wide effects on abundances and investments in competitive
+traits. Because traits promoting exclusion suppress the abundance of
+competitors, in the long run selection should favor reduced investment
+in species possessing these traits. In turn, lower investment
+corresponds to a higher risk of later exclusion by an invading species.
+Whether coevolution promotes coexistence or exclusion may depend on the
+competition traits possessed by a given species. Coevolution may provide
+an open door for those that play nice and a revolving door of exclusion
+for those that do not.
 
-
-When tradeoffs were additive, stochasticity in axis evolution qualitatively changed
-the dynamics.
-Instead of evolving to any point along the neutral ring, species evolved to a specific
-location on that ring.
-The exact location of the ring depended on the variances of stochasticity among axes.
-The axis with a greater variance evolved to be lower.
-
-
-
-
-
-
-
-% A Conclusions section is common in AmNat, but not required
-% \section*{Conclusions}
 

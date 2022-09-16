@@ -1,289 +1,224 @@
 
-\section*{Material and methods}
+\section*{Methods}
 
+\subsection*{Ecological dynamics}
 
-\subsection*{Model overview}
+We used a discrete-time, modified Lotka--Volterra competition model
+similar to that used by Northfield and Ives
+\citep{Northfield2013a}. Communities consist of $n$ species,
+and each species $i$ can invest in both partitioning ($p_{i}$) and
+conflict ($x_{i}$) traits. A species' per capita population growth
+rate is
 
-We used a simple model of competition to evaluate how evolving investment in 
-competition affects coexistence among species.
-Each of $n$ species has $q$ competition axes.
-Competition axes are combinations of multiple traits that together affect 
-competition similarly.
-Investing in an axis has a cost to the population growth rate and 
-a benefit via reduced interspecific and intraspecific competition.
-The overall competition experienced by each species is a product of 
-the axes in all species in the community.
-This is because all species have at least two axes, 
-one conflicting, and one ameliorative.
-For a conflicting competition axis, investment by one species 
-strengthens competition for all other species.
-For an ameliorative axis, all species' competition is reduced when
-one species invests in it.
-
-
-All species are symmetrical in that when species share the same axis 
-values, they will always have the same per-capita effect on each other.
-The benefits and tradeoffs are the same for all axes.
-In both the costs and benefits, axis effects are concave functions that,
-combined, ensure that one fitness peak exists for each axis.
-Axes can also have non-additive trade-offs that either increase or decrease
-the cost associated with increasing multiple axes compared to increasing
-just one \citep{Northfield2021}.
-
-% Here, I think it makes sense to define what we mean by axes:
-We could expect conflicting evolution to occur when contest competition
-leads to arms races among competitors
-\citep{Abrams1994}.
-Competitor evolution might be ameliorative when they evolve
-dissimilar resource-usage traits to reduce competition \citep{Roughgarden1976}.
-
-
-We used a discrete-time, modified Lotka--Volterra competition model similar to
-that by \citet{Northfield2013a}.
-In it, species $i$ has a length-$q$ vector of axes ($\mathbf{v}_i$), and
-its per-capita growth---equivalent to fitness---is
-
-\begin{equation} \label{eq:fitness}
-    F_{i} = \exp \left\{ r_i(\mathbf{v}_i) - 
-        \alpha_{ii}(\mathbf{v}_i) \, N_i - \sum_{j \ne i}^{n}{
-            \alpha_{ij}(\mathbf{v}_i, \mathbf{v}_j) \, N_j}  
-    \right\}\textrm{,}
+\begin{equation} \label{eq:pg-growth}
+    F_{i} = \exp\left\{
+        r(p_i, x_i)
+        - \alpha_0 N_{i} 
+        - \sum_{j \ne i}^{n}{
+            \alpha_{ij}(p_i, x_i, p_j, x_j) \, N_j}
+        \right\}
+    \textrm{,}
 \end{equation}
 
-\noindent where $N_i$ is the population density of species $i$.
-The parameter $r(\mathbf{v}_i)$ describes how axes affect
-the growth rate:
+\noindent where $N_{i}$ is the population density of species $i$, and
+$\alpha_{0}$ is the strength of intraspecific competition which is
+fixed to the same value for all species and unchanged by trait
+evolution. The function $r( p_{i},x_{i} )$ is the per
+capita population growth rate of focal species $i$ in the absence of
+any intra- or interspecific competition. This function describes the
+direct fitness costs of investment as a reduction from the baseline per
+capita population growth rate $r_{0}$:
 
 \begin{equation} \label{eq:growth-rate}
-\begin{split}
-    r(\mathbf{v}_i) &= r_0 - f \, \mathbf{v}_i^{\textrm{T}} \, \mathbf{C} ~ \mathbf{v}_{i} \\
-    \mathbf{C} &= \begin{pmatrix}
-        1         & \ldots & \eta_{1q} \\
-        \vdots    & \ddots & \vdots \\
-        \eta_{q1} & \ldots & 1      \\
-        \end{pmatrix}
-    \textrm{,}
-\end{split}
+    r(p_i, x_i) = r_0 - f \, \left( p_i^2 + 2 \eta \, p_i \, x_i + x_i^2 \right)
+    \textrm{.}
 \end{equation}
 
-\noindent where $r_0$ is the baseline growth rate,
-$f$ is the cost of increasing axes on the growth rate, and
-$\eta_{k,l}$ is the non-additive trade-off of increasing both the
-$k$\textsuperscript{th} and $l$\textsuperscript{th} axes.
-When $\eta > 0$, increasing multiple axes incurs an extra cost.
-Non-additive trade-offs are symmetrical (i.e., $\eta_{k,l} = \eta_{l,k}$ for all
-$l$ and $k$), and all values on the diagonal of $\mathbf{C}$ are 1.
+\noindent Here, $f$ is a coefficient giving the cost of investment in a single
+trait type, and $\eta$ governs the non-additivity of costs for
+investing in both suites simultaneously. When $\eta > 0$, costs are
+super-additive, and when $\eta < 0$, costs are sub-additive.
+Super-additive tradeoffs occur when investment in one suite of traits
+makes investment in the other suite of traits more costly \citep{Garland2022}.
+% 
+This might occur, for example, if competition for light selects for greater
+growth in plants, which then increases the cost of chemical defenses to
+specialist herbivores.
+% 
+Sub-additive costs could be caused by shared
+biochemical/physiological pathways that make investment in one type of
+trait also increase the effects of the other type \citep{Garland1994,
+Garland2022}. Sub-additive costs could also arise when
+partitioning and conflict traits are correlated through an underlying
+trait \citep{Strauss2004}, and therefore the evolution of one
+type of trait reduces the cost of the other. For example, an increase in
+body size could both improve the ability of a species in agonistic competition
+and allow it to feed on larger prey, thereby simultaneously leading to 
+resource partitioning.
 
-
-The terms $\alpha_{ii}(\mathbf{v}_i)$ and
-$\alpha_{ij}(\mathbf{v}_i, \mathbf{v}_j)$
-in equation \ref{eq:fitness} represent how axes influence the effects
-of intraspecific and interspecific competition, respectively.
-Competitive effects are given by
+The term $\alpha_{ij}( p_{i},x_{i},p_{j},x_{j} )$ gives the
+pairwise interspecific competition coefficient, which is a function of
+the investments in partitioning and conflict traits for species $i$
+and $j$. We assume this has the form
 
 \begin{equation} \label{eq:competition}
-\begin{split}
-    \alpha_{ii}(\mathbf{v}_i) &= \alpha_0 ~\exp \left\{
-        - \mathbf{v}_i^{\textrm{T}}
-        \mathbf{v}_i \right\} \\
-    \alpha_{ij}(\mathbf{v}_i, \mathbf{v}_j) &= \alpha_0 ~\exp \left\{
-        - \mathbf{v}_i^{\textrm{T}} \mathbf{v}_i -
-        \mathbf{v}_j^{\textrm{T}} \mathbf{D} \mathbf{v}_j \right\} \\
-    \mathbf{D} &= \begin{pmatrix}
-        d_1     & \ldots    & 0 \\
-        \vdots  & \ddots    & \vdots \\
-        0       & \ldots    & d_q
-        \end{pmatrix}
-	\textrm{,}
-\end{split}
+    \alpha_{ij}(p_i, x_i, p_j, x_j) = \alpha_0 \,
+        \text{e}^{-p_i^2 - x_i^2 - d_p \, p_j^2 + d_x \, x_j^2 }
+	\textrm{.}
 \end{equation}
 
 
+\noindent Interspecific competition is scaled by $\alpha_{0}$, such that the
+effects of investment in partitioning and conflict traits are defined
+relative to the fixed strength of intraspecific competition. The
+parameters $d_{p}$ and $d_{x}$ correspond to partitioning and
+conflict traits, respectively, and determine how strongly investments in
+each suite of traits in one species affect competition experienced by
+other species. With increasing values of $d_{p}$, investment by
+species $i$ in partitioning traits has a stronger negative effect on
+the interspecific competition experienced by other species. With
+increasing values of $d_{x}$, investment by species $i$ in conflict
+traits has a stronger positive effect on competition experienced by all
+other species. Values of $d_{p}$ and $d_{x}$ only affect a focal
+species $i$ through the competition it experiences from other species
+$j \neq i$.
 
-\noindent where $\alpha_0$ is the base density dependence.
-Matrix $\mathbf{D}$ contains parameters that determine how evolution of axes
-in one species affects competition experienced by others:
-When $d_k < 0$, investment in by species $i$ in axis $k$ decrease the
-effect of competition on species $i$, but increase it in all others
-(i.e., axis $k$ is conflicting).
-Alternatively, when $d_k > 0$, the same investment decreases the effect of
-competition on all species including $i$ (i.e., axis $k$ is ameliorative)
-\citep{Northfield2013a}.
+For both costs (eq. \ref{eq:growth-rate}) and 
+benefits (eq. \ref{eq:competition}), the functions giving the
+effects of trait investment on fitness are concave so that a single
+fitness peak exists for each suite of traits. We did this because our
+goal was not to model the diversification process, and because this made
+the equations more mathematically tractable, preventing runaway
+evolution to infinite trait values. Investments are constrained to be
+non-negative by passing the equations for $p_{t + 1}$ and
+$x_{t + 1}$ (eq. \ref{eq:invest-change} below) through a ramp function. 
+Details are given in Appendix A.
 
+\subsection*{Evolutionary dynamics}
 
-The relationships between axis values and other components of fitness
-(growth rates and effects of competition) are of the form
-$X \propto v^2$ for parameter $X$, so $v = z$ is equivalent to $v = -z$.
-To avoid alternative outcomes due to artifacts of this relationship,
-axes are not allowed to be $< 0$.
-We did this by passing the equation for $\mathbf{v}_{t+1}$ through a
-ramp function.
-We used a ramp function instead of absolute values
-because the latter causes fluctuations
-in the axis values when they approach zero (they ``bounce off''
-the zero bound) that persist for a very long time;
-this caused the simulations to take a prohibitively long time to reach
-equilibrium.
-A more important disadvantage is that $d \lvert x \rvert / dx$ is
-undefined when $x = 0$.
-This implementation and its consequences on resulting derivatives are in
-Appendix A.
-
-
-
-
-% \subsection*{Adaptive dynamics}
-%
-% We started simulations with a single competitive species with axis values set to zero.
-% We tracked species population densities through time using equation \ref{eq:fitness} and
-% considered a species extinct if its density fell below $10^{-4}$.
-% Species produced daughter species with a probability of 0.01 per species per time step.
-% We generated daughter-species axis values from normal distributions with means of the
-% mother axis values and standard deviations of $\sigma_{d}$.
+We used a quantitative genetics framework for modeling coevolution of
+traits by different species. We assumed that both $p_{i}$ and
+$x_{i}$ represent means for species $i$ and that their
+among-individual distributions are symmetrical with additive genetic
+variance $\sigma_{A}^{2}$. Assuming also that $\sigma_{A}^{2}$ is
+relatively small \citep{Abrams1993b, Abrams2001a, Iwasa1991a},
+the evolution of traits are given by the equations
 
 
-\subsection*{Quantitative genetics}
 
-We used a quantitative genetics framework for axis evolution.
-We assumed that all axes in $\mathbf{v}_i$ represent means for species $i$
-and that their among-individual distributions are symmetrical with additive
-genetic variance $\sigma^2_i$.
-Assuming also that $\sigma^2_i$ is relatively small
-\citep{Iwasa1991a,Abrams2001a,Abrams1993b} and that
-
-\cite{DeVries2019}
-
-
-, axes at time $t+1$ are
-
-\begin{equation} \label{eq:axis-change}
-    \mathbf{v}_{i,t+1} = \mathbf{v}_{i,t} + \left( \frac{1}{F_i}
-        \frac{\partial F_i}{\partial \mathbf{v}_{i,t}} \right) \sigma^2_i
+\begin{equation} \label{eq:invest-change}
+\begin{split}
+    p_{i,t+1} &= p_{i,t} + \left( \frac{1}{F_i}
+        \frac{\partial F_i}{\partial p_{i,t}} \right) \sigma^2_A \\
+        &= p_{i,t} + 2 \, \sigma_A^2 \left[
+            \alpha_0 \, \text{e}^{-p_{i,t}^2 - x_{i,t}^2} \, p_{i,t} \,
+            \sum_{j \ne i}^{n}{ N_{j,t} \, \text{e}^{ 
+                -d_p \, p_{j,t}^2 + d_x \, x_{j,t}^2 } }
+            - f \left( p_{i,t} + \eta \, x_{i,t} \right) 
+        \right]\\[1ex]
+    x_{i,t+1} &= x_{i,t} + \left( \frac{1}{F_i}
+        \frac{\partial F_i}{\partial x_{i,t}} \right) \sigma^2_A \\
+         &= x_{i,t} + 2 \, \sigma_A^2 \left[
+            \alpha_0 \, \text{e}^{-p_{i,t}^2 - x_{i,t}^2} \, x_{i,t} \,
+            \sum_{j \ne i}^{n}{ N_{j,t} \, \text{e}^{ 
+                -d_p \, p_{j,t}^2 + d_x \, x_{j,t}^2 } }
+            - f \left( x_{i,t} + \eta \, p_{i,t} \right) 
+        \right]
     \textrm{.}
-\end{equation}
-
-To determine the stability of ending points (axis values and abundances of
-surviving competitor(s)), we computed the $n (q+1) \times n (q+1)$ Jacobian matrices
-of first derivatives for the axes and abundances of each species (Equation \ref{eq:jacobian}).
-We then computed the primary eigenvalue of this matrix ($\lambda$).
-We considered a state stable when $\lambda < 1$,
-neutrally stable when $\lambda = 1$,
-and unstable when $\lambda > 1$.
-
-Full analytical solutions to matrix derivatives (for axis change and
-Jacobian matrices) are found in appendix A.
-We also analyzed equilibrium solutions for the 2 axis case.
-This is found in Appendix B.
-
-
-\subsection*{Stochasticity}
-
-We added stochasticity to population dynamics by simply adding 
-a log-normal error term:
-
-\begin{equation} \label{eq:N-stochasticity}
-\begin{split}
-    N_{i,t+1} &= N_{i,t} \, F_{i,t} \; \text{e}^{\varepsilon_N} \\
-    \varepsilon_N &\sim \text{N}(0, \, \sigma^2_N)
-    \text{.}
 \end{split}
 \end{equation}
 
 
-Stochasticity for axis evolution takes the form of non-adaptive
-phenotypic plasticity,
-where phenotypes ($\mathbf{\ddot{v}}$) are the product of the
-genotypes ($\mathbf{v}$) and a log-normal error term:
 
-\begin{equation} \label{eq:V-stochasticity}
+\subsection*{Stability}
+
+The ecological and evolutionary stationary states produced by our model
+can be convergence stable and/or ESS stable \citep{Geritz1998}.
+A stationary (i.e., time-invariant) state is convergence stable if a
+nearby state evolves towards the stationary state. A stationary state is
+ESS-stable if, when occupied by the system, any mutant away from the
+state has lower fitness than those phenotypes at the stationary state.
+Convergence-stability does not imply ESS-stability, and vice versa
+\citep{Geritz1998}. Because we iterated the model until
+abundance and trait values reached a stationary state, the stationary
+state is convergence stable. To check for ESS convergence simultaneously
+for abundance and trait variables, we computed the Jacobian matrices for
+the abundances and investments of each species (eq. \ref{eq:jacobian}). 
+The dominant eigenvalue of this matrix ($\lambda$) corresponds to a stationary
+state that is stable when $\left\lVert\lambda\right\lVert < 1$, 
+neutrally stable when $\left\lVert\lambda\right\lVert = 1$, and 
+unstable when $\left\lVert\lambda\right\lVert > 1$. Analytical
+expressions for the derivatives are shown in Appendix B.
+
+\subsection*{Non-heritable variation}
+
+In our model, changes in trait investments are driven by selection on
+additive genetic variance. However, in natural populations many factors other
+than additive genetic variance are likely to influence trait values that
+underpin competition, most notably plasticity \citep{Miner2005}.
+To explore the effects of non-heritable variation on trait coevolution, we
+modeled the expected values of the phenotypes ${\ddot{p}}_{i}$ and
+${\ddot{x}}_{i}$ as the products of the latent additive-genetic
+components ($p_{i}$ and $x_{i}$) and log-normal perturbations, such
+that
+${\ddot{p}}_{i,t + 1} = p_{i,t + 1}\mspace{6mu}\text{e}^{\varepsilon_{p,t + 1}}$
+and
+${\ddot{x}}_{i,t + 1} = x_{i,t + 1}\mspace{6mu}\text{e}^{\varepsilon_{x,t + 1}}$,
+where $\varepsilon_{p,t + 1}$ and $\varepsilon_{x,t + 1}$ are
+generated from normal distributions with means of 0 and variances
+$\sigma_{p}^{2}$ and $\sigma_{x}^{2}$, respectively. Because
+phenotypes affect both competition and associated costs, they are used
+to calculate all species' fitness values and the effects of investments
+on competition. Genotypes change through time according to the effect of
+phenotypes on per-capita growth:
+
+
+\begin{equation} \label{eq:invest-change-non-heritable}
 \begin{split}
-    \mathbf{\ddot{v}}_{i,t+1} &= \mathbf{v}_{i,t+1} \; \text{e}^{\varepsilon_V} \\
-    \varepsilon_V &\sim \text{N}(0, \, \sigma^2_V)
-    % \varepsilon_V &\sim \text{N}(\mu_V, \, \sigma^2_V)
-    \text{.}
-\end{split}
-\end{equation}
-
-% \noindent To keep stochasticity from affecting the direction of axis evolution, 
-% we set $\mu_V$ to $-\sigma^2_V / 2$, so that the mean of $\text{e}^{\varepsilon_V}$ was 1.
-
-Because the phenotypes interact with the environment, they are used
-to calculate all species' fitness values.
-Genotypes change through time based on the previous time point's 
-genotypes and how the phenotypes affect fitness:
-
-\begin{equation} \label{eq:axis-change-stochastic}
-    \mathbf{v}_{i,t+1} = \mathbf{v}_{i,t} + \left( \frac{1}{F_i}
-        \frac{\partial F_i}{\partial \mathbf{\ddot{v}}_{i,t}} \right) \sigma^2_i
+    p_{i,t+1} &= p_{i,t} + \left( \frac{1}{F_i}
+            \frac{\partial F_i}{\partial \ddot{p}_{i,t}}
+            \frac{\partial \ddot{p}_{i,t}}{\partial {p}_{i,t}}
+        \right) \sigma^2_A \, \text{e}^{\varepsilon_{p,t+1}} \\
+    x_{i,t+1} &= x_{i,t} + \left( \frac{1}{F_i}
+            \frac{\partial F_i}{\partial \ddot{x}_{i,t}} 
+            \frac{\partial \ddot{x}_{i,t}}{\partial {x}_{i,t}} 
+        \right) \sigma^2_A \, \text{e}^{\varepsilon_{x,t+1}}
     \textrm{.}
+\end{split}
 \end{equation}
 
-
-
-
+\noindent where $\frac{\partial{\ddot{p}}_{i,t}}{\partial p_{i,t}}$ and
+$\frac{\partial{\ddot{x}}_{i,t}}{\partial x_{i,t}}$ equal 1. We
+modeled non-heritable variation as simple perturbations because we were
+interested in the role of this variation per se---and not, for example,
+adaptive plasticity---and because non-heritable variation is often not
+adaptive \citep{Ghalambor2007, Miner2005}. The form of
+non-heritable variation we modeled could be produced by plasticity induced
+by stochastic environmental change. For example, temperature can change
+both nutritional demands and foraging behavior, so the costs and
+benefits of partitioning and conflict traits will likely depend on
+temperature.
 
 \subsection*{Simulations}
 
+We used simulated communities with 2 to 4 species to explore the behavior 
+of the model. We do not present more species-rich communities because under 
+the conditions we simulated, 2--4 species were sufficient to illustrate all 
+of the qualitative outcomes of the model: for simulations with more species,
+species clustered into groups that were represented in our simulations of 
+2--4 species. To highlight different qualitative outcomes, we assumed
+symmetry among species by setting parameters $r_{0}$, $\alpha_{0}$,
+and $f$ to the same values for all species; using different values for
+different species changes the quantitative but not qualitative outcomes.
+All species started with an abundance of 1 and were considered extinct
+if their abundance fell below 1. We ran simulations long enough for
+communities to reach stationarity ($\ge$~10,000 time steps). 
+Our R package
+\texttt{sauron}
+(\url{https://anonymous.4open.science/r/sauron-F8CC}) 
+contains the code for the simulations that uses a combination of R
+\citep{RCoreTeam2022} and C++, the latter via the Rcpp and
+RcppArmadillo packages \citep{Eddelbuettel2014a, Eddelbuettel2013a,
+Sanderson2016}.
 
-We started simulations with one species, and each of $n-1$ new species
-was added every 500 generations.
-Species started with an abundance of 1.
-We continued simulations for another 20,000 generations after all
-species were added.
-We tracked densities through time and considered a species extinct if its 
-density fell below $10^{-4}$.
-
-% Species starting axis values were generated from truncated normal 
-% distributions with standard deviations of 1 and lower bound of zero.
-% The means varied by the type of simulation.
-
-
-
-
-% Each species had starting axis values generated from a truncated normal distribution 
-% with a mean equal to the equilibrium solution for that axis,
-% a standard deviation of 1, and a lower bound of zero.
-
-% Species started with an abundance of 1.
-
-
-% When generating multiple $\eta$ magnitudes for the different tradeoffs,
-% we did so using a uniform distribution from 0.1 to 0.4.
-% We intentionally avoided the use of simple $\eta$ values because
-% when the sum of one or more $\eta$ equals another, this simplifies
-% to additivity even when those $\eta \ne 0$.
-% This only applies in the case of $q > 2$, since there is only one
-% $\eta$ value when $q = 2$.
-% When $q = 2$, we chose $\eta = 0.6$ because it was sufficiently large
-% to show how its value changes the pattern of outcomes.
-
-% For simulations that aim to find points in axis space associated with
-% species surviving competitive environments, we set $d = 1$ 
-% (ameliorative evolution) so that many species
-% survived and surveyed the axis space more effectively.
-% This has the added benefit of being a symmetric case where
-% all species in the community benefit equally when one
-% species evolves an increased axis.
-
-
-% We first simulated 2-axis communities to survey many of the
-% basic properties of the model.
-% Next, we simulated 3- and 4-axis communities.
-% With 3 axes, there is more than one tradeoff, so we could
-% explore combinations of different types of additivity.
-% With 4 axes, there are more tradeoffs than axes, which we
-% thought might cause different possibilities in the model.
-
-
-
-\subsection*{Code}
-
-We simulated models using a combination of R \citep{RCoreTeam2020} and
-C++ via the Rcpp and RcppArmadillo packages
-\citep{Eddelbuettel2014a,Eddelbuettel2013a,Sanderson2016}.
-We double-checked our derivations by simulating 100 datasets
-(4 species with 3 axes each) and computing derivatives using the Theano Python
-library's automatic differentiation \citep{TheanoTeam2016a}.
-All code can be found on GitHub
-(\url{https://github.com/lucasnell/sauron}).
 

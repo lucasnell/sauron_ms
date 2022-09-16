@@ -1,54 +1,110 @@
 
 \section*{Introduction}
 
-% Alternative community states can be described by both the number of species present and by the
-% ecologically relevant traits that those species possess. How communities arrive at these states
-% is a longstanding question in community ecology
-% \citep{Drake:1991bv,Weiher:1999tf,Gleason:1927cj,Clements:1936hw}.
-% How community processes shape trait evolution and species filtering is an equally enduring
-% question in evolutionary ecology
-% \citep{Darwin:1859to,Loeuille:2018cx,Pontarp:2018hv,MacArthur:1964uv,Schluter:2000jz,Muschick:2012ha}.
-% Despite the length of time spent on these topics, few generalizations exist \citep{Lawton:1999fj}, at
-% least partly because of context-dependent mechanisms \citep{Drake:1991bv} and the complex effects of
-% history \citep{Drake:1991bv,Chase:2003ko,Weiher:1999tf}.
-%
-% Competition has been a particularly well-studied process for shaping communities and trait evolution
-% \citep{Simpson:1953wr,Volterra:1928fy,Macarthur:1964kv,Hardin:1960ep,Roughgarden:1976eh,Rosenzweig:1978bj,
-% Armstrong:1980id,Hutchinson:1959tq,BrownJr:1956wi,Day:2004db}.
-% In many theoretical models, competition strength between two species is inversely proportional to
-% the difference in their ecologically relevant trait values
-% (\citealp{Abrams:1983jz,Macarthur:1967jf,Volterra:1928fy,Macarthur:1964kv,Rosenzweig:1978bj};
-% reviewed in \citealp{Taper:1992kz,Taper:1985ub,Abrams:1986tx,Dayan:2005ub}).
-% Models can include this relationship either explicitly \citep[e.g.,][]{Burger:2006tq,Roughgarden:1976eh,Zu:2008uw}
-% or implicitly, where trait values represent the ability to extract different resources
-% \citep[e.g.,][]{Macarthur:1964kv,Ackermann:2004bb}. In either case, this process can generate or maintain
-% trait diversity in a range of forms, including alternative stable states and limit cycles
-% \citep{Gilpin:1975gz,Burger:2006tq}.
-% In other models, traits change how species perform in competitive contests.
-% This can often lead to arms races, where traits cycle or continually increase
-% \citep{MaynardSmith:1986tw,Parker:1983io}.
-% When \citet{Abrams:1994th} explicitly included population dynamics into a similar model, more complex
-% patterns emerged, such as dimorphism and alternative stable states.
-%
+Interactions among competing species can either promote or inhibit
+coexistence. Those that weaken interspecific competition relative to
+intraspecific competition should promote coexistence, while those that
+do the opposite should inhibit it \citep{Chesson2000}. Traits
+that promote coexistence often entail some form of niche partitioning,
+where species differ in the factors that affect their population growth
+rate (i.e., have different niches). Classic examples
+include species using different resources
+\citep{Abrams2009, Macarthur1967a, Roughgarden1976}. However,
+any trait affecting a population's growth rate can serve as the basis
+for niche partitioning, including interactions with natural enemies
+\citep{Abrams2002, Ehrlich2017, Grover1998, Vandermeer1998} and
+responses to environmental change \citep{Armstrong1976, Chesson1994,
+Chesson1997, Kremer2017, Loreau1992, Pacala1994}. Alternatively,
+traits that increase species' per capita effects on their competitors
+should inhibit coexistence. These typically occur as traits that cause 
+conflict between a species and its competitors. For example, taller plants 
+can more successfully access light and shade their shorter competitors, 
+leading to an arms race among plants for increased height within the 
+constraints imposed by the physiological cost of being tall
+\citep{Falster2003}. Other examples of conflict traits include
+seed size \citep{Fagerstrdm2016, Geritz1999}, agonistic behavior
+\citep{Brown1971}, and body size \citep{Kisdi2001}.
+While investment in conflict traits does not necessarily lead to
+competitive exclusion \citep{Falster2003, Kisdi2001},
+competitive exclusion can result when investment is sufficiently high.
 
+Under what conditions should coevolution of competitive traits lead to
+coexistence versus exclusion? This depends on the extent to which species 
+invest in partitioning traits (those that reduce per capita interspecific
+competition on both itself and its competitors) versus conflict traits
+(those that reduce per capita interspecific competition on itself while
+increasing competition on its competitors). Most theoretical studies focus 
+on partitioning traits taking a specific form, such as traits affecting 
+resource use
+\citep[e.g.,][]{Roughgarden1976, Shoresh2008} or apparent
+competition \citep[e.g.,][]{Abrams1998, Abrams2002, Schreiber2011}.
+Although some studies have explored the effect of coevolution on 
+competitors’ traits using more general forms of competitive 
+interactions \citep[e.g.,][]{Abrams2013, Pastore2021, Vasseur2011a}, these
+models consider only the evolution of partitioning traits. Yet, both
+partitioning and conflict traits are likely ubiquitous in competitive
+communities. In tropical forests, for example, trees have evolved to
+better capture light (and thereby shade competitors), but many
+mechanisms, such as species-specific responses to herbivores, lead to
+partitioning traits \citep{Wright2002}. Additionally, although coevolution of
+competitors is most often thought to promote niche partitioning 
+\citep{Pfennig2012}, experimental evidence has shown that either niche
+partitioning \citep{Schluter1994, Zuppinger-Dingley2014} or
+exclusion-promoting traits \citep{Germain2020, Hart2019, Miller2014, Zhao2016}
+can evolve in response to competition. 
+Therefore, understanding how coevolution might lead to coexistence or
+exclusion of competing species requires models that include both
+partitioning and conflict traits.
 
+Here, we use a general model of coevolving competitors to evaluate how
+partitioning and conflict traits evolve, and how coevolution affects the
+structure of communities. In the model, each species can reduce the
+interspecific competition it experiences by investing in partitioning
+and/or conflict traits, and the level of investment evolves through
+selection. Investment in partitioning traits by species $i$ reduces
+the competitive effect that it has on all other competitors.
+Investment in conflict traits by species $i$ increases the competitive
+effect that species $i$ has on all other competitors. Investment
+incurs a cost to a species' per capita growth rate that does not
+directly involve the competitive effects. We take a quantitative
+genetics approach to model selection on trait investment, and the model
+allows both additive-genetic and non-heritable variation. For
+additive-genetic trait variation, the costs for simultaneous investments
+in both partitioning and conflict traits can be non-additive. In the
+sub-additive case, the overall cost of investing in both partitioning
+and conflict traits is less than the summed costs of investing in each
+trait type separately, while for the super-additive case the overall
+cost is greater.
 
-% Ecological limits to evolutionary rescue
+In previous models that focus on coexistence \citep[e.g.,][]{Pastore2021, 
+Taper1992}, species reduce interspecific competition by evolving
+traits that determine usage along a resource gradient. Evolution away
+from the optimal value incurs a cost, and per capita effects of one
+species on another are proportional to the difference in their
+resource-uptake traits. Our model differs in that investments are
+modeled only in terms of their effects on competition experienced by the
+species under selection and its competitors, which encompasses
+competitive interactions in a more-general way. The costs of investment
+are exacted through decreases in density-independent per capita
+population growth rates for both partitioning and conflict traits,
+making it possible to compare the evolution of both types of traits.
+Because the traits are not conceptually tied to a specific mechanism
+underlying competition, the specific traits may differ among species.
+For example, competition for light and apparent competition via natural
+enemies could both be simultaneously included in our model. Treating
+traits as abstractions allows general insights into how conflict and
+partitioning traits will coevolve. Furthermore, the coevolution of
+traits will determine the frequency and magnitudes of partitioning and
+conflicts among species, and hence the competitive structure of
+communities.
 
-
-
-
-\textit{\textbf{(I see the paragraph below as the last one in the introduction.)}}
-
-Here, we use a model of evolution in axes affecting competition to describe
-the conditions under which multiple-species coexistence is most likely.
-We intend for this model to be a general one, so we do not impose a particular 
-mechanism on the relationship between axes and competition’s effects;
-axes directly affect competitors' per-capita growth rates.
-Our model includes only costs, benefits, and non-additive effects of each axis. 
-Costs and non-additive effects directly affect the growth rate of the focal species.
-Benefits reduce the effects of competition and can either increase or decrease 
-competition experienced by other species, depending
-on whether evolution is conflicting or non-conflicting.
-
+Our model includes both ecological (population abundances) and
+evolutionary (trait values) variables, and therefore it is an
+ecological-evolutionary model. For presenting results, we rely primarily
+on simulations, although these are paralleled by analytical solutions
+provided in Appendix A. We focus on two questions. What determines the
+magnitude of evolutionary investment in partitioning and conflict traits
+in a community? And what types of communities are the end product of
+coevolution, communities dominated by species showing partitioning
+traits, species showing conflict traits, or species showing both?
 

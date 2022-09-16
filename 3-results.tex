@@ -1,268 +1,267 @@
 \section*{Results}
 
 
-We first conducted simulations to find points in axis space 
-representing stable equilibria.
-The tradeoffs associated with investing in multiple axes
-determined the location(s) of these states in axis space
-(Figure \ref{fig:two-axis-outcomes}).
-For sub-additive tradeoffs 
-(investing in one axis facilitates investment in another; $\eta = -0.6$), 
-there is a single stable point where both axes are
-maximized---within the limits imposed by axes' negative effects on 
-the growth rate.
-When the tradeoffs are super-additive ($\eta = 0.6$), there are two
-alternative stable states, one for each axis being maximized while the 
-other is zero.
-Lastly, for additive tradeoffs ($\eta = 0$), axes
-evolve to any point on a neutrally stable ring.
-The locations of these states are determined by 
-the baseline growth rate, 
-the cost of increasing axes on the growth rate,
-and the non-additive tradeoff
-(Equations \ref{eq:two-axes-finals-eta-negative}--%,
-% \ref{eq:two-axes-finals-eta-zero}, and 
-\ref{eq:two-axes-finals-eta-positive}).
+Our model of ecological and evolutionary dynamics investigates selection
+for partitioning and conflict traits, and how selection structures
+competition in the resulting community. To illustrate the central
+differences between partitioning and conflict traits, consider the case
+of two species and the effects on species B when species A changes its
+investment in either a partitioning or a conflict trait (fig. \ref{fig:model-description}). To
+clarify this illustration, we fix the abundance and investment
+level of species A, rather than allow them to change as described above.
+When species A invests in a partitioning trait, the abundance of species
+B increases (fig. \ref{fig:model-description}B), because greater investment in partitioning by
+species A reduces competition experienced by species B. With reduced
+competition, selection favors lower investment by species B. In
+contrast, for a conflict trait increased investment by species A causes
+a decrease in abundance of species B, and species B experiences
+selection for increased investment in the conflict trait (fig. \ref{fig:model-description}C).
+Thus, investment in partitioning and conflict traits by species A have
+opposite effects on the abundance and selection for species B.
 
-\begin{figure}[ht!]
-\centering
-\includegraphics{1-outcomes_q2.pdf}
-\caption{Unique axis values for surviving species in 99 simulations of 2-axis, 
-    10-species communities,
-    for tradeoffs being sub-additive ($\eta < 0$), additive ($\eta = 0$), or 
-    super-additive ($\eta > 0$).
-    The line in the additive case shows the location of the neutrally stable ring.
-    Species' starting axis values were $\sim \text{N}(0,1)$ truncated $\ge 0$.
-    We used a low magnitude for the conflicting axis ($d_1 = 10^{-4}$) 
-    so that species surveyed the axis space more effectively.}
-\label{fig:two-axis-outcomes}
-\end{figure}
+\subsection*{Investment-cost additivity}
 
-
-We next aimed to determine the effects of axis evolution (ameliorative and
-conflicting) on the global rules of coexistence.
-(By global, we mean that they apply when species' starting axis values are not
-restricted.)
-
-
-
-The proportion of the 100 species introduced to communities that survived and
-coexisted depended on the additive genetic variance, 
-the tradeoffs, and
-how conflicting / non-conflicting evolution was (i.e., the values in $\mathbf{d}$)
-(Figure \ref{fig:coexistence-spp}A).
-Increasing values of $\mathbf{d}$ (where all values in the vector are equal)
-caused greater number of species to coexist
-because species evolving toward a fitness peak benefited rather than 
-harmed other species with high $\mathbf{d}$.
-This pattern was least obvious with additive tradeoffs.
-There was an abrupt change when evolution was conflicting for both axes 
-(i.e., $\mathbf{d} < 0$), where only one species ever survived.
-Greater additive genetic variance monotonically increased the proportion of 
-surviving species, via an increased probability 
-of evolutionary rescue: When genetic variance was high, 
-species could often evolve quickly enough towards a 
-fitness peak to prevent themselves from going extinct.
-The greatest number of surviving species occurred with additive tradeoffs
-because each new community member had only to evolve to anywhere along the
-neutrally stable ring to survive, rather than to one or two distinct points.
-Sub-additive tradeoffs resulted in greater numbers of species than super-additive
-because the lower cost of evolving multiple axes caused species to evolve
-high values of both axes.
-When combined with non-conflicting evolution,
-this decreased competition experienced by all species, both on a 
-per-capita basis (the term $- \mathbf{v}_{j}^{\text{T}} \mathbf{D} \mathbf{v}_j$ 
-in equation \ref{eq:competition})
-and overall (because all $N_j$ are greater).
+We first show how different types of communities arise due to sub- and
+super-additive investment costs (fig. \ref{fig:tradeoffs-outcomes}). 
+We simulated 2-species communities
+where investment costs were either sub-additive ($\eta = - 0.6$),
+additive ($\eta = 0$), or super-additive ($\eta = 0.6$). We added
+both species at the same time to avoid effects of evolution before
+interspecific competition starts. We set both suites of traits to be
+nearly neutral ($d_{x} = d_{p} = 10^{- 6}$) to reduce the effects of 
+species’ investments on each other, which helps to highlight the effects of 
+cost additivity only.
+The starting investments
+by all species were generated from a uniform distribution between 0 and
+0.5. Sub-additive costs resulted in species evolving to a single point
+in investment space where each invests in both conflict and partitioning 
+traits equally. Super-additive costs resulted in two
+alternative stable investment states: species evolved to invest in only
+partitioning or only conflict traits depending on their investments at
+the start of the simulations; different species could occupy different
+investment states even within the same community.
+Additive costs resulted in an intermediate
+case, with a neutrally stable ring given by
+$\sqrt{{p_{i}}^{2} + {x_{i}}^{2}}$ containing an infinite number of
+investment strategies with the same fitness; like the super-additive case,
+species within the same community can occupy different states.
+Because the total investment ($\sqrt{{p_{i}}^{2} + {x_{i}}^{2}}$) 
+defining a ring is proportional to both the costs (eq. \ref{eq:growth-rate})
+and benefits (eq. \ref{eq:competition}) of investment, the ring observed in
+the additive case is also present in the other two cases.
+For sub-additive and super-additive costs, species trait values evolve
+towards the $\sqrt{{p_{i}}^{2} + {x_{i}}^{2}}$ ring and then either
+converge to equal investment in partitioning and conflict traits
+(sub-additive) or diverge to investment in only partitioning or only
+conflict traits (super-additive) (fig. S1).
+Furthermore, larger magnitudes of $\eta$ cause more rapid evolution around
+the ring (fig. S2).
+These results can be derived analytically
+(eqs. \ref{eq:analytical-super-solns}--\ref{eq:analytical-sub-solns}).
 
 
+Sub-additivity and super-additivity generate communities that differ in
+structure. At the community scale, sub-additive investment costs allow
+for only one possible stable configuration, where all species invest in
+both suites. For super-additive costs, there are three stable 2-species
+configurations: both species investing in partitioning traits, both
+investing in conflict traits, and one species investing in each. There
+are infinite community configurations for additive costs.
 
-When we kept evolution for the second axis non-conflicting ($d_2 = 0.1$) and
-adjusted evolution for axis 1, the results were slightly more complicated
-(Figure \ref{fig:coexistence-spp}B).
-Additive genetic variance had a similar effect as when we varied both axes' evolution.
-The effect of varying $d_1$, however, depended on the tradeoffs.
-With sub-additive tradeoffs, the threshold for coexistence was $d_1 = -0.1$.
-This is because species evolve to maximize both axes, so $d_1 + d_2$
-determined the coexistence behavior of the community.
-When tradeoffs are additive or super-additive, $\min (d_1, d_2)$ determined whether 
-coexistence could occur.
-Under super-additivity, this occurs because species evolve to maximize one axis while
-the other evolves to zero.
-When one $d$ is negative, if sufficient species are added to the community and 
-each starts with random axis values, 
-one will inevitably evolve to maximize the axis that is conflicting. 
-That species will exclude all others.
-A similar dynamic occurs when tradeoffs are additive, except that
-the excluding species evolves to be near, rather than exactly on, 
-the conflicting axis being maximized.
+\subsection*{Non-heritable variation}
+
+Because non-heritable variation can alter the effects of selection, we next
+explored the effects of non-heritable variation using simulations in
+which communities contained four species each with an initial total
+investment $\sqrt{{p_{i}}^{2} + {x_{i}}^{2}}$ = 1. Two species had
+initial investments favoring partitioning traits, and the other two had
+higher initial investments in conflict traits (fig. \ref{fig:non-heritable}). We considered
+three levels of non-heritable variation: non-existent
+($\sigma_{p} = \ \sigma_{x} = 0$), low
+($\sigma_{p} = \ \sigma_{x} = \ 0.11$), or high
+($\sigma_{p} = \ \sigma_{x} = 0.2$). We crossed these levels to give
+nine permutations of non-heritable variation, for example,
+$\sigma_{p}\  = \ 0.2$ and $\sigma_{x}$ = 0 in the top-left panels
+of figs. \ref{fig:non-heritable}A, \ref{fig:non-heritable}B, and \ref{fig:non-heritable}C (where the non-heritable variation is given in the
+gray distributions on the sides of the panels). For the case when
+non-heritable variation affects partitioning and conflict traits the same
+(figs. \ref{fig:non-heritable}A, \ref{fig:non-heritable}B, \ref{fig:non-heritable}C, subpanels along the diagonal),  adding non-heritable variation causes the additive and super-additive cases to behave like the sub-additive case, whereby the neutrally stable ring and alternative stable states are replaced by a single stable state with investment in both partitioning and conflict traits. Furthermore, non-heritable variation reduces the efficacy of selection for a given trait; for example, when non-heritable variation for the partitioning trait is greater than for the conflict trait, the stable investment state has higher investment in the conflict trait. This is a manifestation of the classic result in quantitative genetics whereby the efficacy of selection is scaled by the additive-genetic (i.e., heritable) variance relative to the non-heritable variance 
+\citep{Fisher1930a, Wright1931b, Barton2017}.
+These results are derived analytically
+in Appendix A (eq. \ref{eq:taylor-expansion-final}).
+However, our results for non-heritable variation only apply for 
+weakly super-additive traits. When costs are
+strongly non-additive ($\eta = - 0.6$ or $\eta = 0.6$), non-heritable
+variation has little effect (fig. S3).
+
+\subsection*{Coevolution when communities are invaded}
+
+Non-additivity of costs ($\eta$) and non-heritable variation
+($\sigma_{p}$ and $\sigma_{x}$) affect the possible states to which
+species can evolve in 2-species communities (figs. \ref{fig:tradeoffs-outcomes}
+and \ref{fig:non-heritable}). To address
+more broadly how competitive trait coevolution affects the structure of
+communities, we consider the invasion of 2-species communities by a
+competitor that invests in either partitioning or conflict traits, and
+analyze the ecological (abundance) and evolutionary (trait investment)
+responses of the resident species and the invading species. Our focus is
+on the final configuration of the community, specifically the investment
+of species in partitioning and conflict traits, and whether this
+configuration is stable to the addition of new species exhibiting
+different investments.
+
+A key factor needed to understand the evolution of trait investment for
+species is the total strength of competition it experiences, which
+depends on the number, abundances, and trait investments of the other
+species in the community. For example, if there are many other species
+in the community that have high population abundance and invest heavily
+in conflict traits, this will create strong selection for the focal
+species to invest in traits to decrease interspecific competition. The
+strength of interspecific competition experienced by species $i$ is
+given by
+$\sum_{j \neq i}^{n}{N_{j}\text{e}^{- d_{p}p_{j}^{2} + d_{x}x_{j}^{2}}}$.
+We call this the ``effective competitive neighborhood'', $\Omega_{i}$.
+Analytical solutions show that the optimal investment for a species is
+proportional to the interspecific competition it experiences at the
+stationary state, denoted ${\hat{\Omega}}_{i}$
+(eqs. \ref{eq:analytical-1spp-solns}--\ref{eq:analytical-sub-solns},
+fig. S4).
+
+To investigate the effect of trait investments by both resident and
+invading species on community coevolution, we conducted simulations
+where we varied whether resident communities and the invader invest in
+partitioning or conflict traits in a 2x2 design. We assumed additive
+costs ($\eta = 0$) for residents and invaders. Because costs were
+additive, we could set whether residents invested more in partitioning
+or conflict traits by selecting appropriate trait starting values in the
+simulations. Starting with two resident species with greater investment 
+in either partitioning or conflict traits, we first ran the simulations 
+to stationarity for the residents. We then introduced the invader
+that either invested mostly in partitioning traits or in conflict
+traits. To allow the direct comparison between partitioning and conflict
+traits, we assumed that they have the same magnitude of effects on the
+non-focal species ($d_{p} = d_{x} = 0.6$). 
+Because we were interested in coevolutionary patterns and not exclusion, we 
+also chose values of $d_p$ and $d_x$ that allowed both residents and invaders 
+to persist.
+
+When both residents and the invader invested mostly in conflict traits
+(fig. \ref{fig:one-invader}A), the residents experienced greater effective competitive
+neighborhoods, which selected for an increase in their overall
+investment and caused a decrease in their abundance. The invader also
+evolved greater overall investment and had an equilibrium abundance
+similar to the residents. The effective competitive neighborhood for the
+invader changed little because the decrease in the abundance of
+residents offset the effect of their increased investments. When a
+species investing in partitioning traits invaded the same resident
+community (fig. \ref{fig:one-invader}B), investments and abundances of residents changed
+little. The invader, however, evolved greater investment and reached a
+lower abundance than the residents. The abundance and investment by the
+partitioning invader matched those of the conflicting invader when they
+invaded the same community (fig. \ref{fig:one-invader}A,B). When a species investing mostly
+in conflict traits invaded a community of partitioning residents, this
+increased the investment and decreased the abundance for residents, and
+resulted in low investment and highest abundance for the invader (fig.
+\ref{fig:one-invader}C). An invader that invested in partitioning traits invading a resident
+community of species investing in partitioning traits resulted in little
+change for all species (fig. \ref{fig:one-invader}D).
+
+Overall, these simulations show that investment in conflict traits by
+both invader and resident species leads to additional investment,
+whereas investment in partitioning traits leads to relatively less
+selection for changes in investment. This is true for the effects of
+invaders on residents (fig. \ref{fig:one-invader}A,C versus \ref{fig:one-invader}B,D) and of residents on
+invaders (fig. \ref{fig:one-invader}A,B versus \ref{fig:one-invader}C,D). However, these contrasting effects of
+investing in conflict versus partitioning traits are not necessarily
+symmetrical.
+
+When species $i$ invests in either type of trait, it reduces its own
+competition, which allows it to increase in abundance. An increase in
+$N_{i}$ increases competition for all other species in the community
+(i.e., it increases $\Omega_{j}$ for all $j\  \neq i$). If species
+$i$ had invested in partitioning traits, this increase in $N_{i}$
+undercuts the competition-reducing effects of increasing $p_{i}$ on
+all other species. If species $i$ had invested in conflict traits, the
+increase in $N_{i}$ exacerbates the competition-increasing effects of
+increasing $x_{i}$. Therefore, conflict trait investment by one
+species increases the competition experienced by other species through
+its effects on both the investor's abundance and traits, whereas when a
+species invests in partitioning traits, the abundance- and
+trait-mediated effects on other species counteract one another. This can
+be seen in the simulations when residents invested heavily in conflict
+traits and invaders in partitioning traits (fig. \ref{fig:one-invader}B) and when residents
+invested heavily in partitioning traits and invaders in conflict traits
+(fig. \ref{fig:one-invader}C), where we found that the species investing in conflict traits
+had a greater influence on investments than those investing in
+partitioning traits. Thus, in communities with species expressing both
+partitioning and conflict traits, we expect the evolution of conflict
+traits to be the stronger driver of trait evolution for all species.
+
+\subsection*{Competitive exclusion}
+
+In our model, species that invest more in conflict traits are generally more
+abundant and invest less overall than species investing mostly in partitioning
+traits (fig. \ref{fig:one-invader}). If an invader invested heavily in conflict
+traits---the type most likely to cause competitive exclusion---arrives
+to a community, greater total investments by residents help shield them from 
+the new source of competition, whereas greater resident abundance should 
+slow invader population growth and provide the resident a longer time for
+evolutionary rescue via greater investment. Our next simulations assess how
+these factors together affect the likelihood of an invader excluding resident
+species that invest in either partitioning or conflict traits.
+
+We simulated the invasion of 2-species equilibrium communities similar
+as in the last section, but with one resident species always invested in
+conflict traits and the other always invested in partitioning traits.
+The invader only invested in conflict traits (invader
+$p_{t = 0} = 0,\ x_{t = 0} = 1$).
 
 
-\begin{figure}[ht!]
-\centering
-\includegraphics{2-coexist_spp.pdf}
-\caption{Proportion of species that survived in simulations of 100-species, 2-axis
-    communities with varying additive genetic variances ($\sigma_i^2$), and 
-    varying (A) $d_1$ and $d_2$ or (B) varying $d_1$ with $d_2$ fixed at 0.1.
-    Shown for sub-additive ($\eta < 0$), additive ($\eta = 0$), and 
-    super-additive ($\eta > 0$) tradeoffs.}
-\label{fig:coexistence-spp}
-\end{figure}
+We simulated the invasion of 2-species equilibrium communities as in the
+previous section, but with one resident species always invested more in
+partitioning traits (partitioning resident: $p_t \gg x_t$) and the other 
+always invested more in conflict traits (conflict resident: $p_t \ll x_t$). 
+We varied the strength of effects of
+trait investment on other species ($d_{p}$ and $d_{x}$) because
+these parameters shape interactions between residents and invaders.
+We varied the strength of the effect of investing in traits on other species
+($d_{p}$ and $d_{x}$) because these parameters shape interactions between
+residents and invaders, but we focused on $d_p$ since this had the strongest
+effect on the coevolutionary dynamics (fig. S5). 
+At equilibrium, the conflict resident invested less overall and was more
+abundant than the partitioning resident, and these disparities increased with
+$d_p$ (fig. \ref{fig:exclusion}A,B). Specifically, when $d_p$ = 0.3, the
+conflict resident moderately invested, while it invested very minimally when
+$d_p$ = 0.7; the portioning resident maintained high investment in both
+scenarios (fig. \ref{fig:exclusion}C,D). When an invader investing in conflict
+traits (conflict invader: $p_{t=0} = 0$, $x_{t=0} = 1$) was added to the
+equilibrium 2-species community, overall investment was more important than
+abundance in determining which resident was excluded.
+When the conflict resident invested moderately ($d_p=0.3$;
+fig. \ref{fig:exclusion}C) at the 2-species equilibrium, the addition of the
+invader caused only a temporary drop in the conflict resident’s abundance in
+response to the increase in the effective competitive neighborhood (fig.
+\ref{fig:exclusion}E). In contrast, when the conflict resident invested
+minimally ($d_p=0.7$; fig. \ref{fig:exclusion}D), it went extinct as it was
+unable to increase its investment rapidly enough in response to the increase in
+the effective competitive neighborhood (fig. \ref{fig:exclusion}F).
+Because the partitioning resident always
+invested more overall, the effects of the conflict invader were less
+severe and did not cause it to go extinct. This pattern where the
+conflict resident was easier to exclude than the partitioning resident
+was constant over a wide range of $d_{p}$, $d_{x}$, and the conflict
+invader's starting total investment (fig. S6).
 
 
-We also ran some of these simulations with varying levels of stochasticity
-in the population dynamics and axis evolution.
-Stochasticity had particularly strong negative effects on the proportion
-of species surviving at low values of $d_1$ and $d_2$ and at low $d_1$
-when $d_2$ was fixed (Figure \ref{fig:stoch-coexist-nspp}).
-Very strong stochasticity, particularly at low values of $d$, often caused
-extinction of all species.
+These simulations show that investing in conflict traits can make
+species more likely to be excluded from a community that also contains
+species that invest in partitioning traits. By reducing other
+competitors' abundances, thereby selecting for reduced investment for
+itself and increased investment for others, competitors that invest
+proportionally more in conflict traits make themselves the most vulnerable to
+exclusion despite being the most abundant in the community. We might
+therefore expect higher turnover and greater variation in abundance for
+species invested in conflict traits. This bias in exclusion risk could
+result in communities that, on average, contain fewer species investing
+strongly in conflict traits.
 
-
-
-We looked more closely at how coexistence is affected by tradeoffs and 
-species' starting axis values
-using simulations of simpler, 5-species communities where the first 
-axis is conflicting and the second is non-conflicting.
-We simulated five situations:
-(i) sub-additive tradeoffs where all species are near the single
-possible state where both axes are maximized,
-(ii) super-additive tradeoffs where all species added to the community
-are inside the basin of attraction for the non-conflicting axis
-being maximized,
-(iii) additive tradeoffs where all species added to the community
-are near non-conflicting axis being maximized,
-(iv) super-additive tradeoffs where one species is
-inside the basin of attraction for the conflicting axis
-being maximized,
-and
-(v) additive tradeoffs where one species is near the conflicting 
-axis being maximized.
-
-In situation i, the first species evolves to the single
-axis state and reaches a high abundance (Figure
-\ref{fig:conditional-coexistence}).
-Subsequent species evolve to the same axis state, but the first axis
-being conflicting and the resident species being abundant keep them
-at low abundances.
-In situation ii, all species evolve to have the non-conflicting axis
-be maximized while the conflicting axis is zero.
-This removes the effect of the conflicting axis entirely, causing all
-species to coexist at the same abundance.
-In situation iii, species evolve to the nearest point along the
-neutral ring, and greater equilibrium values of axis 1 cause
-higher equilibrium abundances.
-Situations iv and v show what was described previously:
-With additive or super-additive tradeoffs and both conflicting
-and non-conflicting axes, if one species evolves to have a greater
-value of the conflicting axis, it will exclude all others.
-
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=0.7\textwidth]{3-cond_coexist_conflicting.pdf}
-\caption{Conditional coexistence for 2-axis, 5-species communities when axis 1 has 
-    conflicting evolution and axis 2 has non-conflicting.
-    Panels show, for each of five situations,
-    (A) starting conditions and trajectories for each species in axis space, 
-    (B) abundances through time, and 
-    (C) axis values through time.
-    Situation i has sub-additive tradeoffs, situations ii and iv have 
-    super-additive, and iii and v have additive.
-    (A) Dashed arcs show the location of neutrally stable rings
-    when tradeoffs are additive, and 
-    the dotted lines separate the basins of attraction for the two possible
-    axis states when tradeoffs are super-additive.
-    (A,C) Shapes of hollow points indicate the equilibrium axis state.
-    (C) For situations iii and v, line width is proportional to the 
-    distance from the neutrally stable ring.
-    Xs mark extinction events.
-}
-\label{fig:conditional-coexistence}
-\end{figure}
-
-
-The outcomes of these simulations changed somewhat when we included stochasticity
-into these simulations.
-Stochasticity in abundance decreased coexistence across nearly all situations
-(Figure \ref{fig:conditional-coexistence-stoch}A).
-The exception was situation ii, which resulted in all 5 species coexisting 
-in all simulations for both axis and abundance stochasticity
-(Figure \ref{fig:conditional-coexistence-stoch}A,B).
-For situations iv and v, where coexistence did not occur in deterministic
-simulations, abundance stochasticity changed nothing.
-
-Like population stochasticity, axis stochasticity had a strong negative 
-effect on coexistence for situations i and iii but had no effect on
-situation iv (Figure \ref{fig:conditional-coexistence-stoch}B).
-For situation v, however, axis stochasticity allowed for coexistence
-when deterministic simulations resulted in exclusion, 
-and it resulted in different species surviving.
-This is because the axis stochasticity caused species to evolve 
-along the ring (towards the center) instead of staying in place once they 
-reached it (Figure \ref{fig:cond-coexist-Vstoch-sit-v}).
-The change of behavior happened because axes interacting with the 
-community via phenotypes that are
-random variables causes the equation for the expected value of each axis genotype at 
-the next time point to have extra additive terms
-(see Equation \ref{eq:taylor-expansion-final}).
-This resulted in the first two species being ``better equipped'' to evolve in 
-response to the invader that is closer to the conflicting axis being
-maximized.
-It also caused the invader to evolve away from maximizing the conflicting
-axis, which reduced its ability to exclude the others.
-
-
-
-\begin{figure}[ht!]
-\centering
-\includegraphics{4-cond_coexist_stoch.pdf}
-\caption{Outcomes from stochastic simulations of 2-axis, 5-species communities 
-    when axis 1 has conflicting evolution and axis 2 has non-conflicting.
-    Panels show scaled relative abundance(s)
-    ($\sqrt{N_i} \, / \, \sum_k^n{\sqrt{N_k}}$) 
-    of surviving species for simulations with
-    (A) abundance stochasticity ($\sigma_N = 0.1$) and
-    (B) axis stochasticity ($\sigma_V = 0.1$).
-    Each bar in each sub-panel represents a simulation repetition.
-    Bars to the left of the black vertical lines are for when there was no 
-    stochasticity.
-    Small numbers above bars indicate the number of species that coexisted
-    when coexistence occurred.}
-\label{fig:conditional-coexistence-stoch}
-\end{figure}
-
-
-
-To explore the effect of axis evolution stochasticity on coexistence across 
-the axis space,
-we simulated a one-species equilibrium community that was invaded by 
-a species that varied in its starting axis values.
-We compared the probability of coexistence with stochasticity to that without.
-We found a largely negative effect across much of the axis space
-(Figure \ref{fig:inv-sims-heatmap-coexist}).
-The exception was in marginal starting axis values, where some locations
-had drastic improvements in coexistence probability---0 in deterministic 
-simulations and 1 in stochastic simulations.
-The range where improvements occurred varied with $d_1$ and with tradeoff type.
-Additive tradeoffs showed no areas where stochasticity helped coexistence.
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=0.5\textwidth]{5-inv_sims_hm_coexist.pdf}
-\caption{Effect of stochasticity on coexistence of a resident species and 
-    an invader based on the invader's starting axis values (x and y axes),
-    magnitude of stochasticity (sub-panel columns), and 
-    value of $d_1$ (sub-panel rows).
-    The fill color of each cell indicates how much stochasticity changed
-    the probability of coexistence compared to deterministic simulations,
-    and white indicates no effect.
-    Round points indicate the axis values of the resident species,
-    triangle points indicate an alternative stable equilibrium state, 
-    and a gray line indicates a neutrally stable ring.
-    The area of the heatmap outlined by a thin, black line is where
-    coexistence occurred in deterministic simulations.
-    For these simulations, $d_2 = 0.1$ and $\sigma_i = 0.05$.
-    Shown for sub-additive, additive, and super-additive tradeoffs.}
-\label{fig:inv-sims-heatmap-coexist}
-\end{figure}

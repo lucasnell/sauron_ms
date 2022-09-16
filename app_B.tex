@@ -1,46 +1,254 @@
 
-\renewcommand{\thefigure}{B\arabic{figure}}
-\renewcommand{\theequation}{B\arabic{equation}}
-\renewcommand{\thetable}{B\arabic{table}}
-\setcounter{equation}{0}
-\setcounter{figure}{0}
-\setcounter{table}{0}
+\renewcommand{\thefigure}{B\arabic{displayFigure}}
+\renewcommand{\theequation}{B\arabic{displayEquation}}
+\renewcommand{\thetable}{B\arabic{displayTable}}
+\setcounter{displayFigure}{0}
+\setcounter{displayEquation}{0}
+\setcounter{displayTable}{0}
 
 
-\section*{Appendix B: Two-axis solutions}
+\section*{Appendix B: General matrix forms of equations and Jacobian}
+
+
+\subsection*{Matrix forms of equations}
+
+
+This section defines a general form of the equations in the main text, 
+for any $q$ suites of traits, using matrix notation.
+We used this form for the derivatives in the subsequent section, and 
+we believe that keeping them in a more general form will help make them 
+more useful to those interested in building from this work.
+Here, $^{\textrm{T}}$ indicates transposition,
+multiplication between matrices is always matrix multiplication,
+bold capital letters indicate a matrix, and bold lowercase letters indicate 
+a vector.
+See Table \ref{tab:matrix-parameters-table} for descriptions of the parameters.
 
 
 
-\subsection*{Effects of stochasticity on axis evolution}
+\begin{table}[!ht]
+    \centering
+    \singlespacing
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{lp{5in}}
+    \toprule
+    Parameter & Description \\
+    \midrule
+    $q$ & The number of trait suites in which species can invest. \\
+    $n$ & The number of species in the community. \\
+    $\mathbf{v}_i$ & A $q \times 1$ vector containing the  investments for
+        species $i$. \\
+    $F_i$ & Per-capita growth for species $i$. \\
+    $N_i$ & Population density of species $i$. \\
+    $\alpha_0$ & Base density dependence. \\
+    $r_0$ & Baseline growth rate. \\
+    $f$ & Cost of increasing investments on the growth rate. \\
+    $\mathbf{C}$ & Contains parameters controlling non-additive costs.
+        All values on the diagonal are 1. \\
+    $\eta_{k,l}$ & Non-additive cost of increasing both the
+        $k$\textsuperscript{th} and $l$\textsuperscript{th} suites of traits.
+        When $\eta_{k,l} > 0$, investing in both suites incurs an extra cost
+        compared to investing in each separately.
+        When $\eta_{k,l} < 0$, investing in both suites is less costly.
+        Non-additive trade-offs are symmetrical (i.e., $\eta_{k,l} = \eta_{l,k}$
+        for all $l$ and $k$). \\
+    $\mathbf{D}$ & Contains parameters that determine how investment in one
+        species affects others. All off-diagonal elements are zero. \\
+    $d_k$ & Effect on other species when one invests in the
+        $k$\textsuperscript{th} suite of traits. 
+        When $d_k < 0$, this investment increases competition experienced by 
+        all other species (i.e., the $k$\textsuperscript{th} traits 
+        are conflicting). 
+        Alternatively, when $d_k > 0$, the same investment decreases the 
+        effect of competition on all species (i.e., the $k$\textsuperscript{th}
+        traits are partitioning). \\
+    $\sigma_A^2$ & Additive genetic variance. \\
+    %
+    \bottomrule
+    \end{tabular}
+    \caption{Parameters used in the matrix equations.}
+    \label{tab:matrix-parameters-table}
+\end{table}
 
-When there is stochasticity in axis evolution,
-the second order Taylor series approximation for the expected
-value of axis 1 at time $t+1$ is
 
-\begin{equation}
-\label{eq:taylor-expansion-final}
+The following 4 equations correspond to Equations
+% \ref{eq:pg-growth}, \ref{eq:growth-rate}, \ref{eq:competition}, and
+% \ref{eq:invest-change} 
+\ref{eq:pg-growth}--\ref{eq:invest-change} 
+from the main text.
+
+The per-capita growth for species $i$ is
+
+\begin{equation} \label{eq:matrix-pg-growth}
+    F_{i} = \exp \left\{ r_i(\mathbf{v}_i) - 
+        \alpha_{0} \, N_i - \sum_{j \ne i}^{n}{
+            \alpha_{ij}(\mathbf{v}_i, \mathbf{v}_j) \, N_j}  
+    \right\}\textrm{.}
+\end{equation}
+
+The parameter $r_i(\mathbf{v}_i)$ describes the direct costs of investing to
+the growth rate:
+
+\begin{equation} \label{eq:matrix-growth-rate}
 \begin{split}
-    \text{E}(v_{1,t+1}) \approx
-        v_{1,t} + 2 \; \sigma_A^2 \Bigg\{ 
-            & \alpha_0 \; \Omega \; v_{1,t} \; \text{e}^{-v_{1,t}^2 - v_{2,t}^2} 
-            \bigg[ 
-                1 + \sigma^2_{\varepsilon_1} \left( \frac{1}{2} - 4 \; v_{1,t}^2 \right)
-                - 2 \; \sigma^2_{\varepsilon_2} \, v_{2,t}^2 \left( 1 - v_{2,t}^2 \right)
-            \bigg] \\
-            & - f \bigg[
-                v_{1,t} + \eta \; v_{2,t} + \frac{1}{2} \left(
-                    \sigma^2_{\varepsilon_1} \, v_{1,t} + \sigma^2_{\varepsilon_2} \, \eta \; v_{2,t}
-                \right)
-            \bigg]
-        \Bigg\}
-\text{,}
+    r_i(\mathbf{v}_i) &= r_0 - f \, \mathbf{v}_i^{\textrm{T}} \, 
+        \mathbf{C} ~ \mathbf{v}_{i} \\
+    \mathbf{C} &= 
+        \begingroup % keep the changes local
+        \renewcommand*{\arraystretch}{0.75}
+        \setlength\arraycolsep{3pt}
+        \begin{pmatrix}
+        1         & \ldots & \eta_{1q} \\
+        \vdots    & \ddots & \vdots \\
+        \eta_{q1} & \ldots & 1      \\
+        \end{pmatrix}
+        \endgroup
+    \textrm{.}
 \end{split}
 \end{equation}
 
-where we drop the index for species to reduce clutter.
-Subscripts for axes are reversed for the approximation for axis 2.
+\newpage{}
+
+The term $\alpha_{ij}(\mathbf{v}_i, \mathbf{v}_j)$ in equation
+\ref{eq:matrix-pg-growth}
+represents how investments influence the effects
+of interspecific competition:
+
+\begin{equation} \label{eq:matrix-competition}
+\begin{split}
+    \alpha_{ij}(\mathbf{v}_i, \mathbf{v}_j) &= \alpha_0 ~\exp \left\{
+        - \mathbf{v}_i^{\textrm{T}} \mathbf{v}_i -
+        \mathbf{v}_j^{\textrm{T}} \mathbf{D} \mathbf{v}_j \right\} \\
+    \mathbf{D} &= 
+        \begingroup % keep the changes local
+        \renewcommand*{\arraystretch}{0.75}
+        \setlength\arraycolsep{3pt}
+        \begin{pmatrix}
+        d_1     & \ldots    & 0 \\
+        \vdots  & \ddots    & \vdots \\
+        0       & \ldots    & d_q
+        \end{pmatrix}
+        \endgroup
+	\textrm{.}
+\end{split}
+\end{equation}
+
+
+Investments at time $t+1$ are
+
+\begin{equation} \label{eq:matrix-invest-change}
+\begin{split}
+    \mathbf{v}_{i,t+1} &= \mathbf{v}_{i,t} + \left( \frac{1}{F_i}
+        \frac{\partial \, F_i}{\partial \, \mathbf{v}_{i,t}} \right) \sigma^2_A \\
+     &= \mathbf{v}_{i,t} + 2 \sigma_A^2
+    \left[
+        \alpha_0 \, \left(
+            \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
+            - \mathbf{v}_{j,t}^{\textrm{T}}
+            \mathbf{D} \mathbf{v}_{j,t} } }
+        \right) \:
+            \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}} \:
+            \mathbf{v}_{i,t}^{\textrm{T}}
+        - f \, \mathbf{v}_{i,t}^{\textrm{T}} \: \mathbf{C}
+    \right]
+    \textrm{.}
+\end{split}
+\end{equation}
 
 
 
+
+
+
+
+\subsection*{Jacobian}
+
+The Jacobian is
+
+\begin{equation} \label{eq:jacobian}
+    \begin{pmatrix}
+        \frac{\partial \mathbf{v}_{1,t+1}}{\partial \mathbf{v}_{1,t}} & \cdots &
+            \frac{\partial \mathbf{v}_{1,t+1}}{\partial \mathbf{v}_{n,t}} &
+            \frac{\partial \mathbf{v}_{1,t+1}}{\partial N_{1,t}} & \cdots &
+            \frac{\partial \mathbf{v}_{1,t+1}}{\partial N_{n,t}} \\
+        \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+        \frac{\partial \mathbf{v}_{n,t+1}}{\partial \mathbf{v}_{1,t}} & \cdots &
+            \frac{\partial \mathbf{v}_{n,t+1}}{\partial \mathbf{v}_{n,t}} &
+            \frac{\partial \mathbf{v}_{n,t+1}}{\partial N_{1,t}} & \cdots &
+            \frac{\partial \mathbf{v}_{n,t+1}}{\partial N_{n,t}} \\[1ex]
+%
+%
+        \frac{\partial N_{1,t+1}}{\partial \mathbf{v}_{1,t}} & \cdots &
+            \frac{\partial N_{1,t+1}}{\partial \mathbf{v}_{n,t}} &
+            \frac{\partial N_{1,t+1}}{\partial N_{1,t}} & \cdots &
+            \frac{\partial N_{1,t+1}}{\partial N_{n,t}} \\
+        \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+        \frac{\partial N_{n,t+1}}{\partial \mathbf{v}_{1,t}} & \cdots &
+            \frac{\partial N_{n,t+1}}{\partial \mathbf{v}_{n,t}} &
+            \frac{\partial N_{n,t+1}}{\partial N_{1,t}} & \cdots &
+            \frac{\partial N_{n,t+1}}{\partial N_{n,t}} \\
+    \end{pmatrix}
+    \text{.}
+\end{equation}
+
+
+It is made up of the following derivatives:
+
+\begin{equation*}
+\begin{split}
+    \frac{ \partial \, \mathbf{v}_{i,t+1} }{ \partial \, \mathbf{v}_{i,t} } &= 
+    \mathbf{I} + 2 ~ \sigma_A^2 ~
+        \left[
+            \alpha_0 ~ \left(
+                \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
+                - \mathbf{v}_{j,t}^{\textrm{T}}
+                \mathbf{D} \mathbf{v}_{j,t} } }
+            \right) ~ \textrm{e}^{ - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} }
+            \left(
+                \mathbf{I} - 2 ~ \mathbf{v}_{i,t} \mathbf{v}_{i,t}^{\textrm{T}}
+            \right) -
+            f \: \mathbf{C}^{\textrm{T}}
+        \right] \\\
+% 
+    \frac{ \partial \: \mathbf{v}_{i,t+1} }{ \partial \: \mathbf{v}_{k,t}} &=
+        -4 \; \sigma_A^2 \; \alpha_0 \; N_{k,t} \; \mathbf{v}_{i,t} \;
+        \textrm{e}^{
+                    - \mathbf{v}_{k,t}^{\textrm{T}} \mathbf{D} \mathbf{v}_{k,t}
+                    - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}
+                } \;
+        \mathbf{v}_{k,t}^{\textrm{T}} \; \mathbf{D} \\
+% 
+    \frac{ \partial \: \mathbf{v}_{i,t+1} }{ \partial \: N_{i,t} } &= 0 \\
+    \frac{ \partial \: \mathbf{v}_{i,t+1} }{ \partial \: N_{k,t} } &=
+        2 \; \sigma_A^2 \; \alpha_0 \; \mathbf{v}_{i,t} \;
+        \textrm{e}^{ - \mathbf{v}_{k,t}^{\textrm{T}} \mathbf{D} \mathbf{v}_{k,t}
+            - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} } \\
+% 
+    \frac{ \partial N_{i,t+1} }{ \partial \mathbf{v}_{i,t} } &= 
+        2 \, F_{i,t+1} \,  N_{i,t}
+        \left[
+            \alpha_0 \, \left(
+                \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
+                - \mathbf{v}_{j,t}^{\textrm{T}}
+                \mathbf{D} \mathbf{v}_{j,t} } }
+            \right) \, \text{e}^{ -\mathbf{v}_{i,t}^{\text{T}}
+            \mathbf{v}_{i,t} } \, \mathbf{v}_{i,t}^{\text{T}}
+            - f \, \mathbf{v}_{i,t}^{\text{T}} \, \mathbf{C}
+        \right] \\
+    \frac{ \partial N_{i,t+1} }{ \partial \mathbf{v}_{k,t} } &= 
+        2 \, F_{i,t+1} \, N_{i,t} \, N_{k,t} \, \alpha_0 \: 
+        \text{e}^{ -\mathbf{v}_{i,t}^{\text{T}} \mathbf{v}_{i,t} -
+            \mathbf{v}_{k,t}^{\text{T}} \mathbf{D} \mathbf{v}_{k,t} } \:
+        \mathbf{v}_{k,t}^{\text{T}} \, \mathbf{D} \\
+% 
+    \frac{ \partial N_{i,t+1} }{ \partial N_{i,t} } &= 
+        F_{i,t+1} \left( 1 - \alpha_0 \: N_{i,t} \right) \\
+    \frac{ \partial N_{i,t+1} }{ \partial N_{k,t} } &= 
+        - F_{i,t+1} \: N_{i,t} \: \alpha_0 \: 
+        \text{e}^{ -\mathbf{v}_{i,t}^{\text{T}} \mathbf{v}_{i,t} -
+            \mathbf{v}_{k,t}^{\text{T}} \mathbf{D} \mathbf{v}_{k,t} } 
+    \textrm{.}
+\end{split}
+\end{equation*}
 
 

@@ -1,21 +1,18 @@
-\documentclass[12pt]{article}
-\usepackage[sc]{mathpazo} % Like Palatino with extensive math support
+\documentclass[11pt]{article}
+\usepackage[sc]{mathpazo} %Like Palatino with extensive math support
 \usepackage{fullpage}
-\usepackage[authoryear,sort]{natbib}
+\usepackage[authoryear,sectionbib,sort]{natbib}
+\linespread{1.7}
 \usepackage[utf8]{inputenc}
 \usepackage{lineno}
-\usepackage{setspace}
 \usepackage{titlesec}
 \titleformat{\section}[block]{\Large\bfseries\filcenter}{\thesection}{1em}{}
 \titleformat{\subsection}[block]{\Large\itshape\filcenter}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}[block]{\large\itshape}{\thesubsubsection}{1em}{}
 \titleformat{\paragraph}[runin]{\itshape}{\theparagraph}{1em}{}[. ]\renewcommand{\refname}{Literature Cited}
 
-% For Icelandic ð symbol:
-\DeclareTextSymbolDefault{\dh}{T1}
 
-\usepackage[shortlabels]{enumitem}
-\setlist{nolistsep,leftmargin=*}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%
@@ -33,14 +30,8 @@
 %
 % (Thanks to Vlastimil Krivan for pointing this out to us!)
 
-% \title{Alternative states and coexistence in the evolution of a competitive community}
-\title{Coexistence in a general model of coevolving, competing species}
+\title{When should coevolution among competitors promote coexistence versus exclusion?}
 
-
-% coexistence
-% community
-% competition
-% evolution
 
 
 
@@ -50,10 +41,17 @@
 %%%%%%%%%%%%%%%%%%%%%
 % Authorship
 %%%%%%%%%%%%%%%%%%%%%
+% Please remove authorship information while your paper is under review,
+% unless you wish to waive your anonymity under double-blind review. You
+% will need to add this information back in to your final files after
+% acceptance.
 
-\author{Lucas A. Nell$^{a,1}$,
-Joseph S. Phillips$^{b,c}$,
-Anthony R. Ives$^{d}$}
+% \author{Lucas A. Nell$^{1,\ast}$,
+% Joseph S. Phillips$^{2}$,
+% Anthony R. Ives$^{1}$}
+\author{}
+
+\date{}
 
 
 \usepackage{amsmath} % for split math environment
@@ -73,123 +71,126 @@ Anthony R. Ives$^{d}$}
     colorlinks=false
 }
 
+% color in math mode (only used for supplement)
+\usepackage{xcolor}
+% single spacing in table, with extra space between rows (only used for supplement)
+\usepackage{setspace}
+
+% This keeps appendix figures / equations / tables from breaking hyperref
+% from https://tex.stackexchange.com/a/295909
+\usepackage{xassoccnt}
+\NewTotalDocumentCounter{displayFigure}
+\NewTotalDocumentCounter{displayTable}
+\NewTotalDocumentCounter{displayEquation}
+\DeclareAssociatedCounters{figure}{displayFigure}
+\DeclareAssociatedCounters{table}{displayTable}
+\DeclareAssociatedCounters{equation}{displayEquation}
 
 
-\date{}
+
 
 \begin{document}
 
-\singlespacing
-\linenumbers{}
-\modulolinenumbers[1]
+\raggedright
+
 
 \maketitle
-\author{}
 
-\raggedright
-\setlength{\parskip}{1em}
+% \noindent{} 1. Department of Integrative Biology, University of Wisconsin, Madison, Wisconsin 53706;
+%
+% \noindent{} 2. Department of Biology, Creighton University, Omaha, Nebraska 68178.
+%
+% \noindent{} $\ast$ Corresponding author; e-mail: lucas@lucasnell.com.
 
+\bigskip
 
-\begin{enumerate}[a.]
-\item
-Department of Integrative Biology, University of Wisconsin, Madison, WI 53706, USA. lucas@lucasnell.com
-\item
-Department of Integrative Biology, University of Wisconsin, Madison, WI 53706, USA. joseph@mail.holar.is
-\item
-Department of Aquaculture and Fish Biology, H\'{o}lar University, Skagafj\"{o}r{\dh}ur 551 Iceland
-\item 
-Department of Integrative Biology, University of Wisconsin, Madison, WI 53706, USA. arives@wisc.edu \\[1ex]
-\item[1.]
-Correspondence: lucas@lucasnell.com, +1 (717) 476-7653
-\end{enumerate}
+{
+\parindent0pt
 
-
-
-
-% <= 45 characters
-\noindent Running title: Competition, coevolution, and coexistence
-
-% <= 10
-\noindent Keywords: {
-community assembly,
+% 4-6 keywords
+\textit{Keywords}: {
+coexistence,
 competition,
-% alternative stable states,
-historical contingency,
-evolutionarily stable communities,
-eco-evolutionary dynamics}
-
-\bigskip
-
-\noindent Article type: Letter \\
-\noindent Abstract words:  \\
-\noindent Main text words:  \\ % (excluding abstract, acknowledgements, references, table and figure legends)
-\noindent References: \\
-\noindent Tables: 0 \\
-\noindent Figures:  \\
-\noindent Text boxes: 0 \\
+community assembly,
+coevolution,
+evolutionarily stable communities}
 
 
 \bigskip
 
 
-\textbf{Author contributions:} LAN and ARI conceived the study,
-and LAN wrote the first draft of the article.
-All authors developed and analyzed the models, and revised the manuscript.
+\textit{Manuscript elements}: Figure~1, figure~2, figure~3, figure~4, figure~5,
+online appendix~A, online appendix~B,
+supplemental material  (figures S1--S6)
 
-\textbf{Data accessibility:} R and C++ code used to simulate the models
-is available from GitHub (\url{https://www.github.com/lucasnell/sauron}),
-and will be archived on Zenodo upon acceptance.
+\bigskip
 
+% Not including literature cited
+\textit{Words in text}: 6,405 (+ 763 in appendices)
 
+\bigskip
 
-\clearpage
-
-
-\doublespacing
+\textit{Manuscript type}: Article.
 
 
+\bigskip
+
+\footnotesize Prepared using the suggested \LaTeX{} template for \textit{Am.\ Nat.}
+}
+
+\linenumbers{}
+\modulolinenumbers[3]
+
+\newpage{}
+\setlength{\parindent}{20pt}
 
 
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+
+
+
+
+
+
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 % Abstract
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 
 \input{0-abstract}
 
 
-% \clearpage
+\newpage{}
 
 
 
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 % Introduction
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 
 \input{1-introduction}
 
 
 
 
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 % Methods
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 
 
 \input{2-methods}
 
 
 
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 % Results
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 
 \input{3-results}
 
@@ -197,22 +198,22 @@ and will be archived on Zenodo upon acceptance.
 
 
 
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 % Discussion
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 
 \input{4-discussion}
 
 
 
 
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 % Acknowledgments
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 % You may wish to remove the Acknowledgments section while your paper
 % is under review (unless you wish to waive your anonymity under
 % double-blind review) if the Acknowledgments reveal your identity.
@@ -221,37 +222,30 @@ and will be archived on Zenodo upon acceptance.
 
 % \section*{Acknowledgments}
 %
-% This research was performed using the compute resources and assistance of the UW-Madison Center 
-% For High Throughput Computing (CHTC) in the Department of Computer Sciences. 
-% The CHTC is supported by UW-Madison, the Advanced Computing Initiative, the 
-% Wisconsin Alumni Research Foundation, the Wisconsin Institutes for Discovery, and 
-% the National Science Foundation, and is an active member of the Open Science Grid, 
-% which is supported by the National Science Foundation and the U.S. Department of Energy's 
-% Office of Science.
+% We thank Matthew McCary for insightful feedback on the implications of 
+% this work.
 
 
 
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 % Appendices
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 
-\clearpage
+\newpage{}
 \input{app_A}
-\clearpage
+\newpage{}
 \input{app_B}
-% \clearpage
-% \input{app_C}
-% \clearpage
-% \input{app_D}
 
 
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 % Literature Cited
-% ---------------------------------------------------------------------------------------
-% ---------------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
 
 % You can either type your references following the examples below, or
 % compile your BiBTeX database and paste the contents of your .bbl file
@@ -263,16 +257,167 @@ and will be archived on Zenodo upon acceptance.
 %
 % The list below includes sample journal articles, book chapters, and
 % Dryad references.
+% 
+% Not necessary to do this until acceptance!
+% 
+% For how to create a .bbl file from an Overleaf project:
+% https://www.overleaf.com/learn/how-to/How_do_I_download_the_automatically_generated_files_(e.g._.bbl%2C_.aux%2C_.ind%2C_.gls)_for_my_project%3F_My_publisher_asked_me_to_include_them_in_my_submission
+% 
 
-% \bibliographystyle{amnatnat.bst}
-\bibliographystyle{ecology_letters.bst}
+
+
+\bibliographystyle{amnatnat.bst}
+\newpage{}
+\bibliography{references.bib}
+
+
+
+
+\newpage{}
+
+
+\renewcommand{\thefigure}{\arabic{displayFigure}}
+\renewcommand{\theequation}{\arabic{displayEquation}}
+\renewcommand{\thetable}{\arabic{displayTable}}
+\setcounter{displayFigure}{0}
+\setcounter{displayEquation}{0}
+\setcounter{displayTable}{0}
+
+
+
+
+% Authors can upload PDFs or they can upload the source files in a variety of formats for peer review. Manuscript PDFs can show figures and tables in the run of text for the convenience of reviewers. If authors are not supplying their own PDF, Editorial Manager will combine figure and text files into a single PDF (figures and tables will appear at the end of the PDF). Either way, embedded or at the end, the figure legend should, whenever possible, be placed on the same page as the figure to help reviewers.
+
+
+
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.7\textwidth,keepaspectratio]{1-diagram}
+\caption{Simplified scenario demonstrating how investment by
+one species affects other species in the community. We start with a
+two-species community where the abundance and investments of species B
+are affected by species A and change though time as specified by the
+model. To show direct effects without feedbacks that complicate
+interpretation, these simulations have two differences from those
+throughout the rest of the paper: First, the abundance and investments
+of species A are constant and not affected by species B. Second, there
+is only one suite of traits. (A)~If we perturb the system by instantly
+increasing the investment by species A, the effects this has on species
+B depend on the type of traits species A invests in. (B)~If species A
+invests in partitioning traits, greater investment by A weakens the
+interspecific competition experienced by species B and causes a rapid
+initial increase in the abundance of B. Because reduced competition
+makes investment less beneficial, species B decreases its investment.
+The reduced costs of investing cause the slow increase in abundance of
+species B. (C)~If species A invests in conflict traits, greater
+investment by A strengthens the interspecific competition experienced by
+species B and causes a rapid initial decrease in the abundance of B.
+Species B then evolves greater investment to reduce the effects of
+competition from A, which allows species B to increase in abundance
+after the initial decrease.}
+\label{fig:model-description}
+\end{figure}
+
 \clearpage
-\bibliography{library.bib}
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=\textwidth,keepaspectratio]{2-tradeoffs_outcomes}
+\caption{Costs of investing (background color) and unique
+investment states for 2-species communities (points and dotted line) for
+sub-additive ($\eta < 0$), additive ($\eta = 0$), or super-additive
+($\eta > 0$) investment costs. The dashed line in the additive case
+shows the location of the neutrally stable ring. Background color
+indicates the proportional reduction from the maximum per capita growth without
+competition
+($\lbrack \text{exp}( r_{0} ) - \text{exp}( r_{0} - f( p_{i}^{2} + 2 \eta p_{i} x_{i} + x_{i}^{2} ) ) \rbrack \, / \, \text{exp}( r_{0} )$),
+so darker colors indicate a greater cost of investment. Arrows show the
+direction and strength of selection
+($F_{i}^{- 1} \, \partial F_{i} \, / \, \partial p_{i}$ and
+$F_{i}^{- 1} \, \partial F_{i} \, / \, \partial x_{i}$) if a species at the
+nearest equilibrium point is perturbed to the arrow's starting location.}
+\label{fig:tradeoffs-outcomes}
+\end{figure}
 
 
 
 \clearpage
-\input{supp_info}
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=\textwidth,keepaspectratio]{3-all_pheno}
+\caption{Representative simulations showing how non-heritable
+variation affects selection on investment for (A) weak sub-additive
+($\eta = - 0.01$), (B) additive ($\eta = 0$), or (C) weak
+super-additive ($\eta = 0.01$) investment costs. Each sub-panel shows
+the trajectories (lines) in investment space for four species started
+under each scenario. Open points indicate starting investments, and
+closed black points indicate ending investments. Gray shaded curves
+inside each plot show the probability density for the normal
+distributions used to generate non-heritable variation in conflict (bottom
+curve) or partitioning (left curve) trait investment evolution. No curve
+indicates no non-heritable variation.}
+\label{fig:non-heritable}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.9\textwidth,keepaspectratio]{4-one-invader}
+\caption{Effects of initial investments by invading and
+resident species on subsequent evolution of investment. Shown are
+z-scored total investment ($\sqrt{{p_{i}}^{2} + {x_{i}}^{2}}$), effective
+competitive neighborhood ($\Omega_{i}$), and abundance ($N_{i}$) for
+residents (dark or light blue) of a 2-species community at stationarity
+that is invaded by a third species (red). Points indicate the values of
+each parameter when the invader was added, and arrows point to the value
+where the new 3-species community reached a new equilibrium. Note that
+invader points are the only points that do not indicate equilibrium
+values and thus do not conform to equations
+\ref{eq:analytical-super-solns}--\ref{eq:analytical-additive-solns} and
+equilibrium relationships described in text. Panel rows separate the relative
+investment of the resident species in conflict versus partitioning
+traits, while columns do the same for the invader. Insets show the exact
+investments ($p_{i}$ and $x_{i}$) for all three species when the
+invader was added. Z-scoring was done within each panel (parameter set)
+so that they can be compared across panels. Because starting $N_{i}$
+for the invader was always 1, we did not include this value in the
+z-scoring and indicated this by having the starting point outside the
+plot range.}
+\label{fig:one-invader}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=4.75in,keepaspectratio]{5-exclusion}
+\caption{Factors affecting exclusion of residents in a
+2-species mixed community. For the equilibrium 2-species resident
+community, (A)~total investment
+($\sqrt{{\hat{p}}_{i}^{2} + {\hat{x}}_{i}^{2}}$) and (B)
+abundance (${\hat{N}}_{i}$) by the species investing more in
+partitioning traits (``partitioning resident''; gold) and by the species
+investing more in conflict traits (``conflict resident''; purple) depend
+on how strongly partitioning investment affects the competition
+experienced by other species ($d_{p}$). (C)~Equilibrium investments
+for the 2-species community when $d_{p} = 0.3$ and (D)~when
+$d_{p} = 0.7$, with investments of the invader species shown in orange.
+(E,F)~Total investment ($\sqrt{{p_{i}}^{2} + {x_{i}}^{2}}$), effective
+competitive neighborhood ($\Omega_{i}$), and abundance ($N_{i}$) for
+both residents and an invader invested in conflict traits (``conflict
+invader''; orange) added to the community from (E)~panel C or (F)~panel
+D. Crosses indicate extinction.}
+\label{fig:exclusion}
+\end{figure}
+
+
+
 
 
 \end{document}

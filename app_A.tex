@@ -1,203 +1,204 @@
 
-\renewcommand{\thefigure}{A\arabic{figure}}
-\renewcommand{\theequation}{A\arabic{equation}}
-\renewcommand{\thetable}{A\arabic{table}}
-\setcounter{equation}{0}
-\setcounter{figure}{0}
-\setcounter{table}{0}
+\renewcommand{\thefigure}{A\arabic{displayFigure}}
+\renewcommand{\theequation}{A\arabic{displayEquation}}
+\renewcommand{\thetable}{A\arabic{displayTable}}
+\setcounter{displayFigure}{0}
+\setcounter{displayEquation}{0}
+\setcounter{displayTable}{0}
 
 
-\section*{Appendix A: Matrix derivatives in quantitative genetics equations}
+\section*{Appendix A: Analytical solutions, non-negative investments, and non-heritable variation}
 
 
-% In this section, we make the following abbreviation in the equations:
 
-% \begin{equation*}
-%     \mathbf{\Omega}_{i,t} \equiv N_{i,t} +
-%             \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
-%             - \mathbf{v}_{j,t}^{\textrm{T}}
-%             \mathbf{D} \mathbf{v}_{j,t} } }
-% \end{equation*}
+\subsection*{Analytical solutions}
 
-\subsection*{Axis change}
+Below are the full equations for fitness and investments at time
+\(t + 1\), with the parameter for effective competitive neighborhood
+(\(\Omega_{i}\)) defined as the total community abundance accounting for
+the effect of species' investments on competition experienced by species
+\(i\). These equations are used for the analytical solutions in this
+section, and in these solutions, equilibrium parameters are indicated by
+circumflexes (e.g., \({\hat{x}}_{i}\) for \(x_{i}\)).
 
-The partial derivative of fitness with respect to axes is
 
-\begin{equation*}
+\begin{equation}
+\label{eq:analytical-equations}
 \begin{split}
-    \frac{ \partial F_{i,t} }{ \partial \mathbf{v}_{i,t} } =
-        \exp & \left\{
-            r_0
-            - f \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{C} \mathbf{v}_{i,t}
-            - \alpha_0  \left(
-                N_{i,t} + \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
-                - \mathbf{v}_{j,t}^{\textrm{T}}
-                \mathbf{D} \mathbf{v}_{j,t} } }
-            \right) \,
-                \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}}
+    F_{i,t+1} &= \exp\left\{
+        r_0 - f \, \left( p_{i,t}^2 + 2 \eta \, p_{i,t} \, x_{i,t} + x_{i,t}^2 \right)
+        - \alpha_0 N_{i,t} - \alpha_0 \, \text{e}^{-p_{i,t}^2 - x_{i,t}^2} \, \Omega_{i,t}
         \right\} \\
-        & \left[
-            2 \alpha_0 \left(
-                N_{i,t} + \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
-                - \mathbf{v}_{j,t}^{\textrm{T}}
-                \mathbf{D} \mathbf{v}_{j,t} } }
-            \right) \,
-                \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}} \:
-                \mathbf{v}_{i,t}^{\textrm{T}}
-            - 2 f \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{C}
+    p_{i,t+1} &= p_{i,t} + 2 \, \sigma_A^2 \left[
+            \alpha_0 \, \text{e}^{-p_{i,t}^2 - x_{i,t}^2} \, p_{i,t} \,
+            \Omega_{i,t}
+            - f \left( p_{i,t} + \eta \, x_{i,t} \right) 
+        \right] \\
+    x_{i,t+1} &= x_{i,t} + 2 \, \sigma_A^2 \left[
+            \alpha_0 \, \text{e}^{-p_{i,t}^2 - x_{i,t}^2} \, x_{i,t} \,
+            \Omega_{i,t}
+            - f \left( x_{i,t} + \eta \, p_{i,t} \right) 
+        \right]\\
+    \Omega_{i,t} &\equiv \sum_{j \ne i}^{n}{ N_{j,t} \, \text{e}^{ 
+                - d_p \, p_{j,t}^2 + d_x \, x_{j,t}^2 } }
+    \text{.}
+\end{split}
+\end{equation}
+
+
+For a 1-species community at equilibrium, unless \(\eta = - 1\),
+
+\begin{equation}
+\label{eq:analytical-1spp-solns}
+\begin{split}
+    \hat{p}_{i} = \hat{x}_{i} &= 0 \\
+    \hat{N}_i &= \frac{r_0}{\alpha_0}
+    \text{.}
+\end{split}
+\end{equation}
+
+
+
+Because investments cannot be negative and
+
+\begin{alignat*}{3}
+    p_{i,t + 1} &= - 2 \, \sigma_{A}^{2} \, \alpha_{0} \, f \, \eta \, x_{i,t} & \;\; 
+        \text{if} ~ p_{i,t} = 0 \\
+    x_{i,t + 1} &= - 2 \, \sigma_{A}^{2} \, \alpha_{0} \, f \, \eta \, p_{i,t} & \;\; 
+        \text{if} ~ x_{i,t} = 0
+\text{,}
+\end{alignat*}
+
+
+\(p_{i,t + 1}\) and \(x_{i,t + 1}\) will remain at zero unless
+\(\eta \geq 0\) or the other investment type is zero. This means that
+equilibria where exactly one investment is at zero only coincide with
+additive or super-additive costs. For these two equilibria,
+
+
+\begin{equation}
+\label{eq:analytical-super-solns}
+\begin{split}
+    \hat{p}_i \textrm{ or } \hat{x}_i &= \sqrt{\log \left( 
+            \frac{\alpha_0 \, \hat{\Omega}_i}{f} 
+        \right)} \\
+    \hat{N}_i &= \frac{1}{\alpha_0} \left(
+        r_0 - f \left[
+            \log\left( \frac{\alpha_0 \, \hat{\Omega}_i }{f}
+            \right) + 1 
         \right]
-    \textrm{.}
+    \right)
+    \text{.}
 \end{split}
-\end{equation*}
-
-
-This, combined with equation \ref{eq:axis-change}, means that axes change as follows:
-
-\begin{equation} \label{eq:axes-change-full}
-    \mathbf{v}_{i,t+1} = \mathbf{v}_{i,t} + 2 \sigma_i^2
-    \left[
-        \alpha_0 \, \left(
-            N_{i,t} +
-            \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
-            - \mathbf{v}_{j,t}^{\textrm{T}}
-            \mathbf{D} \mathbf{v}_{j,t} } }
-        \right) \:
-            \textrm{e}^{- \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}} \:
-            \mathbf{v}_{i,t}^{\textrm{T}}
-        - f \, \mathbf{v}_{i,t}^{\textrm{T}} \: \mathbf{C}
-    \right]
-    \textrm{.}
 \end{equation}
 
 
-\subsection*{Jacobian}
 
-The Jacobian is
 
-\begin{equation} \label{eq:jacobian}
-    \begin{pmatrix}
-        \frac{\partial \mathbf{v}_{1,t+1}}{\partial \mathbf{v}_{1,t}} & \cdots &
-            \frac{\partial \mathbf{v}_{1,t+1}}{\partial \mathbf{v}_{n,t}} &
-            \frac{\partial \mathbf{v}_{1,t+1}}{\partial N_{1,t}} & \cdots &
-            \frac{\partial \mathbf{v}_{1,t+1}}{\partial N_{n,t}} \\
-        \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
-        \frac{\partial \mathbf{v}_{n,t+1}}{\partial \mathbf{v}_{1,t}} & \cdots &
-            \frac{\partial \mathbf{v}_{n,t+1}}{\partial \mathbf{v}_{n,t}} &
-            \frac{\partial \mathbf{v}_{n,t+1}}{\partial N_{1,t}} & \cdots &
-            \frac{\partial \mathbf{v}_{n,t+1}}{\partial N_{n,t}} \\[1ex]
-%
-%
-        \frac{\partial N_{1,t+1}}{\partial \mathbf{v}_{1,t}} & \cdots &
-            \frac{\partial N_{1,t+1}}{\partial \mathbf{v}_{n,t}} &
-            \frac{\partial N_{1,t+1}}{\partial N_{1,t}} & \cdots &
-            \frac{\partial N_{1,t+1}}{\partial N_{n,t}} \\
-        \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
-        \frac{\partial N_{n,t+1}}{\partial \mathbf{v}_{1,t}} & \cdots &
-            \frac{\partial N_{n,t+1}}{\partial \mathbf{v}_{n,t}} &
-            \frac{\partial N_{n,t+1}}{\partial N_{1,t}} & \cdots &
-            \frac{\partial N_{n,t+1}}{\partial N_{n,t}} \\
-    \end{pmatrix}
-    \text{.}
+These are the only possible equilibria for super-additive costs.
+However, if costs are additive, there are infinite equilibria along a
+neutrally stable ring defined by the overall distance from the origin:
+
+    
+\begin{equation}
+\label{eq:analytical-additive-solns}
+\begin{split}
+    \sqrt{\hat{p}_{i}^{2} + \hat{x}_{i}^{2}} &= \sqrt{\log\left(
+        \frac{\alpha_{0} \, \hat{\Omega}_{i}}{f} \right)} \\
+    \hat{N}_{i} &= \frac{1}{\alpha_{0}} \left( 
+        r_{0} - f \left[ \log\left(  
+        \frac{\alpha_{0} \, \hat{\Omega}_{i}}{f} \right) + 1 \right]
+    \right)\text{.} \\
+\end{split}
 \end{equation}
 
 
-It is made up of the following derivatives:
 
-\begin{equation*}
+For sub-additive costs, we have one equilibrium where
+\(\hat{p}_{i} \neq 0\ \&\ \hat{x}_{i} \neq 0\):
+
+
+\begin{equation}
+\label{eq:analytical-sub-solns}
 \begin{split}
-    \frac{ \partial \, \mathbf{v}_{i,t+1} }{ \partial \, \mathbf{v}_{i,t} } &= 
-    \mathbf{I} + 2 ~ \sigma_i^2 ~
-        \left[
-            \alpha_0 ~ \left(
-                N_{i,t} + \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
-                - \mathbf{v}_{j,t}^{\textrm{T}}
-                \mathbf{D} \mathbf{v}_{j,t} } }
-            \right) ~ \textrm{e}^{ - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} }
-            \left(
-                \mathbf{I} - 2 ~ \mathbf{v}_{i,t} \mathbf{v}_{i,t}^{\textrm{T}}
-            \right) -
-            f \: \mathbf{C}^{\textrm{T}}
-        \right] \\
-    \frac{ \partial \: \mathbf{v}_{i,t+1} }{ \partial \: \mathbf{v}_{k,t}} &=
-        -4 \; \sigma_i^2 \; \alpha_0 \; N_{k,t} \; \mathbf{v}_{i,t} \;
-        \textrm{e}^{
-                    - \mathbf{v}_{k,t}^{\textrm{T}} \mathbf{D} \mathbf{v}_{k,t}
-                    - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t}
-                } \;
-        \mathbf{v}_{k,t}^{\textrm{T}} \; \mathbf{D} \\
-% 
-    \frac{ \partial \: \mathbf{v}_{i,t+1} }{ \partial \: N_{i,t} } &=
-        2 \; \sigma_i^2 \; \alpha_0 \; \mathbf{v}_{i,t} \;
-        \textrm{e}^{ - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} } \\
-    \frac{ \partial \: \mathbf{v}_{i,t+1} }{ \partial \: N_{k,t} } &=
-        2 \; \sigma_i^2 \; \alpha_0 \; \mathbf{v}_{i,t} \;
-        \textrm{e}^{ - \mathbf{v}_{k,t}^{\textrm{T}} \mathbf{D} \mathbf{v}_{k,t}
-            - \mathbf{v}_{i,t}^{\textrm{T}} \mathbf{v}_{i,t} } \\
-% 
-    \frac{ \partial N_{i,t+1} }{ \partial \mathbf{v}_{i,t} } &= 
-        2 \, F_{i,t+1} \,  N_{i,t}
-        \left[
-            \alpha_0 \, \left(
-                N_{i,t} + \sum_{j \ne i}^{n}{ N_{j,t} \, \textrm{e}^{
-                - \mathbf{v}_{j,t}^{\textrm{T}}
-                \mathbf{D} \mathbf{v}_{j,t} } }
-            \right) \, \text{e}^{ -\mathbf{v}_{i,t}^{\text{T}}
-            \mathbf{v}_{i,t} } \, \mathbf{v}_{i,t}^{\text{T}}
-            - f \, \mathbf{v}_{i,t}^{\text{T}} \, \mathbf{C}
-        \right] \\
-    \frac{ \partial N_{i,t+1} }{ \partial \mathbf{v}_{k,t} } &= 
-        2 \, F_{i,t+1} \, N_{i,t} \, N_{k,t} \, \alpha_0 \: 
-        \text{e}^{ -\mathbf{v}_{i,t}^{\text{T}} \mathbf{v}_{i,t} -
-            \mathbf{v}_{k,t}^{\text{T}} \mathbf{D} \mathbf{v}_{k,t} } \:
-        \mathbf{v}_{k,t}^{\text{T}} \, \mathbf{D} \\
-% 
-    \frac{ \partial N_{i,t+1} }{ \partial N_{i,t} } &= 
-        F_{i,t+1}
-        \left(
-            1 - N_{i,t} \: \alpha_0 \: 
-            \text{e}^{ -\mathbf{v}_{i,t}^{\text{T}} \mathbf{v}_{i,t} } 
-        \right) \\
-    \frac{ \partial N_{i,t+1} }{ \partial N_{k,t} } &= 
-        - F_{i,t+1} \: N_{i,t} \: \alpha_0 \: 
-        \text{e}^{ -\mathbf{v}_{i,t}^{\text{T}} \mathbf{v}_{i,t} -
-            \mathbf{v}_{k,t}^{\text{T}} \mathbf{D} \mathbf{v}_{k,t} } 
-    \textrm{.}
-\end{split}
-\end{equation*}
-
-
-
-\subsection*{Keeping axes non-negative}
-
-To keep axes $\ge 0$, we used the ramp function, $R(x)$, which is defined as
-
-\begin{equation*}
-    R(x) = \begin{cases}
-        x & \text{if}\ x \ge 0 \\
-        0 & \text{if}\ x < 0
-        \end{cases}
-    \text{.}
-\end{equation*}
-
-
-\noindent Its derivative is the Heaviside step function:
-
-\begin{equation*}
-\begin{split}
-    R'(x) &= H(x) \\
-    H(x) &= \begin{cases}
-        0 & \text{if}\ x \le 0 \\
-        1 & \text{if}\ x > 0
-        \end{cases}
+    \hat{p}_i = \hat{x}_i &= \sqrt{\frac{1}{2} \log \left( 
+        \frac{\alpha_0 \, \hat{\Omega}_i}{f (1 + \eta)}  \right)} \\
+    \hat{N}_i &= \frac{1}{\alpha_0} \left(
+        r_0 - f (1 + \eta) \left[
+            \log\left( \frac{\alpha_0 \, \hat{\Omega}_i }{f (1 + \eta)}
+            \right) + 1 
+        \right]
+    \right)
     \text{.}
 \end{split}
+\end{equation}
+
+
+The equilibria shown in equations
+\ref{eq:analytical-super-solns}--\ref{eq:analytical-sub-solns}
+are undefined for low values of
+\(\hat{\Omega}_{i}\), in which case species evolve to 0
+investment. This will occur when
+
+
+\begin{alignat*}{3}
+    \hat{\Omega}_{i} &< \frac{f}{\alpha_{0}}                & \;\; \text{if}\ \eta \geq 0 \\[1ex]
+    \hat{\Omega}_{i} &< \frac{f \, (1 + \eta)}{ \alpha_0}   & \;\; \text{if}\ \eta < 0
+    \text{.}
+\end{alignat*}
+
+
+
+\subsection*{Keeping investments non-negative}
+
+To keep investments \(\geq 0\), we used the ramp function
+\(R(z) = \max(0,z)\). We used a ramp function instead of absolute values
+because the latter causes fluctuations in the investments when they
+approach zero (they ``bounce off'' the zero bound) that persist for
+extended periods. A more important disadvantage is that derivatives of
+these functions are undefined at zero. The derivative of the ramp
+function is the Heaviside step function:
+
+\begin{equation*}
+    H(z) = \begin{cases}
+        0 & \text{if}\ z \le 0 \\
+        1 & \text{if}\ z > 0
+        \end{cases}
+    \text{.}
 \end{equation*}
 
 % Also see https://see.stanford.edu/materials/lsoftaee261/book-fall-07.pdf
 % and https://mathworld.wolfram.com/RampFunction.html
 
-Thus, all axis derivatives of the form $\partial \mathbf{v} / \partial x$
-are changed to $H(\mathbf{v}(x)) \: \partial \mathbf{v} / \partial x$ to 
-account for axes being non-negative.
+Thus, all investment derivatives of the form $\partial x / \partial z$
+and $\partial p / \partial z$
+are changed to $H(p(z)) \: \partial p / \partial z$ and
+$H(x(z)) \: \partial x / \partial z$, respectively, to
+account for investments being non-negative.
 
 
+\subsection*{Effects of non-heritable variation on investment
+evolution}
+
+When there is non-heritable variation in investment evolution, the second
+order Taylor series approximation for the expected value of
+\(x_{t + 1}\) is
+
+
+\begin{equation}
+\label{eq:taylor-expansion-final}
+\begin{split}
+    \text{E}(x_{t+1}) & \approx
+        x_{t} + 2 \; \sigma_A^2 \; \left[
+            \alpha_0 \: \Omega \: x_{t} \; \text{e}^{-p_{t}^2 - x_{t}^2} \xi - 
+            f \left( x_{t} + \eta \; p_{t} + \psi \right)
+        \right] \\
+    \xi & = 1 + 2\, \sigma^2_{x} \left( 1 - 3 \; x_{t}^2 - x_t^4 \right) - 
+        2 \; \sigma^2_{p} \, p_{t}^2 \left( 1 - p_{t}^2 \right) \\
+    \psi & = 2 \, \sigma^2_{x} \, x_{t} + 
+        \eta \; p_{t} \, \left( \frac{\sigma^2_{p} + \sigma^2_{x}}{2} \right)
+\text{,}
+\end{split}
+\end{equation}
+
+\noindent where we drop the index for species to reduce clutter.
